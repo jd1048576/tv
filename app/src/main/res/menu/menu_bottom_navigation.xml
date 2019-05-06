@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_discover"
+        android:icon="@drawable/ic_discover"
+        android:title="@string/discover" />
+
+    <item
+        android:id="@+id/fragment_schedule"
+        android:icon="@drawable/ic_schedule"
+        android:title="@string/schedule" />
+
+    <item
+        android:id="@+id/fragment_watch_list"
+        android:icon="@drawable/ic_watch_list"
+        android:title="@string/watch_list" />
+
+    <item
+        android:id="@+id/fragment_shows"
+        android:icon="@drawable/ic_tv"
+        android:title="@string/shows" />
+
+</menu>

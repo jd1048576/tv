@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven(url = "https://plugins.gradle.org/m2/")
+        maven("https://plugins.gradle.org/m2/")
     }
 
     dependencies {
@@ -23,7 +23,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven(url = "https://kotlin.bintray.com/kotlinx/")
+        maven("https://kotlin.bintray.com/kotlinx/")
     }
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile> {
