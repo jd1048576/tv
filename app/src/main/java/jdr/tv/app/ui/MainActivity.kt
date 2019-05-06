@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import jdr.tv.R
+import jdr.tv.app.R
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
