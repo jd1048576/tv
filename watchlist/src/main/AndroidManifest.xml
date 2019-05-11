@@ -1,12 +1,13 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:dist="http://schemas.android.com/apk/distribution"
+<manifest xmlns:dist="http://schemas.android.com/apk/distribution"
     package="jdr.tv.watchlist">
 
     <dist:module
         dist:instant="false"
-        dist:onDemand="false"
         dist:title="@string/watch_list">
-        <dist:fusing dist:include="true" />
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="false" />
     </dist:module>
 </manifest>
 
