@@ -1,8 +1,8 @@
 import Dependencies.Android
 import Dependencies.Dagger
 import Dependencies.Kotlin
-import Dependencies.Timber
 import Dependencies.Material
+import Dependencies.Timber
 
 plugins {
     id(Plugins.androidDynamicFeature)
@@ -17,7 +17,7 @@ android {
     defaultConfig {
         minSdkVersion(Config.minSdkVersion)
         targetSdkVersion(Config.targetSdkVersion)
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Config.testRunner
     }
 
     compileOptions {
@@ -37,14 +37,12 @@ dependencies {
     implementation(Android.activity)
     implementation(Android.fragment)
     implementation(Android.constraintLayout)
-    implementation(Android.coreKtx)
+    implementation(Android.core)
 
+    implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)
+    implementation(Android.Navigation.runtime)
     implementation(Android.Navigation.ui)
-    implementation(Android.Navigation.commonKtx)
-    implementation(Android.Navigation.fragmentKtx)
-    implementation(Android.Navigation.runtimeKtx)
-    implementation(Android.Navigation.uiKtx)
 
     implementation(Material.material)
 

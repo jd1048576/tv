@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/toolbar_height"
-        android:text="Discover" />
+    <FrameLayout
+        android:id="@+id/fragment_settings_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

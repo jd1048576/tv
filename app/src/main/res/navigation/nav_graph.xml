@@ -60,7 +60,7 @@
 
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="jdr.tv.ui.fragment.settings.SettingsFragment"
+        android:name="jdr.tv.settings.ui.SettingsFragment"
         android:label="@string/settings" />
 
 </navigation>

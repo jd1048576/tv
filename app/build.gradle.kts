@@ -21,7 +21,7 @@ android {
         targetSdkVersion(Config.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Config.testRunner
     }
 
     signingConfigs {
@@ -51,10 +51,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":shows", ":watchlist")
+    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":settings", ":shows", ":watchlist")
 }
 
 dependencies {
+    implementation(project(":base-android"))
+
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)
@@ -63,22 +65,17 @@ dependencies {
     implementation(Android.activity)
     implementation(Android.fragment)
     implementation(Android.constraintLayout)
-    implementation(Android.coreKtx)
+    implementation(Android.core)
 
+    implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)
+    implementation(Android.Navigation.runtime)
     implementation(Android.Navigation.ui)
-    implementation(Android.Navigation.commonKtx)
-    implementation(Android.Navigation.fragmentKtx)
-    implementation(Android.Navigation.runtimeKtx)
-    implementation(Android.Navigation.uiKtx)
 
     implementation(Material.material)
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
-    implementation(Dagger.android)
-    implementation(Dagger.androidSupport)
-    kapt(Dagger.androidProcessor)
 
     implementation(Glide.glide)
     kapt(Glide.compiler)
