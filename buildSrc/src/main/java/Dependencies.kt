@@ -12,13 +12,13 @@ object Dependencies {
     }
 
     object Android {
-        const val appCompat = "androidx.appcompat:appcompat:1.1.0-alpha05"
         const val activity = "androidx.activity:activity:1.0.0-alpha08"
-        const val fragment = "androidx.fragment:fragment:1.1.0-alpha08"
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha05"
-        const val preference = "androidx.preference:preference:1.1.0-alpha05"
+        const val appCompat = "androidx.appcompat:appcompat:1.1.0-alpha05"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
-        const val coreKtx = "androidx.core:core-ktx:1.2.0-alpha01"
+        const val core = "androidx.core:core-ktx:1.2.0-alpha01"
+        const val fragment = "androidx.fragment:fragment:1.1.0-alpha08"
+        const val preference = "androidx.preference:preference:1.1.0-alpha05"
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha05"
 
         object Lifecycle {
             private const val version = "2.2.0-alpha01"
@@ -27,25 +27,23 @@ object Dependencies {
             const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
+        object Navigation {
+            private const val version = "2.1.0-alpha03"
+            const val common = "androidx.navigation:navigation-common-ktx:$version"
+            const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"
+            const val ui = "androidx.navigation:navigation-ui-ktx:$version"
+        }
+
+        object Paging {
+            const val runtime = "androidx.paging:paging-runtime:2.1.0"
+        }
+
         object Room {
             private const val version = "2.1.0-beta01"
             const val runtime = "androidx.room:room-runtime:$version"
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
-        }
-
-        object Navigation {
-            private const val version = "2.1.0-alpha03"
-            const val fragment = "androidx.navigation:navigation-fragment:$version"
-            const val ui = "androidx.navigation:navigation-ui:$version"
-            const val commonKtx = "androidx.navigation:navigation-common-ktx:$version"
-            const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
-            const val runtimeKtx = "androidx.navigation:navigation-runtime-ktx:$version"
-            const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
-        }
-
-        object Paging {
-            const val runtime = "androidx.paging:paging-runtime:2.1.0"
         }
     }
 
