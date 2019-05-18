@@ -16,7 +16,7 @@ object Dependencies {
         const val appCompat = "androidx.appcompat:appcompat:1.1.0-alpha05"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
         const val core = "androidx.core:core-ktx:1.2.0-alpha01"
-        const val fragment = "androidx.fragment:fragment:1.1.0-alpha08"
+        const val fragment = "androidx.fragment:fragment:1.1.0-alpha09"
         const val preference = "androidx.preference:preference:1.1.0-alpha05"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha05"
 
@@ -28,7 +28,7 @@ object Dependencies {
         }
 
         object Navigation {
-            private const val version = "2.1.0-alpha03"
+            private const val version = "2.1.0-alpha04"
             const val common = "androidx.navigation:navigation-common-ktx:$version"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"
