@@ -2,7 +2,7 @@
 <resources>
 
     <color name="color_background">#161616</color>
-    <color name="color_surface">#101010</color>
+    <color name="color_surface">#161616</color>
 
     <color name="color_on_primary">#000000</color>
     <color name="color_on_secondary">#000000</color>
