@@ -6,14 +6,14 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import jdr.tv.app.R.string
 import jdr.tv.base.android.extensions.setupToolbar
 import jdr.tv.settings.R
+import jdr.tv.app.R as app
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.toolbar, string.settings, true)
+        setupToolbar(R.id.fragment_settings_toolbar, app.string.settings, true)
         if (savedInstanceState == null) {
             childFragmentManager.beginTransaction().replace(R.id.fragment_settings_frame_layout, PreferenceFragment()).commit()
         }
