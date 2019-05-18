@@ -9,13 +9,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/toolbar_height"
-        android:text="Discover" />
+        android:text="@string/discover" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/fragment_discover_toolbar"
-        android:elevation="@dimen/elevation"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
+        android:elevation="@dimen/elevation"
         app:contentInsetStartWithNavigation="0dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
