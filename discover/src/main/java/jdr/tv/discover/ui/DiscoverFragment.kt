@@ -7,9 +7,9 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import jdr.tv.app.R.string
 import jdr.tv.base.android.extensions.setupToolbar
 import jdr.tv.discover.R
+import jdr.tv.app.R as app
 
 class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
@@ -19,7 +19,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.toolbar, string.discover)
+        setupToolbar(R.id.fragment_discover_toolbar, app.string.discover)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -29,7 +29,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.settings) {
-            NavHostFragment.findNavController(this).navigate(jdr.tv.app.R.id.action_settings)
+            NavHostFragment.findNavController(this).navigate(app.id.action_settings)
             true
         } else {
             super.onOptionsItemSelected(item)
