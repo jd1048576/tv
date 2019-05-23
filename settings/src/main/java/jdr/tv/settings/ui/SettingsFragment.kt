@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import jdr.tv.base.android.extensions.setupToolbar
+import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.settings.R
 import jdr.tv.app.R as app
 

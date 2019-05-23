@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":base-android"))
+    implementation(project(":base"))
 
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)

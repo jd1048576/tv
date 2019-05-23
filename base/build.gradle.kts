@@ -21,7 +21,6 @@ android {
 }
 
 dependencies {
-
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)

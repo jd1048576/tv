@@ -1,4 +1,4 @@
-package jdr.tv.base.android.extensions
+package jdr.tv.base.extensions
 
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
