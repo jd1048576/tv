@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import jdr.tv.base.android.extensions.setupToolbar
+import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.discover.R
 import jdr.tv.app.R as app
 

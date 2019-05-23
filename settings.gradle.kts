@@ -1,1 +1,4 @@
-include(":app", ":base-android", ":discover", ":schedule", ":settings", ":shows", ":watchlist")
+include(":base")
+include(":local", ":remote")
+include(":app")
+include(":discover", ":schedule", ":settings", ":shows", ":watchlist")

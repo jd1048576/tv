@@ -27,8 +27,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":base"))
     implementation(project(":app"))
-    implementation(project(":base-android"))
 
     implementation(Kotlin.stdlib)
 
