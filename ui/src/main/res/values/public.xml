@@ -3,6 +3,11 @@
 
     <public name="menu_main" type="menu" />
 
+    <public name="corner_radius" type="dimen" />
+    <public name="elevation" type="dimen" />
+    <public name="toolbar_height" type="dimen" />
+
+
     <public name="discover" type="string" />
     <public name="schedule" type="string" />
     <public name="search" type="string" />
