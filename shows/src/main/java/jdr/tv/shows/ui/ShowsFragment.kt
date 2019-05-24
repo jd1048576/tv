@@ -9,17 +9,18 @@ import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.shows.R
 
 class ShowsFragment : Fragment(R.layout.fragment_shows) {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.fragment_shows_toolbar, R.string.shows)
+        setupToolbar(R.id.fragment_shows_toolbar, jdr.tv.ui.R.string.shows)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main, menu)
+        inflater.inflate(jdr.tv.ui.R.menu.menu_main, menu)
     }
 }

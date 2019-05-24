@@ -16,11 +16,11 @@ class WatchListFragment : Fragment(R.layout.fragment_watch_list) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.fragment_watch_list_toolbar, R.string.watch_list)
+        setupToolbar(R.id.fragment_watch_list_toolbar, jdr.tv.ui.R.string.watch_list)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main, menu)
+        inflater.inflate(jdr.tv.ui.R.menu.menu_main, menu)
     }
 }

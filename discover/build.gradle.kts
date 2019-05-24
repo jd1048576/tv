@@ -28,6 +28,7 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":ui"))
     implementation(project(":app"))
 
     implementation(Kotlin.stdlib)

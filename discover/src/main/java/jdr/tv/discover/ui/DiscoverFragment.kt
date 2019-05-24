@@ -16,11 +16,11 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.fragment_discover_toolbar, R.string.discover)
+        setupToolbar(R.id.fragment_discover_toolbar, jdr.tv.ui.R.string.discover)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main, menu)
+        inflater.inflate(jdr.tv.ui.R.menu.menu_main, menu)
     }
 }
