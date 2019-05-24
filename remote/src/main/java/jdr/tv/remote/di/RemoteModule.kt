@@ -22,7 +22,7 @@ import timber.log.Timber
 import javax.inject.Singleton
 
 @Module
-object NetworkModule {
+object RemoteModule {
 
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 

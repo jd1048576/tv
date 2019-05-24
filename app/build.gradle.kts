@@ -3,6 +3,7 @@ import Dependencies.Dagger
 import Dependencies.Glide
 import Dependencies.Kotlin
 import Dependencies.Material
+import Dependencies.Okhttp3
 import Dependencies.Timber
 
 plugins {
@@ -56,6 +57,8 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":local"))
+    implementation(project(":remote"))
 
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
@@ -76,6 +79,8 @@ dependencies {
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
+
+    implementation(Okhttp3.okhttp3)
 
     implementation(Glide.glide)
     kapt(Glide.compiler)
