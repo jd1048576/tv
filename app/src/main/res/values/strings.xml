@@ -3,19 +3,4 @@
 
     <string name="app_name">TV Tracker</string>
 
-    <!-- Top Level Fragments -->
-    <string name="discover">Discover</string>
-    <string name="schedule">Schedule</string>
-    <string name="watch_list">Watch List</string>
-    <string name="shows">Shows</string>
-
-    <!-- Search Fragment -->
-    <string name="search">Search</string>
-
-    <!-- Settings Fragment -->
-    <string name="settings">Settings</string>
-
-    <!-- Show Fragment -->
-    <string name="show">Show</string>
-
 </resources>

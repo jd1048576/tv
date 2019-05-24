@@ -1,6 +1,7 @@
 package jdr.tv.app.ui
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -29,21 +30,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         return controller.navigateUp() || super.onSupportNavigateUp()
     }
 
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home -> {
-                controller.navigateUp()
+            R.id.menu_main_search -> {
+                controller.navigate(R.id.action_search)
                 true
             }
-            R.id.activity_main_menu_search -> {
-                   controller.navigate(R.id.action_search)
-                   true
-               }
-               R.id.activity_main_menu_settings -> {
-                   controller.navigate(R.id.action_settings)
-                   true
-               }
+            R.id.menu_main_settings -> {
+                controller.navigate(R.id.action_settings)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
-    }*/
+    }
 }

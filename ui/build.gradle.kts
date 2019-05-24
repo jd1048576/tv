@@ -1,11 +1,10 @@
 import Dependencies.Android
-import Dependencies.Dagger
 import Dependencies.Kotlin
 import Dependencies.Material
 import Dependencies.Timber
 
 plugins {
-    id(Plugins.androidDynamicFeature)
+    id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
 }
@@ -27,22 +26,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":base"))
-    implementation(project(":ui"))
-    implementation(project(":app"))
-
     implementation(Kotlin.stdlib)
+    implementation(Kotlin.Coroutines.core)
+    implementation(Kotlin.Coroutines.android)
 
     implementation(Android.appCompat)
     implementation(Android.activity)
     implementation(Android.fragment)
-
-    implementation(Android.Navigation.fragment)
+    implementation(Android.constraintLayout)
+    implementation(Android.core)
 
     implementation(Material.material)
-
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
 
     implementation(Timber.timber)
 }
