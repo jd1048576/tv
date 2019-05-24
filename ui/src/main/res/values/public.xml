@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <public name="menu_main" type="menu" />
+
+    <public name="discover" type="string" />
+    <public name="schedule" type="string" />
+    <public name="search" type="string" />
+    <public name="settings" type="string" />
+    <public name="shows" type="string" />
+    <public name="watch_list" type="string" />
+
+</resources>
