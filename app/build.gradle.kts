@@ -57,6 +57,7 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":ui"))
     implementation(project(":local"))
     implementation(project(":remote"))
 

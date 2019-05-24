@@ -27,21 +27,16 @@ android {
 }
 
 dependencies {
+    implementation(project(":base"))
     implementation(project(":app"))
 
     implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
 
     implementation(Android.appCompat)
     implementation(Android.activity)
     implementation(Android.fragment)
-    implementation(Android.constraintLayout)
 
-    implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)
-    implementation(Android.Navigation.runtime)
-    implementation(Android.Navigation.ui)
 
     implementation(Material.material)
 
