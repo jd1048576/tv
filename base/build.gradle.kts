@@ -1,6 +1,7 @@
 import Dependencies.Android
 import Dependencies.Dagger
 import Dependencies.Kotlin
+import Dependencies.Moshi
 import Dependencies.Timber
 
 plugins {
@@ -18,6 +19,12 @@ android {
         targetSdkVersion(Config.targetSdkVersion)
         testInstrumentationRunner = Config.testRunner
     }
+
+    buildTypes {
+        getByName("release") {
+            consumerProguardFiles("moshi-proguard-rules.pro")
+        }
+    }
 }
 
 dependencies {
@@ -32,6 +39,8 @@ dependencies {
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
+
+    implementation(Moshi.moshi)
 
     implementation(Timber.timber)
 }
