@@ -16,7 +16,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.fragment_schedule_toolbar, jdr.tv.ui.R.string.schedule)
+        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.ui.R.string.schedule)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -16,7 +16,7 @@ class ShowsFragment : Fragment(R.layout.fragment_shows) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.fragment_shows_toolbar, jdr.tv.ui.R.string.shows)
+        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.ui.R.string.shows)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

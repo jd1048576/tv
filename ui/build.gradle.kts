@@ -1,5 +1,6 @@
 import Dependencies.Android
 import Dependencies.Kotlin
+import Dependencies.Material
 import Dependencies.Timber
 
 plugins {
@@ -34,6 +35,8 @@ dependencies {
     implementation(Android.fragment)
     implementation(Android.constraintLayout)
     implementation(Android.core)
+
+    implementation(Material.material)
 
     implementation(Timber.timber)
 }
