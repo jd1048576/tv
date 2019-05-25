@@ -28,6 +28,11 @@ android {
             consumerProguardFiles("okhttp3-proguard-rules.pro", "retrofit-proguard-rules.pro")
         }
     }
+
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 dependencies {
     implementation(project(":base"))

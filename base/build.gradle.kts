@@ -25,6 +25,11 @@ android {
             consumerProguardFiles("moshi-proguard-rules.pro")
         }
     }
+
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
