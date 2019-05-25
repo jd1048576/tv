@@ -60,6 +60,7 @@ dependencies {
     implementation(project(":ui"))
     implementation(project(":local"))
     implementation(project(":remote"))
+    implementation(project(":data"))
 
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
