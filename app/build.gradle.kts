@@ -52,7 +52,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":settings", ":shows", ":watchlist")
+    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
 }
 
 dependencies {
