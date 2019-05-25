@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="jdr.tv.ui.SearchFragment"
+        android:name="jdr.tv.search.ui.SearchFragment"
         android:label="@string/search" />
 
     <action
