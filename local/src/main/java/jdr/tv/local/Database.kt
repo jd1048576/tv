@@ -18,7 +18,7 @@ import jdr.tv.local.entities.Show
     version = 1
 )
 @TypeConverters(InstantTypeConverter::class, ListTypeConverter::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class Database : RoomDatabase() {
 
     abstract fun showDao(): ShowDao
 
