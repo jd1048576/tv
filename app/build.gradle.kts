@@ -60,6 +60,7 @@ dependencies {
     implementation(project(":ui"))
     implementation(project(":local"))
     implementation(project(":remote"))
+    implementation(project(":data"))
 
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
@@ -84,6 +85,9 @@ dependencies {
     implementation(Okhttp3.okhttp3)
 
     implementation(Glide.glide)
+    implementation(Glide.okhttp3) {
+        isTransitive = false
+    }
     kapt(Glide.compiler)
 
     implementation(Timber.timber)

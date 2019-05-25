@@ -1,9 +1,6 @@
 import Dependencies.Dagger
 import Dependencies.Kotlin
-import Dependencies.Moshi
 import Dependencies.Okhttp3
-import Dependencies.Retrofit
-import Dependencies.Timber
 
 plugins {
     id(Plugins.androidLibrary)
@@ -19,14 +16,6 @@ android {
         minSdkVersion(Config.minSdkVersion)
         targetSdkVersion(Config.targetSdkVersion)
         testInstrumentationRunner = Config.testRunner
-
-        buildConfigField("String", "TMDB_API_KEY", localProperty("TMDB_API_KEY"))
-    }
-
-    buildTypes {
-        getByName("release") {
-            consumerProguardFiles("okhttp3-proguard-rules.pro", "retrofit-proguard-rules.pro")
-        }
     }
 
     compileOptions {
@@ -34,24 +23,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
 dependencies {
-    implementation(project(":base"))
+    implementation(project(":local"))
+    implementation(project(":remote"))
 
     implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
 
     implementation(Okhttp3.okhttp3)
-
-    implementation(Moshi.moshi)
-    kapt(Moshi.kotlinCodegen)
-
-    implementation(Retrofit.retrofit)
-    implementation(Retrofit.converterMoshi)
-    implementation(Retrofit.coroutines)
-
-    implementation(Timber.timber)
 }
