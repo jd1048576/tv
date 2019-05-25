@@ -85,6 +85,9 @@ dependencies {
     implementation(Okhttp3.okhttp3)
 
     implementation(Glide.glide)
+    implementation(Glide.okhttp3) {
+        isTransitive = false
+    }
     kapt(Glide.compiler)
 
     implementation(Timber.timber)
