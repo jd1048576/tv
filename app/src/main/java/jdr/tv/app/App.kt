@@ -22,7 +22,7 @@ class App : Application() {
     }
 
     companion object {
-        fun dataComponent(context: Context): DataComponent = (context as App).dataComponent
+        fun dataComponent(context: Context): DataComponent = (context.applicationContext as App).dataComponent
     }
 }
 
