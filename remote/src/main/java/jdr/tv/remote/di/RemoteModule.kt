@@ -31,8 +31,10 @@ object RemoteModule {
     }
 
     private fun providesInterceptor() = Interceptor { chain ->
-        chain.request()
-            .run { chain.proceed(newBuilder().url(url().newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()).build()) }
+        chain.request().run {
+            val url = url().newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()
+            chain.proceed(newBuilder().url(url).build())
+        }
     }
 
     @Singleton
