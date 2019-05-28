@@ -33,6 +33,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:imeOptions="actionDone|flagNoExtractUi"
+                app:closeIcon="@drawable/ic_close"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@null"
                 app:queryHint="@string/search_hint"
