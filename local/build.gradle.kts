@@ -33,8 +33,9 @@ dependencies {
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.Room.runtime)
-    implementation(Android.Room.ktx)
+    implementation(Android.Lifecycle.livedata)
+
+    implementation(Android.Room.core)
     kapt(Android.Room.compiler)
 
     implementation(Android.Paging.runtime)

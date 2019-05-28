@@ -1,6 +1,8 @@
+import Dependencies.Android
 import Dependencies.Dagger
 import Dependencies.Kotlin
 import Dependencies.Okhttp3
+import Dependencies.Retrofit
 
 plugins {
     id(Plugins.androidLibrary)
@@ -30,8 +32,12 @@ dependencies {
 
     implementation(Kotlin.stdlib)
 
+    implementation(Android.Room.core)
+
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
 
     implementation(Okhttp3.okhttp3)
+
+    implementation(Retrofit.retrofit)
 }

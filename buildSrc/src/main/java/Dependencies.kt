@@ -22,9 +22,9 @@ object Dependencies {
 
         object Lifecycle {
             private const val version = "2.2.0-alpha01"
-            const val common = "androidx.lifecycle:lifecycle-common-java8:$version"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
-            const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Navigation {
@@ -36,13 +36,12 @@ object Dependencies {
         }
 
         object Paging {
-            const val runtime = "androidx.paging:paging-runtime:2.1.0"
+            const val runtime = "androidx.paging:paging-runtime-ktx:2.1.0"
         }
 
         object Room {
             private const val version = "2.1.0-beta01"
-            const val runtime = "androidx.room:room-runtime:$version"
-            const val ktx = "androidx.room:room-ktx:$version"
+            const val core = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
     }
