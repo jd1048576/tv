@@ -40,18 +40,18 @@ object Dependencies {
         }
 
         object Room {
-            private const val version = "2.1.0-beta01"
+            private const val version = "2.1.0-rc01"
             const val core = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
     }
 
     object Material {
-        const val material = "com.google.android.material:material:1.1.0-alpha06"
+        const val material = "com.google.android.material:material:1.1.0-alpha07"
     }
 
     object Dagger {
-        private const val version = "2.22.1"
+        private const val version = "2.23.1"
         const val dagger = "com.google.dagger:dagger:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
         const val android = "com.google.dagger:dagger-android:$version"
