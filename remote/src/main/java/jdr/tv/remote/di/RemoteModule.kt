@@ -1,6 +1,5 @@
 package jdr.tv.remote.di
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -61,7 +60,6 @@ object RemoteModule {
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
             .create()
     }

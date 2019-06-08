@@ -8,7 +8,7 @@ import jdr.tv.base.extensions.adapter
 import jdr.tv.base.extensions.listAdapter
 import jdr.tv.remote.entities.RemoteSeason
 
-internal class RemoteSeasonListAdapter() : JsonAdapter<List<RemoteSeason>>() {
+internal class RemoteSeasonListAdapter : JsonAdapter<List<RemoteSeason>>() {
 
     private val seasonListAdapter by lazy { MOSHI_DEFAULT.listAdapter<RemoteSeason.TransientSeason>() }
 
