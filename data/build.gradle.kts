@@ -32,6 +32,8 @@ dependencies {
 
     implementation(Kotlin.stdlib)
 
+    implementation(Android.preference)
+
     implementation(Android.Room.core)
 
     implementation(Dagger.dagger)
