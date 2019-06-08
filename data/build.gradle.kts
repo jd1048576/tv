@@ -33,7 +33,8 @@ dependencies {
     implementation(Kotlin.stdlib)
 
     implementation(Android.preference)
-
+    implementation(Android.Lifecycle.livedata)
+    implementation(Android.Paging.runtime)
     implementation(Android.Room.core)
 
     implementation(Dagger.dagger)

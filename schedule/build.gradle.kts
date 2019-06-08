@@ -36,7 +36,6 @@ dependencies {
     implementation(Android.appCompat)
     implementation(Android.activity)
     implementation(Android.fragment)
-
     implementation(Android.Navigation.fragment)
 
     implementation(Material.material)

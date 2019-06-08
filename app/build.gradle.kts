@@ -71,11 +71,9 @@ dependencies {
     implementation(Android.fragment)
     implementation(Android.constraintLayout)
     implementation(Android.core)
-
     implementation(Android.Lifecycle.extensions)
     implementation(Android.Lifecycle.livedata)
     implementation(Android.Lifecycle.viewmodel)
-
     implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)
     implementation(Android.Navigation.runtime)

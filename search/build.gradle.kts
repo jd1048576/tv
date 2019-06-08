@@ -42,13 +42,13 @@ dependencies {
 
     implementation(Android.appCompat)
     implementation(Android.activity)
+    implementation(Android.constraintLayout)
     implementation(Android.fragment)
     implementation(Android.recyclerView)
-
     implementation(Android.Lifecycle.extensions)
     implementation(Android.Lifecycle.livedata)
     implementation(Android.Lifecycle.viewmodel)
-
+    implementation(Android.Paging.runtime)
     implementation(Android.Room.core)
 
     implementation(Material.material)

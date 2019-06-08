@@ -34,11 +34,9 @@ dependencies {
     implementation(Kotlin.Coroutines.android)
 
     implementation(Android.Lifecycle.livedata)
-
+    implementation(Android.Paging.runtime)
     implementation(Android.Room.core)
     kapt(Android.Room.compiler)
-
-    implementation(Android.Paging.runtime)
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
