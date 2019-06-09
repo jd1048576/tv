@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 class RemoteShowList(
     @Json(name = "page")
     val page: Int,
-    @Json(name = "videoList")
+    @Json(name = "results")
     val results: List<RemoteShow>,
     @Json(name = "total_pages")
     val totalPages: Int,
