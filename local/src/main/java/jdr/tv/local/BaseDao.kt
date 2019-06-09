@@ -30,11 +30,11 @@ suspend fun <T> BaseDao<T>.insertOrUpdate(item: T, updateFunction: suspend (T) -
     }
 }
 
-suspend fun <T> BaseDao<T>.insertOrUpdate(itemList: List<T>, updateFunction: suspend (List<T>) -> Unit = { update(it) }) {
+suspend fun <T> BaseDao<T>.insertOrUpdate(itemList: List<T>, updateFunction: suspend (T) -> Unit = { update(it) }) {
     val insertResult = insert(itemList)
     val updateList = insertResult.asSequence().withIndex().filter { it.value == -1L }.map { itemList[it.index] }.toList()
 
     if (updateList.isNotEmpty()) {
-        updateFunction(updateList)
+        updateList.forEach { updateFunction(it) }
     }
 }
