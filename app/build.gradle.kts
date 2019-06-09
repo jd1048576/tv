@@ -12,6 +12,8 @@ plugins {
     id(Plugins.kotlinKapt)
 }
 
+val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
+
 android {
     compileSdkVersion(Config.compileSdkVersion)
     buildToolsVersion(Config.buildToolsVersion)
@@ -27,12 +29,19 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            storeFile = rootProject.file("signing/debug.jks")
+            storeFile = rootProject.file(".signing/app-debug.jks")
             storePassword = "android"
             keyAlias = "debug"
             keyPassword = "android"
         }
+        if (releaseSigning) create("release") {
+            storeFile = rootProject.file(".signing/app-release.jks")
+            storePassword = localProperty("STORE_PASSWORD")
+            keyAlias = localProperty("KEY_ALIAS")
+            keyPassword = localProperty("KEY_PASSWORD")
+        }
     }
+
 
     buildTypes {
         getByName("debug") {
@@ -41,7 +50,7 @@ android {
             isDebuggable = true
         }
         getByName("release") {
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName(if (releaseSigning) "release" else "debug")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
