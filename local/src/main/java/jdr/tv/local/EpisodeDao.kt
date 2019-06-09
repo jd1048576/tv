@@ -44,37 +44,6 @@ abstract class EpisodeDao : BaseDao<Episode>() {
         guestStarList: List<Cast>
     )
 
-    @Transaction
-    open suspend fun insertOrUpdate(item: Episode) = with(item) {
-        val insertResult = insert(this)
-        if (insertResult == -1L) {
-            updateEpisode(
-                airDate,
-                episodeNumber,
-                id,
-                name,
-                overview,
-                seasonId,
-                seasonNumber,
-                stillPath,
-                voteAverage,
-                voteCount,
-                crewList,
-                guestStarList
-            )
-        }
-    }
-
-    @Transaction
-    open suspend fun insertOrUpdate(itemList: List<Episode>) {
-        val insertResult = insert(itemList)
-        val updateList = insertResult.asSequence().withIndex().filter { it.value == -1L }.map { itemList[it.index] }.toList()
-
-        if (updateList.isNotEmpty()) {
-            updateList.forEach { insertOrUpdate(it) }
-        }
-    }
-
     /*  @Query("SELECT Episode.*, Show.name AS showName, Show.posterPath AS showPosterPath, Show.launchId, Show.launchSource FROM Episode, Show WHERE Episode.showId = Show.id AND DATE(DATETIME(Episode.airDate / 1000 , 'unixepoch', 'localtime')) >= DATE(DATETIME('now', 'localtime')) GROUP BY Episode.showId HAVING MIN(Episode.airDate + Episode.episodeNumber) ORDER BY Episode.airDate ASC")
     LiveData<List<EpisodeItem>> getScheduleList();
 
