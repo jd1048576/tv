@@ -37,8 +37,8 @@ dependencies {
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.appCompat)
     implementation(Android.activity)
+    implementation(Android.appCompat)
     implementation(Android.core)
     implementation(Android.fragment)
 

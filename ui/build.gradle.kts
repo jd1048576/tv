@@ -27,14 +27,13 @@ android {
 
 dependencies {
     implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.appCompat)
     implementation(Android.activity)
-    implementation(Android.fragment)
+    implementation(Android.appCompat)
     implementation(Android.constraintLayout)
     implementation(Android.core)
+    implementation(Android.fragment)
+    implementation(Android.recyclerView)
 
     implementation(Material.material)
 

@@ -30,18 +30,19 @@ android {
 
 dependencies {
     implementation(project(":base"))
-    implementation(project(":app"))
     implementation(project(":ui"))
+    implementation(project(":viewmodel"))
     implementation(project(":local"))
     implementation(project(":remote"))
     implementation(project(":data"))
+    implementation(project(":app"))
 
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.appCompat)
     implementation(Android.activity)
+    implementation(Android.appCompat)
     implementation(Android.constraintLayout)
     implementation(Android.fragment)
     implementation(Android.recyclerView)
