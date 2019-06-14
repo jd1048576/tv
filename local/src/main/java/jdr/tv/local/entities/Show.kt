@@ -8,7 +8,7 @@ import java.time.Instant
 data class Show(
     val backdropPath: String?,
     val firstAirDate: Instant,
-    val genreList: List<Genre>,
+    val genreList: List<String>,
     val id: Long,
     val name: String,
     val originCountry: String,

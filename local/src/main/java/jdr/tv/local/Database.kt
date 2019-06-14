@@ -11,7 +11,7 @@ import jdr.tv.local.entities.Show
 @Database(
     entities = [Show::class, SearchItem::class],
     exportSchema = false,
-    version = 2
+    version = 1
 )
 @TypeConverters(InstantTypeConverter::class, ListTypeConverter::class)
 abstract class Database : RoomDatabase() {
