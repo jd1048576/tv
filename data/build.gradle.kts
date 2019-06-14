@@ -27,10 +27,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":base"))
     implementation(project(":local"))
     implementation(project(":remote"))
 
     implementation(Kotlin.stdlib)
+    implementation(Kotlin.Coroutines.core)
+    implementation(Kotlin.Coroutines.android)
 
     implementation(Android.preference)
     implementation(Android.Lifecycle.livedata)
