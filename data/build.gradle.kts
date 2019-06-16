@@ -3,6 +3,7 @@ import Dependencies.Dagger
 import Dependencies.Kotlin
 import Dependencies.Okhttp3
 import Dependencies.Retrofit
+import Dependencies.Timber
 
 plugins {
     id(Plugins.androidLibrary)
@@ -46,4 +47,6 @@ dependencies {
     implementation(Okhttp3.okhttp3)
 
     implementation(Retrofit.retrofit)
+
+    implementation(Timber.timber)
 }
