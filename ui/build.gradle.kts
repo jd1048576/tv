@@ -1,4 +1,5 @@
 import Dependencies.Android
+import Dependencies.Glide
 import Dependencies.Kotlin
 import Dependencies.Material
 import Dependencies.Timber
@@ -41,6 +42,8 @@ dependencies {
     implementation(Android.Paging.runtime)
 
     implementation(Material.material)
+
+    implementation(Glide.glide)
 
     implementation(Timber.timber)
 }

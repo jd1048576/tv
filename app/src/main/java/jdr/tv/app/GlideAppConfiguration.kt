@@ -1,8 +1,6 @@
 package jdr.tv.app
 
 import android.content.Context
-import android.widget.ImageView
-import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.Registry
@@ -27,17 +25,5 @@ class GlideAppConfiguration : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         super.registerComponents(context, glide, registry)
         registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(App.dataComponent(context).client()))
-    }
-}
-
-private const val IMAGE_URL = "https://image.tmdb.org/t/p/"
-
-fun ImageView.loadImage(path: String?, @DrawableRes placeHolder: Int, lowRes: String, highRes: String) {
-    GlideApp.with(this).apply {
-        load("$IMAGE_URL$highRes$path")
-            .placeholder(placeHolder)
-            .thumbnail(load("$IMAGE_URL$lowRes$path"))
-            .centerCrop()
-            .into(this@loadImage)
     }
 }
