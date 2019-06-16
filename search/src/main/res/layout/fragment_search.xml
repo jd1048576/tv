@@ -4,12 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/fragment_settings_frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/toolbar_height" />
-
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -41,5 +35,11 @@
 
         </com.google.android.material.card.MaterialCardView>
     </com.google.android.material.appbar.MaterialToolbar>
+
+    <jdr.tv.ui.widget.RecyclerView
+        android:id="@+id/fragment_search_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
