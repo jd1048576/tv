@@ -39,8 +39,8 @@ class BoundaryCallback<LOCAL, REMOTE>(
         if (!inProgress.contains(page) && !completed.contains(page)) {
             request(page)?.apply {
                 loading.value = Unit
-                inProgress.add(page)
                 val result = try {
+                    inProgress.add(page)
                     execute()
                 } finally {
                     withContext(NonCancellable) {
