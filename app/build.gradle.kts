@@ -42,7 +42,6 @@ android {
         }
     }
 
-
     buildTypes {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
@@ -59,6 +58,10 @@ android {
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        setEnabled(true)
     }
 
     dynamicFeatures = mutableSetOf(":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")

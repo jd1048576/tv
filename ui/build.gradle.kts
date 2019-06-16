@@ -23,6 +23,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
+
+    dataBinding {
+        setEnabled(true)
+    }
 }
 
 dependencies {
@@ -34,6 +38,7 @@ dependencies {
     implementation(Android.core)
     implementation(Android.fragment)
     implementation(Android.recyclerView)
+    implementation(Android.Paging.runtime)
 
     implementation(Material.material)
 
