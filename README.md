@@ -1,7 +1,4 @@
-# TV 
-A Simple TV Show Tracker Android App written in Kotlin  
-# Images  
-### Theme  
-![Theme](.images/theme.gif)
-### Search 
-![Search](.images/search.gif)
+# TV
+A Simple Android TV Show Tracker written in Kotlin
+# Images
+<img src=".images/theme.gif" alt="theme" width="49.5%"> <img src=".images/search.gif" alt="search" width="49.5%">
