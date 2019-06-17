@@ -12,23 +12,23 @@ object Dependencies {
     }
 
     object Android {
-        const val activity = "androidx.activity:activity:1.0.0-alpha08"
-        const val appCompat = "androidx.appcompat:appcompat:1.1.0-alpha05"
+        const val activity = "androidx.activity:activity:1.0.0-beta01"
+        const val appCompat = "androidx.appcompat:appcompat:1.1.0-beta01"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
         const val core = "androidx.core:core-ktx:1.2.0-alpha01"
-        const val fragment = "androidx.fragment:fragment:1.1.0-alpha09"
-        const val preference = "androidx.preference:preference:1.1.0-alpha05"
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha05"
+        const val fragment = "androidx.fragment:fragment:1.1.0-beta01"
+        const val preference = "androidx.preference:preference:1.1.0-beta01"
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha06"
 
         object Lifecycle {
             private const val version = "2.2.0-alpha01"
-            const val common = "androidx.lifecycle:lifecycle-common-java8:$version"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
-            const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Navigation {
-            private const val version = "2.1.0-alpha04"
+            private const val version = "2.1.0-alpha05"
             const val common = "androidx.navigation:navigation-common-ktx:$version"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"
@@ -36,23 +36,22 @@ object Dependencies {
         }
 
         object Paging {
-            const val runtime = "androidx.paging:paging-runtime:2.1.0"
+            const val runtime = "androidx.paging:paging-runtime-ktx:2.1.0"
         }
 
         object Room {
-            private const val version = "2.1.0-beta01"
-            const val runtime = "androidx.room:room-runtime:$version"
-            const val ktx = "androidx.room:room-ktx:$version"
+            private const val version = "2.1.0-rc01"
+            const val core = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
     }
 
     object Material {
-        const val material = "com.google.android.material:material:1.1.0-alpha06"
+        const val material = "com.google.android.material:material:1.1.0-alpha07"
     }
 
     object Dagger {
-        private const val version = "2.22.1"
+        private const val version = "2.23.1"
         const val dagger = "com.google.dagger:dagger:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
         const val android = "com.google.dagger:dagger-android:$version"
@@ -71,10 +70,9 @@ object Dependencies {
     }
 
     object Retrofit {
-        private const val version = "2.5.0"
+        private const val version = "2.6.0"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
         const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
-        const val coroutines = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     }
 
     object Glide {

@@ -51,7 +51,6 @@ dependencies {
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.converterMoshi)
-    implementation(Retrofit.coroutines)
 
     implementation(Timber.timber)
 }

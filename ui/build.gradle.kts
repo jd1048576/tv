@@ -1,4 +1,5 @@
 import Dependencies.Android
+import Dependencies.Glide
 import Dependencies.Kotlin
 import Dependencies.Material
 import Dependencies.Timber
@@ -23,20 +24,26 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
+
+    dataBinding {
+        setEnabled(true)
+    }
 }
 
 dependencies {
     implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.appCompat)
     implementation(Android.activity)
-    implementation(Android.fragment)
+    implementation(Android.appCompat)
     implementation(Android.constraintLayout)
     implementation(Android.core)
+    implementation(Android.fragment)
+    implementation(Android.recyclerView)
+    implementation(Android.Paging.runtime)
 
     implementation(Material.material)
+
+    implementation(Glide.glide)
 
     implementation(Timber.timber)
 }

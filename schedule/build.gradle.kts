@@ -33,10 +33,9 @@ dependencies {
 
     implementation(Kotlin.stdlib)
 
-    implementation(Android.appCompat)
     implementation(Android.activity)
+    implementation(Android.appCompat)
     implementation(Android.fragment)
-
     implementation(Android.Navigation.fragment)
 
     implementation(Material.material)

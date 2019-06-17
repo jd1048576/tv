@@ -6,9 +6,9 @@ import java.time.Instant
 
 @Entity(indices = [Index("id")], primaryKeys = ["id"])
 data class Show(
-    val backdropPath: String,
+    val backdropPath: String?,
     val firstAirDate: Instant,
-    val genreList: List<Genre>,
+    val genreList: List<String>,
     val id: Long,
     val name: String,
     val originCountry: String,
@@ -16,10 +16,9 @@ data class Show(
     val originalName: String,
     val overview: String,
     val popularity: Double,
-    val posterPath: String,
+    val posterPath: String?,
     val voteAverage: Double,
     val voteCount: Int,
 
-    val lastUpdate: Instant,
-    val added: Boolean
+    val lastUpdate: Instant
 )

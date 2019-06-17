@@ -1,6 +1,5 @@
 package jdr.tv.remote.di
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -31,8 +30,10 @@ object RemoteModule {
     }
 
     private fun providesInterceptor() = Interceptor { chain ->
-        chain.request()
-            .run { chain.proceed(newBuilder().url(url().newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()).build()) }
+        chain.request().run {
+            val url = url().newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()
+            chain.proceed(newBuilder().url(url).build())
+        }
     }
 
     @Singleton
@@ -59,7 +60,6 @@ object RemoteModule {
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
             .create()
     }

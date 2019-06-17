@@ -33,11 +33,10 @@ dependencies {
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.Room.runtime)
-    implementation(Android.Room.ktx)
-    kapt(Android.Room.compiler)
-
+    implementation(Android.Lifecycle.livedata)
     implementation(Android.Paging.runtime)
+    implementation(Android.Room.core)
+    kapt(Android.Room.compiler)
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)

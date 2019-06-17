@@ -7,11 +7,11 @@ import java.time.Instant
 @JsonClass(generateAdapter = true)
 class RemoteShow(
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @Json(name = "first_air_date")
     val firstAirDate: Instant,
     @Json(name = "genre_ids")
-    val genreIds: List<Int>,
+    val genreList: List<RemoteGenre>,
     @Json(name = "id")
     val id: Long,
     @Json(name = "name")
@@ -27,7 +27,7 @@ class RemoteShow(
     @Json(name = "popularity")
     val popularity: Double,
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @Json(name = "vote_average")
     val voteAverage: Double,
     @Json(name = "vote_count")

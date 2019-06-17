@@ -8,12 +8,11 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.settings.R
-import jdr.tv.app.R as app
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(R.id.fragment_settings_toolbar, app.string.settings, true)
+        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.ui.R.string.settings, true)
         if (savedInstanceState == null) {
             childFragmentManager.beginTransaction().replace(R.id.fragment_settings_frame_layout, PreferenceFragment()).commit()
         }

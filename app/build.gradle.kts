@@ -12,6 +12,8 @@ plugins {
     id(Plugins.kotlinKapt)
 }
 
+val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
+
 android {
     compileSdkVersion(Config.compileSdkVersion)
     buildToolsVersion(Config.buildToolsVersion)
@@ -27,10 +29,16 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            storeFile = rootProject.file("signing/debug.jks")
+            storeFile = rootProject.file(".signing/app-debug.jks")
             storePassword = "android"
             keyAlias = "debug"
             keyPassword = "android"
+        }
+        if (releaseSigning) create("release") {
+            storeFile = rootProject.file(".signing/app-release.jks")
+            storePassword = localProperty("STORE_PASSWORD")
+            keyAlias = localProperty("KEY_ALIAS")
+            keyPassword = localProperty("KEY_PASSWORD")
         }
     }
 
@@ -41,7 +49,7 @@ android {
             isDebuggable = true
         }
         getByName("release") {
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName(if (releaseSigning) "release" else "debug")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -52,7 +60,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":settings", ":shows", ":watchlist")
+    dataBinding {
+        setEnabled(true)
+    }
+
+    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
 }
 
 dependencies {
@@ -71,7 +83,9 @@ dependencies {
     implementation(Android.fragment)
     implementation(Android.constraintLayout)
     implementation(Android.core)
-
+    implementation(Android.Lifecycle.extensions)
+    implementation(Android.Lifecycle.livedata)
+    implementation(Android.Lifecycle.viewmodel)
     implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)
     implementation(Android.Navigation.runtime)

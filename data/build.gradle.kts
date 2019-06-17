@@ -1,6 +1,9 @@
+import Dependencies.Android
 import Dependencies.Dagger
 import Dependencies.Kotlin
 import Dependencies.Okhttp3
+import Dependencies.Retrofit
+import Dependencies.Timber
 
 plugins {
     id(Plugins.androidLibrary)
@@ -25,13 +28,25 @@ android {
 }
 
 dependencies {
+    implementation(project(":base"))
     implementation(project(":local"))
     implementation(project(":remote"))
 
     implementation(Kotlin.stdlib)
+    implementation(Kotlin.Coroutines.core)
+    implementation(Kotlin.Coroutines.android)
+
+    implementation(Android.preference)
+    implementation(Android.Lifecycle.livedata)
+    implementation(Android.Paging.runtime)
+    implementation(Android.Room.core)
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
 
     implementation(Okhttp3.okhttp3)
+
+    implementation(Retrofit.retrofit)
+
+    implementation(Timber.timber)
 }

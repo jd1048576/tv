@@ -7,12 +7,23 @@ import jdr.tv.local.entities.Cast
 import jdr.tv.local.entities.ContentRating
 import jdr.tv.local.entities.CreatedBy
 import jdr.tv.local.entities.Crew
-import jdr.tv.local.entities.Genre
 import jdr.tv.local.entities.Network
 import jdr.tv.local.entities.ProductionCompany
 import jdr.tv.local.entities.Video
 
 object ListTypeConverter {
+
+    @TypeConverter
+    @JvmStatic
+    fun fromJsonToStringList(json: String): List<String> {
+        return fromJson(json)
+    }
+
+    @TypeConverter
+    @JvmStatic
+    fun toJsonFromStringList(list: List<String>): String {
+        return toJson(list)
+    }
 
     @TypeConverter
     @JvmStatic
@@ -59,18 +70,6 @@ object ListTypeConverter {
     @TypeConverter
     @JvmStatic
     fun toJsonFromCrewList(list: List<Crew>): String {
-        return toJson(list)
-    }
-
-    @TypeConverter
-    @JvmStatic
-    fun fromJsonToGenreList(json: String): List<Genre> {
-        return fromJson(json)
-    }
-
-    @TypeConverter
-    @JvmStatic
-    fun toJsonFromGenreList(list: List<Genre>): String {
         return toJson(list)
     }
 
