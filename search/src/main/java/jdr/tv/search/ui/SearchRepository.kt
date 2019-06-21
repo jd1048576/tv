@@ -61,7 +61,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     }
 
     private fun request(page: Int, query: () -> String): Request<RemoteShowList>? {
-        return query().takeUnless { it.isEmpty() }?.let { tmdbApi::search.toRequest(page, query()) }
+        return query().takeUnless { it.isEmpty() }?.let { tmdbApi::search.toRequest(page, it) }
     }
 
     private suspend fun selectPageForShowItem(show: Show): Int? = withContext(IO) {
