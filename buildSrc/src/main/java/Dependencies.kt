@@ -1,7 +1,7 @@
 object Dependencies {
 
     object Kotlin {
-        const val version = "1.3.31"
+        const val version = "1.3.40"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
 
         object Coroutines {
@@ -14,8 +14,8 @@ object Dependencies {
     object Android {
         const val activity = "androidx.activity:activity:1.0.0-beta01"
         const val appCompat = "androidx.appcompat:appcompat:1.1.0-beta01"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
-        const val core = "androidx.core:core-ktx:1.2.0-alpha01"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
+        const val core = "androidx.core:core-ktx:1.2.0-alpha02"
         const val fragment = "androidx.fragment:fragment:1.1.0-beta01"
         const val preference = "androidx.preference:preference:1.1.0-beta01"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha06"
@@ -39,7 +39,7 @@ object Dependencies {
         }
 
         object Room {
-            private const val version = "2.1.0-rc01"
+            private const val version = "2.1.0"
             const val core = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
@@ -50,7 +50,7 @@ object Dependencies {
     }
 
     object Dagger {
-        private const val version = "2.23.1"
+        private const val version = "2.23.2"
         const val dagger = "com.google.dagger:dagger:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
         const val android = "com.google.dagger:dagger-android:$version"
