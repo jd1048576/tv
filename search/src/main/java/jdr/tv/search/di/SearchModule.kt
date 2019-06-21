@@ -1,7 +1,6 @@
 package jdr.tv.search.di
 
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import dagger.Module
 import dagger.Provides
 import jdr.tv.search.ui.SearchFragment
@@ -21,6 +20,6 @@ object SearchModule {
     @Provides
     @JvmStatic
     fun provideViewModel(fragment: SearchFragment, factory: ViewModelProvider.Factory): SearchViewModel {
-        return ViewModelProviders.of(fragment, factory).get(SearchViewModel::class.java)
+        return ViewModelProvider(fragment, factory).get(SearchViewModel::class.java)
     }
 }
