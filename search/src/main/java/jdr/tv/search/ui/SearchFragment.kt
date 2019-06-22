@@ -14,7 +14,7 @@ import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.base.extensions.systemService
 import jdr.tv.search.R
 import jdr.tv.search.di.inject
-import jdr.tv.ui.widget.SpacingItemDecoration
+import jdr.tv.ui.utils.SpacingItemDecoration
 import timber.log.Timber
 import javax.inject.Inject
 
