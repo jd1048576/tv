@@ -10,7 +10,7 @@
             type="jdr.tv.local.entities.Show" />
 
         <variable
-            name="glide"
+            name="requestManager"
             type="com.bumptech.glide.RequestManager" />
     </data>
 
@@ -31,12 +31,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:backdropPath="@{show.backdropPath}"
-                app:glide="@{glide}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="W,16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:requestManager="@{requestManager}"
                 tools:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
@@ -77,7 +77,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:double="@{show.voteAverage}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 android:textColor="@color/color_primary"
@@ -86,6 +85,7 @@
                 app:chipStrokeColor="@color/color_primary"
                 app:chipStrokeWidth="2dp"
                 app:chipSurfaceColor="@android:color/transparent"
+                app:double="@{show.voteAverage}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="4.1" />
