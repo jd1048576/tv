@@ -10,7 +10,6 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
 
     private var debounce: Job? = null
 
-    var invalid = false
     var focus: Boolean
         get() = state.focus
         set(value) {
@@ -27,7 +26,6 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
     fun onQueryTextChange(query: String) {
         if (state.query != query) {
             state = state.copy(query = query)
-            invalid = true
             debounce?.cancel()
             debounce = viewModelScope.launch {
                 delay(275L)
