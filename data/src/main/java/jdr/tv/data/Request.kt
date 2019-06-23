@@ -55,4 +55,3 @@ suspend fun <T> List<Request<T>>.execute(): List<Result<T>> = withContext(IO) {
     mapIndexed { index, suspendFunction -> async { responseMap[index] = suspendFunction.execute() } }.awaitAll()
     responseMap.asSequence().sortedBy { it.key }.map { it.value }.toList()
 }
-
