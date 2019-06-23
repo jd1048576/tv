@@ -17,10 +17,10 @@ import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteGenre
 import jdr.tv.remote.entities.RemoteShow
 import jdr.tv.remote.entities.RemoteShowList
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 class SearchRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
@@ -29,11 +29,11 @@ class SearchRepository @Inject constructor(private val database: Database, priva
         val pageConfig = PagedList.Config.Builder().setPageSize(20).setPrefetchDistance(60).setEnablePlaceholders(true).build()
     }
 
-    fun search(scope: CoroutineScope, query: () -> String): PaginatedResult<Show> {
+    fun search(context: CoroutineContext, query: () -> String): PaginatedResult<Show> {
         val factory = database.searchItemDao().selectSearchDataSourceFactory()
 
         val boundaryCallback = BoundaryCallback(
-            scope,
+            context,
             { request(it, query) },
             this::insert,
             this::selectPageForShowItem,
