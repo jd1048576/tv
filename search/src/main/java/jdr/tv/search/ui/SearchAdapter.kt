@@ -10,7 +10,7 @@ import jdr.tv.local.entities.Show
 import jdr.tv.search.databinding.ItemShowBackdropBinding
 import jdr.tv.ui.adapter.BindingPagedListAdapter
 
-class SearchAdapter(private val glide: RequestManager) :
+class SearchAdapter(private val requestManager: RequestManager) :
     BindingPagedListAdapter<Show, ItemShowBackdropBinding>(AsyncDifferConfig.Builder(diffUtil).setBackgroundThreadExecutor(IOExecutor).build()) {
 
     override fun bindingForViewType(viewType: Int, inflater: LayoutInflater, parent: ViewGroup): ItemShowBackdropBinding {
@@ -19,7 +19,7 @@ class SearchAdapter(private val glide: RequestManager) :
 
     override fun bind(binding: ItemShowBackdropBinding, item: Show?) {
         binding.show = item
-        binding.glide = glide
+        binding.requestManager = requestManager
     }
 
     companion object {
@@ -34,9 +34,3 @@ class SearchAdapter(private val glide: RequestManager) :
         }
     }
 }
-
-/*
-@BindingAdapter("backdropPath")
-fun setBackdropPath(view: ImageView, backdropPath: String?) {
-    view.loadImage(backdropPath, jdr.tv.app.R.drawable.ic_backdrop, "w300", "w1280")
-}*/

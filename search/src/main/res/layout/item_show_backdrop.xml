@@ -10,7 +10,7 @@
             type="jdr.tv.local.entities.Show" />
 
         <variable
-            name="glide"
+            name="requestManager"
             type="com.bumptech.glide.RequestManager" />
     </data>
 
@@ -31,12 +31,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:backdropPath="@{show.backdropPath}"
-                app:glide="@{glide}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="W,16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:requestManager="@{requestManager}"
                 tools:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
@@ -48,12 +48,12 @@
                 android:layout_marginEnd="16dp"
                 android:text="@{show.name}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@android:color/white"
+                android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toTopOf="@id/item_show_backdrop_details_text_view"
                 app:layout_constraintEnd_toStartOf="@id/item_show_backdrop_vote_average_chip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                tools:text="@tools:sample/cities" />
+                tools:text="Name" />
 
             <TextView
                 android:id="@+id/item_show_backdrop_details_text_view"
@@ -63,21 +63,20 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{show.genreList.toString()}"
+                android:text="@{jdr.tv.search.ui.SearchTextCreator.details(show)}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                android:textColor="@android:color/white"
+                android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/item_show_backdrop_vote_average_chip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                tools:text="@tools:sample/cities" />
+                tools:text="2000 - Genre" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/item_show_backdrop_vote_average_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:double="@{show.voteAverage}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 android:textColor="@color/color_primary"
@@ -86,6 +85,7 @@
                 app:chipStrokeColor="@color/color_primary"
                 app:chipStrokeWidth="2dp"
                 app:chipSurfaceColor="@android:color/transparent"
+                app:double="@{show.voteAverage}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="4.1" />

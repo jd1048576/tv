@@ -22,7 +22,7 @@ fun RequestManager.loadImage(view: ImageView, path: String?, @DrawableRes placeH
         .into(view)
 }
 
-@BindingAdapter(value = ["glide", "backdropPath"], requireAll = true)
-fun setBackdropPath(view: ImageView, glide: RequestManager, backdropPath: String?) {
-    glide.loadImage(view, backdropPath, R.drawable.ic_backdrop, "w300", "w1280")
+@BindingAdapter(value = ["requestManager", "backdropPath"], requireAll = true)
+fun setBackdropPath(view: ImageView, requestManager: RequestManager, backdropPath: String?) {
+    requestManager.loadImage(view, backdropPath, R.drawable.ic_backdrop, "w300", "w1280")
 }

@@ -14,7 +14,7 @@ import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.base.extensions.systemService
 import jdr.tv.search.R
 import jdr.tv.search.di.inject
-import jdr.tv.ui.widget.SpacingItemDecoration
+import jdr.tv.ui.utils.SpacingItemDecoration
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -103,33 +103,19 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun createAdapterDataObserver(): RecyclerView.AdapterDataObserver {
         return object : RecyclerView.AdapterDataObserver() {
-            override fun onChanged() {
-                scrollToTop()
-            }
-
-            override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-                scrollToTop()
-            }
 
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                scrollToTop()
+                if (fromPosition == 0 || toPosition == 0) scrollToTop()
             }
 
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                scrollToTop()
-            }
-
-            override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
-                scrollToTop()
+                if (positionStart == 0 && adapter.itemCount <= 20) scrollToTop()
             }
         }
     }
 
     private fun scrollToTop() {
-        if (viewModel.invalid) {
-            layoutManager.scrollToPositionWithOffset(0, 0)
-            viewModel.invalid = false
-        }
+        layoutManager.scrollToPositionWithOffset(0, 0)
     }
 
     private fun toggleSoftInput(focus: Boolean) = with(searchView) {

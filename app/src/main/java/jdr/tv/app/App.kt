@@ -3,9 +3,9 @@ package jdr.tv.app
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import jdr.tv.data.di.DaggerDataComponent
 import jdr.tv.data.di.DataComponent
 import timber.log.Timber
