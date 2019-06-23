@@ -30,6 +30,7 @@ class BoundaryCallback<LOCAL, REMOTE>(
         supervisor.cancelChildren()
         inProgress.clear()
         completed.clear()
+        totalPages = 0
         load()
     }
 
