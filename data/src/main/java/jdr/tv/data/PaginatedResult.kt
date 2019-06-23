@@ -2,6 +2,7 @@ package jdr.tv.data
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 
 class PaginatedResult<T>(
@@ -12,17 +13,17 @@ class PaginatedResult<T>(
 ) {
 
     fun onLoading(lifecycleOwner: LifecycleOwner, action: (Boolean) -> Unit): PaginatedResult<T> {
-        loading.observe(lifecycleOwner) { action(it) }
+        loading.observe(lifecycleOwner, Observer { action(it) })
         return this
     }
 
     fun onSuccess(lifecycleOwner: LifecycleOwner, action: (PagedList<T>) -> Unit): PaginatedResult<T> {
-        pagedList.observe(lifecycleOwner) { action(it) }
+        pagedList.observe(lifecycleOwner, Observer { action(it) })
         return this
     }
 
     fun onFailure(lifecycleOwner: LifecycleOwner, action: (Exception) -> Unit): PaginatedResult<T> {
-        exception.observe(lifecycleOwner) { action(it) }
+        exception.observe(lifecycleOwner, Observer { action(it) })
         return this
     }
 }
