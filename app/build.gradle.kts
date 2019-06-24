@@ -61,7 +61,7 @@ android {
     }
 
     dataBinding {
-        setEnabled(true)
+        isEnabled = true
     }
 
     dynamicFeatures = mutableSetOf(":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
