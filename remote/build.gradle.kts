@@ -20,7 +20,7 @@ android {
         targetSdkVersion(Config.targetSdkVersion)
         testInstrumentationRunner = Config.testRunner
 
-        buildConfigField("String", "TMDB_API_KEY", localProperty("TMDB_API_KEY"))
+        buildConfigField("String", "TMDB_API_KEY", "\"${localProperty("TMDB_API_KEY")}\"")
     }
 
     buildTypes {
