@@ -20,12 +20,6 @@ android {
         testInstrumentationRunner = Config.testRunner
     }
 
-    buildTypes {
-        getByName("release") {
-            consumerProguardFiles("moshi-proguard-rules.pro")
-        }
-    }
-
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
