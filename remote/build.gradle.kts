@@ -23,12 +23,6 @@ android {
         buildConfigField("String", "TMDB_API_KEY", "\"${localProperty("TMDB_API_KEY")}\"")
     }
 
-    buildTypes {
-        getByName("release") {
-            consumerProguardFiles("okhttp3-proguard-rules.pro", "retrofit-proguard-rules.pro")
-        }
-    }
-
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8

@@ -26,7 +26,7 @@ android {
     }
 
     dataBinding {
-        setEnabled(true)
+        isEnabled = true
     }
 }
 
