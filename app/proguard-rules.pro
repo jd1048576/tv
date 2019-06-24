@@ -99,5 +99,5 @@
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
 
-# TODO CHECK STATUS OF BUG R8 REMOVES
+# TODO BUG see https://issuetracker.google.com/issues/135574730
 -keep class * extends androidx.databinding.DataBinderMapper
