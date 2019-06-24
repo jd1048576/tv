@@ -1,20 +1,23 @@
 package jdr.tv.search.ui
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import androidx.annotation.Keep
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.RequestManager
 import jdr.tv.base.Dispatchers.IOExecutor
 import jdr.tv.local.entities.Show
+import jdr.tv.search.R
 import jdr.tv.search.databinding.ItemShowBackdropBinding
 import jdr.tv.ui.adapter.BindingPagedListAdapter
+import timber.log.Timber
 
+@Keep
 class SearchAdapter(private val requestManager: RequestManager) :
     BindingPagedListAdapter<Show, ItemShowBackdropBinding>(AsyncDifferConfig.Builder(diffUtil).setBackgroundThreadExecutor(IOExecutor).build()) {
 
-    override fun bindingForViewType(viewType: Int, inflater: LayoutInflater, parent: ViewGroup): ItemShowBackdropBinding {
-        return ItemShowBackdropBinding.inflate(inflater, parent, false)
+    override fun layoutIdForViewType(viewType: Int): Int {
+        Timber.e("TEsta")
+        return R.layout.item_show_backdrop
     }
 
     override fun bind(binding: ItemShowBackdropBinding, item: Show?) {
