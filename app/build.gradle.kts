@@ -70,6 +70,7 @@ android {
 dependencies {
     implementation(project(":base"))
     implementation(project(":ui"))
+    implementation(project(":viewmodel"))
     implementation(project(":local"))
     implementation(project(":remote"))
     implementation(project(":data"))
