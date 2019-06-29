@@ -12,7 +12,6 @@ object SearchTextCreator {
     fun details(show: Show?): SpannedString = with(SpannableStringBuilder()) {
         if (show != null) {
             append(Year.from(show.firstAirDate.atZone(SYSTEM_ZONE_ID)).toString())
-            append(" ")
             if (show.genreList.isNotEmpty()) {
                 append(" - ")
                 append(show.genreList[0])
