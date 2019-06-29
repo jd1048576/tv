@@ -28,7 +28,7 @@ object Dependencies {
         }
 
         object Navigation {
-            private const val version = "2.1.0-alpha05"
+            const val version = "2.1.0-alpha05"
             const val common = "androidx.navigation:navigation-common-ktx:$version"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"

@@ -10,6 +10,7 @@ plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
+    id(Plugins.androidNavigationSafeArgs)
 }
 
 val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
