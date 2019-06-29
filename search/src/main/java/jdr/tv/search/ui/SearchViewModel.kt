@@ -6,7 +6,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState("", true)) {
+class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
 
     private var debounce: Job? = null
 

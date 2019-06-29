@@ -9,14 +9,12 @@ import jdr.tv.local.entities.Show
 import jdr.tv.search.R
 import jdr.tv.search.databinding.ItemShowBackdropBinding
 import jdr.tv.ui.adapter.BindingPagedListAdapter
-import timber.log.Timber
 
 @Keep
 class SearchAdapter(private val requestManager: RequestManager) :
     BindingPagedListAdapter<Show, ItemShowBackdropBinding>(AsyncDifferConfig.Builder(diffUtil).setBackgroundThreadExecutor(IOExecutor).build()) {
 
     override fun layoutIdForViewType(viewType: Int): Int {
-        Timber.e("TEsta")
         return R.layout.item_show_backdrop
     }
 
