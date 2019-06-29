@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import jdr.tv.app.NavGraphActivityMainDirections
 import jdr.tv.app.R
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_main_search -> {
-                controller.navigate(R.id.action_search)
+                controller.navigate(NavGraphActivityMainDirections.actionSearch())
                 true
             }
             R.id.menu_main_settings -> {
-                controller.navigate(R.id.action_settings)
+                controller.navigate(NavGraphActivityMainDirections.actionSettings())
                 true
             }
             else -> super.onOptionsItemSelected(item)
