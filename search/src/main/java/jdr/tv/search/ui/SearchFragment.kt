@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,7 +72,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun setupRecyclerView() {
         layoutManager = LinearLayoutManager(context!!)
-        adapter = SearchAdapter(GlideApp.with(this))
+        adapter = SearchAdapter(GlideApp.with(this), this::navigate)
         adapter.registerAdapterDataObserver(createAdapterDataObserver())
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
@@ -99,6 +100,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             .onLoading(viewLifecycleOwner) { Timber.e("LOADING") }
             .onSuccess(viewLifecycleOwner) { adapter.submitList(it) }
             .onFailure(viewLifecycleOwner) { Timber.e("FAILURE $it") }
+    }
+
+    private fun navigate(showId: Long) {
+        findNavController().navigate(SearchFragmentDirections.actionDetails(showId))
     }
 
     private fun createAdapterDataObserver(): RecyclerView.AdapterDataObserver {

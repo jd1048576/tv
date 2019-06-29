@@ -1,6 +1,6 @@
 package jdr.tv.search.ui
 
-import androidx.annotation.Keep
+import android.view.View
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.RequestManager
@@ -10,8 +10,7 @@ import jdr.tv.search.R
 import jdr.tv.search.databinding.ItemShowBackdropBinding
 import jdr.tv.ui.adapter.BindingPagedListAdapter
 
-@Keep
-class SearchAdapter(private val requestManager: RequestManager) :
+class SearchAdapter(private val requestManager: RequestManager, private val onClick: (Long) -> Unit) :
     BindingPagedListAdapter<Show, ItemShowBackdropBinding>(AsyncDifferConfig.Builder(diffUtil).setBackgroundThreadExecutor(IOExecutor).build()) {
 
     override fun layoutIdForViewType(viewType: Int): Int {
@@ -21,6 +20,11 @@ class SearchAdapter(private val requestManager: RequestManager) :
     override fun bind(binding: ItemShowBackdropBinding, item: Show?) {
         binding.show = item
         binding.requestManager = requestManager
+        if (item != null) {
+            binding.clickListener = View.OnClickListener {
+                onClick(item.id)
+            }
+        }
     }
 
     companion object {
