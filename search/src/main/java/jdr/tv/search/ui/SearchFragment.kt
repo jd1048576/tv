@@ -60,8 +60,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.save(outState)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         if (isRemoving) viewModel.invalidate()
     }
 
