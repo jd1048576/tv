@@ -12,12 +12,17 @@
         <variable
             name="requestManager"
             type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{clickListener}"
         app:cardCornerRadius="@dimen/corner_radius"
         app:cardElevation="@dimen/elevation"
         tools:layout_margin="16dp">
