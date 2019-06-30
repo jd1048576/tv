@@ -11,7 +11,7 @@ import java.time.Instant
 abstract class DetailsDao : BaseDao<Details>() {
 
     @Query("SELECT * FROM Show JOIN Details ON Show.id = Details.showId WHERE id = :id")
-    abstract fun selectDetailedLiveData(id: Long): LiveData<DetailedShow>
+    abstract fun selectDetailedShowLiveData(id: Long): LiveData<DetailedShow>
 
     @Query("SELECT lastDetailsUpdate FROM Details WHERE showId = :id")
     abstract suspend fun selectLastDetailsUpdate(id: Long): Instant

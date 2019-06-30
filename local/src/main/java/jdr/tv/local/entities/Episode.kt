@@ -21,15 +21,10 @@ data class Episode(
     val episodeNumber: Int,
     val id: Long,
     val name: String,
-    val overview: String,
+    val overview: String?,
     val seasonId: Long,
     val seasonNumber: Int,
-    val stillPath: String,
+    val stillPath: String?,
     val voteAverage: Double,
-    val voteCount: Int,
-    val crewList: List<Crew>,
-    val guestStarList: List<Cast>,
-
-    val watched: Boolean,
-    val watchedAt: Instant
+    val voteCount: Int
 )

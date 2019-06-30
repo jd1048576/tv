@@ -23,11 +23,9 @@ data class Details(
     val episodeRunTime: Int,
     val homepage: String,
     val showId: Long,
-    val isInProduction: Boolean,
+    val inProduction: Boolean,
     val lastAirDate: Instant,
     val networkList: List<Network>,
-    val numberOfEpisodes: Int,
-    val numberOfSeasons: Int,
     val productionCompanyList: List<ProductionCompany>,
     val status: String,
     val type: String,
@@ -39,5 +37,6 @@ data class Details(
     @Embedded
     val externalIds: ExternalIds,
     val videosList: List<Video>,
+
     val lastDetailsUpdate: Instant
 )
