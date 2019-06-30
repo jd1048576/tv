@@ -9,6 +9,6 @@
     <color name="color_on_background">#FFFFFF</color>
     <color name="color_on_surface">#FFFFFF</color>
 
-    <color name="color_navigation_bar">#161616</color>
+    <color name="color_on_surface_contrast">#40000000</color>
 
 </resources>
