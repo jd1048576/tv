@@ -7,6 +7,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
+import timber.log.Timber
 import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 
@@ -24,6 +25,8 @@ class Request<T>(private val request: suspend () -> Response<T>) {
                 val response = request()
                 if (response.isSuccessful && response.body() != null) {
                     return@withContext Result.success(response.body()!!)
+                } else if (attempt == MAX_NUMBER_OF_ATTEMPTS - 1) {
+                    return@withContext Result.error<T>(HttpException(response))
                 }
             } catch (e: Exception) {
                 if (attempt == (MAX_NUMBER_OF_ATTEMPTS - 1) || !shouldRetry(e)) {
@@ -32,7 +35,7 @@ class Request<T>(private val request: suspend () -> Response<T>) {
                 delayRetry(e, attempt)
             }
         }
-        throw IllegalStateException("Illegal State in enqueue")
+        throw IllegalStateException("Illegal State in execute")
     }
 
     private suspend fun delayRetry(exception: Exception, attempt: Int) {
@@ -50,8 +53,21 @@ fun <T, R, S> (suspend (R, S) -> Response<T>).toRequest(r: R, s: S): Request<T> 
     return Request { this(r, s) }
 }
 
-suspend fun <T> List<Request<T>>.execute(): List<Result<T>> = withContext(IO) {
+suspend fun <T> List<Request<T>>.execute(): Result<List<T>> = withContext(IO) {
     val responseMap = ConcurrentHashMap<Int, Result<T>>()
     mapIndexed { index, suspendFunction -> async { responseMap[index] = suspendFunction.execute() } }.awaitAll()
-    responseMap.asSequence().sortedBy { it.key }.map { it.value }.toList()
+    val successList = ArrayList<T>()
+    val failureList = ArrayList<Exception>()
+    responseMap.asSequence().sortedBy { it.key }.forEach {
+        when (val v = it.value) {
+            is Success -> successList.add(v.value)
+            is Failure -> failureList.add(v.exception)
+            else -> throw IllegalStateException("Illegal State in execute")
+        }
+    }
+    if (failureList.isNotEmpty()) {
+        Result.error<List<T>>(failureList[0])
+    } else {
+        Result.success<List<T>>(successList)
+    }
 }

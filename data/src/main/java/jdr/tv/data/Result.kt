@@ -23,7 +23,7 @@ inline fun <T> Result<T>.onSuccess(action: (T) -> Unit): Result<T> {
     return this
 }
 
-inline fun <T> Result<T>.onError(action: (Exception) -> Unit): Result<T> {
+inline fun <T> Result<T>.onFailure(action: (Exception) -> Unit): Result<T> {
     if (this is Failure) action(this.exception)
     return this
 }
