@@ -22,7 +22,6 @@ import javax.inject.Inject
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private lateinit var adapter: SearchAdapter
-    private lateinit var layoutManager: LinearLayoutManager
 
     private lateinit var searchView: SearchView
     private lateinit var recyclerView: RecyclerView
@@ -71,10 +70,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun setupRecyclerView() {
-        layoutManager = LinearLayoutManager(context!!)
         adapter = SearchAdapter(GlideApp.with(this), this::navigate)
         adapter.registerAdapterDataObserver(createAdapterDataObserver())
-        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(16)))
@@ -120,7 +117,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun scrollToTop() {
-        layoutManager.scrollToPositionWithOffset(0, 0)
+        (recyclerView.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(0, 0)
     }
 
     private fun toggleSoftInput(focus: Boolean) = with(searchView) {
