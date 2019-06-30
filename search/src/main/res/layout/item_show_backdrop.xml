@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="jdr.tv.search.ui.SearchTextCreator" />
+
         <variable
             name="show"
             type="jdr.tv.local.entities.Show" />
@@ -68,7 +70,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{jdr.tv.search.ui.SearchTextCreator.details(show)}"
+                android:text="@{SearchTextCreator.details(show)}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
