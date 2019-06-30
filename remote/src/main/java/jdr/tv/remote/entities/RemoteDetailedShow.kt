@@ -15,7 +15,7 @@ class RemoteDetailedShow(
     @Json(name = "credits")
     val credits: Credits,
     @Json(name = "episode_run_time")
-    val episodeRunTime: List<Int>,
+    val episodeRunTimeList: List<Int>,
     @Json(name = "external_ids")
     val externalIds: RemoteExternalIds,
     @Json(name = "first_air_date")
@@ -63,7 +63,7 @@ class RemoteDetailedShow(
     @Json(name = "type")
     val type: String,
     @Json(name = "videos")
-    val videoResponse: Videos,
+    val videos: Videos,
     @Json(name = "vote_average")
     val voteAverage: Double,
     @Json(name = "vote_count")

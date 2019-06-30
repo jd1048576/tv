@@ -25,7 +25,7 @@ class RemoteEpisode(
     @Json(name = "still_path")
     val stillPath: String?,
     @Json(name = "vote_average")
-    val voteAverage: Int,
+    val voteAverage: Double,
     @Json(name = "vote_count")
     val voteCount: Int,
     @Json(name = "crew")

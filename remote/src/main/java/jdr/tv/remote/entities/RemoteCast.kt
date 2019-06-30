@@ -10,7 +10,7 @@ class RemoteCast(
     @Json(name = "credit_id")
     val creditId: String,
     @Json(name = "gender")
-    val gender: Int,
+    val gender: Int = 0,
     @Json(name = "id")
     val id: Long,
     @Json(name = "name")
@@ -18,5 +18,5 @@ class RemoteCast(
     @Json(name = "order")
     val order: Int,
     @Json(name = "profile_path")
-    val profilePath: String
+    val profilePath: String?
 )
