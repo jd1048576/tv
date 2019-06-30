@@ -15,7 +15,6 @@ import javax.inject.Inject
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
-
     @Inject
     lateinit var viewModel: DetailsViewModel
 
