@@ -17,14 +17,21 @@ commands:
           at: ~/workspace
       - restore_cache:
           keys:
-            - gradle-{{ .Environment.CIRCLE_SHA1 }}
+            - gradle-wrapper-{{ checksum "gradle\wrapper\gradle-wrapper.properties" }}
+      - restore_cache:
+          keys:
+            - gradle-cache-{{ .Environment.CIRCLE_SHA1 }}
   save:
     description: Save Workspace
     steps:
       - save_cache:
-          key: gradle-{{ .Environment.CIRCLE_SHA1 }}
+          key: gradle-wrapper-{{ checksum "gradle\wrapper\gradle-wrapper.properties" }}
+            paths:
+              - ~/.gradle/wrapper/
+      - save_cache:
+          key: gradle-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/.gradle/
+            - ~/.gradle/caches/
       - persist_to_workspace:
           root: ~/workspace
           paths:
