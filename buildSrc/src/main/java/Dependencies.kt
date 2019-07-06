@@ -1,7 +1,7 @@
 object Dependencies {
 
     object Kotlin {
-        const val version = "1.3.40"
+        const val version = "1.3.41"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
 
         object Coroutines {
@@ -12,23 +12,23 @@ object Dependencies {
     }
 
     object Android {
-        const val activity = "androidx.activity:activity:1.0.0-beta01"
-        const val appCompat = "androidx.appcompat:appcompat:1.1.0-beta01"
+        const val activity = "androidx.activity:activity:1.1.0-alpha01"
+        const val appCompat = "androidx.appcompat:appcompat:1.1.0-rc01"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
         const val core = "androidx.core:core-ktx:1.2.0-alpha02"
-        const val fragment = "androidx.fragment:fragment:1.1.0-beta01"
-        const val preference = "androidx.preference:preference:1.1.0-beta01"
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-alpha06"
+        const val fragment = "androidx.fragment:fragment:1.2.0-alpha01"
+        const val preference = "androidx.preference:preference:1.1.0-rc01"
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-beta01"
 
         object Lifecycle {
-            private const val version = "2.2.0-alpha01"
+            private const val version = "2.2.0-alpha02"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Navigation {
-            const val version = "2.1.0-alpha05"
+            const val version = "2.1.0-alpha06"
             const val common = "androidx.navigation:navigation-common-ktx:$version"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"
