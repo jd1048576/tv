@@ -17,7 +17,7 @@ commands:
           at: ~/workspace
       - restore_cache:
           keys:
-            - gradle-wrapper-{{ checksum "gradle\wrapper\gradle-wrapper.properties" }}
+            - gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
           keys:
             - gradle-cache-{{ .Environment.CIRCLE_SHA1 }}
@@ -25,9 +25,9 @@ commands:
     description: Save Workspace
     steps:
       - save_cache:
-          key: gradle-wrapper-{{ checksum "gradle\wrapper\gradle-wrapper.properties" }}
-            paths:
-              - ~/.gradle/wrapper/
+          key: gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+          paths:
+            - ~/.gradle/wrapper/
       - save_cache:
           key: gradle-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -41,7 +41,7 @@ jobs:
   build_debug:
     <<: *config
     steps:
-      - checkout
+      - restore
       - run:
           name: Download Dependencies
           command: ./gradlew dependencies
