@@ -107,11 +107,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         return object : RecyclerView.AdapterDataObserver() {
 
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                if (fromPosition == 0 || toPosition == 0) scrollToTop()
+                if (viewModel.shouldScroll() || fromPosition == 0 || toPosition == 0) scrollToTop()
             }
 
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                if (positionStart == 0 && adapter.itemCount <= 20) scrollToTop()
+                if (viewModel.shouldScroll()) scrollToTop()
             }
         }
     }

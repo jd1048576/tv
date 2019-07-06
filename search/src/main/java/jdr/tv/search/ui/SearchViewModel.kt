@@ -27,7 +27,7 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
 
     fun onQueryTextChange(query: String) {
         if (state.query != query) {
-            state = state.copy(query = query)
+            state = state.copy(query = query, invalid = true)
             debounce?.cancel()
             debounce = viewModelScope.launch {
                 delay(275L)
@@ -37,6 +37,10 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
                 }
             }
         }
+    }
+
+    fun shouldScroll(): Boolean {
+        return state.invalid.also { state = state.copy(invalid = false) }
     }
 
     fun invalidate() = viewModelScope.launch { repository.deleteAll() }
