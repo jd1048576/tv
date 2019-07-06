@@ -1,6 +1,7 @@
 package jdr.tv.app
 
 import android.content.Context
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.Registry
@@ -18,8 +19,9 @@ import java.io.InputStream
 class GlideAppConfiguration : AppGlideModule() {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        val diskCacheSizeBytes = 1024 * 1024 * 50 // 50 MB
-        builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes.toLong()))
+        val diskCacheSizeBytes: Long = 1024 * 1024 * 50 // 50 MB
+        builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes))
+        builder.setLogLevel(Log.ERROR)
     }
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {

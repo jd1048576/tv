@@ -7,7 +7,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
-import timber.log.Timber
 import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 
