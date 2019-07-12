@@ -5,6 +5,7 @@ import jdr.tv.data.PaginatedResult
 import jdr.tv.local.entities.Show
 import jdr.tv.viewmodel.StateViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -39,5 +40,5 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
         }
     }
 
-    fun invalidate() = viewModelScope.launch { repository.deleteAll() }
+    fun invalidate() = viewModelScope.launch(NonCancellable) { repository.deleteAll() }
 }

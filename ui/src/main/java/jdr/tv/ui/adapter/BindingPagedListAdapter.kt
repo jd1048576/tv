@@ -2,7 +2,6 @@ package jdr.tv.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.AsyncDifferConfig
