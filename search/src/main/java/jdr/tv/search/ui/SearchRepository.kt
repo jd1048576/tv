@@ -67,22 +67,3 @@ class SearchRepository @Inject constructor(private val database: Database, priva
 
     suspend fun deleteAll() = withContext(IO) { database.searchItemDao().deleteAll() }
 }
-
-inline fun RemoteShow.toShow(instant: Instant): Show {
-    return Show(
-        backdropPath,
-        firstAirDate,
-        genreList.map(RemoteGenre::name),
-        id,
-        name,
-        originCountryList.firstOrNull() ?: "",
-        originalLanguage,
-        originalName,
-        overview,
-        popularity,
-        posterPath,
-        voteAverage,
-        voteCount,
-        instant
-    )
-}
