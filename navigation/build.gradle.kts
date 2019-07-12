@@ -30,7 +30,6 @@ dependencies {
     implementation(Android.appCompat)
     implementation(Android.core)
     implementation(Android.fragment)
-
     implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)
     implementation(Android.Navigation.runtime)
