@@ -8,7 +8,7 @@ object Config {
     const val kotlinVersion = "1.3.41"
 
     object Plugins {
-        const val androidGradle = "com.android.tools.build:gradle:3.5.0-beta04"
+        const val androidGradle = "com.android.tools.build:gradle:3.5.0-beta05"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         const val androidApplication = "com.android.application"
