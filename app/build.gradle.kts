@@ -1,15 +1,15 @@
-import Dependencies.Android
-import Dependencies.Dagger
-import Dependencies.Glide
-import Dependencies.Kotlin
-import Dependencies.Material
-import Dependencies.Okhttp3
-import Dependencies.Timber
+import Config.Dependencies.Android
+import Config.Dependencies.Dagger
+import Config.Dependencies.Glide
+import Config.Dependencies.Kotlin
+import Config.Dependencies.Material
+import Config.Dependencies.Okhttp3
+import Config.Dependencies.Timber
 
 plugins {
-    id(Plugins.androidApplication)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
+    id(Config.Plugins.androidApplication)
+    id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
 }
 
 val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
