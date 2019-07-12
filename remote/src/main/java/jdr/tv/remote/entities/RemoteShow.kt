@@ -17,7 +17,7 @@ class RemoteShow(
     @Json(name = "name")
     val name: String,
     @Json(name = "origin_country")
-    val originCountry: List<String>,
+    val originCountryList: List<String>,
     @Json(name = "original_language")
     val originalLanguage: String,
     @Json(name = "original_name")

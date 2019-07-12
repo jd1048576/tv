@@ -5,5 +5,5 @@ data class Cast(
     val id: Long,
     val name: String,
     val gender: Int,
-    val profilePath: String
+    val profilePath: String?
 )

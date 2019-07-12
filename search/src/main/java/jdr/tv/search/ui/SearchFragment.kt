@@ -95,10 +95,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun observe() {
-        viewModel.search
-            .onLoading(viewLifecycleOwner) { Timber.e("LOADING") }
-            .onSuccess(viewLifecycleOwner) { adapter.submitList(it) }
-            .onFailure(viewLifecycleOwner) { Timber.e("FAILURE $it") }
+        viewModel.search.withLifecycleOwner(viewLifecycleOwner)
+            .onLoading { Timber.e("LOADING") }
+            .onSuccess { adapter.submitList(it) }
+            .onFailure { Timber.e("FAILURE $it") }
     }
 
     private fun createAdapterDataObserver(): RecyclerView.AdapterDataObserver {

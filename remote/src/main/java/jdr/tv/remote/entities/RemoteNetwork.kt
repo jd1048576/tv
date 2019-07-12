@@ -8,7 +8,7 @@ class RemoteNetwork(
     @Json(name = "id")
     val id: Long,
     @Json(name = "logo_path")
-    val logoPath: String,
+    val logoPath: String?,
     @Json(name = "name")
     val name: String,
     @Json(name = "origin_country")

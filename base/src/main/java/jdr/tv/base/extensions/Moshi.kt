@@ -35,6 +35,7 @@ internal class InstantAdapter : JsonAdapter<Instant>() {
 
     override fun fromJson(reader: JsonReader): Instant {
         return if (reader.peek() == JsonReader.Token.NULL) {
+            reader.skipValue()
             INSTANT_ZERO
         } else {
             try {

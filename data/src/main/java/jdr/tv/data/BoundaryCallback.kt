@@ -24,7 +24,7 @@ class BoundaryCallback<LOCAL, REMOTE>(
     private var totalPages = 0
 
     val loading = MutableLiveData<Boolean>()
-    val error = MutableLiveData<Exception>()
+    val failure = MutableLiveData<Exception>()
 
     override fun onZeroItemsLoaded() {
         supervisor.cancelChildren()
@@ -41,21 +41,28 @@ class BoundaryCallback<LOCAL, REMOTE>(
     private fun load(itemAtEnd: LOCAL? = null) = CoroutineScope(context + supervisor).launch {
         val page: Int = itemAtEnd?.let { currentPageFunction(it) }?.takeIf { it < totalPages }?.plus(1) ?: 1
         if (!inProgress.contains(page) && !completed.contains(page)) {
-            request(page)?.apply {
-                loading.value = true
-                val result = try {
-                    inProgress.add(page)
-                    execute()
-                } finally {
-                    inProgress.remove(page)
-                    if (inProgress.size == 0) loading.value = false
-                }
-                result.onSuccess {
-                    completed.add(page)
-                    totalPages = totalPageFunction(it)
-                    insert(it)
-                }.onError { error.value = it }
-            }
+            request(page)?.also { executeRequest(page, it) }
         }
+    }
+
+    private suspend fun executeRequest(page: Int, request: Request<REMOTE>) {
+        loading.value = true
+        val result = try {
+            inProgress.add(page)
+            request.execute()
+        } finally {
+            inProgress.remove(page)
+            if (inProgress.size == 0) loading.value = false
+        }
+        handleResult(page, result)
+    }
+
+    private suspend fun handleResult(page: Int, result: Result<REMOTE>) = with(result) {
+        onSuccess {
+            completed.add(page)
+            totalPages = totalPageFunction(it)
+            insert(it)
+        }
+        onFailure { failure.value = it }
     }
 }

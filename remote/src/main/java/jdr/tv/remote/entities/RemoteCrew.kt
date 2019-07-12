@@ -10,7 +10,7 @@ class RemoteCrew(
     @Json(name = "department")
     val department: String,
     @Json(name = "gender")
-    val gender: Int,
+    val gender: Int = 0,
     @Json(name = "id")
     val id: Long,
     @Json(name = "job")
@@ -18,5 +18,5 @@ class RemoteCrew(
     @Json(name = "name")
     val name: String,
     @Json(name = "profile_path")
-    val profilePath: String
+    val profilePath: String?
 )

@@ -11,19 +11,26 @@ class PaginatedResult<T>(
     private val exception: LiveData<Exception>,
     val invalidate: () -> Unit
 ) {
+    fun withLifecycleOwner(lifecycleOwner: LifecycleOwner) = LifecyclePaginatedResult(this, lifecycleOwner)
 
-    fun onLoading(lifecycleOwner: LifecycleOwner, action: (Boolean) -> Unit): PaginatedResult<T> {
-        loading.observe(lifecycleOwner, Observer { action(it) })
-        return this
-    }
+    class LifecyclePaginatedResult<T> internal constructor(
+        private val paginatedResult: PaginatedResult<T>,
+        private val lifecycleOwner: LifecycleOwner
+    ) {
 
-    fun onSuccess(lifecycleOwner: LifecycleOwner, action: (PagedList<T>) -> Unit): PaginatedResult<T> {
-        pagedList.observe(lifecycleOwner, Observer { action(it) })
-        return this
-    }
+        fun onLoading(action: (Boolean) -> Unit): LifecyclePaginatedResult<T> {
+            paginatedResult.loading.observe(lifecycleOwner, Observer { action(it) })
+            return this
+        }
 
-    fun onFailure(lifecycleOwner: LifecycleOwner, action: (Exception) -> Unit): PaginatedResult<T> {
-        exception.observe(lifecycleOwner, Observer { action(it) })
-        return this
+        fun onSuccess(action: (PagedList<T>) -> Unit): LifecyclePaginatedResult<T> {
+            paginatedResult.pagedList.observe(lifecycleOwner, Observer { action(it) })
+            return this
+        }
+
+        fun onFailure(action: (Exception) -> Unit): LifecyclePaginatedResult<T> {
+            paginatedResult.exception.observe(lifecycleOwner, Observer { action(it) })
+            return this
+        }
     }
 }

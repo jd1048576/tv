@@ -30,5 +30,7 @@ data class RelatedShow(
     companion object {
         const val TYPE_RECOMMENDED = 1
         const val TYPE_SIMILAR = 2
+        fun recommended(showId: Long, relatedShowId: Long) = RelatedShow(showId, relatedShowId, TYPE_RECOMMENDED)
+        fun similar(showId: Long, relatedShowId: Long) = RelatedShow(showId, relatedShowId, TYPE_SIMILAR)
     }
 }

@@ -8,17 +8,15 @@ import jdr.tv.base.Dispatchers.IOExecutor
 import jdr.tv.data.BoundaryCallback
 import jdr.tv.data.PaginatedResult
 import jdr.tv.data.Request
+import jdr.tv.data.mapper.toShow
 import jdr.tv.data.toRequest
 import jdr.tv.local.Database
 import jdr.tv.local.entities.SearchItem
 import jdr.tv.local.entities.Show
 import jdr.tv.local.insertOrUpdate
 import jdr.tv.remote.TmdbApi
-import jdr.tv.remote.entities.RemoteGenre
-import jdr.tv.remote.entities.RemoteShow
 import jdr.tv.remote.entities.RemoteShowList
 import kotlinx.coroutines.withContext
-import java.time.Instant
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -34,7 +32,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
 
         val boundaryCallback = BoundaryCallback(
             context,
-            { request(it, query) },
+            { createRequest(it, query) },
             this::insert,
             this::selectPageForShowItem,
             RemoteShowList::totalPages
@@ -45,13 +43,12 @@ class SearchRepository @Inject constructor(private val database: Database, priva
             .setBoundaryCallback(boundaryCallback)
             .build()
 
-        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.error, boundaryCallback::onZeroItemsLoaded)
+        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.failure, boundaryCallback::onZeroItemsLoaded)
     }
 
     private suspend fun insert(remoteShowList: RemoteShowList) = withContext(IO) {
-        val instant = Instant.now()
         val page = remoteShowList.page
-        val showList = remoteShowList.results.map { it.toShow(instant) }
+        val showList = remoteShowList.results.map { it.toShow() }
         val searchItemList = showList.mapIndexed { index, show -> SearchItem(page * 100L + index, show.id, page) }
         database.withTransaction {
             if (remoteShowList.page == 1) database.searchItemDao().deleteAll()
@@ -60,7 +57,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
         }
     }
 
-    private fun request(page: Int, query: () -> String): Request<RemoteShowList>? {
+    private fun createRequest(page: Int, query: () -> String): Request<RemoteShowList>? {
         return query().takeUnless { it.isEmpty() }?.let { tmdbApi::search.toRequest(page, it) }
     }
 
@@ -69,23 +66,4 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     }
 
     suspend fun deleteAll() = withContext(IO) { database.searchItemDao().deleteAll() }
-}
-
-inline fun RemoteShow.toShow(instant: Instant): Show {
-    return Show(
-        backdropPath,
-        firstAirDate,
-        genreList.map(RemoteGenre::name),
-        id,
-        name,
-        originCountry.firstOrNull() ?: "",
-        originalLanguage,
-        originalName,
-        overview,
-        popularity,
-        posterPath,
-        voteAverage,
-        voteCount,
-        instant
-    )
 }
