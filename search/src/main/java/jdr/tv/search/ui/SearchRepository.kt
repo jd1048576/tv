@@ -45,7 +45,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
             .setBoundaryCallback(boundaryCallback)
             .build()
 
-        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.error, boundaryCallback::onZeroItemsLoaded)
+        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.failure, boundaryCallback::onZeroItemsLoaded)
     }
 
     private suspend fun insert(remoteShowList: RemoteShowList) = withContext(IO) {
