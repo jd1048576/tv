@@ -27,7 +27,7 @@ class Request<T>(private val request: suspend () -> Response<T>) {
                 } else if (attempt == MAX_NUMBER_OF_ATTEMPTS - 1) {
                     return@withContext Result.error<T>(HttpException(response))
                 }
-            } catch (e: Exception) {
+            } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
                 if (attempt == (MAX_NUMBER_OF_ATTEMPTS - 1) || !shouldRetry(e)) {
                     return@withContext Result.error<T>(e)
                 }
