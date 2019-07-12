@@ -23,8 +23,11 @@ import kotlin.coroutines.CoroutineContext
 class SearchRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
     companion object {
+        private const val PAGE_SIZE = 20
+        private const val PAGE_GAP = 100L
+
         @JvmField
-        val pageConfig = PagedList.Config.Builder().setPageSize(20).setPrefetchDistance(60).setEnablePlaceholders(true).build()
+        val pageConfig = PagedList.Config.Builder().setPageSize(PAGE_SIZE).setPrefetchDistance(60).setEnablePlaceholders(true).build()
     }
 
     fun search(context: CoroutineContext, query: () -> String): PaginatedResult<Show> {
@@ -49,7 +52,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     private suspend fun insert(remoteShowList: RemoteShowList) = withContext(IO) {
         val page = remoteShowList.page
         val showList = remoteShowList.results.map { it.toShow() }
-        val searchItemList = showList.mapIndexed { index, show -> SearchItem(page * 100L + index, show.id, page) }
+        val searchItemList = showList.mapIndexed { index, show -> SearchItem(page * PAGE_GAP + index, show.id, page) }
         database.withTransaction {
             if (remoteShowList.page == 1) database.searchItemDao().deleteAll()
             database.showDao().insertOrUpdate(showList)

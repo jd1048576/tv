@@ -18,11 +18,13 @@ import java.io.InputStream
 @GlideModule
 class GlideAppConfiguration : AppGlideModule() {
 
+    companion object {
+        const val DISK_CACHE_SIZE_BYTES: Long = 1024 * 1024 * 50 // 50MB
+    }
+
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        val diskCacheSizeBytes: Long = 1024 * 1024 * 50 // 50 MB
-        builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes))
+        builder.setDiskCache(InternalCacheDiskCacheFactory(context, DISK_CACHE_SIZE_BYTES))
         builder.setLogLevel(Log.ERROR)
-        builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes))
     }
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {

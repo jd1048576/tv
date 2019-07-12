@@ -22,6 +22,10 @@ import javax.inject.Inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
+    companion object {
+        private const val SPACING = 16
+    }
+
     private lateinit var adapter: SearchAdapter
 
     private lateinit var searchView: SearchView
@@ -74,7 +78,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop, this::navigate)
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(16)))
+        recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
     }
 
     private fun setupSearch() = with(searchView) {

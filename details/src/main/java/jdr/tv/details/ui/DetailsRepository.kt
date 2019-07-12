@@ -30,6 +30,10 @@ import javax.inject.Inject
 
 class DetailsRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
+    companion object {
+        private const val MAX_REQUEST_SIZE = 20
+    }
+
     fun selectDetailedShow(showId: Long): LiveData<Result<DetailedShow>> {
         return liveData {
             if (shouldUpdate(showId)) {
@@ -67,7 +71,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
         val seasonList = IntRange(1, numberOfSeasons).map { i -> "season/$i" }.toMutableList()
 
         while (seasonList.isNotEmpty()) {
-            val limit = if (seasonList.size >= 20) 20 else seasonList.size
+            val limit = if (seasonList.size >= MAX_REQUEST_SIZE) MAX_REQUEST_SIZE else seasonList.size
             val subList = seasonList.subList(0, limit)
             val seasons = subList.joinToString(",")
             requestList.add(tmdbApi::season.toRequest(showId, seasons))
