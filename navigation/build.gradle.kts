@@ -1,13 +1,10 @@
 import Config.Dependencies.Android
-import Config.Dependencies.Dagger
 import Config.Dependencies.Kotlin
-import Config.Dependencies.Material
 import Config.Dependencies.Timber
 
 plugins {
-    id(Config.Plugins.androidDynamicFeature)
+    id(Config.Plugins.androidLibrary)
     id(Config.Plugins.kotlinAndroid)
-    id(Config.Plugins.kotlinKapt)
 }
 
 android {
@@ -27,21 +24,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":base"))
-    implementation(project(":navigation"))
-    implementation(project(":app"))
-
     implementation(Kotlin.stdlib)
 
     implementation(Android.activity)
     implementation(Android.appCompat)
+    implementation(Android.core)
     implementation(Android.fragment)
-    implementation(Android.preference)
 
-    implementation(Material.material)
-
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
+    implementation(Android.Navigation.common)
+    implementation(Android.Navigation.fragment)
+    implementation(Android.Navigation.runtime)
+    implementation(Android.Navigation.ui)
 
     implementation(Timber.timber)
 }

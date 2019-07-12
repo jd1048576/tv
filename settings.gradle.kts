@@ -1,4 +1,5 @@
-include(":base", ":ui", ":viewmodel")
-include(":local", ":remote", ":data")
+include(":base", ":navigation", ":ui", ":viewmodel")
+include(":local", ":remote")
+include(":data")
 include(":app")
 include(":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
