@@ -24,7 +24,7 @@ class BoundaryCallback<LOCAL, REMOTE>(
     private var totalPages = 0
 
     val loading = MutableLiveData<Boolean>()
-    val error = MutableLiveData<Exception>()
+    val failure = MutableLiveData<Exception>()
 
     override fun onZeroItemsLoaded() {
         supervisor.cancelChildren()
@@ -63,6 +63,6 @@ class BoundaryCallback<LOCAL, REMOTE>(
             totalPages = totalPageFunction(it)
             insert(it)
         }
-        onFailure { error.value = it }
+        onFailure { failure.value = it }
     }
 }

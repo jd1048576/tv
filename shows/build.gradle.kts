@@ -1,13 +1,13 @@
-import Dependencies.Android
-import Dependencies.Dagger
-import Dependencies.Kotlin
-import Dependencies.Material
-import Dependencies.Timber
+import Config.Dependencies.Android
+import Config.Dependencies.Dagger
+import Config.Dependencies.Kotlin
+import Config.Dependencies.Material
+import Config.Dependencies.Timber
 
 plugins {
-    id(Plugins.androidDynamicFeature)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
+    id(Config.Plugins.androidDynamicFeature)
+    id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
 }
 
 android {

@@ -43,7 +43,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
             .setBoundaryCallback(boundaryCallback)
             .build()
 
-        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.error, boundaryCallback::onZeroItemsLoaded)
+        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.failure, boundaryCallback::onZeroItemsLoaded)
     }
 
     private suspend fun insert(remoteShowList: RemoteShowList) = withContext(IO) {
@@ -66,4 +66,23 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     }
 
     suspend fun deleteAll() = withContext(IO) { database.searchItemDao().deleteAll() }
+}
+
+inline fun RemoteShow.toShow(instant: Instant): Show {
+    return Show(
+        backdropPath,
+        firstAirDate,
+        genreList.map(RemoteGenre::name),
+        id,
+        name,
+        originCountryList.firstOrNull() ?: "",
+        originalLanguage,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        voteAverage,
+        voteCount,
+        instant
+    )
 }

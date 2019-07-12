@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  android-executor:
+  android_executor:
     docker:
       - image: circleci/android:api-29
     environment:
@@ -11,7 +11,7 @@ executors:
     working_directory: ~/workspace
 
 commands:
-  restore:
+  restore_workspace:
     description: Restore Workspace
     steps:
       - checkout
@@ -22,44 +22,44 @@ commands:
             - gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
           keys:
-            - gradle-cache-{{ .Environment.CIRCLE_SHA1 }}
-  save:
+            - gradle-cache-{{ checksum "buildSrc/src/main/java/Config.kt" }}
+  save_workspace:
     description: Save Workspace
     steps:
-      - save_cache:
-          key: gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-          paths:
-            - ~/.gradle/wrapper/
-      - save_cache:
-          key: gradle-cache-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/.gradle/caches/
       - persist_to_workspace:
           root: ~/workspace
           paths:
             - ./*/build
 
 jobs:
-  build_debug:
-    executor: android-executor
+  build:
+    executor: android_executor
     steps:
-      - restore
+      - restore_workspace
       - run:
           name: Download Dependencies
           command: ./gradlew dependencies
       - run:
-          name: Build Debug Apk and Bundle
+          name: Build Debug APK and Bundle
           command: ./gradlew assembleDebug bundleDebug
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
-      - save
+      - save_cache:
+          key: gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+          paths:
+            - ~/.gradle/wrapper/
+      - save_cache:
+          key: gradle-cache-{{ checksum "buildSrc/src/main/java/Config.kt" }}
+          paths:
+            - ~/.gradle/caches/
+      - save_workspace
   build_release:
-    executor: android-executor
+    executor: android_executor
     steps:
-      - restore
+      - restore_workspace
       - run:
-          name: Build Release Apk and Bundle
+          name: Build Release APK and Bundle
           command: ./gradlew assembleRelease bundleRelease
       - store_artifacts:
           path: app/build/outputs
@@ -67,27 +67,27 @@ jobs:
       - store_artifacts:
           path: app/build/reports
           destination: reports
-      - save
+      - save_workspace
   check:
-    executor: android-executor
+    executor: android_executor
     steps:
-      - restore
+      - restore_workspace
       - run:
           name: Check App and Dependencies
           command: ./gradlew spotlessCheck dependencyUpdates
       - store_artifacts:
           path: build/dependencyUpdates
           destination: dependencyUpdates
-      - save
+      - save_workspace
 
 workflows:
   version: 2
   build_deploy:
     jobs:
-      - build_debug
+      - build
       - build_release:
           requires:
-            - build_debug
+            - build
       - check:
           requires:
-            - build_debug
+            - build

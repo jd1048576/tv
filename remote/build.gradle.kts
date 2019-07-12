@@ -1,14 +1,14 @@
-import Dependencies.Dagger
-import Dependencies.Kotlin
-import Dependencies.Moshi
-import Dependencies.Okhttp3
-import Dependencies.Retrofit
-import Dependencies.Timber
+import Config.Dependencies.Dagger
+import Config.Dependencies.Kotlin
+import Config.Dependencies.Moshi
+import Config.Dependencies.Okhttp3
+import Config.Dependencies.Retrofit
+import Config.Dependencies.Timber
 
 plugins {
-    id(Plugins.androidLibrary)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
+    id(Config.Plugins.androidLibrary)
+    id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
 }
 
 android {
