@@ -6,11 +6,16 @@ import androidx.lifecycle.map
 import androidx.room.withTransaction
 import jdr.tv.base.Dispatchers.IO
 import jdr.tv.base.extensions.olderThan
-import jdr.tv.data.*
+import jdr.tv.data.Request
+import jdr.tv.data.Result
+import jdr.tv.data.execute
 import jdr.tv.data.mapper.toDetails
 import jdr.tv.data.mapper.toEpisodeList
 import jdr.tv.data.mapper.toSeason
 import jdr.tv.data.mapper.toShow
+import jdr.tv.data.onFailure
+import jdr.tv.data.onSuccess
+import jdr.tv.data.toRequest
 import jdr.tv.local.Database
 import jdr.tv.local.entities.DetailedShow
 import jdr.tv.local.entities.RelatedShow
