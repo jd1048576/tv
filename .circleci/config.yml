@@ -74,7 +74,10 @@ jobs:
       - restore_workspace
       - run:
           name: Check App and Dependencies
-          command: ./gradlew spotlessCheck dependencyUpdates
+          command: ./gradlew detektAll spotlessCheck dependencyUpdates
+      - store_artifacts:
+          path: build/reports/detekt
+          destination: detekt
       - store_artifacts:
           path: build/dependencyUpdates
           destination: dependencyUpdates
