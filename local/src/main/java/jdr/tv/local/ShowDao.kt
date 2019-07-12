@@ -8,7 +8,12 @@ import jdr.tv.local.entities.Show
 @Dao
 abstract class ShowDao : BaseDao<Show>() {
 
-    @Query("SELECT * FROM Show WHERE id = :id")
+    @Query(
+        """
+        SELECT * FROM Show 
+        WHERE id = :id
+        """
+    )
     abstract fun selectLiveData(id: Long): LiveData<Show>
 
 /*    @Query("SELECT * FROM Show WHERE added = 1 ORDER BY name ASC")
