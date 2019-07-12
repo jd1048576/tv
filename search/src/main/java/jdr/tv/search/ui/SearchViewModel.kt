@@ -5,6 +5,7 @@ import jdr.tv.data.PaginatedResult
 import jdr.tv.local.entities.Show
 import jdr.tv.viewmodel.StateViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -27,7 +28,7 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
 
     fun onQueryTextChange(query: String) {
         if (state.query != query) {
-            state = state.copy(query = query, invalid = true)
+            state = state.copy(query = query)
             debounce?.cancel()
             debounce = viewModelScope.launch {
                 delay(275L)
@@ -39,9 +40,5 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
         }
     }
 
-    fun shouldScroll(): Boolean {
-        return state.invalid.also { state = state.copy(invalid = false) }
-    }
-
-    fun invalidate() = viewModelScope.launch { repository.deleteAll() }
+    fun invalidate() = viewModelScope.launch(NonCancellable) { repository.deleteAll() }
 }

@@ -59,9 +59,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.save(outState)
     }
 
-    override fun onDestroyView() {
-        if (findNavController().currentDestination?.id != jdr.tv.app.R.id.fragment_details) viewModel.invalidate()
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isRemoving) viewModel.invalidate()
     }
 
     private fun bindResources() = with(view!!) {
@@ -70,8 +70,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun setupRecyclerView() {
-        adapter = SearchAdapter(GlideApp.with(this), this::navigate)
-        adapter.registerAdapterDataObserver(createAdapterDataObserver())
+        adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop) {}
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(16)))
@@ -97,23 +96,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             .onLoading { Timber.e("LOADING") }
             .onSuccess { adapter.submitList(it) }
             .onFailure { Timber.e("FAILURE $it") }
-    }
-
-    private fun navigate(showId: Long) {
-        findNavController().navigate(SearchFragmentDirections.actionDetails(showId))
-    }
-
-    private fun createAdapterDataObserver(): RecyclerView.AdapterDataObserver {
-        return object : RecyclerView.AdapterDataObserver() {
-
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                if (viewModel.shouldScroll() || fromPosition == 0 || toPosition == 0) scrollToTop()
-            }
-
-            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                if (viewModel.shouldScroll()) scrollToTop()
-            }
-        }
     }
 
     private fun scrollToTop() {
