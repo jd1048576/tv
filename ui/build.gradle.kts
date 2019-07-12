@@ -1,13 +1,13 @@
-import Dependencies.Android
-import Dependencies.Glide
-import Dependencies.Kotlin
-import Dependencies.Material
-import Dependencies.Timber
+import Config.Dependencies.Android
+import Config.Dependencies.Glide
+import Config.Dependencies.Kotlin
+import Config.Dependencies.Material
+import Config.Dependencies.Timber
 
 plugins {
-    id(Plugins.androidLibrary)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
+    id(Config.Plugins.androidLibrary)
+    id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
 }
 
 android {
