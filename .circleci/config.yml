@@ -85,9 +85,9 @@ workflows:
   build_deploy:
     jobs:
       - build
-      - build_release:
-          requires:
-            - build
+      #- build_release:
+      #    requires:
+      #      - build
       - check:
           requires:
             - build
