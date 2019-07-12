@@ -1,8 +1,11 @@
+complexity:
+  TooManyFunctions:
+    thresholdInFiles: 15
+    thresholdInClasses: 15
+    thresholdInInterfaces: 15
+    thresholdInObjects: 15
+    thresholdInEnums: 15
 style:
   MaxLineLength:
-    active: true
     maxLineLength: 150
-    excludePackageStatements: true
-    excludeImportStatements: true
-    excludeCommentStatements: false
 

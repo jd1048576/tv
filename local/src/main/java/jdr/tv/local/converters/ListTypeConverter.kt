@@ -12,6 +12,7 @@ import jdr.tv.local.entities.ProductionCompany
 import jdr.tv.local.entities.Video
 import java.io.IOException
 
+@Suppress("TooManyFunctions")
 object ListTypeConverter {
 
     @TypeConverter
