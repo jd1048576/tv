@@ -20,8 +20,8 @@ data class Season(
     val airDate: Instant,
     val id: Long,
     val name: String,
-    val overview: String,
-    val posterPath: String,
+    val overview: String?,
+    val posterPath: String?,
     val showId: Long,
     val seasonNumber: Int
 )

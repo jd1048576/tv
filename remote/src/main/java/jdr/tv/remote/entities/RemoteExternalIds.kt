@@ -6,19 +6,19 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class RemoteExternalIds(
     @Json(name = "facebook_id")
-    val facebookId: String,
+    val facebookId: String?,
     @Json(name = "freebase_id")
-    val freebaseId: String,
+    val freebaseId: String?,
     @Json(name = "freebase_mid")
-    val freebaseMid: String,
+    val freebaseMid: String?,
     @Json(name = "imdb_id")
-    val imdbId: String,
+    val imdbId: String?,
     @Json(name = "instagram_id")
-    val instagramId: String,
+    val instagramId: String?,
     @Json(name = "tvdb_id")
-    val tvdbId: Int,
+    val tvdbId: Int?,
     @Json(name = "tvrage_id")
-    val tvrageId: Int,
+    val tvrageId: Int?,
     @Json(name = "twitter_id")
-    val twitterId: String
+    val twitterId: String?
 )

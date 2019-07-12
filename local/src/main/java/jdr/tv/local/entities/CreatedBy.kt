@@ -4,5 +4,5 @@ data class CreatedBy(
     val id: Long,
     val name: String,
     val gender: Int,
-    val profilePath: String
+    val profilePath: String?
 )

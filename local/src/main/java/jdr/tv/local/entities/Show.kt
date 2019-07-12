@@ -11,7 +11,7 @@ data class Show(
     val genreList: List<String>,
     val id: Long,
     val name: String,
-    val originCountry: String,
+    val originCountry: String?,
     val originalLanguage: String,
     val originalName: String,
     val overview: String,

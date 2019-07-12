@@ -9,8 +9,8 @@ class RemoteSeason(
     val id: Long,
     val episodesList: List<RemoteEpisode>,
     val name: String,
-    val overview: String,
-    val posterPath: String,
+    val overview: String?,
+    val posterPath: String?,
     val showId: Long,
     val seasonNumber: Int
 ) {
@@ -25,14 +25,14 @@ class RemoteSeason(
         @Json(name = "name")
         val name: String,
         @Json(name = "overview")
-        val overview: String,
+        val overview: String?,
         @Json(name = "poster_path")
-        val posterPath: String,
+        val posterPath: String?,
         @Json(name = "season_number")
         val seasonNumber: Int
     ) {
         fun toRemoteSeason(showId: Long, episodeList: TransientEpisodeList?): RemoteSeason {
-            return RemoteSeason(airDate, id, episodeList?.episodeList ?: emptyList(), name, overview, posterPath, showId, seasonNumber)
+            return RemoteSeason(airDate, id, episodeList?.episodeList.orEmpty(), name, overview, posterPath, showId, seasonNumber)
         }
     }
 

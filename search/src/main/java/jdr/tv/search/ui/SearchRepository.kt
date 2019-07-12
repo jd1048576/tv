@@ -78,7 +78,7 @@ inline fun RemoteShow.toShow(instant: Instant): Show {
         genreList.map(RemoteGenre::name),
         id,
         name,
-        originCountry.firstOrNull() ?: "",
+        originCountryList.firstOrNull() ?: "",
         originalLanguage,
         originalName,
         overview,
