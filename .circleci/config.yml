@@ -60,7 +60,7 @@ jobs:
       - restore_workspace
       - run:
           name: Build Release APK and Bundle
-          command: ./gradlew assembleRelease bundleRelease
+          command: ./gradlew assembleRelease bundleRelease -x lintVitalRelease # FIXME
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
@@ -88,9 +88,9 @@ workflows:
   build_deploy:
     jobs:
       - build
-      #- build_release:
-      #    requires:
-      #      - build
+      - build_release:
+          requires:
+            - build
       - check:
           requires:
             - build
