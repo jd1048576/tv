@@ -64,13 +64,14 @@ android {
         isEnabled = true
     }
 
-    dynamicFeatures = mutableSetOf(":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
+    dynamicFeatures = mutableSetOf(":details", ":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
 }
 
 dependencies {
     implementation(project(":base"))
     implementation(project(":navigation"))
     implementation(project(":ui"))
+    implementation(project(":viewmodel"))
     implementation(project(":local"))
     implementation(project(":remote"))
     implementation(project(":data"))

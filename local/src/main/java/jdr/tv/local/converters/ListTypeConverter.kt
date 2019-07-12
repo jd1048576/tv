@@ -10,7 +10,9 @@ import jdr.tv.local.entities.Crew
 import jdr.tv.local.entities.Network
 import jdr.tv.local.entities.ProductionCompany
 import jdr.tv.local.entities.Video
+import java.io.IOException
 
+@Suppress("TooManyFunctions")
 object ListTypeConverter {
 
     @TypeConverter
@@ -112,7 +114,7 @@ object ListTypeConverter {
     private inline fun <reified T> fromJson(json: String): List<T> {
         try {
             return MOSHI_DEFAULT.listAdapter<T>().fromJson(json)!!
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             throw IllegalStateException(e)
         }
     }

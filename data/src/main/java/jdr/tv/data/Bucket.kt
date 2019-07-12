@@ -5,33 +5,35 @@ import java.time.Instant
 
 object Bucket {
 
-    private const val MAX_REQUESTS = 40L
+    private const val MAX_TOKENS = 40L
+    private const val TOKENS_PER_SECOND = 4
+    private const val DELAY = 1000L
 
     private val lock = Any()
     private var lastUpdate = 0L
     private var tokens = 0L
 
     suspend fun throttle() {
-        var delay = 0L
+        var shouldDelay = false
 
         synchronized(lock) {
             updateTokens()
             if (tokens == 0L) {
-                delay = 1000L
+                shouldDelay = true
             } else {
                 tokens--
             }
         }
 
-        if (delay != 0L) {
-            delay(delay)
+        if (shouldDelay) {
+            delay(DELAY)
             throttle()
         }
     }
 
     private fun updateTokens() {
         val now = Instant.now().epochSecond
-        val tokensToAdd = ((now - lastUpdate) * 4).coerceAtMost(MAX_REQUESTS)
+        val tokensToAdd = ((now - lastUpdate) * TOKENS_PER_SECOND).coerceAtMost(MAX_TOKENS)
         if (tokensToAdd != 0L) {
             tokens += tokensToAdd
             lastUpdate = now

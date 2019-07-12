@@ -31,7 +31,7 @@ inline fun <reified T> createListType(): Type {
     return Types.newParameterizedType(List::class.java, T::class.java)
 }
 
-internal class InstantAdapter : JsonAdapter<Instant>() {
+private class InstantAdapter : JsonAdapter<Instant>() {
 
     override fun fromJson(reader: JsonReader): Instant {
         return if (reader.peek() == JsonReader.Token.NULL) {

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import jdr.tv.app.GlideApp
 import jdr.tv.base.extensions.dpToPixels
 import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.base.extensions.systemService
+import jdr.tv.navigation.GlobalActions
 import jdr.tv.search.R
 import jdr.tv.search.di.inject
 import jdr.tv.ui.utils.SpacingItemDecoration
@@ -19,6 +21,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
+
+    companion object {
+        private const val SPACING = 16
+    }
 
     private lateinit var adapter: SearchAdapter
 
@@ -69,10 +75,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun setupRecyclerView() {
-        adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop) {}
+        adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop, this::navigate)
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(16)))
+        recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
     }
 
     private fun setupSearch() = with(searchView) {
@@ -99,6 +105,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun scrollToTop() {
         (recyclerView.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(0, 0)
+    }
+
+    private fun navigate(showId: Long) {
+        findNavController().navigate(GlobalActions.actionDetails(showId))
     }
 
     private fun toggleSoftInput(focus: Boolean) = with(searchView) {

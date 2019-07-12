@@ -1,4 +1,5 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
@@ -17,6 +18,7 @@ buildscript {
 plugins {
     id("com.diffplug.gradle.spotless") version ("3.23.1")
     id("com.github.ben-manes.versions") version ("0.21.0")
+    id("io.gitlab.arturbosch.detekt") version ("1.0.0-RC16")
 }
 
 allprojects {
@@ -47,5 +49,21 @@ allprojects {
             target("**/*.gradle.kts")
             ktlint()
         }
+    }
+}
+
+tasks.register("detektAll", Detekt::class) {
+    description = "Runs over whole code base without the starting overhead for each module."
+    parallel = true
+    buildUponDefaultConfig = true
+    setSource(files(projectDir))
+    config = files(project.rootDir.resolve(".detekt/config.yml"))
+    ignoreFailures = false
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/build/**")
+    reports {
+        xml.enabled = false
+        html.enabled = true
     }
 }

@@ -14,6 +14,8 @@ class Request<T>(private val request: suspend () -> Response<T>) {
 
     companion object {
         private const val MAX_NUMBER_OF_ATTEMPTS = 3
+        private const val DELAY = 1000L
+        private const val TOO_MANY_REQUESTS = 429
     }
 
     suspend fun execute(): Result<T> = withContext(IO) {
@@ -27,7 +29,7 @@ class Request<T>(private val request: suspend () -> Response<T>) {
                 } else if (attempt == MAX_NUMBER_OF_ATTEMPTS - 1) {
                     return@withContext Result.error<T>(HttpException(response))
                 }
-            } catch (e: Exception) {
+            } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
                 if (attempt == (MAX_NUMBER_OF_ATTEMPTS - 1) || !shouldRetry(e)) {
                     return@withContext Result.error<T>(e)
                 }
@@ -38,11 +40,11 @@ class Request<T>(private val request: suspend () -> Response<T>) {
     }
 
     private suspend fun delayRetry(exception: Exception, attempt: Int) {
-        delay(((exception as? HttpException)?.response()?.headers()?.get("Retry-After")?.toInt() ?: attempt * attempt).coerceAtLeast(1) * 1000L)
+        delay(((exception as? HttpException)?.response()?.headers()?.get("Retry-After")?.toInt() ?: attempt * attempt).coerceAtLeast(1) * DELAY)
     }
 
     private fun shouldRetry(exception: Exception) = when (exception) {
-        is HttpException -> exception.code() == 429
+        is HttpException -> exception.code() == TOO_MANY_REQUESTS
         is IOException -> true
         else -> false
     }

@@ -11,6 +11,10 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
 
+    companion object {
+        private const val DEBOUNCE = 275L
+    }
+
     private var debounce: Job? = null
 
     var focus: Boolean
@@ -31,7 +35,7 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
             state = state.copy(query = query)
             debounce?.cancel()
             debounce = viewModelScope.launch {
-                delay(275L)
+                delay(DEBOUNCE)
                 search.invalidate()
                 if (query.isEmpty()) {
                     invalidate()

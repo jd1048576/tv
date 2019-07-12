@@ -7,8 +7,10 @@ import java.util.concurrent.Executors
 
 object Dispatchers {
 
+    private const val MAX_THREADS = 64
+
     private val AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors()
 
-    val IOExecutor: ExecutorService = Executors.newFixedThreadPool(64.coerceAtLeast(AVAILABLE_PROCESSORS))
+    val IOExecutor: ExecutorService = Executors.newFixedThreadPool(MAX_THREADS.coerceAtLeast(AVAILABLE_PROCESSORS))
     val IO: CoroutineDispatcher = IOExecutor.asCoroutineDispatcher()
 }
