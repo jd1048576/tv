@@ -39,7 +39,7 @@ fun RemoteDetailedShow.toDetails(): Details {
         contentRatings.contentRatingList.map { it.toContentRating() },
         credits.castList.map { it.toCast() },
         credits.crewList.map { it.toCrew() },
-        externalIds.toExtenalIds(),
+        externalIds.toExternalIds(),
         videos.videoList.map { it.toVideo() },
         Instant.now()
     )
