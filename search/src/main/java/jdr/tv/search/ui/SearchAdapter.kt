@@ -11,7 +11,7 @@ import jdr.tv.local.entities.Show
 import jdr.tv.search.databinding.ItemShowBackdropBinding
 import jdr.tv.ui.adapter.BindingPagedListAdapter
 
-class SearchAdapter(private val requestManager: RequestManager) :
+class SearchAdapter(private val requestManager: RequestManager, private val onClick: (Long) -> Unit) :
     BindingPagedListAdapter<Show, ItemShowBackdropBinding>(AsyncDifferConfig.Builder(diffUtil).setBackgroundThreadExecutor(IOExecutor).build()) {
 
     override fun bindingForViewType(viewType: Int, inflater: LayoutInflater, parent: ViewGroup): ItemShowBackdropBinding {
@@ -21,6 +21,11 @@ class SearchAdapter(private val requestManager: RequestManager) :
     override fun bind(binding: ItemShowBackdropBinding, item: Show?) {
         binding.show = item
         binding.requestManager = requestManager
+        if (item != null) {
+            binding.clickListener = View.OnClickListener {
+                onClick(item.id)
+            }
+        }
     }
 
     companion object {

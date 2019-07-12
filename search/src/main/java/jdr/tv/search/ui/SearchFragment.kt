@@ -69,7 +69,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun setupRecyclerView() {
-        adapter = SearchAdapter(GlideApp.with(this))
+        adapter = SearchAdapter(GlideApp.with(this)){}
         adapter.registerAdapterDataObserver(createAdapterDataObserver())
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
