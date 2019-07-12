@@ -12,7 +12,7 @@ import jdr.tv.settings.R
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.ui.R.string.settings, true)
+        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.navigation.R.string.settings, true)
         if (savedInstanceState == null) {
             childFragmentManager.beginTransaction().replace(R.id.fragment_settings_frame_layout, PreferenceFragment()).commit()
         }
