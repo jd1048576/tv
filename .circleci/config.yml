@@ -1,12 +1,14 @@
 version: 2.1
 
-config: &config
-  working_directory: ~/workspace
-  docker:
-    - image: circleci/android:api-29
-  environment:
-    GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 -Dkotlin.incremental=false"
-    TERM: dumb
+executors:
+  android-executor:
+    docker:
+      - circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 -Dkotlin.incremental=false"
+      TERM: dumb
+    working_directory: ~/workspace
 
 commands:
   restore:
@@ -39,7 +41,7 @@ commands:
 
 jobs:
   build_debug:
-    <<: *config
+    executor: android-executor
     steps:
       - restore
       - run:
@@ -53,7 +55,7 @@ jobs:
           destination: outputs
       - save
   build_release:
-    <<: *config
+    executor: android-executor
     steps:
       - restore
       - run:
@@ -67,7 +69,7 @@ jobs:
           destination: reports
       - save
   check:
-    <<: *config
+    executor: android-executor
     steps:
       - restore
       - run:

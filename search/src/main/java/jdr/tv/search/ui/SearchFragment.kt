@@ -59,9 +59,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.save(outState)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (isRemoving) viewModel.invalidate()
+    override fun onDestroyView() {
+        if (findNavController().currentDestination?.id != jdr.tv.app.R.id.fragment_details) viewModel.invalidate()
+        super.onDestroyView()
     }
 
     private fun bindResources() = with(view!!) {
