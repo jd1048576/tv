@@ -21,7 +21,6 @@ import javax.inject.Inject
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private lateinit var adapter: SearchAdapter
-    private lateinit var layoutManager: LinearLayoutManager
 
     private lateinit var searchView: SearchView
     private lateinit var recyclerView: RecyclerView
@@ -59,8 +58,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.save(outState)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         if (isRemoving) viewModel.invalidate()
     }
 
@@ -70,10 +69,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun setupRecyclerView() {
-        layoutManager = LinearLayoutManager(context!!)
-        adapter = SearchAdapter(GlideApp.with(this))
-        adapter.registerAdapterDataObserver(createAdapterDataObserver())
-        recyclerView.layoutManager = layoutManager
+        adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop) {}
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(16)))
@@ -101,21 +97,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             .onFailure { Timber.e("FAILURE $it") }
     }
 
-    private fun createAdapterDataObserver(): RecyclerView.AdapterDataObserver {
-        return object : RecyclerView.AdapterDataObserver() {
-
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                if (fromPosition == 0 || toPosition == 0) scrollToTop()
-            }
-
-            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                if (positionStart == 0 && adapter.itemCount <= 20) scrollToTop()
-            }
-        }
-    }
-
     private fun scrollToTop() {
-        layoutManager.scrollToPositionWithOffset(0, 0)
+        (recyclerView.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(0, 0)
     }
 
     private fun toggleSoftInput(focus: Boolean) = with(searchView) {

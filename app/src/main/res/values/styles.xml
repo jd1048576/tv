@@ -23,7 +23,7 @@
         <item name="colorOnError">@color/color_on_error</item>
 
         <item name="android:statusBarColor">@color/color_background</item>
-        <item name="android:navigationBarColor">@color/color_navigation_bar</item>
+        <item name="android:navigationBarColor">@color/color_on_surface_contrast</item>
 
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
 

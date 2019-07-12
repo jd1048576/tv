@@ -1,12 +1,15 @@
 package jdr.tv.search.ui
 
 import androidx.lifecycle.viewModelScope
+import jdr.tv.data.PaginatedResult
+import jdr.tv.local.entities.Show
 import jdr.tv.viewmodel.StateViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState("", true)) {
+class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
 
     private var debounce: Job? = null
 
@@ -16,7 +19,7 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
             state = state.copy(focus = value)
         }
 
-    val search = repository.search(viewModelScope.coroutineContext) { state.query }
+    val search: PaginatedResult<Show> = repository.search(viewModelScope.coroutineContext) { state.query }
 
     fun onQueryTextSubmit(query: String) {
         focus = false
@@ -37,5 +40,5 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
         }
     }
 
-    fun invalidate() = viewModelScope.launch { repository.deleteAll() }
+    fun invalidate() = viewModelScope.launch(NonCancellable) { repository.deleteAll() }
 }

@@ -16,6 +16,6 @@
     <color name="color_on_surface">#000000</color>
     <color name="color_on_error">#FFFFFF</color>
 
-    <color name="color_navigation_bar">#EEEEEE</color>
+    <color name="color_on_surface_contrast">#16000000</color>
 
 </resources>
