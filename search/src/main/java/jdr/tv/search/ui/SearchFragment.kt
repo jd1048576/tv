@@ -69,8 +69,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun setupRecyclerView() {
-        adapter = SearchAdapter(GlideApp.with(this)){}
-        adapter.registerAdapterDataObserver(createAdapterDataObserver())
+        adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop) {}
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(16)))
@@ -96,19 +95,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             .onLoading { Timber.e("LOADING") }
             .onSuccess { adapter.submitList(it) }
             .onFailure { Timber.e("FAILURE $it") }
-    }
-
-    private fun createAdapterDataObserver(): RecyclerView.AdapterDataObserver {
-        return object : RecyclerView.AdapterDataObserver() {
-
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                if (fromPosition == 0 || toPosition == 0) scrollToTop()
-            }
-
-            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                if (positionStart == 0 && adapter.itemCount <= 20) scrollToTop()
-            }
-        }
     }
 
     private fun scrollToTop() {
