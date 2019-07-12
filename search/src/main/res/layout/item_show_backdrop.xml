@@ -24,6 +24,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{clickListener}"
         app:cardCornerRadius="@dimen/corner_radius"
         app:cardElevation="@dimen/elevation"
         tools:layout_margin="16dp">
@@ -36,7 +37,6 @@
                 android:id="@+id/item_show_backdrop_backdrop_image_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:onClick="@{clickListener}"
                 app:backdropPath="@{show.backdropPath}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="W,16:9"
@@ -59,7 +59,6 @@
                 app:layout_constraintBottom_toTopOf="@id/item_show_backdrop_details_text_view"
                 app:layout_constraintEnd_toStartOf="@id/item_show_backdrop_vote_average_chip"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
                 tools:text="Name" />
 
             <TextView
@@ -76,7 +75,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/item_show_backdrop_vote_average_chip"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
                 tools:text="2000 - Genre" />
 
             <com.google.android.material.chip.Chip

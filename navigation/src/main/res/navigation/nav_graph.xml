@@ -24,9 +24,14 @@
         android:name="jdr.tv.watchlist.ui.WatchListFragment"
         android:label="@string/watch_list" />
 
+    <fragment
+        android:id="@+id/fragment_details"
+        android:name="jdr.tv.details.ui.DetailsFragment"
+        android:label="@string/details" />
+
     <action
-        android:id="@+id/action_search"
-        app:destination="@id/fragment_search"
+        android:id="@+id/action_details"
+        app:destination="@id/fragment_details"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -36,6 +41,14 @@
         android:id="@+id/fragment_search"
         android:name="jdr.tv.search.ui.SearchFragment"
         android:label="@string/search" />
+
+    <action
+        android:id="@+id/action_search"
+        app:destination="@id/fragment_search"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     <action
         android:id="@+id/action_settings"
