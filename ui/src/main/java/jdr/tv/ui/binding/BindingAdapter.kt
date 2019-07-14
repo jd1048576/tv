@@ -25,3 +25,8 @@ fun RequestManager.loadImage(view: ImageView, path: String?, @DrawableRes placeH
 fun setBackdropPath(view: ImageView, requestManager: RequestManager, backdropPath: String?) {
     requestManager.loadImage(view, backdropPath, R.drawable.ic_backdrop, "w300", "w1280")
 }
+
+@BindingAdapter(value = ["requestManager", "posterPath"], requireAll = true)
+fun setPosterPath(view: ImageView, requestManager: RequestManager, backdropPath: String?) {
+    requestManager.loadImage(view, backdropPath, R.drawable.ic_poster, "w92", "w500")
+}
