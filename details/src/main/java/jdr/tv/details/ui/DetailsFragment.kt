@@ -1,5 +1,6 @@
 package jdr.tv.details.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -19,8 +20,12 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     @Inject
     lateinit var viewModel: DetailsViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         inject()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupToolbar(R.id.toolbar, displayHomeAsUp = true)
         observe()
     }
