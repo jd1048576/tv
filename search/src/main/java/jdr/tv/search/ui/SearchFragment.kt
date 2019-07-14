@@ -1,5 +1,6 @@
 package jdr.tv.search.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -34,8 +35,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     @Inject
     lateinit var viewModel: SearchViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         inject()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bindResources()
         setupToolbar(R.id.toolbar, displayHomeAsUp = true)
         setupRecyclerView()
