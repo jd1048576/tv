@@ -37,6 +37,8 @@
                 android:id="@+id/item_show_backdrop_backdrop_image_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:contentDescription="@string/backdrop"
+                android:scaleType="centerCrop"
                 app:backdropPath="@{show.backdropPath}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="W,16:9"
@@ -44,7 +46,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:requestManager="@{requestManager}"
-                android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
