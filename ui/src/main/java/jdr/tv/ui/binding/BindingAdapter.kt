@@ -18,7 +18,6 @@ fun RequestManager.loadImage(view: ImageView, path: String?, @DrawableRes placeH
     load("$IMAGE_URL$highRes$path")
         .placeholder(placeHolder)
         .thumbnail(load("$IMAGE_URL$lowRes$path"))
-        .centerCrop()
         .into(view)
 }
 

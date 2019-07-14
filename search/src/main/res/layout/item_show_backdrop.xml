@@ -44,7 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:requestManager="@{requestManager}"
-                tools:scaleType="centerCrop"
+                android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
@@ -66,7 +66,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@{SearchTextCreator.details(show)}"
@@ -81,7 +80,8 @@
                 android:id="@+id/item_show_backdrop_vote_average_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 android:textColor="@color/color_primary"
