@@ -57,7 +57,7 @@ class BoundaryCallback<LOCAL, REMOTE>(
         handleResult(page, result)
     }
 
-    private suspend fun handleResult(page: Int, result: Result<REMOTE>) = with(result) {
+    private suspend fun handleResult(page: Int, result: Response<REMOTE>) = with(result) {
         onSuccess {
             completed.add(page)
             totalPages = totalPageFunction(it)
