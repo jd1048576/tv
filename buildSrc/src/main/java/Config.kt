@@ -8,7 +8,7 @@ object Config {
     const val kotlinVersion = "1.3.41"
 
     object Plugins {
-        const val androidGradle = "com.android.tools.build:gradle:3.5.0-beta05"
+        const val androidGradle = "com.android.tools.build:gradle:3.5.0-rc01"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         const val androidApplication = "com.android.application"
@@ -48,7 +48,7 @@ object Config {
             }
 
             object Navigation {
-                const val version = "2.1.0-alpha06"
+                const val version = "2.1.0-beta02"
                 const val common = "androidx.navigation:navigation-common-ktx:$version"
                 const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
                 const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"
@@ -74,11 +74,10 @@ object Config {
             private const val version = "2.23.2"
             const val dagger = "com.google.dagger:dagger:$version"
             const val compiler = "com.google.dagger:dagger-compiler:$version"
-            const val android = "com.google.dagger:dagger-android:$version"
         }
 
         object Okhttp3 {
-            const val okhttp3 = "com.squareup.okhttp3:okhttp:3.14.1"
+            const val okhttp3 = "com.squareup.okhttp3:okhttp:4.0.1"
         }
 
         object Moshi {
