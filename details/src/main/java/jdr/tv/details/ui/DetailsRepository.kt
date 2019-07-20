@@ -2,20 +2,23 @@ package jdr.tv.details.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import androidx.lifecycle.map
 import androidx.room.withTransaction
 import jdr.tv.base.Dispatchers.IO
 import jdr.tv.base.extensions.olderThan
 import jdr.tv.data.Request
-import jdr.tv.data.Result
+import jdr.tv.data.Resource
+import jdr.tv.data.Response
+import jdr.tv.data.asLoading
+import jdr.tv.data.asSuccess
 import jdr.tv.data.execute
+import jdr.tv.data.map
 import jdr.tv.data.mapper.toDetails
 import jdr.tv.data.mapper.toEpisodeList
 import jdr.tv.data.mapper.toSeason
 import jdr.tv.data.mapper.toShow
+import jdr.tv.data.mergeSwitchMap
 import jdr.tv.data.onFailure
 import jdr.tv.data.onSuccess
-import jdr.tv.data.toRequest
 import jdr.tv.local.Database
 import jdr.tv.local.entities.DetailedShow
 import jdr.tv.local.entities.RelatedShow
@@ -34,23 +37,20 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
         private const val MAX_REQUEST_SIZE = 20
     }
 
-    fun selectDetailedShow(showId: Long): LiveData<Result<DetailedShow>> {
+    fun selectDetailedShow(showId: Long): LiveData<Resource<DetailedShow>> {
         return liveData {
             if (shouldUpdate(showId)) {
-                val disposable = emitSource(database.detailsDao().selectDetailedShowLiveData(showId).map { Result.loading(it) })
+                val disposable = emitSource(database.detailsDao().selectDetailedShowLiveData(showId).asLoading())
                 fetchDetailedShow(showId)
-                    .onSuccess { detailedShow ->
-                        fetchSeasonList(showId, detailedShow.numberOfSeasons)
-                            .onSuccess {
-                                disposable.dispose()
-                                insert(detailedShow, it.flatten())
-                                emitSource(database.detailsDao().selectDetailedShowLiveData(showId).map { Result.success(it) })
-                            }
-                            .onFailure { emit(Result.error<DetailedShow>(it)) }
+                    .mergeSwitchMap { fetchSeasonList(showId, it.numberOfSeasons) }
+                    .onSuccess {
+                        disposable.dispose()
+                        insert(it.first, it.second)
+                        emitSource(database.detailsDao().selectDetailedShowLiveData(showId).asSuccess())
                     }
-                    .onFailure { emit(Result.error<DetailedShow>(it)) }
+                    .onFailure { emit(Resource.failure<DetailedShow>(it)) }
             } else {
-                emitSource(database.detailsDao().selectDetailedShowLiveData(showId).map { Result.success(it) })
+                emitSource(database.detailsDao().selectDetailedShowLiveData(showId).asSuccess())
             }
         }
     }
@@ -61,23 +61,18 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
         lastUpdate.olderThan(days = 1) || seasonCount == 0
     }
 
-    private suspend fun fetchDetailedShow(showId: Long): Result<RemoteDetailedShow> {
+    private suspend fun fetchDetailedShow(showId: Long): Response<RemoteDetailedShow> {
         val query = mapOf("append_to_response" to "credits,content_ratings,external_ids,recommendations,similar,videos")
-        return tmdbApi::show.toRequest(showId, query).execute()
+        return Request { tmdbApi.show(showId, query) }.execute()
     }
 
-    private suspend fun fetchSeasonList(showId: Long, numberOfSeasons: Int): Result<List<List<RemoteSeason>>> {
-        val requestList = ArrayList<Request<List<RemoteSeason>>>()
-        val seasonList = IntRange(1, numberOfSeasons).map { i -> "season/$i" }.toMutableList()
-
-        while (seasonList.isNotEmpty()) {
-            val limit = if (seasonList.size >= MAX_REQUEST_SIZE) MAX_REQUEST_SIZE else seasonList.size
-            val subList = seasonList.subList(0, limit)
-            val seasons = subList.joinToString(",")
-            requestList.add(tmdbApi::season.toRequest(showId, seasons))
-            seasonList.removeAll(subList)
-        }
-        return requestList.execute()
+    private suspend fun fetchSeasonList(showId: Long, numberOfSeasons: Int): Response<List<RemoteSeason>> {
+        return IntRange(1, numberOfSeasons)
+            .map { i -> "season/$i" }
+            .chunked(MAX_REQUEST_SIZE)
+            .map { Request { tmdbApi.season(showId, it.joinToString(",")) } }
+            .execute()
+            .map { it.flatten() }
     }
 
     private suspend fun insert(remoteDetailedShow: RemoteDetailedShow, remoteSeasonList: List<RemoteSeason>) = withContext(IO) {

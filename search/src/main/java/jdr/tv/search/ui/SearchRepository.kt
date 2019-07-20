@@ -9,7 +9,6 @@ import jdr.tv.data.BoundaryCallback
 import jdr.tv.data.PaginatedResult
 import jdr.tv.data.Request
 import jdr.tv.data.mapper.toShow
-import jdr.tv.data.toRequest
 import jdr.tv.local.Database
 import jdr.tv.local.entities.SearchItem
 import jdr.tv.local.entities.Show
@@ -61,7 +60,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     }
 
     private fun createRequest(page: Int, query: () -> String): Request<RemoteShowList>? {
-        return query().takeUnless { it.isEmpty() }?.let { tmdbApi::search.toRequest(page, it) }
+        return query().takeUnless { it.isEmpty() }?.let { Request { tmdbApi.search(page, it) } }
     }
 
     private suspend fun selectPageForShowItem(show: Show): Int? = withContext(IO) {

@@ -26,12 +26,12 @@ object RemoteModule {
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
     private fun provideHttpLoggingInterceptor() = Interceptor { chain ->
-        chain.proceed(chain.request().apply { Timber.d("--> ${method()} ${url()} -->") })
+        chain.proceed(chain.request().apply { Timber.d("--> $method $url -->") })
     }
 
     private fun providesInterceptor() = Interceptor { chain ->
         chain.request().run {
-            val url = url().newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()
+            val url = url.newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()
             chain.proceed(newBuilder().url(url).build())
         }
     }

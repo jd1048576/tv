@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
-import jdr.tv.data.Result
+import jdr.tv.data.Resource
 import jdr.tv.local.entities.DetailedShow
 
 class DetailsViewModel(private val repository: DetailsRepository) : ViewModel() {
@@ -17,5 +17,5 @@ class DetailsViewModel(private val repository: DetailsRepository) : ViewModel() 
             _id.value = value
         }
 
-    fun selectDetailedShow(): LiveData<Result<DetailedShow>> = _id.switchMap { repository.selectDetailedShow(it) }
+    fun selectDetailedShow(): LiveData<Resource<DetailedShow>> = _id.switchMap { repository.selectDetailedShow(it) }
 }
