@@ -1,4 +1,4 @@
-package jdr.tv.base.extensions
+package jdr.tv.ui.extensions
 
 import android.content.Context
 import android.util.DisplayMetrics

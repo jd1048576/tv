@@ -3,7 +3,6 @@ import Config.Dependencies.Dagger
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Okhttp3
 import Config.Dependencies.Retrofit
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -19,6 +18,8 @@ android {
         minSdkVersion(Config.minSdkVersion)
         targetSdkVersion(Config.targetSdkVersion)
         testInstrumentationRunner = Config.testRunner
+
+        buildConfigField("String", "TMDB_API_KEY", "\"${localProperty("TMDB_API_KEY")}\"")
     }
 
     compileOptions {
@@ -47,6 +48,4 @@ dependencies {
     implementation(Okhttp3.okhttp3)
 
     implementation(Retrofit.retrofit)
-
-    implementation(Timber.timber)
 }

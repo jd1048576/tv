@@ -2,7 +2,6 @@ import Config.Dependencies.Android
 import Config.Dependencies.Glide
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Material
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -32,6 +31,7 @@ android {
 
 dependencies {
     implementation(Kotlin.stdlib)
+    implementation(Kotlin.Coroutines.core)
 
     implementation(Android.activity)
     implementation(Android.appCompat)
@@ -44,6 +44,4 @@ dependencies {
     implementation(Material.material)
 
     implementation(Glide.glide)
-
-    implementation(Timber.timber)
 }

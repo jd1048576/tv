@@ -1,6 +1,5 @@
 import Config.Dependencies.Android
 import Config.Dependencies.Kotlin
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -34,6 +33,4 @@ dependencies {
     implementation(Android.Navigation.fragment)
     implementation(Android.Navigation.runtime)
     implementation(Android.Navigation.ui)
-
-    implementation(Timber.timber)
 }

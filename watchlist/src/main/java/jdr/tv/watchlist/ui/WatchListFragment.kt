@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.Fragment
-import jdr.tv.base.extensions.setupToolbar
+import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.watchlist.R
 
 class WatchListFragment : Fragment(R.layout.fragment_watch_list) {

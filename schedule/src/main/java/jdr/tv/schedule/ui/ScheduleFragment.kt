@@ -5,8 +5,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.Fragment
-import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.schedule.R
+import jdr.tv.ui.extensions.setupToolbar
 
 class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 

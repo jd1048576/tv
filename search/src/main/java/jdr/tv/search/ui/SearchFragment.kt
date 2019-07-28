@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jdr.tv.app.GlideApp
-import jdr.tv.base.extensions.dpToPixels
-import jdr.tv.base.extensions.setupToolbar
-import jdr.tv.base.extensions.systemService
+import jdr.tv.base.Log
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.search.R
 import jdr.tv.search.di.inject
+import jdr.tv.ui.extensions.dpToPixels
+import jdr.tv.ui.extensions.setupToolbar
+import jdr.tv.ui.extensions.systemService
 import jdr.tv.ui.utils.SpacingItemDecoration
-import timber.log.Timber
 import javax.inject.Inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -103,9 +103,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun observe() {
         viewModel.search.withLifecycleOwner(viewLifecycleOwner)
-            .onLoading { Timber.e("LOADING") }
+            .onLoading { Log.e("LOADING") }
             .onSuccess { adapter.submitList(it) }
-            .onFailure { Timber.e("FAILURE $it") }
+            .onFailure { Log.e("FAILURE $it") }
     }
 
     private fun scrollToTop() {

@@ -2,7 +2,6 @@ import Config.Dependencies.Android
 import Config.Dependencies.Dagger
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Material
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidDynamicFeature)
@@ -29,6 +28,7 @@ android {
 dependencies {
     implementation(project(":base"))
     implementation(project(":navigation"))
+    implementation(project(":ui"))
     implementation(project(":app"))
 
     implementation(Kotlin.stdlib)
@@ -42,6 +42,4 @@ dependencies {
 
     implementation(Dagger.dagger)
     kapt(Dagger.compiler)
-
-    implementation(Timber.timber)
 }

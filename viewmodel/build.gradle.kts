@@ -1,6 +1,5 @@
 import Config.Dependencies.Android
 import Config.Dependencies.Kotlin
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -28,6 +27,4 @@ dependencies {
     implementation(Kotlin.stdlib)
 
     implementation(Android.Lifecycle.viewmodel)
-
-    implementation(Timber.timber)
 }
