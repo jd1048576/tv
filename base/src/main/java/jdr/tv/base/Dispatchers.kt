@@ -11,6 +11,8 @@ object Dispatchers {
 
     private val AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors()
 
+    @JvmField
     val IOExecutor: ExecutorService = Executors.newFixedThreadPool(MAX_THREADS.coerceAtLeast(AVAILABLE_PROCESSORS))
+    @JvmField
     val IO: CoroutineDispatcher = IOExecutor.asCoroutineDispatcher()
 }
