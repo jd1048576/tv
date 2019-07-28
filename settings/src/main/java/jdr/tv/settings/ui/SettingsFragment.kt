@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import jdr.tv.base.extensions.setupToolbar
 import jdr.tv.settings.R
+import jdr.tv.ui.extensions.setupToolbar
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 

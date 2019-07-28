@@ -8,7 +8,6 @@ import jdr.tv.base.Log
 import jdr.tv.base.extensions.MOSHI_DEFAULT
 import jdr.tv.base.extensions.addAdapter
 import jdr.tv.base.extensions.addListAdapter
-import jdr.tv.remote.BuildConfig
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.adapter.RemoteGenreAdapter
 import jdr.tv.remote.adapter.RemoteSeasonListAdapter
@@ -18,6 +17,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -29,9 +29,12 @@ object RemoteModule {
         chain.proceed(chain.request().apply { Log.d("--> $method $url -->") })
     }
 
-    private fun providesInterceptor() = Interceptor { chain ->
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun providesInterceptor(@Named("TMDB_API_KEY") tmdbApiKey: String) = Interceptor { chain ->
         chain.request().run {
-            val url = url.newBuilder().addQueryParameter("api_key", BuildConfig.TMDB_API_KEY).build()
+            val url = url.newBuilder().addQueryParameter("api_key", tmdbApiKey).build()
             chain.proceed(newBuilder().url(url).build())
         }
     }
@@ -39,10 +42,10 @@ object RemoteModule {
     @Singleton
     @Provides
     @JvmStatic
-    fun providesOkHttpClient(): OkHttpClient {
+    fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .dispatcher(Dispatcher(IOExecutor))
-            .addInterceptor(providesInterceptor())
+            .addInterceptor(interceptor)
             .addInterceptor(provideHttpLoggingInterceptor())
             .build()
     }
