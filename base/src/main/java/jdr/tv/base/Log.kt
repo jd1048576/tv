@@ -1,4 +1,4 @@
-@file:Suppress("TooManyFunctions")
+@file:Suppress("TooManyFunctions", "SpreadOperator")
 
 package jdr.tv.base
 
