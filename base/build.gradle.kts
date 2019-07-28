@@ -2,7 +2,6 @@ import Config.Dependencies.Android
 import Config.Dependencies.Dagger
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Moshi
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -40,6 +39,4 @@ dependencies {
     kapt(Dagger.compiler)
 
     implementation(Moshi.moshi)
-
-    implementation(Timber.timber)
 }

@@ -3,7 +3,6 @@ import Config.Dependencies.Kotlin
 import Config.Dependencies.Moshi
 import Config.Dependencies.Okhttp3
 import Config.Dependencies.Retrofit
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidLibrary)
@@ -45,6 +44,4 @@ dependencies {
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.converterMoshi)
-
-    implementation(Timber.timber)
 }

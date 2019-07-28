@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import jdr.tv.base.Dispatchers.IOExecutor
+import jdr.tv.base.Log
 import jdr.tv.base.extensions.MOSHI_DEFAULT
 import jdr.tv.base.extensions.addAdapter
 import jdr.tv.base.extensions.addListAdapter
@@ -17,7 +18,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
-import timber.log.Timber
 import javax.inject.Singleton
 
 @Module
@@ -26,7 +26,7 @@ object RemoteModule {
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
     private fun provideHttpLoggingInterceptor() = Interceptor { chain ->
-        chain.proceed(chain.request().apply { Timber.d("--> $method $url -->") })
+        chain.proceed(chain.request().apply { Log.d("--> $method $url -->") })
     }
 
     private fun providesInterceptor() = Interceptor { chain ->

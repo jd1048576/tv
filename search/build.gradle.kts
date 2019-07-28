@@ -4,7 +4,6 @@ import Config.Dependencies.Glide
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Material
 import Config.Dependencies.Retrofit
-import Config.Dependencies.Timber
 
 plugins {
     id(Config.Plugins.androidDynamicFeature)
@@ -68,6 +67,4 @@ dependencies {
     implementation(Glide.glide)
 
     implementation(Retrofit.retrofit)
-
-    implementation(Timber.timber)
 }
