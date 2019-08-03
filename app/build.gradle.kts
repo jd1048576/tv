@@ -1,10 +1,13 @@
 import Config.Dependencies.Android
 import Config.Dependencies.Dagger
+import Config.Dependencies.Firebase
 import Config.Dependencies.Glide
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Material
 import Config.Dependencies.Okhttp3
 import Config.Dependencies.Timber
+
+val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
 
 plugins {
     id(Config.Plugins.androidApplication)
@@ -12,7 +15,10 @@ plugins {
     id(Config.Plugins.kotlinKapt)
 }
 
-val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
+if (file("google-services.json").exists()) {
+    apply(plugin = Config.Plugins.googleServices)
+    apply(plugin = Config.Plugins.fabric)
+}
 
 android {
     compileSdkVersion(Config.compileSdkVersion)
@@ -92,6 +98,9 @@ dependencies {
     implementation(Android.Navigation.fragment)
     implementation(Android.Navigation.runtime)
     implementation(Android.Navigation.ui)
+
+    implementation(Firebase.core)
+    implementation(Firebase.crashlytics)
 
     implementation(Material.material)
 

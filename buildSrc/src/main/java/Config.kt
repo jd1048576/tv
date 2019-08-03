@@ -10,6 +10,8 @@ object Config {
     object Plugins {
         const val androidGradle = "com.android.tools.build:gradle:3.5.0-rc02"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        const val googleServicesGradle = "com.google.gms:google-services:4.3.0"
+        const val fabricGradle = "io.fabric.tools:gradle:1.31.0"
 
         const val androidApplication = "com.android.application"
         const val androidLibrary = "com.android.library"
@@ -17,6 +19,8 @@ object Config {
         const val kotlin = "kotlin"
         const val kotlinAndroid = "kotlin-android"
         const val kotlinKapt = "kotlin-kapt"
+        const val googleServices = "com.google.gms.google-services"
+        const val fabric = "io.fabric"
     }
 
     object Dependencies {
@@ -36,7 +40,7 @@ object Config {
             const val appCompat = "androidx.appcompat:appcompat:1.1.0-rc01"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
             const val core = "androidx.core:core-ktx:1.2.0-alpha02"
-            const val fragment = "androidx.fragment:fragment:1.2.0-alpha01"
+            const val fragment = "androidx.fragment:fragment-ktx:1.2.0-alpha01"
             const val preference = "androidx.preference:preference:1.1.0-rc01"
             const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-beta01"
 
@@ -60,6 +64,11 @@ object Config {
                 const val core = "androidx.room:room-ktx:$version"
                 const val compiler = "androidx.room:room-compiler:$version"
             }
+        }
+
+        object Firebase {
+            const val core = "com.google.firebase:firebase-core:17.0.1"
+            const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.10.1"
         }
 
         object Material {

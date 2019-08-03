@@ -7,3 +7,4 @@
 **/captures
 .externalNativeBuild
 .signing/app-release.jks
+app/google-services.json
