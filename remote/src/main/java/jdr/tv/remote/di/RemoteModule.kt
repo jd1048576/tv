@@ -26,7 +26,7 @@ object RemoteModule {
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
     private fun provideHttpLoggingInterceptor() = Interceptor { chain ->
-        chain.proceed(chain.request().apply { Log.d("--> $method $url -->") })
+        chain.proceed(chain.request().apply { Log.v("--> $method $url -->") })
     }
 
     @Singleton

@@ -33,9 +33,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     private fun observe() {
         viewModel.id = GlobalActions.ActionDetails.fromBundle(arguments).showId
         viewModel.selectDetailedShow().observe(viewLifecycleOwner, Observer { result ->
-            result.onLoading { Log.e("LOADING") }
-                .onSuccess { Log.e("$it") }
-                .onFailure { Log.e("FAILURE $it") }
+            result.onLoading { Log.i("LOADING") }
+                .onSuccess { Log.i("$it") }
+                .onFailure { Log.i("FAILURE $it") }
         })
     }
 }

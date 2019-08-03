@@ -102,9 +102,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun observe() {
         viewModel.search.observe(viewLifecycleOwner, Observer { resource ->
-            resource.onLoading { Log.e("LOADING") }
+            resource.onLoading { Log.i("LOADING") }
                 .onSuccess { adapter.submitData(it) }
-                .onFailure { Log.e("FAILURE $it") }
+                .onFailure { Log.i("FAILURE $it") }
         })
     }
 
