@@ -6,16 +6,20 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jdr.tv.app.GlideApp
 import jdr.tv.base.Log
+import jdr.tv.data.onFailure
+import jdr.tv.data.onLoading
+import jdr.tv.data.onSuccess
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.search.R
 import jdr.tv.search.di.inject
 import jdr.tv.ui.extensions.dpToPixels
+import jdr.tv.ui.extensions.linearLayoutManager
 import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.ui.extensions.systemService
 import jdr.tv.ui.utils.SpacingItemDecoration
@@ -69,11 +73,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.save(outState)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (isRemoving) viewModel.invalidate()
-    }
-
     private fun bindResources() = with(view!!) {
         searchView = findViewById(R.id.fragment_search_search_view)
         recyclerView = findViewById(R.id.fragment_search_recycler_view)
@@ -102,10 +101,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun observe() {
-        viewModel.search.withLifecycleOwner(viewLifecycleOwner)
-            .onLoading { Log.e("LOADING") }
-            .onSuccess { adapter.submitList(it) }
-            .onFailure { Log.e("FAILURE $it") }
+        viewModel.search.observe(viewLifecycleOwner, Observer { resource ->
+            resource.onLoading { Log.e("LOADING") }
+                .onSuccess { adapter.submitData(it) }
+                .onFailure { Log.e("FAILURE $it") }
+        })
     }
 
     private fun scrollToTop() {
