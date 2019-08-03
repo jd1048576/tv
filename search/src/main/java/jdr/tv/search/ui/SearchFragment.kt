@@ -109,7 +109,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun scrollToTop() {
-        (recyclerView.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(0, 0)
+        recyclerView.linearLayoutManager.scrollToPositionWithOffset(0, 0)
     }
 
     private fun navigate(showId: Long) {
