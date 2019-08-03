@@ -1,6 +1,6 @@
 package jdr.tv.local
 
-import androidx.paging.DataSource
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import jdr.tv.local.entities.SearchItem
@@ -16,15 +16,7 @@ abstract class SearchItemDao : BaseDao<SearchItem>() {
         ORDER BY SearchItem.id ASC
         """
     )
-    abstract fun selectSearchDataSourceFactory(): DataSource.Factory<Int, Show>
-
-    @Query(
-        """
-        SELECT page FROM SearchItem 
-        WHERE showId = :showId 
-        ORDER BY page DESC"""
-    )
-    abstract suspend fun selectSearchItemPage(showId: Long): Int?
+    abstract fun selectSearchShowList(): LiveData<List<Show>>
 
     @Query("DELETE FROM SearchItem")
     abstract suspend fun deleteAll()

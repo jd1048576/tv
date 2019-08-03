@@ -30,6 +30,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":base"))
+
     implementation(Kotlin.stdlib)
     implementation(Kotlin.Coroutines.core)
 
@@ -39,7 +41,6 @@ dependencies {
     implementation(Android.core)
     implementation(Android.fragment)
     implementation(Android.recyclerView)
-    implementation(Android.Paging.runtime)
 
     implementation(Material.material)
 

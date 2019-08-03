@@ -8,7 +8,7 @@ object Config {
     const val kotlinVersion = "1.3.41"
 
     object Plugins {
-        const val androidGradle = "com.android.tools.build:gradle:3.5.0-rc01"
+        const val androidGradle = "com.android.tools.build:gradle:3.5.0-rc02"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         const val androidApplication = "com.android.application"
@@ -55,10 +55,6 @@ object Config {
                 const val ui = "androidx.navigation:navigation-ui-ktx:$version"
             }
 
-            object Paging {
-                const val runtime = "androidx.paging:paging-runtime-ktx:2.1.0"
-            }
-
             object Room {
                 private const val version = "2.1.0"
                 const val core = "androidx.room:room-ktx:$version"
@@ -67,11 +63,11 @@ object Config {
         }
 
         object Material {
-            const val material = "com.google.android.material:material:1.1.0-alpha08"
+            const val material = "com.google.android.material:material:1.1.0-alpha09"
         }
 
         object Dagger {
-            private const val version = "2.23.2"
+            private const val version = "2.24"
             const val dagger = "com.google.dagger:dagger:$version"
             const val compiler = "com.google.dagger:dagger-compiler:$version"
         }
@@ -87,7 +83,7 @@ object Config {
         }
 
         object Retrofit {
-            private const val version = "2.6.0"
+            private const val version = "2.6.1"
             const val retrofit = "com.squareup.retrofit2:retrofit:$version"
             const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
         }

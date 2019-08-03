@@ -56,7 +56,6 @@ dependencies {
     implementation(Android.Navigation.fragment)
     implementation(Android.Navigation.runtime)
     implementation(Android.Navigation.ui)
-    implementation(Android.Paging.runtime)
     implementation(Android.Room.core)
 
     implementation(Material.material)

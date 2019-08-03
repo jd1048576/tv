@@ -1,11 +1,13 @@
 package jdr.tv.search.ui
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import jdr.tv.data.PaginatedResult
+import jdr.tv.data.Resource
 import jdr.tv.local.entities.Show
 import jdr.tv.viewmodel.StateViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -16,6 +18,7 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
     }
 
     private var debounce: Job? = null
+    private val invalidate = MutableLiveData<Unit>()
 
     var focus: Boolean
         get() = state.focus
@@ -23,7 +26,11 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
             state = state.copy(focus = value)
         }
 
-    val search: PaginatedResult<Show> = repository.search(viewModelScope.coroutineContext) { state.query }
+    val search: LiveData<Resource<List<Show>>> = invalidate.switchMap { repository.search(state.query) }
+
+    init {
+        invalidate()
+    }
 
     fun onQueryTextSubmit(query: String) {
         focus = false
@@ -36,13 +43,14 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
             debounce?.cancel()
             debounce = viewModelScope.launch {
                 delay(DEBOUNCE)
-                search.invalidate()
                 if (query.isEmpty()) {
                     invalidate()
+                } else {
+                    invalidate.value = Unit
                 }
             }
         }
     }
 
-    fun invalidate() = viewModelScope.launch(NonCancellable) { repository.deleteAll() }
+    private fun invalidate() = viewModelScope.launch { repository.deleteAll() }
 }

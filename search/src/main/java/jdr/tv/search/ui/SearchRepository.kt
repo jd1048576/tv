@@ -1,14 +1,18 @@
 package jdr.tv.search.ui
 
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import androidx.room.withTransaction
 import jdr.tv.base.Dispatchers.IO
-import jdr.tv.base.Dispatchers.IOExecutor
-import jdr.tv.data.BoundaryCallback
-import jdr.tv.data.PaginatedResult
 import jdr.tv.data.Request
+import jdr.tv.data.Resource
+import jdr.tv.data.Response
+import jdr.tv.data.asLoading
+import jdr.tv.data.asSuccess
+import jdr.tv.data.execute
 import jdr.tv.data.mapper.toShow
+import jdr.tv.data.onFailure
+import jdr.tv.data.onSuccess
 import jdr.tv.local.Database
 import jdr.tv.local.entities.SearchItem
 import jdr.tv.local.entities.Show
@@ -17,54 +21,47 @@ import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteShowList
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 class SearchRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
     companion object {
-        private const val PAGE_SIZE = 20
         private const val PAGE_GAP = 100L
-
-        @JvmField
-        val pageConfig = PagedList.Config.Builder().setPageSize(PAGE_SIZE).setPrefetchDistance(60).setEnablePlaceholders(true).build()
     }
 
-    fun search(context: CoroutineContext, query: () -> String): PaginatedResult<Show> {
-        val factory = database.searchItemDao().selectSearchDataSourceFactory()
-
-        val boundaryCallback = BoundaryCallback(
-            context,
-            { createRequest(it, query) },
-            this::insert,
-            this::selectPageForShowItem,
-            RemoteShowList::totalPages
-        )
-
-        val pagedList = LivePagedListBuilder(factory, pageConfig)
-            .setFetchExecutor(IOExecutor)
-            .setBoundaryCallback(boundaryCallback)
-            .build()
-
-        return PaginatedResult(pagedList, boundaryCallback.loading, boundaryCallback.failure, boundaryCallback::onZeroItemsLoaded)
-    }
-
-    private suspend fun insert(remoteShowList: RemoteShowList) = withContext(IO) {
-        val page = remoteShowList.page
-        val showList = remoteShowList.results.map { it.toShow() }
-        val searchItemList = showList.mapIndexed { index, show -> SearchItem(page * PAGE_GAP + index, show.id, page) }
-        database.withTransaction {
-            if (remoteShowList.page == 1) database.searchItemDao().deleteAll()
-            database.showDao().insertOrUpdate(showList)
-            database.searchItemDao().insertOrUpdate(searchItemList)
+    fun search(query: String): LiveData<Resource<List<Show>>> {
+        return liveData {
+            val disposable = emitSource(database.searchItemDao().selectSearchShowList().asLoading())
+            fetchSearch(query)
+                .onSuccess {
+                    disposable.dispose()
+                    insert(it)
+                    emitSource(database.searchItemDao().selectSearchShowList().asSuccess())
+                }
+                .onFailure { emit(Resource.failure<List<Show>>(it)) }
         }
     }
 
-    private fun createRequest(page: Int, query: () -> String): Request<RemoteShowList>? {
-        return query().takeUnless { it.isEmpty() }?.let { Request { tmdbApi.search(page, it) } }
+    private suspend fun fetchSearch(query: String): Response<List<RemoteShowList>> {
+        return IntRange(1, 2).map { Request { tmdbApi.search(it, query) } }.execute()
     }
 
-    private suspend fun selectPageForShowItem(show: Show): Int? = withContext(IO) {
-        database.searchItemDao().selectSearchItemPage(show.id)
+    private suspend fun insert(remoteShowList: List<RemoteShowList>) = withContext(IO) {
+        val showList = ArrayList<Show>()
+        val searchItemList = ArrayList<SearchItem>()
+
+        remoteShowList.forEach {
+            val page = it.page
+            it.results.forEachIndexed { index, remoteShow ->
+                showList.add(remoteShow.toShow())
+                searchItemList.add(SearchItem(page * PAGE_GAP + index, remoteShow.id, page))
+            }
+        }
+
+        database.withTransaction {
+            database.searchItemDao().deleteAll()
+            database.showDao().insertOrUpdate(showList)
+            database.searchItemDao().insertOrUpdate(searchItemList)
+        }
     }
 
     suspend fun deleteAll() = withContext(IO) { database.searchItemDao().deleteAll() }
