@@ -41,7 +41,6 @@ dependencies {
     implementation(Android.core)
     implementation(Android.fragment)
     implementation(Android.recyclerView)
-    implementation(Android.Paging.runtime)
 
     implementation(Material.material)
 

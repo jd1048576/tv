@@ -55,10 +55,6 @@ object Config {
                 const val ui = "androidx.navigation:navigation-ui-ktx:$version"
             }
 
-            object Paging {
-                const val runtime = "androidx.paging:paging-runtime-ktx:2.1.0"
-            }
-
             object Room {
                 private const val version = "2.1.0"
                 const val core = "androidx.room:room-ktx:$version"
