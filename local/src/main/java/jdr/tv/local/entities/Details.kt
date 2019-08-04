@@ -35,7 +35,7 @@ data class Details(
     val castList: List<Cast>,
     val crewList: List<Crew>,
     @Embedded
-    val externalIds: ExternalIds,
+    val externalIds: ExternalIds?,
     val videosList: List<Video>,
 
     val lastDetailsUpdate: Instant
