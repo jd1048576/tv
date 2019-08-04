@@ -104,10 +104,6 @@ object Config {
             const val okhttp3 = "com.github.bumptech.glide:okhttp3-integration:$version"
         }
 
-        object Timber {
-            const val timber = "com.jakewharton.timber:timber:4.7.1"
-        }
-
         /*object LeakCanary {
             const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.0-alpha-1"
         }*/

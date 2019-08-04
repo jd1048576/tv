@@ -9,7 +9,6 @@ import androidx.preference.PreferenceManager
 import jdr.tv.base.Log
 import jdr.tv.data.di.DaggerDataComponent
 import jdr.tv.data.di.DataComponent
-import timber.log.Timber
 
 class App : Application() {
 
@@ -17,10 +16,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        TimberLogger().also {
-            Timber.plant(it)
-            Log.initialize(it)
-        }
+
+        Log.addLogger(CrashlyticsLogger())
 
         AppCompatDelegate.setDefaultNightMode(PreferenceManager.getDefaultSharedPreferences(this).getString("THEME", "-1")!!.toInt())
         dataComponent = DaggerDataComponent.builder().context(this).build()

@@ -5,7 +5,6 @@ import Config.Dependencies.Glide
 import Config.Dependencies.Kotlin
 import Config.Dependencies.Material
 import Config.Dependencies.Okhttp3
-import Config.Dependencies.Timber
 
 val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
 
@@ -115,6 +114,5 @@ dependencies {
     }
     kapt(Glide.compiler)
 
-    implementation(Timber.timber)
     // debugImplementation(LeakCanary.leakCanary)
 }

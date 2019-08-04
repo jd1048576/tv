@@ -1,142 +1,151 @@
-@file:Suppress("TooManyFunctions", "SpreadOperator")
-
 package jdr.tv.base
 
-object Log : Logger {
+import java.io.PrintWriter
+import java.io.StringWriter
+import java.util.regex.Pattern
+import kotlin.math.min
+
+abstract class Logger {
+
+    private val ignore = listOf(
+        Logger::class.java.name,
+        Log::class.java.name
+    )
+
+    private val tag: String
+        get() = Throwable().stackTrace
+            .first { it.className !in ignore }
+            .let(::createStackElementTag)
+
+    protected abstract fun log(priority: Int, tag: String, message: String)
+
+    private fun createStackElementTag(element: StackTraceElement): String {
+        var tag = element.className.substringAfterLast('.')
+        val m = ANONYMOUS_CLASS.matcher(tag)
+        if (m.find()) {
+            tag = m.replaceAll("")
+        }
+        return tag
+    }
+
+    private fun getStackTraceString(t: Throwable): String {
+        val sw = StringWriter(STACK_TRACE_INITIAL_SIZE)
+        val pw = PrintWriter(sw, false)
+        t.printStackTrace(pw)
+        pw.flush()
+        return sw.toString()
+    }
+
+    fun log(priority: Int, t: Throwable?, message: String?) {
+        // Consume tag even when message is not loggable so that next message is correctly tagged.
+        val tag = tag
+
+        var m = message
+        if (m.isNullOrEmpty()) {
+            if (t == null) {
+                return // Swallow message if it's null and there's no throwable.
+            }
+            m = getStackTraceString(t)
+        } else if (t != null) {
+            m += "\n" + getStackTraceString(t)
+        }
+        submitLog(priority, tag, m)
+    }
+
+    private fun submitLog(priority: Int, tag: String, message: String) {
+        if (message.length < MAX_LOG_LENGTH) {
+            log(priority, tag, message)
+        } else {
+            var i = 0
+            val length = message.length
+            while (i < length) {
+                var newline = message.indexOf('\n', i)
+                newline = if (newline != -1) newline else length
+                do {
+                    val end = min(newline, i + MAX_LOG_LENGTH)
+                    val part = message.substring(i, end)
+                    log(priority, tag, part)
+                    i = end
+                } while (i < newline)
+                i++
+            }
+        }
+    }
+
+    companion object {
+        private const val STACK_TRACE_INITIAL_SIZE = 256
+        private const val MAX_LOG_LENGTH = 4000
+        private val ANONYMOUS_CLASS = Pattern.compile("(\\$\\d+)+$")
+
+        const val VERBOSE = 2
+        const val DEBUG = 3
+        const val INFO = 4
+        const val WARN = 5
+        const val ERROR = 6
+    }
+}
+
+object Log {
 
     private lateinit var delegate: Logger
 
     @JvmStatic
-    fun initialize(logger: Logger) {
+    fun addLogger(logger: Logger) {
         delegate = logger
     }
 
-    override fun v(message: String, vararg args: Any?) {
-        delegate.v(message, *args)
+    @JvmStatic
+    fun v(vararg any: Any?) {
+        log(Logger.VERBOSE, null, any.joinToString(","))
     }
 
-    override fun v(t: Throwable, message: String, vararg args: Any?) {
-        delegate.v(t, message, *args)
+    @JvmStatic
+    fun v(t: Throwable, message: String? = null) {
+        log(Logger.VERBOSE, t, message)
     }
 
-    override fun v(t: Throwable) {
-        delegate.v(t)
+    @JvmStatic
+    fun d(vararg any: Any?) {
+        log(Logger.DEBUG, null, any.joinToString(","))
     }
 
-    override fun d(message: String, vararg args: Any?) {
-        delegate.d(message, *args)
+    @JvmStatic
+    fun d(t: Throwable, message: String? = null) {
+        log(Logger.DEBUG, t, message)
     }
 
-    override fun d(t: Throwable, message: String, vararg args: Any?) {
-        delegate.d(t, message, *args)
+    @JvmStatic
+    fun i(vararg any: Any?) {
+        log(Logger.INFO, null, any.joinToString(","))
     }
 
-    override fun d(t: Throwable) {
-        delegate.d(t)
+    @JvmStatic
+    fun i(t: Throwable, message: String? = null) {
+        log(Logger.INFO, t, message)
     }
 
-    override fun i(message: String, vararg args: Any?) {
-        delegate.i(message, *args)
+    @JvmStatic
+    fun w(vararg any: Any?) {
+        log(Logger.WARN, null, any.joinToString(","))
     }
 
-    override fun i(t: Throwable, message: String, vararg args: Any?) {
-        delegate.i(t, message, *args)
+    @JvmStatic
+    fun w(t: Throwable, message: String? = null) {
+        log(Logger.WARN, t, message)
     }
 
-    override fun i(t: Throwable) {
-        delegate.i(t)
+    @JvmStatic
+    fun e(vararg any: Any?) {
+        log(Logger.ERROR, null, any.joinToString(","))
     }
 
-    override fun w(message: String, vararg args: Any?) {
-        delegate.w(message, *args)
+    @JvmStatic
+    fun e(t: Throwable, message: String? = null) {
+        log(Logger.ERROR, t, message)
     }
 
-    override fun w(t: Throwable, message: String, vararg args: Any?) {
-        delegate.w(t, message, *args)
+    @JvmStatic
+    private fun log(priority: Int, t: Throwable?, message: String?) {
+        delegate.log(priority, t, message)
     }
-
-    override fun w(t: Throwable) {
-        delegate.w(t)
-    }
-
-    override fun e(message: String, vararg args: Any?) {
-        delegate.e(message, *args)
-    }
-
-    override fun e(t: Throwable, message: String, vararg args: Any?) {
-        delegate.e(t, message, *args)
-    }
-
-    override fun e(t: Throwable) {
-        delegate.e(t)
-    }
-
-    override fun wtf(message: String, vararg args: Any?) {
-        delegate.wtf(message, *args)
-    }
-
-    override fun wtf(t: Throwable, message: String, vararg args: Any?) {
-        delegate.wtf(t, message, *args)
-    }
-
-    override fun wtf(t: Throwable) {
-        delegate.wtf(t)
-    }
-
-    override fun log(priority: Int, message: String, vararg args: Any?) {
-        delegate.log(priority, message, *args)
-    }
-
-    override fun log(priority: Int, t: Throwable, message: String, vararg args: Any?) {
-        delegate.log(priority, t, message, *args)
-    }
-
-    override fun log(priority: Int, t: Throwable) {
-        delegate.log(priority, t)
-    }
-}
-
-interface Logger {
-
-    fun v(message: String, vararg args: Any?)
-
-    fun v(t: Throwable, message: String, vararg args: Any?)
-
-    fun v(t: Throwable)
-
-    fun d(message: String, vararg args: Any?)
-
-    fun d(t: Throwable, message: String, vararg args: Any?)
-
-    fun d(t: Throwable)
-
-    fun i(message: String, vararg args: Any?)
-
-    fun i(t: Throwable, message: String, vararg args: Any?)
-
-    fun i(t: Throwable)
-
-    fun w(message: String, vararg args: Any?)
-
-    fun w(t: Throwable, message: String, vararg args: Any?)
-
-    fun w(t: Throwable)
-
-    fun e(message: String, vararg args: Any?)
-
-    fun e(t: Throwable, message: String, vararg args: Any?)
-
-    fun e(t: Throwable)
-
-    fun wtf(message: String, vararg args: Any?)
-
-    fun wtf(t: Throwable, message: String, vararg args: Any?)
-
-    fun wtf(t: Throwable)
-
-    fun log(priority: Int, message: String, vararg args: Any?)
-
-    fun log(priority: Int, t: Throwable, message: String, vararg args: Any?)
-
-    fun log(priority: Int, t: Throwable)
 }
