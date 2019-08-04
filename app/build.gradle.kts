@@ -14,11 +14,6 @@ plugins {
     id(Config.Plugins.kotlinKapt)
 }
 
-if (file("google-services.json").exists()) {
-    apply(plugin = Config.Plugins.googleServices)
-    apply(plugin = Config.Plugins.fabric)
-}
-
 android {
     compileSdkVersion(Config.compileSdkVersion)
     buildToolsVersion(Config.buildToolsVersion)
@@ -115,4 +110,9 @@ dependencies {
     kapt(Glide.compiler)
 
     // debugImplementation(LeakCanary.leakCanary)
+}
+
+if (file("google-services.json").exists()) {
+    apply(plugin = Config.Plugins.googleServices)
+    apply(plugin = Config.Plugins.fabric)
 }
