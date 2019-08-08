@@ -2,13 +2,13 @@ object Config {
     const val minSdkVersion = 26
     const val targetSdkVersion = 29
     const val compileSdkVersion = 29
-    const val buildToolsVersion = "29.0.1"
+    const val buildToolsVersion = "29.0.2"
     const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     const val kotlinVersion = "1.3.41"
 
     object Plugins {
-        const val androidGradle = "com.android.tools.build:gradle:3.5.0-rc02"
+        const val androidGradle = "com.android.tools.build:gradle:3.5.0-rc03"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         const val googleServicesGradle = "com.google.gms:google-services:4.3.0"
         const val fabricGradle = "io.fabric.tools:gradle:1.31.0"
@@ -29,30 +29,30 @@ object Config {
             const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 
             object Coroutines {
-                private const val version = "1.2.1"
+                private const val version = "1.3.0-RC"
                 const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
                 const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             }
         }
 
         object Android {
-            const val activity = "androidx.activity:activity:1.1.0-alpha01"
+            const val activity = "androidx.activity:activity:1.1.0-alpha02"
             const val appCompat = "androidx.appcompat:appcompat:1.1.0-rc01"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
-            const val core = "androidx.core:core-ktx:1.2.0-alpha02"
-            const val fragment = "androidx.fragment:fragment-ktx:1.2.0-alpha01"
+            const val core = "androidx.core:core-ktx:1.2.0-alpha03"
+            const val fragment = "androidx.fragment:fragment-ktx:1.2.0-alpha02"
             const val preference = "androidx.preference:preference:1.1.0-rc01"
-            const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-beta01"
+            const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0-beta02"
 
             object Lifecycle {
-                private const val version = "2.2.0-alpha02"
+                private const val version = "2.2.0-alpha03"
                 const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
                 const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
                 const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             }
 
             object Navigation {
-                const val version = "2.1.0-beta02"
+                private const val version = "2.2.0-alpha01"
                 const val common = "androidx.navigation:navigation-common-ktx:$version"
                 const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
                 const val runtime = "androidx.navigation:navigation-runtime-ktx:$version"
@@ -60,7 +60,7 @@ object Config {
             }
 
             object Room {
-                private const val version = "2.1.0"
+                private const val version = "2.2.0-alpha02"
                 const val core = "androidx.room:room-ktx:$version"
                 const val compiler = "androidx.room:room-compiler:$version"
             }
