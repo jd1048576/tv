@@ -4,8 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import jdr.tv.base.Log
+import jdr.tv.data.collectResource
 import jdr.tv.data.onFailure
 import jdr.tv.data.onLoading
 import jdr.tv.data.onSuccess
@@ -13,6 +14,7 @@ import jdr.tv.details.R
 import jdr.tv.details.di.inject
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.ui.extensions.setupToolbar
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
@@ -31,11 +33,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun observe() {
-        viewModel.id = GlobalActions.ActionDetails.fromBundle(arguments).showId
-        viewModel.selectDetailedShow().observe(viewLifecycleOwner, Observer { result ->
-            result.onLoading { Log.i("LOADING") }
-                .onSuccess { Log.i("$it") }
-                .onFailure { Log.i("FAILURE $it") }
-        })
+        lifecycleScope.launch {
+            viewModel.id = GlobalActions.ActionDetails.fromBundle(arguments).showId
+            viewModel.show.collectResource {
+                onLoading { Log.i("LOADING") }
+                onSuccess { Log.i("$it") }
+                onFailure { Log.i("FAILURE $it") }
+            }
+        }
     }
 }

@@ -1,13 +1,10 @@
 package jdr.tv.search.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import androidx.room.withTransaction
 import jdr.tv.base.Dispatchers.IO
 import jdr.tv.data.Request
 import jdr.tv.data.Resource
 import jdr.tv.data.Response
-import jdr.tv.data.asLoading
 import jdr.tv.data.asSuccess
 import jdr.tv.data.execute
 import jdr.tv.data.mapper.toShow
@@ -19,6 +16,9 @@ import jdr.tv.local.entities.Show
 import jdr.tv.local.insertOrUpdate
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteShowList
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -28,14 +28,13 @@ class SearchRepository @Inject constructor(private val database: Database, priva
         private const val PAGE_GAP = 100L
     }
 
-    fun search(query: String): LiveData<Resource<List<Show>>> {
-        return liveData {
-            val disposable = emitSource(database.searchItemDao().selectSearchShowList().asLoading())
+    fun search(query: String): Flow<Resource<List<Show>>> {
+        return flow {
+            emit(Resource.loading(database.searchItemDao().selectSearchShowList()))
             fetchSearch(query)
                 .onSuccess {
-                    disposable.dispose()
                     insert(it)
-                    emitSource(database.searchItemDao().selectSearchShowList().asSuccess())
+                    emitAll(database.searchItemDao().selectSearchShowListFlow().asSuccess())
                 }
                 .onFailure { emit(Resource.failure<List<Show>>(it)) }
         }

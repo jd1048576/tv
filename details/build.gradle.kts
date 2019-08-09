@@ -50,7 +50,6 @@ dependencies {
     implementation(Android.constraintLayout)
     implementation(Android.fragment)
     implementation(Android.recyclerView)
-    implementation(Android.Lifecycle.livedata)
     implementation(Android.Lifecycle.viewmodel)
     implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)

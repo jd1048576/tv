@@ -1,7 +1,8 @@
 package jdr.tv.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 
 sealed class Resource<T> {
 
@@ -29,20 +30,20 @@ inline fun <T> Resource<T>.onLoading(action: (T?) -> Unit): Resource<T> {
     return this
 }
 
-fun <T> LiveData<T>.asLoading(): LiveData<Resource<T>> {
-    return map { Resource.loading(it) }
-}
-
 inline fun <T> Resource<T>.onSuccess(action: (T) -> Unit): Resource<T> {
     if (this is Resource.Success) action(this.value)
     return this
 }
 
-fun <T> LiveData<T>.asSuccess(): LiveData<Resource<T>> {
-    return map { Resource.success(it) }
-}
-
 inline fun <T> Resource<T>.onFailure(action: (Exception) -> Unit): Resource<T> {
     if (this is Resource.Failure) action(this.exception)
     return this
+}
+
+fun <T> Flow<T>.asSuccess(): Flow<Resource<T>> {
+    return map { Resource.success(it) }
+}
+
+suspend inline fun <T> Flow<Resource<T>>.collectResource(crossinline action: suspend Resource<T>.() -> Unit) {
+    collect(action)
 }

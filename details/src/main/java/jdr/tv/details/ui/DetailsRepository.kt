@@ -1,14 +1,11 @@
 package jdr.tv.details.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import androidx.room.withTransaction
 import jdr.tv.base.Dispatchers.IO
 import jdr.tv.base.extensions.olderThan
 import jdr.tv.data.Request
 import jdr.tv.data.Resource
 import jdr.tv.data.Response
-import jdr.tv.data.asLoading
 import jdr.tv.data.asSuccess
 import jdr.tv.data.execute
 import jdr.tv.data.map
@@ -27,6 +24,9 @@ import jdr.tv.local.insertOrUpdate
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteDetailedShow
 import jdr.tv.remote.entities.RemoteSeason
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import javax.inject.Inject
@@ -37,20 +37,19 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
         private const val MAX_REQUEST_SIZE = 20
     }
 
-    fun selectDetailedShow(showId: Long): LiveData<Resource<DetailedShow>> {
-        return liveData {
+    fun selectDetailedShow(showId: Long): Flow<Resource<DetailedShow>> {
+        return flow {
             if (shouldUpdate(showId)) {
-                val disposable = emitSource(database.detailsDao().selectDetailedShowLiveData(showId).asLoading())
+                emit(Resource.loading(database.detailsDao().selectDetailedShow(showId)))
                 fetchDetailedShow(showId)
                     .mergeSwitchMap { fetchSeasonList(showId, it.numberOfSeasons) }
                     .onSuccess {
-                        disposable.dispose()
                         insert(it.first, it.second)
-                        emitSource(database.detailsDao().selectDetailedShowLiveData(showId).asSuccess())
+                        emitAll(database.detailsDao().selectDetailedShowFlow(showId).asSuccess())
                     }
-                    .onFailure { emit(Resource.failure<DetailedShow>(it)) }
+                    .onFailure { emit(Resource.failure(it)) }
             } else {
-                emitSource(database.detailsDao().selectDetailedShowLiveData(showId).asSuccess())
+                emitAll(database.detailsDao().selectDetailedShowFlow(showId).asSuccess())
             }
         }
     }

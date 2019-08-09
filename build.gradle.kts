@@ -20,7 +20,7 @@ buildscript {
 
 plugins {
     id("com.diffplug.gradle.spotless") version ("3.24.0")
-    id("com.github.ben-manes.versions") version ("0.21.0")
+    id("com.github.ben-manes.versions") version ("0.22.0")
     id("io.gitlab.arturbosch.detekt") version ("1.0.0-RC16")
 }
 
@@ -39,6 +39,8 @@ allprojects {
         tasks.withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = "1.8"
+                freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+                freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
             }
         }
     }
