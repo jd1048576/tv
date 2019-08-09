@@ -86,7 +86,6 @@ dependencies {
     implementation(Android.constraintLayout)
     implementation(Android.core)
     implementation(Android.preference)
-    implementation(Android.Lifecycle.livedata)
     implementation(Android.Lifecycle.viewmodel)
     implementation(Android.Navigation.common)
     implementation(Android.Navigation.fragment)

@@ -1,9 +1,9 @@
 package jdr.tv.local
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import jdr.tv.local.entities.Episode
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class EpisodeDao : BaseDao<Episode>() {
@@ -16,7 +16,7 @@ abstract class EpisodeDao : BaseDao<Episode>() {
         ORDER BY (Episode.seasonNumber * 1000 + Episode.episodeNumber) ASC
         """
     )
-    abstract fun selectListLiveData(showId: Long): LiveData<List<Episode>>
+    abstract fun selectList(showId: Long): Flow<List<Episode>>
 
     /*  @Query("SELECT Episode.*, Show.name AS showName, Show.posterPath AS showPosterPath, Show.launchId, Show.launchSource FROM Episode,
     Show WHERE Episode.showId = Show.id AND DATE(DATETIME(Episode.airDate / 1000 , 'unixepoch', 'localtime')) >= DATE(DATETIME('now', 'localtime'))

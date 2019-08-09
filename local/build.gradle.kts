@@ -32,7 +32,6 @@ dependencies {
     implementation(Kotlin.Coroutines.core)
     implementation(Kotlin.Coroutines.android)
 
-    implementation(Android.Lifecycle.livedata)
     implementation(Android.Room.core)
     kapt(Android.Room.compiler)
 

@@ -39,6 +39,8 @@ allprojects {
         tasks.withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = "1.8"
+                freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+                freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
             }
         }
     }

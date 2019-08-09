@@ -6,12 +6,13 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
 import jdr.tv.app.GlideApp
 import jdr.tv.base.Log
+import jdr.tv.data.collectResource
 import jdr.tv.data.onFailure
 import jdr.tv.data.onLoading
 import jdr.tv.data.onSuccess
@@ -23,6 +24,7 @@ import jdr.tv.ui.extensions.linearLayoutManager
 import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.ui.extensions.systemService
 import jdr.tv.ui.utils.SpacingItemDecoration
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -101,11 +103,13 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun observe() {
-        viewModel.search.observe(viewLifecycleOwner, Observer { resource ->
-            resource.onLoading { Log.i("LOADING") }
-                .onSuccess { adapter.submitData(it) }
-                .onFailure { Log.i("FAILURE $it") }
-        })
+        lifecycleScope.launch {
+            viewModel.search.collectResource {
+                onLoading { Log.i("LOADING") }
+                onSuccess { adapter.submitData(it) }
+                onFailure { Log.i("FAILURE $it") }
+            }
+        }
     }
 
     private fun scrollToTop() {

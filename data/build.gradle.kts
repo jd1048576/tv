@@ -38,7 +38,6 @@ dependencies {
     implementation(Kotlin.Coroutines.android)
 
     implementation(Android.preference)
-    implementation(Android.Lifecycle.livedata)
     implementation(Android.Room.core)
 
     implementation(Dagger.dagger)

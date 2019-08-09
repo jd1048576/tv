@@ -1,14 +1,17 @@
 package jdr.tv.search.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import jdr.tv.base.Dispatchers.IO
 import jdr.tv.data.Resource
 import jdr.tv.local.entities.Show
 import jdr.tv.viewmodel.StateViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.switchMap
 import kotlinx.coroutines.launch
 
 class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
@@ -17,8 +20,10 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
         private const val DEBOUNCE = 275L
     }
 
-    private var debounce: Job? = null
-    private val invalidate = MutableLiveData<Unit>()
+    var previous: Resource<List<Show>>? = null
+
+    private val invalidate = ConflatedBroadcastChannel<Unit>()
+    private val _search = ConflatedBroadcastChannel<Resource<List<Show>>>()
 
     var focus: Boolean
         get() = state.focus
@@ -26,10 +31,18 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
             state = state.copy(focus = value)
         }
 
-    val search: LiveData<Resource<List<Show>>> = invalidate.switchMap { repository.search(state.query) }
+    val search: Flow<Resource<List<Show>>>
+        get() = _search.asFlow()
 
     init {
         invalidate()
+        viewModelScope.launch {
+            invalidate.asFlow()
+                .debounce(DEBOUNCE)
+                .switchMap { repository.search(state.query) }
+                .flowOn(IO)
+                .collect { previous = it; _search.send(it) }
+        }
     }
 
     fun onQueryTextSubmit(query: String) {
@@ -40,14 +53,10 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
     fun onQueryTextChange(query: String) {
         if (state.query != query) {
             state = state.copy(query = query)
-            debounce?.cancel()
-            debounce = viewModelScope.launch {
-                delay(DEBOUNCE)
-                if (query.isEmpty()) {
-                    invalidate()
-                } else {
-                    invalidate.value = Unit
-                }
+            if (query.isEmpty()) {
+                invalidate()
+            } else {
+                invalidate.offer(Unit)
             }
         }
     }
