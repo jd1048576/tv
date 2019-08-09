@@ -7,7 +7,7 @@
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
-        <dist:fusing dist:include="false" />
+        <dist:fusing dist:include="true" />
     </dist:module>
 </manifest>
 
