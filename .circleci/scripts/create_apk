@@ -1,0 +1,26 @@
+#!/bin/bash
+
+BUNDLE_VERSION="0.10.2"
+
+wget https://github.com/google/bundletool/releases/download/${BUNDLE_VERSION}/bundletool-all-${BUNDLE_VERSION}.jar
+
+function create_apk() {
+  variant=${1}
+
+  java -jar bundletool-all-${BUNDLE_VERSION}.jar build-apks \
+    --bundle=app/build/outputs/bundle/${variant}/app-${variant}.aab \
+    --output=app/build/outputs/apk/${variant}/app-${variant}.apks \
+    --mode=universal \
+    --ks=.signing/app-debug.jks \
+    --ks-pass=pass:android \
+    --ks-key-alias=debug \
+    --key-pass=pass:android
+
+  unzip app/build/outputs/apk/${variant}/app-${variant}.apks -d app/build/outputs/apk/${variant}/
+  rm app/build/outputs/apk/${variant}/app-${variant}.apks
+  rm app/build/outputs/apk/${variant}/toc.pb
+  mv app/build/outputs/apk/${variant}/universal.apk app/build/outputs/apk/${variant}/app-${variant}-universal.apk
+}
+
+create_apk debug
+create_apk release

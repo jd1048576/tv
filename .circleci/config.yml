@@ -40,8 +40,14 @@ jobs:
           name: Download Dependencies
           command: ./gradlew dependencies
       - run:
-          name: Build Debug APK and Bundle
-          command: ./gradlew assembleDebug bundleDebug
+          name: Add Google Services
+          command: echo $GOOGLE_SERVICES > app/google-services.json
+      - run:
+          name: Build Bundle
+          command: ./gradlew assemble bundle -x lintVitalRelease # FIXME assembleAndroidTest
+      - run:
+          name: Create APK
+          command: ./.circleci/scripts/create_apk
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
@@ -54,20 +60,13 @@ jobs:
           paths:
             - ~/.gradle/caches/
       - save_workspace
-  build_release:
+  test:
     executor: android_executor
     steps:
       - restore_workspace
       - run:
-          name: Build Release APK and Bundle
-          command: ./gradlew assembleRelease bundleRelease -x lintVitalRelease # FIXME
-      - store_artifacts:
-          path: app/build/outputs
-          destination: outputs
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
-      - save_workspace
+          name: Run Tests
+          command: ./gradlew test
   check:
     executor: android_executor
     steps:
@@ -81,16 +80,15 @@ jobs:
       - store_artifacts:
           path: build/dependencyUpdates
           destination: dependencyUpdates
-      - save_workspace
 
 workflows:
   version: 2
   build_deploy:
     jobs:
       - build
-      - build_release:
-          requires:
-            - build
+      #      - test:
+      #          requires:
+      #            - build
       - check:
           requires:
             - build
