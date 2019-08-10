@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.switchMap
 import kotlinx.coroutines.launch
 
 class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
@@ -39,7 +39,7 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
         viewModelScope.launch {
             invalidate.asFlow()
                 .debounce(DEBOUNCE)
-                .switchMap { repository.search(state.query) }
+                .flatMapLatest { repository.search(state.query) }
                 .flowOn(IO)
                 .collect { previous = it; _search.send(it) }
         }

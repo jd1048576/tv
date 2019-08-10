@@ -1,18 +1,14 @@
-import Config.Dependencies.Dagger
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Moshi
-
 plugins {
-    id(Config.Plugins.kotlin)
-    id(Config.Plugins.kotlinKapt)
+    id("kotlin")
+    id("kotlin-kapt")
 }
 
 dependencies {
-    implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
+    implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
 
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
 
-    implementation(Moshi.moshi)
+    implementation(MOSHI)
 }

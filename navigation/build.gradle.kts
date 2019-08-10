@@ -1,19 +1,16 @@
-import Config.Dependencies.Android
-import Config.Dependencies.Kotlin
-
 plugins {
-    id(Config.Plugins.androidLibrary)
-    id(Config.Plugins.kotlinAndroid)
+    id("com.android.library")
+    id("kotlin-android")
 }
 
 android {
-    compileSdkVersion(Config.compileSdkVersion)
-    buildToolsVersion(Config.buildToolsVersion)
+    compileSdkVersion(COMPILE_SDK_VERSION)
+    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
-        testInstrumentationRunner = Config.testRunner
+        minSdkVersion(MIN_SDK_VERSION)
+        targetSdkVersion(TARGET_SDK_VERSION)
+        testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
     }
 
     compileOptions {
@@ -23,14 +20,8 @@ android {
 }
 
 dependencies {
-    implementation(Kotlin.stdlib)
+    implementation(KOTLIN_STDLIB)
 
-    implementation(Android.activity)
-    implementation(Android.appCompat)
-    implementation(Android.core)
-    implementation(Android.fragment)
-    implementation(Android.Navigation.common)
-    implementation(Android.Navigation.fragment)
-    implementation(Android.Navigation.runtime)
-    implementation(Android.Navigation.ui)
+    implementation(ANDROIDX_NAVIGATION_COMMON)
+    implementation(ANDROIDX_NAVIGATION_UI)
 }

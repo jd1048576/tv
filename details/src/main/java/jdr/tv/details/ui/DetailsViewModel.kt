@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.switchMap
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(private val repository: DetailsRepository) : ViewModel() {
@@ -32,7 +32,7 @@ class DetailsViewModel(private val repository: DetailsRepository) : ViewModel() 
         viewModelScope.launch {
             _id.asFlow()
                 .distinctUntilChanged()
-                .switchMap { repository.selectDetailedShow(it) }
+                .flatMapLatest { repository.selectDetailedShow(it) }
                 .flowOn(IO)
                 .collect { _show.send(it) }
         }

@@ -97,6 +97,7 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn org.conscrypt.ConscryptHostnameVerifier
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
 
 # TODO BUG see https://issuetracker.google.com/issues/135574730

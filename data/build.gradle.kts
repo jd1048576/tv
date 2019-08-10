@@ -1,25 +1,19 @@
-import Config.Dependencies.Android
-import Config.Dependencies.Dagger
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Okhttp3
-import Config.Dependencies.Retrofit
-
 plugins {
-    id(Config.Plugins.androidLibrary)
-    id(Config.Plugins.kotlinAndroid)
-    id(Config.Plugins.kotlinKapt)
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Config.compileSdkVersion)
-    buildToolsVersion(Config.buildToolsVersion)
+    compileSdkVersion(COMPILE_SDK_VERSION)
+    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
-        testInstrumentationRunner = Config.testRunner
+        minSdkVersion(MIN_SDK_VERSION)
+        targetSdkVersion(TARGET_SDK_VERSION)
+        testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
 
-        buildConfigField("String", "TMDB_API_KEY", "\"${localProperty("TMDB_API_KEY")}\"")
+        buildConfigField("String", "TMDB_API_KEY", "\"${gradleProperty("TMDB_API_KEY")}\"")
     }
 
     compileOptions {
@@ -33,17 +27,16 @@ dependencies {
     implementation(project(":local"))
     implementation(project(":remote"))
 
-    implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
+    implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
 
-    implementation(Android.preference)
-    implementation(Android.Room.core)
+    implementation(ANDROIDX_PREFERENCE)
+    implementation(ANDROIDX_ROOM)
 
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
 
-    implementation(Okhttp3.okhttp3)
+    implementation(OKHTTP3)
 
-    implementation(Retrofit.retrofit)
+    implementation(RETROFIT)
 }

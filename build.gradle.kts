@@ -1,7 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessPlugin
-import io.gitlab.arturbosch.detekt.Detekt
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 buildscript {
     repositories {
         google()
@@ -11,32 +7,31 @@ buildscript {
     }
 
     dependencies {
-        classpath(Config.Plugins.androidGradle)
-        classpath(Config.Plugins.kotlinGradle)
-        classpath(Config.Plugins.googleServicesGradle)
-        classpath(Config.Plugins.fabricGradle)
+        classpath(ANDROID_GRADLE)
+        classpath(KOTLIN_GRADLE)
+        classpath(GOOGLE_SERVICES_GRADLE)
+        classpath(FABRIC_GRADLE)
     }
 }
 
 plugins {
     id("com.diffplug.gradle.spotless") version ("3.24.0")
     id("com.github.ben-manes.versions") version ("0.22.0")
-    id("io.gitlab.arturbosch.detekt") version ("1.0.0-RC16")
+    id("io.gitlab.arturbosch.detekt") version ("1.0.0")
 }
 
 allprojects {
     repositories {
         google()
         jcenter()
-        maven("https://kotlin.bintray.com/kotlinx/")
     }
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile> {
             sourceCompatibility = "1.8"
             targetCompatibility = "1.8"
-            options.compilerArgs.add("-Xlint")
+            options.compilerArgs.add("-Xlint:all")
         }
-        tasks.withType<KotlinCompile> {
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
             kotlinOptions {
                 jvmTarget = "1.8"
                 freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
@@ -44,7 +39,7 @@ allprojects {
             }
         }
     }
-    apply<SpotlessPlugin>()
+    apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
     spotless {
         kotlin {
             target("**/*.kt")
@@ -57,7 +52,7 @@ allprojects {
     }
 }
 
-tasks.register("detektAll", Detekt::class) {
+tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
     description = "Runs over whole code base without the starting overhead for each module."
     parallel = true
     buildUponDefaultConfig = true
