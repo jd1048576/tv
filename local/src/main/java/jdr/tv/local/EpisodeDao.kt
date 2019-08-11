@@ -9,12 +9,10 @@ import kotlinx.coroutines.flow.Flow
 abstract class EpisodeDao : BaseDao<Episode>() {
 
     @Query(
-        """
-        SELECT Episode.* FROM Episode 
-        JOIN Season ON Episode.seasonId = Season.id 
-        WHERE Season.showId = :showId 
-        ORDER BY (Episode.seasonNumber * 1000 + Episode.episodeNumber) ASC
-        """
+        "SELECT Episode.* FROM Episode " +
+            "JOIN Season ON Episode.seasonId = Season.id " +
+            "WHERE Season.showId = :showId " +
+            "ORDER BY (Episode.seasonNumber * 1000 + Episode.episodeNumber) ASC"
     )
     abstract fun selectList(showId: Long): Flow<List<Episode>>
 

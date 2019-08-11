@@ -10,22 +10,7 @@ import java.time.Instant
 @Dao
 abstract class DetailsDao : BaseDao<Details>() {
 
-    @Query(
-        """
-        SELECT * FROM Show 
-        JOIN Details ON Show.id = Details.showId 
-        WHERE id = :id
-        """
-    )
-    abstract fun selectDetailedShow(id: Long): DetailedShow?
-
-    @Query(
-        """
-        SELECT * FROM Show 
-        JOIN Details ON Show.id = Details.showId 
-        WHERE id = :id
-        """
-    )
+    @Query("SELECT Show.*, Details.* FROM Show JOIN Details ON Show.id = Details.showId WHERE id = :id ")
     abstract fun selectDetailedShowFlow(id: Long): Flow<DetailedShow>
 
     @Query("SELECT detailsUpdatedAt FROM Details WHERE showId = :id")

@@ -17,9 +17,11 @@ import jdr.tv.data.mergeSwitchMap
 import jdr.tv.data.onFailure
 import jdr.tv.data.onSuccess
 import jdr.tv.local.Database
+import jdr.tv.local.entities.DetailedSeason
 import jdr.tv.local.entities.DetailedShow
 import jdr.tv.local.entities.RelatedShow
 import jdr.tv.local.entities.Show
+import jdr.tv.local.entities.Watch
 import jdr.tv.local.insertOrUpdate
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteDetailedShow
@@ -38,21 +40,29 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
         private const val MAX_REQUEST_SIZE = 20
     }
 
-    fun selectDetailedShow(showId: Long): Flow<Resource<DetailedShow>> {
-        return flow<Resource<DetailedShow>> {
+    fun selectShow(showId: Long): Flow<Resource<Show>> {
+        return flow<Resource<Show>> {
             if (shouldUpdate(showId)) {
-                emit(Resource.loading(database.detailsDao().selectDetailedShow(showId)))
+                emit(Resource.loading(database.showDao().select(showId)))
                 fetchDetailedShow(showId)
                     .mergeSwitchMap { fetchSeasonList(showId, it.numberOfSeasons) }
                     .onSuccess {
                         insert(it.first, it.second)
-                        emitAll(database.detailsDao().selectDetailedShowFlow(showId).asSuccess())
+                        emitAll(database.showDao().selectFlow(showId).asSuccess())
                     }
                     .onFailure { emit(Resource.failure(it)) }
             } else {
-                emitAll(database.detailsDao().selectDetailedShowFlow(showId).asSuccess())
+                emitAll(database.showDao().selectFlow(showId).asSuccess())
             }
         }.flowOn(IO)
+    }
+
+    fun selectDetailedShow(showId: Long): Flow<DetailedShow> {
+        return database.detailsDao().selectDetailedShowFlow(showId).flowOn(IO)
+    }
+
+    fun selectDetailedSeasonList(showId: Long): Flow<List<DetailedSeason>> {
+        return database.seasonDao().selectDetailedSeasonListFlow(showId).flowOn(IO)
     }
 
     private suspend fun shouldUpdate(showId: Long): Boolean = withContext(IO) {
@@ -102,6 +112,15 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
             database.relatedShowDao().insertOrUpdate(relatedShowList)
             database.seasonDao().insertOrUpdate(seasonList)
             database.episodeDao().insertOrUpdate(episodeList)
+        }
+    }
+
+    suspend fun updateSeasonWatched(detailedSeason: DetailedSeason) = withContext(IO) {
+        if (detailedSeason.watchCount != detailedSeason.episodeList.size) {
+            val now = Instant.now()
+            database.watchDao().insert(detailedSeason.episodeList.map { Watch(it.episode.id, now) })
+        } else {
+            database.watchDao().deleteAll(detailedSeason.episodeList.map { it.episode.id })
         }
     }
 }
