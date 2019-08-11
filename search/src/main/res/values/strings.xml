@@ -2,5 +2,6 @@
 <resources>
 
     <string name="search_hint">Enter a show</string>
+    <string name="vote_average_format">%.1f</string>
 
 </resources>

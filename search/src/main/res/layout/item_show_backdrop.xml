@@ -83,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:text="@{@string/vote_average_format(show.voteAverage)}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 android:textColor="@color/color_primary"
@@ -91,7 +92,6 @@
                 app:chipStrokeColor="@color/color_primary"
                 app:chipStrokeWidth="2dp"
                 app:chipSurfaceColor="@android:color/transparent"
-                app:double="@{show.voteAverage}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="4.1" />
