@@ -19,6 +19,7 @@ import jdr.tv.remote.entities.RemoteShowList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -29,15 +30,15 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     }
 
     fun search(query: String): Flow<Resource<List<Show>>> {
-        return flow {
+        return flow<Resource<List<Show>>> {
             emit(Resource.loading(database.searchItemDao().selectSearchShowList()))
             fetchSearch(query)
                 .onSuccess {
                     insert(it)
                     emitAll(database.searchItemDao().selectSearchShowListFlow().asSuccess())
                 }
-                .onFailure { emit(Resource.failure<List<Show>>(it)) }
-        }
+                .onFailure { emit(Resource.failure(it)) }
+        }.flowOn(IO)
     }
 
     private suspend fun fetchSearch(query: String): Response<List<RemoteShowList>> {

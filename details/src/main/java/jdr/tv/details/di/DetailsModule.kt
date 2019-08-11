@@ -6,6 +6,7 @@ import dagger.Provides
 import jdr.tv.details.ui.DetailsFragment
 import jdr.tv.details.ui.DetailsRepository
 import jdr.tv.details.ui.DetailsViewModel
+import jdr.tv.navigation.GlobalActions
 import jdr.tv.viewmodel.ViewModelProviderFactory
 
 @Module
@@ -13,8 +14,14 @@ object DetailsModule {
 
     @Provides
     @JvmStatic
-    fun provideViewModelProviderFactory(repository: DetailsRepository): ViewModelProvider.Factory {
-        return ViewModelProviderFactory { DetailsViewModel(repository) }
+    fun provideShowId(fragment: DetailsFragment): Long {
+        return GlobalActions.ActionDetails.fromBundle(fragment.arguments).showId
+    }
+
+    @Provides
+    @JvmStatic
+    fun provideViewModelProviderFactory(showId: Long, repository: DetailsRepository): ViewModelProvider.Factory {
+        return ViewModelProviderFactory { DetailsViewModel(showId, repository) }
     }
 
     @Provides

@@ -2,39 +2,18 @@ package jdr.tv.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jdr.tv.base.Dispatchers.IO
+import jdr.tv.base.extensions.conflateIn
 import jdr.tv.data.Resource
 import jdr.tv.local.entities.DetailedShow
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
 
-class DetailsViewModel(private val repository: DetailsRepository) : ViewModel() {
+class DetailsViewModel(showId: Long, repository: DetailsRepository) : ViewModel() {
 
-    private val _id = ConflatedBroadcastChannel<Long>()
-    private val _show = ConflatedBroadcastChannel<Resource<DetailedShow>>()
+    private val _detailedShow: ConflatedBroadcastChannel<Resource<DetailedShow>> = repository.selectDetailedShow(showId)
+        .conflateIn(viewModelScope)
 
-    var id: Long
-        get() = _id.value
-        set(value) {
-            _id.offer(value)
-        }
-
-    val show: Flow<Resource<DetailedShow>>
-        get() = _show.asFlow()
-
-    init {
-        viewModelScope.launch {
-            _id.asFlow()
-                .distinctUntilChanged()
-                .flatMapLatest { repository.selectDetailedShow(it) }
-                .flowOn(IO)
-                .collect { _show.send(it) }
-        }
-    }
+    val detailedShow: Flow<Resource<DetailedShow>>
+        get() = _detailedShow.asFlow()
 }
