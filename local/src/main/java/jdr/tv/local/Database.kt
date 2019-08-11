@@ -11,9 +11,10 @@ import jdr.tv.local.entities.RelatedShow
 import jdr.tv.local.entities.SearchItem
 import jdr.tv.local.entities.Season
 import jdr.tv.local.entities.Show
+import jdr.tv.local.entities.Watch
 
 @Database(
-    entities = [Details::class, Episode::class, RelatedShow::class, Show::class, SearchItem::class, Season::class],
+    entities = [Details::class, Episode::class, RelatedShow::class, Show::class, SearchItem::class, Season::class, Watch::class],
     exportSchema = false,
     version = 1
 )
@@ -31,4 +32,6 @@ abstract class Database : RoomDatabase() {
     abstract fun searchItemDao(): SearchItemDao
 
     abstract fun seasonDao(): SeasonDao
+
+    abstract fun watchDao(): WatchDao
 }

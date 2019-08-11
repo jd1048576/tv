@@ -33,7 +33,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private fun observe() {
         lifecycleScope.launch {
-            viewModel.detailedShow.collectResource {
+            viewModel.show.collectResource {
                 onLoading { Log.i("LOADING") }
                 onSuccess { Log.i("$it") }
                 onFailure { Log.i("FAILURE $it") }

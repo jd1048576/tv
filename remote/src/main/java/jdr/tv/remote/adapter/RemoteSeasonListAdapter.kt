@@ -10,6 +10,10 @@ import jdr.tv.remote.entities.RemoteSeason
 
 internal class RemoteSeasonListAdapter : JsonAdapter<List<RemoteSeason>>() {
 
+    companion object {
+        val seasonRegex = Regex("^season/[1-9][0-9]*")
+    }
+
     private val seasonListAdapter by lazy { MOSHI_DEFAULT.listAdapter<RemoteSeason.TransientSeason>() }
 
     private val episodeListAdapter by lazy { MOSHI_DEFAULT.adapter<RemoteSeason.TransientEpisodeList>() }
@@ -24,7 +28,7 @@ internal class RemoteSeasonListAdapter : JsonAdapter<List<RemoteSeason>>() {
             when {
                 name == "id" -> showId = reader.nextLong()
                 name == "seasons" -> seasonList = seasonListAdapter.fromJson(reader)!!
-                name.contains("season/") -> {
+                name.matches(seasonRegex) -> {
                     episodeListAdapter.fromJson(reader)?.takeIf { it.seasonNumber != 0 }?.also { map[it.seasonNumber] = it }
                 }
                 else -> reader.skipValue()
@@ -32,8 +36,7 @@ internal class RemoteSeasonListAdapter : JsonAdapter<List<RemoteSeason>>() {
         }
         reader.endObject()
         checkNotNull(showId) { "RemoteShow Id Cannot be Null" }
-        checkNotNull(seasonList) { "RemoteSeason List Cannot be Null" }
-        return seasonList.map { it.toRemoteSeason(showId, map[it.seasonNumber]) }.toList()
+        return seasonList?.filter { it.seasonNumber != 0 }?.map { it.toRemoteSeason(showId, map[it.seasonNumber]) }.orEmpty()
     }
 
     override fun toJson(writer: JsonWriter, value: List<RemoteSeason>?) {

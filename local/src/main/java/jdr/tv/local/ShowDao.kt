@@ -8,13 +8,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class ShowDao : BaseDao<Show>() {
 
-    @Query(
-        """
-        SELECT * FROM Show 
-        WHERE id = :id
-        """
-    )
-    abstract fun select(id: Long): Flow<Show>
+    @Query("SELECT Show.* FROM Show WHERE id = :id")
+    abstract fun select(id: Long): Show?
+
+    @Query("SELECT Show.* FROM Show WHERE id = :id")
+    abstract fun selectFlow(id: Long): Flow<Show>
 
 /*    @Query("SELECT * FROM Show WHERE added = 1 ORDER BY name ASC")
     abstract fun selectAddedShowListDataSourceFactory(): DataSource.Factory<Int, Show>

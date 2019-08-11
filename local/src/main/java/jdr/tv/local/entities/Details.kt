@@ -38,5 +38,5 @@ data class Details(
     val externalIds: ExternalIds?,
     val videosList: List<Video>,
 
-    val lastDetailsUpdate: Instant
+    val detailsUpdatedAt: Instant
 )

@@ -20,5 +20,5 @@ data class Show(
     val voteAverage: Double,
     val voteCount: Int,
 
-    val lastUpdate: Instant
+    val updatedAt: Instant
 )
