@@ -27,6 +27,7 @@ import jdr.tv.remote.entities.RemoteSeason
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import javax.inject.Inject
@@ -38,7 +39,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
     }
 
     fun selectDetailedShow(showId: Long): Flow<Resource<DetailedShow>> {
-        return flow {
+        return flow<Resource<DetailedShow>> {
             if (shouldUpdate(showId)) {
                 emit(Resource.loading(database.detailsDao().selectDetailedShow(showId)))
                 fetchDetailedShow(showId)
@@ -51,7 +52,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
             } else {
                 emitAll(database.detailsDao().selectDetailedShowFlow(showId).asSuccess())
             }
-        }
+        }.flowOn(IO)
     }
 
     private suspend fun shouldUpdate(showId: Long): Boolean = withContext(IO) {
