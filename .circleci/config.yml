@@ -22,7 +22,7 @@ commands:
             - gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
           keys:
-            - gradle-cache-{{ checksum "buildSrc/src/main/java/Config.kt" }}
+            - gradle-cache-{{ checksum "buildSrc/src/main/java/Dependencies.kt" }}
   save_workspace:
     description: Save Workspace
     steps:
@@ -56,7 +56,7 @@ jobs:
           paths:
             - ~/.gradle/wrapper/
       - save_cache:
-          key: gradle-cache-{{ checksum "buildSrc/src/main/java/Config.kt" }}
+          key: gradle-cache-{{ checksum "buildSrc/src/main/java/Dependencies.kt" }}
           paths:
             - ~/.gradle/caches/
       - save_workspace

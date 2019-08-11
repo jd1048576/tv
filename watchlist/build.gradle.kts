@@ -1,22 +1,17 @@
-import Config.Dependencies.Android
-import Config.Dependencies.Dagger
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Material
-
 plugins {
-    id(Config.Plugins.androidDynamicFeature)
-    id(Config.Plugins.kotlinAndroid)
-    id(Config.Plugins.kotlinKapt)
+    id("com.android.dynamic-feature")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Config.compileSdkVersion)
-    buildToolsVersion(Config.buildToolsVersion)
+    compileSdkVersion(COMPILE_SDK_VERSION)
+    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
-        testInstrumentationRunner = Config.testRunner
+        minSdkVersion(MIN_SDK_VERSION)
+        targetSdkVersion(TARGET_SDK_VERSION)
+        testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
     }
 
     compileOptions {
@@ -26,20 +21,20 @@ android {
 }
 
 dependencies {
+    implementation(project(":app"))
     implementation(project(":base"))
     implementation(project(":navigation"))
     implementation(project(":ui"))
-    implementation(project(":app"))
 
-    implementation(Kotlin.stdlib)
+    implementation(KOTLIN_STDLIB)
 
-    implementation(Android.appCompat)
-    implementation(Android.activity)
-    implementation(Android.fragment)
-    implementation(Android.Navigation.fragment)
+    implementation(ANDROIDX_ACTIVITY)
+    implementation(ANDROIDX_APPCOMPAT)
+    implementation(ANDROIDX_FRAGMENT)
+    implementation(ANDROIDX_NAVIGATION_FRAGMENT)
 
-    implementation(Material.material)
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
 
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
+    implementation(MATERIAL)
 }

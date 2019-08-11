@@ -1,30 +1,22 @@
-import Config.Dependencies.Android
-import Config.Dependencies.Dagger
-import Config.Dependencies.Firebase
-import Config.Dependencies.Glide
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Material
-import Config.Dependencies.Okhttp3
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
+}
 
 val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
 
-plugins {
-    id(Config.Plugins.androidApplication)
-    id(Config.Plugins.kotlinAndroid)
-    id(Config.Plugins.kotlinKapt)
-}
-
 android {
-    compileSdkVersion(Config.compileSdkVersion)
-    buildToolsVersion(Config.buildToolsVersion)
+    compileSdkVersion(COMPILE_SDK_VERSION)
+    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
         applicationId = "jdr.tv"
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
+        minSdkVersion(MIN_SDK_VERSION)
+        targetSdkVersion(TARGET_SDK_VERSION)
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = Config.testRunner
+        testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
     }
 
     signingConfigs {
@@ -36,9 +28,9 @@ android {
         }
         if (releaseSigning) create("release") {
             storeFile = rootProject.file(".signing/app-release.jks")
-            storePassword = localProperty("STORE_PASSWORD")
-            keyAlias = localProperty("KEY_ALIAS")
-            keyPassword = localProperty("KEY_PASSWORD")
+            storePassword = gradleProperty("STORE_PASSWORD")
+            keyAlias = gradleProperty("KEY_ALIAS")
+            keyPassword = gradleProperty("KEY_PASSWORD")
         }
     }
 
@@ -69,49 +61,47 @@ android {
 
 dependencies {
     implementation(project(":base"))
+    implementation(project(":data"))
+    implementation(project(":local"))
     implementation(project(":navigation"))
+    implementation(project(":remote"))
     implementation(project(":ui"))
     implementation(project(":viewmodel"))
-    implementation(project(":local"))
-    implementation(project(":remote"))
-    implementation(project(":data"))
 
-    implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
+    implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
+    implementation(KOTLIN_COROUTINES_ANDROID)
 
-    implementation(Android.appCompat)
-    implementation(Android.activity)
-    implementation(Android.fragment)
-    implementation(Android.constraintLayout)
-    implementation(Android.core)
-    implementation(Android.preference)
-    implementation(Android.Lifecycle.viewmodel)
-    implementation(Android.Navigation.common)
-    implementation(Android.Navigation.fragment)
-    implementation(Android.Navigation.runtime)
-    implementation(Android.Navigation.ui)
+    implementation(ANDROIDX_APPCOMPAT)
+    implementation(ANDROIDX_ACTIVITY)
+    implementation(ANDROIDX_CONSTRAINTLAYOUT)
+    implementation(ANDROIDX_CORE)
+    implementation(ANDROIDX_FRAGMENT)
+    implementation(ANDROIDX_LIFECYCLE_VIEWMODEL)
+    implementation(ANDROIDX_NAVIGATION_COMMON)
+    implementation(ANDROIDX_NAVIGATION_FRAGMENT)
+    implementation(ANDROIDX_NAVIGATION_RUNTIME)
+    implementation(ANDROIDX_NAVIGATION_UI)
+    implementation(ANDROIDX_PREFERENCE)
 
-    implementation(Firebase.core)
-    implementation(Firebase.crashlytics)
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
 
-    implementation(Material.material)
+    implementation(FIREBASE_CORE)
+    implementation(FIREBASE_CRASHLYTICS)
 
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
-
-    implementation(Okhttp3.okhttp3)
-
-    implementation(Glide.glide)
-    implementation(Glide.okhttp3) {
+    implementation(GLIDE)
+    implementation(GLIDE_OKHTTP3) {
         isTransitive = false
     }
-    kapt(Glide.compiler)
+    kapt(GLIDE_COMPILER)
 
-    // debugImplementation(LeakCanary.leakCanary)
+    implementation(MATERIAL)
+
+    implementation(OKHTTP3)
 }
 
 if (file("google-services.json").exists()) {
-    apply(plugin = Config.Plugins.googleServices)
-    apply(plugin = Config.Plugins.fabric)
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "io.fabric")
 }

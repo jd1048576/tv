@@ -1,22 +1,17 @@
-import Config.Dependencies.Android
-import Config.Dependencies.Glide
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Material
-
 plugins {
-    id(Config.Plugins.androidLibrary)
-    id(Config.Plugins.kotlinAndroid)
-    id(Config.Plugins.kotlinKapt)
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Config.compileSdkVersion)
-    buildToolsVersion(Config.buildToolsVersion)
+    compileSdkVersion(COMPILE_SDK_VERSION)
+    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
-        testInstrumentationRunner = Config.testRunner
+        minSdkVersion(MIN_SDK_VERSION)
+        targetSdkVersion(TARGET_SDK_VERSION)
+        testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
     }
 
     compileOptions {
@@ -32,17 +27,17 @@ android {
 dependencies {
     implementation(project(":base"))
 
-    implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
+    implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
 
-    implementation(Android.activity)
-    implementation(Android.appCompat)
-    implementation(Android.constraintLayout)
-    implementation(Android.core)
-    implementation(Android.fragment)
-    implementation(Android.recyclerView)
+    implementation(ANDROIDX_ACTIVITY)
+    implementation(ANDROIDX_APPCOMPAT)
+    implementation(ANDROIDX_CONSTRAINTLAYOUT)
+    implementation(ANDROIDX_CORE)
+    implementation(ANDROIDX_FRAGMENT)
+    implementation(ANDROIDX_RECYCLERVIEW)
 
-    implementation(Material.material)
+    implementation(GLIDE)
 
-    implementation(Glide.glide)
+    implementation(MATERIAL)
 }

@@ -1,24 +1,17 @@
-import Config.Dependencies.Android
-import Config.Dependencies.Dagger
-import Config.Dependencies.Glide
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Material
-import Config.Dependencies.Retrofit
-
 plugins {
-    id(Config.Plugins.androidDynamicFeature)
-    id(Config.Plugins.kotlinAndroid)
-    id(Config.Plugins.kotlinKapt)
+    id("com.android.dynamic-feature")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Config.compileSdkVersion)
-    buildToolsVersion(Config.buildToolsVersion)
+    compileSdkVersion(COMPILE_SDK_VERSION)
+    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
-        testInstrumentationRunner = Config.testRunner
+        minSdkVersion(MIN_SDK_VERSION)
+        targetSdkVersion(TARGET_SDK_VERSION)
+        testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
     }
 
     compileOptions {
@@ -32,37 +25,36 @@ android {
 }
 
 dependencies {
+    implementation(project(":app"))
     implementation(project(":base"))
+    implementation(project(":data"))
     implementation(project(":navigation"))
     implementation(project(":ui"))
-    implementation(project(":viewmodel"))
     implementation(project(":local"))
     implementation(project(":remote"))
-    implementation(project(":data"))
-    implementation(project(":app"))
+    implementation(project(":viewmodel"))
 
-    implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
-    implementation(Kotlin.Coroutines.android)
+    implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
 
-    implementation(Android.activity)
-    implementation(Android.appCompat)
-    implementation(Android.constraintLayout)
-    implementation(Android.fragment)
-    implementation(Android.recyclerView)
-    implementation(Android.Lifecycle.viewmodel)
-    implementation(Android.Navigation.common)
-    implementation(Android.Navigation.fragment)
-    implementation(Android.Navigation.runtime)
-    implementation(Android.Navigation.ui)
-    implementation(Android.Room.core)
+    implementation(ANDROIDX_ACTIVITY)
+    implementation(ANDROIDX_APPCOMPAT)
+    implementation(ANDROIDX_CONSTRAINTLAYOUT)
+    implementation(ANDROIDX_FRAGMENT)
+    implementation(ANDROIDX_LIFECYCLE_VIEWMODEL)
+    implementation(ANDROIDX_NAVIGATION_COMMON)
+    implementation(ANDROIDX_NAVIGATION_FRAGMENT)
+    implementation(ANDROIDX_NAVIGATION_RUNTIME)
+    implementation(ANDROIDX_NAVIGATION_UI)
+    implementation(ANDROIDX_RECYCLERVIEW)
+    implementation(ANDROIDX_ROOM)
 
-    implementation(Material.material)
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
 
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
+    implementation(GLIDE)
 
-    implementation(Glide.glide)
+    implementation(MATERIAL)
 
-    implementation(Retrofit.retrofit)
+    implementation(RETROFIT)
 }

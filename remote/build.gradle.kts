@@ -1,28 +1,22 @@
-import Config.Dependencies.Dagger
-import Config.Dependencies.Kotlin
-import Config.Dependencies.Moshi
-import Config.Dependencies.Okhttp3
-import Config.Dependencies.Retrofit
-
 plugins {
-    id(Config.Plugins.kotlin)
-    id(Config.Plugins.kotlinKapt)
+    id("kotlin")
+    id("kotlin-kapt")
 }
 
 dependencies {
     implementation(project(":base"))
 
-    implementation(Kotlin.stdlib)
-    implementation(Kotlin.Coroutines.core)
+    implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
 
-    implementation(Dagger.dagger)
-    kapt(Dagger.compiler)
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
 
-    implementation(Okhttp3.okhttp3)
+    implementation(MOSHI)
+    kapt(MOSHI_CODEGEN)
 
-    implementation(Moshi.moshi)
-    kapt(Moshi.kotlinCodegen)
+    implementation(OKHTTP3)
 
-    implementation(Retrofit.retrofit)
-    implementation(Retrofit.converterMoshi)
+    implementation(RETROFIT)
+    implementation(RETROFIT_MOSHI)
 }
