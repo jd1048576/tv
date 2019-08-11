@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jdr.tv.app">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="jdr.tv.app"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -24,6 +26,10 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+            tools:node="remove" />
 
     </application>
 
