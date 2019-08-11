@@ -56,7 +56,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
     }
 
     private suspend fun shouldUpdate(showId: Long): Boolean = withContext(IO) {
-        val lastUpdate: Instant = database.detailsDao().selectLastDetailsUpdate(showId)
+        val lastUpdate: Instant = database.detailsDao().selectUpdatedAt(showId)
         val seasonCount: Int = database.seasonDao().selectSeasonCount(showId)
         lastUpdate.olderThan(days = 1) || seasonCount == 0
     }
