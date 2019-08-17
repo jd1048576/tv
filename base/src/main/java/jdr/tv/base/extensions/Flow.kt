@@ -10,13 +10,13 @@ import kotlinx.coroutines.launch
 
 fun <T> Flow<T>.conflateIn(scope: CoroutineScope): ConflatedBroadcastChannel<T> {
     val channel = ConflatedBroadcastChannel<T>()
-    scope.launch {
-        broadcastIn(scope).apply {
-            invokeOnClose {
-                channel.close(it)
-            }
-            asFlow().collect { channel.send(it) }
+    val broadcastChannel = broadcastIn(scope).apply {
+        invokeOnClose {
+            channel.close(it)
         }
+    }
+    scope.launch {
+        broadcastChannel.asFlow().collect { channel.send(it) }
     }
     return channel
 }
