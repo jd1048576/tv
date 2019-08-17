@@ -24,6 +24,7 @@ import jdr.tv.ui.extensions.linearLayoutManager
 import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.ui.extensions.systemService
 import jdr.tv.ui.utils.SpacingItemDecoration
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -103,10 +104,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun observe() {
-        lifecycleScope.launch {
+        lifecycleScope.launch(start = CoroutineStart.UNDISPATCHED) {
             viewModel.search.collectResource {
                 onLoading { Log.i("LOADING") }
-                onSuccess { adapter.submitData(it) }
+                onSuccess { adapter.submitList(it) }
                 onFailure { Log.i("FAILURE $it") }
             }
         }
