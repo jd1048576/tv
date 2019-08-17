@@ -127,3 +127,6 @@ workflows:
           requires:
             - build
             - check
+          filters:
+            branches:
+              only: master
