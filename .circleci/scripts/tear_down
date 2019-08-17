@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm app/google-services.json
+rm .signing/app-release.jks

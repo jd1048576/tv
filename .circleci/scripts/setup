@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo ${GOOGLE_SERVICES} > app/google-services.json
+echo ${TV_RELEASE_STORE} | base64 -d > .signing/app-release.jks
