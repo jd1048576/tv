@@ -1,26 +1,34 @@
 #!/bin/bash
 
 BUNDLE_VERSION="0.10.2"
-
-wget https://github.com/google/bundletool/releases/download/${BUNDLE_VERSION}/bundletool-all-${BUNDLE_VERSION}.jar
+BUNDLE_TOOL="https://github.com/google/bundletool/releases/download/${BUNDLE_VERSION}/bundletool-all-${BUNDLE_VERSION}.jar"
+ARTIFACTS="artifacts"
 
 function create_apk() {
   variant=${1}
+  store_file=".signing/app-${variant}.jks"
+  store_password=${2}
+  key_alias=${3}
+  key_password=${4}
 
   java -jar bundletool-all-${BUNDLE_VERSION}.jar build-apks \
     --bundle=app/build/outputs/bundle/${variant}/app-${variant}.aab \
     --output=app/build/outputs/apk/${variant}/app-${variant}.apks \
     --mode=universal \
-    --ks=.signing/app-debug.jks \
-    --ks-pass=pass:android \
-    --ks-key-alias=debug \
-    --key-pass=pass:android
+    --ks=${store_file} \
+    --ks-pass=pass:${store_password} \
+    --ks-key-alias=${key_alias} \
+    --key-pass=pass:${key_password}
 
   unzip app/build/outputs/apk/${variant}/app-${variant}.apks -d app/build/outputs/apk/${variant}/
-  rm app/build/outputs/apk/${variant}/app-${variant}.apks
-  rm app/build/outputs/apk/${variant}/toc.pb
-  mv app/build/outputs/apk/${variant}/universal.apk app/build/outputs/apk/${variant}/app-${variant}-universal.apk
+  mv app/build/outputs/apk/${variant}/universal.apk ${ARTIFACTS}/tv-${variant}.apk
 }
 
-create_apk debug
-create_apk release
+function main() {
+  mkdir -p ${ARTIFACTS}
+  wget ${BUNDLE_TOOL}
+  create_apk debug android debug android
+  create_apk release ${TV_RELEASE_STORE_PASSWORD} ${TV_RELEASE_KEY_ALIAS} ${TV_RELEASE_KEY_PASSWORD}
+}
+
+main

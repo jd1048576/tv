@@ -28,9 +28,9 @@ android {
         }
         if (releaseSigning) create("release") {
             storeFile = rootProject.file(".signing/app-release.jks")
-            storePassword = gradleProperty("STORE_PASSWORD")
-            keyAlias = gradleProperty("KEY_ALIAS")
-            keyPassword = gradleProperty("KEY_PASSWORD")
+            storePassword = gradleProperty("TV_RELEASE_STORE_PASSWORD")
+            keyAlias = gradleProperty("TV_RELEASE_KEY_ALIAS")
+            keyPassword = gradleProperty("TV_RELEASE_KEY_PASSWORD")
         }
     }
 
