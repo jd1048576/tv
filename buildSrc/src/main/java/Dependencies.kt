@@ -17,7 +17,7 @@ const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-
 
 private const val ANDROIDX_LIFECYCLE_VERSION = "2.2.0-alpha03"
 private const val ANDROIDX_NAVIGATION_VERSION = "2.2.0-alpha01"
-private const val ANDROIDX_ROOM_VERSION = "2.2.0-alpha02"
+private const val ANDROIDX_ROOM_VERSION = "2.2.0-SNAPSHOT"
 const val ANDROIDX_ACTIVITY = "androidx.activity:activity:1.1.0-alpha02"
 const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.1.0-rc01"
 const val ANDROIDX_CONSTRAINTLAYOUT = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"

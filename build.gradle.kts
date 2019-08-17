@@ -24,6 +24,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        // FIXME AndroidX Snapshot. Remove this once Room 2.2.0-alpha03 is released
+        maven("https://ci.android.com/builds/submitted/5799541/androidx_snapshot/latest/repository")
     }
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile> {
