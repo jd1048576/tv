@@ -2,6 +2,7 @@ package jdr.tv.remote.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import jdr.tv.base.extensions.INSTANT_ZERO
 import java.time.Instant
 
 class RemoteSeason(
@@ -17,7 +18,7 @@ class RemoteSeason(
     @JsonClass(generateAdapter = true)
     internal class TransientSeason(
         @Json(name = "air_date")
-        val airDate: Instant,
+        val airDate: Instant = INSTANT_ZERO,
         @Json(name = "episode_count")
         val episodeCount: Int,
         @Json(name = "id")

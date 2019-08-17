@@ -2,12 +2,13 @@ package jdr.tv.remote.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import jdr.tv.base.extensions.INSTANT_ZERO
 import java.time.Instant
 
 @JsonClass(generateAdapter = true)
 class RemoteEpisode(
     @Json(name = "air_date")
-    val airDate: Instant,
+    val airDate: Instant = INSTANT_ZERO,
     @Json(name = "episode_number")
     val episodeNumber: Int,
     @Json(name = "id")

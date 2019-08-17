@@ -2,6 +2,7 @@ package jdr.tv.remote.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import jdr.tv.base.extensions.INSTANT_ZERO
 import java.time.Instant
 
 @JsonClass(generateAdapter = true)
@@ -19,7 +20,7 @@ class RemoteDetailedShow(
     @Json(name = "external_ids")
     val externalIds: RemoteExternalIds,
     @Json(name = "first_air_date")
-    val firstAirDate: Instant,
+    val firstAirDate: Instant = INSTANT_ZERO,
     @Json(name = "genres")
     val genreList: List<RemoteGenre>,
     @Json(name = "homepage")
@@ -31,7 +32,7 @@ class RemoteDetailedShow(
     @Json(name = "languages")
     val languageList: List<String>,
     @Json(name = "last_air_date")
-    val lastAirDate: Instant,
+    val lastAirDate: Instant = INSTANT_ZERO,
     @Json(name = "name")
     val name: String,
     @Json(name = "networks")
