@@ -30,7 +30,7 @@ const val ANDROIDX_NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragmen
 const val ANDROIDX_NAVIGATION_RUNTIME = "androidx.navigation:navigation-runtime-ktx:$ANDROIDX_NAVIGATION_VERSION"
 const val ANDROIDX_NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$ANDROIDX_NAVIGATION_VERSION"
 const val ANDROIDX_PREFERENCE = "androidx.preference:preference:1.1.0-rc01"
-const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.1.0-beta02"
+const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.1.0-beta03"
 const val ANDROIDX_ROOM = "androidx.room:room-ktx:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_ROOM_COMPILER = "androidx.room:room-compiler:$ANDROIDX_ROOM_VERSION"
 
@@ -38,7 +38,7 @@ private const val DAGGER_VERSION = "2.24"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
 const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
-const val FIREBASE_CORE = "com.google.firebase:firebase-core:17.0.1"
+const val FIREBASE_CORE = "com.google.firebase:firebase-core:17.1.0"
 const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:2.10.1"
 
 private const val GLIDE_VERSION = "4.9.0"
@@ -52,7 +52,7 @@ private const val MOSHI_VERSION = "1.8.0"
 const val MOSHI = "com.squareup.moshi:moshi:$MOSHI_VERSION"
 const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VERSION"
 
-const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.0.1"
+const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.1.0"
 
 private const val RETROFIT_VERSION = "2.6.1"
 const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
