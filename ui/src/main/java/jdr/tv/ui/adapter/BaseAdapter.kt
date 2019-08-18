@@ -1,49 +1,46 @@
 package jdr.tv.ui.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
-import jdr.tv.base.Dispatchers.IOExecutor
+import jdr.tv.base.Dispatchers
 
-abstract class BaseAdapter : RecyclerView.Adapter<ModelViewHolder>() {
+abstract class BaseAdapter<T, B : ViewDataBinding>(itemCallback: DiffUtil.ItemCallback<T>) : RecyclerView.Adapter<BindingViewHolder<T, B>>() {
 
     private val differCallback = DifferCallback()
-    private val differ = AsyncListDiffer(differCallback, asyncDifferConfig)
+    private val differ = AsyncListDiffer(differCallback, config(itemCallback))
 
-    private val currentList: List<Model>
+    val currentList: List<T>
         get() = differ.currentList
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolder {
-        return ModelViewHolder.from(parent, viewType)
+    abstract fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<T, B>
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<T, B> {
+        return onCreateViewHolder(LayoutInflater.from(parent.context), parent, viewType)
     }
 
-    override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
-        currentList[position].bind(holder.binding)
-        holder.binding.executePendingBindings()
+    override fun onBindViewHolder(holder: BindingViewHolder<T, B>, position: Int) {
+        holder.bind(currentList[position])
+    }
+
+    override fun onViewDetachedFromWindow(holder: BindingViewHolder<T, B>) {
+        holder.binding.unbind()
     }
 
     override fun getItemCount(): Int {
         return currentList.size
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return currentList[position].layoutId
-    }
-
-    fun requestModelBuild() {
+    fun submitList(list: List<T>) {
         val previousItemCount = itemCount
-        val modelBuilder = ModelBuilder()
-
-        buildModels(modelBuilder)
-
         differCallback.listChanged = false
-        differ.submitList(modelBuilder.newList) { if (previousItemCount != 0 && differCallback.listChanged) onListChanged() }
+        differ.submitList(list) { if (previousItemCount != 0 && differCallback.listChanged) onListChanged() }
     }
-
-    abstract fun buildModels(modelBuilder: ModelBuilder)
 
     open fun onListChanged() {
     }
@@ -74,15 +71,8 @@ abstract class BaseAdapter : RecyclerView.Adapter<ModelViewHolder>() {
     }
 
     companion object {
-        private val diff = object : DiffUtil.ItemCallback<Model>() {
-            override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: Model, newItem: Model): Boolean {
-                return true
-            }
+        private fun <T> config(itemCallback: DiffUtil.ItemCallback<T>): AsyncDifferConfig<T> {
+            return AsyncDifferConfig.Builder(itemCallback).setBackgroundThreadExecutor(Dispatchers.IOExecutor).build()
         }
-        private val asyncDifferConfig = AsyncDifferConfig.Builder(diff).setBackgroundThreadExecutor(IOExecutor).build()
     }
 }

@@ -2,6 +2,7 @@ package jdr.tv.remote.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import jdr.tv.base.extensions.INSTANT_ZERO
 import java.time.Instant
 
 @JsonClass(generateAdapter = true)
@@ -9,7 +10,7 @@ class RemoteShow(
     @Json(name = "backdrop_path")
     val backdropPath: String?,
     @Json(name = "first_air_date")
-    val firstAirDate: Instant,
+    val firstAirDate: Instant = INSTANT_ZERO,
     @Json(name = "genre_ids")
     val genreList: List<RemoteGenre>,
     @Json(name = "id")

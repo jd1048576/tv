@@ -1,29 +1,41 @@
 package jdr.tv.search.ui
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.RequestManager
 import jdr.tv.local.entities.Show
-import jdr.tv.search.R
 import jdr.tv.search.databinding.ItemShowBackdropBinding
-import jdr.tv.ui.adapter.ModelBuilder
-import jdr.tv.ui.adapter.TypedAdapter
+import jdr.tv.ui.adapter.BaseAdapter
+import jdr.tv.ui.adapter.BindingViewHolder
 
-class SearchAdapter(private val requestManager: RequestManager, private val onCurrentListChanged: () -> Unit, private val onClick: (Long) -> Unit) :
-    TypedAdapter<List<Show>>() {
+class SearchAdapter(private val requestManager: RequestManager, private val onChanged: () -> Unit, private val onClick: (Long) -> Unit) :
+    BaseAdapter<Show, ItemShowBackdropBinding>(itemCallback) {
 
-    override fun buildModels(modelBuilder: ModelBuilder, data: List<Show>) = with(modelBuilder) {
-        data.forEach {
-            model<ItemShowBackdropBinding>(R.layout.item_show_backdrop, it.id) {
-                show = it
-                requestManager = this@SearchAdapter.requestManager
-                clickListener = View.OnClickListener { _ ->
-                    onClick(it.id)
-                }
+    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<Show, ItemShowBackdropBinding> {
+        return BindingViewHolder(ItemShowBackdropBinding.inflate(inflater, parent, false)) {
+            show = it
+            requestManager = this@SearchAdapter.requestManager
+            clickListener = View.OnClickListener { _ ->
+                onClick(it.id)
             }
         }
     }
 
     override fun onListChanged() {
-        onCurrentListChanged()
+        onChanged()
+    }
+
+    companion object {
+        private val itemCallback = object : DiffUtil.ItemCallback<Show>() {
+            override fun areItemsTheSame(oldItem: Show, newItem: Show): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Show, newItem: Show): Boolean {
+                return oldItem.id == newItem.id && oldItem.backdropPath == newItem.backdropPath
+            }
+        }
     }
 }

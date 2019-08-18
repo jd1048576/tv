@@ -22,19 +22,23 @@ commands:
       - attach_workspace:
           at: ~/workspace
       - restore_cache:
+          name: Restore Gradle Wrapper Cache
           keys:
             - gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
+          name: Restore Gradle Dependency Cache
           keys:
             - gradle-cache-{{ checksum "buildSrc/src/main/java/Dependencies.kt" }}
   save_workspace:
     description: Save Workspace
     steps:
       - save_cache:
+          name: Save Gradle Wrapper Cache
           key: gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
           paths:
             - ~/.gradle/wrapper/
       - save_cache:
+          name: Save Gradle Dependency Cache
           key: gradle-cache-{{ checksum "buildSrc/src/main/java/Dependencies.kt" }}
           paths:
             - ~/.gradle/caches/
@@ -104,13 +108,12 @@ jobs:
   deploy_to_github:
     executor: go_executor
     steps:
+      - checkout
       - attach_workspace:
           at: ~/workspace/artifacts
       - run:
           name: Deploy to Github
-          command: |
-            go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete Latest ./artifacts
+          command: ./.circleci/scripts/deploy_to_github
 
 workflows:
   version: 2

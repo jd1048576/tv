@@ -39,9 +39,10 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
     }
 
     fun onQueryTextChange(query: String) {
-        if (state.query != query) {
-            state = state.copy(query = query)
-            if (query.isEmpty()) {
+        val trimmedQuery = query.trim()
+        if (state.query != trimmedQuery) {
+            state = state.copy(query = trimmedQuery)
+            if (trimmedQuery.isEmpty()) {
                 invalidate()
             } else {
                 invalidate.offer(Unit)
