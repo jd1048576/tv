@@ -76,4 +76,3 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(itemCallback: DiffUtil.ItemCa
         }
     }
 }
-
