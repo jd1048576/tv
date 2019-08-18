@@ -12,6 +12,11 @@ executors:
   go_executor:
     docker:
       - image: circleci/golang:1.12.9
+    environment:
+      TITLE: "Latest"
+      BODY: "Latest Master Build"
+      TAG: "LATEST"
+      ARTIFACTS: "./artifacts"
     working_directory: ~/workspace
 
 commands:
@@ -108,12 +113,14 @@ jobs:
   deploy_to_github:
     executor: go_executor
     steps:
-      - checkout
       - attach_workspace:
           at: ~/workspace/artifacts
       - run:
+          name: Install GHR
+          command: go get github.com/tcnksm/ghr
+      - run:
           name: Deploy to Github
-          command: ./.circleci/scripts/deploy_to_github
+          command: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -n ${TITLE} -b ${BODY} -delete ${TAG} ${ARTIFACTS}
 
 workflows:
   version: 2
