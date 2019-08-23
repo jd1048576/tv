@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.broadcastIn
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-fun <T> Flow<T>.conflateIn(scope: CoroutineScope): ConflatedBroadcastChannel<T> {
-    val channel = ConflatedBroadcastChannel<T>()
+fun <T> Flow<T>.conflateIn(scope: CoroutineScope, initial: T? = null): ConflatedBroadcastChannel<T> {
+    val channel: ConflatedBroadcastChannel<T> = if (initial != null) ConflatedBroadcastChannel(initial) else ConflatedBroadcastChannel()
     val broadcastChannel = broadcastIn(scope).apply {
         invokeOnClose {
             channel.close(it)
