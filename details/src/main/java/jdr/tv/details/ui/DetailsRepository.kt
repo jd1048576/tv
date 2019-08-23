@@ -17,6 +17,7 @@ import jdr.tv.data.mergeSwitchMap
 import jdr.tv.data.onFailure
 import jdr.tv.data.onSuccess
 import jdr.tv.local.Database
+import jdr.tv.local.entities.Add
 import jdr.tv.local.entities.DetailedSeason
 import jdr.tv.local.entities.DetailedShow
 import jdr.tv.local.entities.RelatedShow
@@ -30,6 +31,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import javax.inject.Inject
@@ -55,6 +57,10 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
                 emitAll(database.showDao().selectFlow(showId).asSuccess())
             }
         }.flowOn(IO)
+    }
+
+    fun selectAdded(showId: Long): Flow<Boolean> {
+        return database.addDao().selectAdded(showId).map { it == 1 }.flowOn(IO)
     }
 
     fun selectDetailedShow(showId: Long): Flow<DetailedShow> {
@@ -112,6 +118,14 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
             database.relatedShowDao().insertOrUpdate(relatedShowList)
             database.seasonDao().insertOrUpdate(seasonList)
             database.episodeDao().insertOrUpdate(episodeList)
+        }
+    }
+
+    suspend fun updateAdded(showId: Long, added: Boolean) = withContext(IO) {
+        if (added) {
+            database.addDao().insert(Add(showId, Instant.now()))
+        } else {
+            database.addDao().delete(showId)
         }
     }
 

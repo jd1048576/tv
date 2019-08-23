@@ -11,7 +11,7 @@ const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.0"
 
 const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
 
-private const val KOTLIN_COROUTINES_VERSION = "1.3.0-RC2"
+private const val KOTLIN_COROUTINES_VERSION = "1.3.0"
 const val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
 const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLIN_COROUTINES_VERSION"
 
@@ -33,6 +33,7 @@ const val ANDROIDX_PREFERENCE = "androidx.preference:preference:1.1.0-rc01"
 const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.1.0-beta03"
 const val ANDROIDX_ROOM = "androidx.room:room-ktx:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_ROOM_COMPILER = "androidx.room:room-compiler:$ANDROIDX_ROOM_VERSION"
+const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0-beta03"
 
 private const val DAGGER_VERSION = "2.24"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"

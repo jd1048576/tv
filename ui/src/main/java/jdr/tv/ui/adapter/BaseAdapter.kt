@@ -25,7 +25,7 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(itemCallback: DiffUtil.ItemCa
     }
 
     override fun onBindViewHolder(holder: BindingViewHolder<T, B>, position: Int) {
-        holder.bind(currentList[position])
+        currentList[position]?.also { holder.bind(it) }
     }
 
     override fun onViewDetachedFromWindow(holder: BindingViewHolder<T, B>) {
