@@ -1,10 +1,10 @@
-const val KOTLIN_VERSION = "1.3.41"
+const val KOTLIN_VERSION = "1.3.50"
 
 // Plugins
 
-const val ANDROID_GRADLE = "com.android.tools.build:gradle:3.5.0-rc03"
+const val ANDROID_GRADLE = "com.android.tools.build:gradle:3.5.0"
 const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
-const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.0"
+const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.1"
 const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.0"
 
 // Dependencies
@@ -17,7 +17,7 @@ const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-
 
 private const val ANDROIDX_LIFECYCLE_VERSION = "2.2.0-alpha03"
 private const val ANDROIDX_NAVIGATION_VERSION = "2.2.0-alpha01"
-private const val ANDROIDX_ROOM_VERSION = "2.2.0-SNAPSHOT"
+private const val ANDROIDX_ROOM_VERSION = "2.2.0-beta01"
 const val ANDROIDX_ACTIVITY = "androidx.activity:activity:1.1.0-alpha02"
 const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.1.0-rc01"
 const val ANDROIDX_CONSTRAINTLAYOUT = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
