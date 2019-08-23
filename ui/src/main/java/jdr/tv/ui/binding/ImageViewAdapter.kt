@@ -21,8 +21,8 @@ fun setBackdropPath(view: ImageView, requestManager: RequestManager, backdropPat
 }
 
 @BindingAdapter(value = ["requestManager", "posterPath"], requireAll = true)
-fun setPosterPath(view: ImageView, requestManager: RequestManager, backdropPath: String?) {
-    requestManager.loadImage(view, backdropPath, R.drawable.ic_poster, "w92", "w500")
+fun setPosterPath(view: ImageView, requestManager: RequestManager, posterPath: String?) {
+    requestManager.loadImage(view, posterPath, R.drawable.ic_poster, "w92", "w500")
 }
 
 @BindingAdapter("selected")

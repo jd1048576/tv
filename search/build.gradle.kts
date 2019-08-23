@@ -41,7 +41,6 @@ dependencies {
     implementation(ANDROIDX_APPCOMPAT)
     implementation(ANDROIDX_CONSTRAINTLAYOUT)
     implementation(ANDROIDX_FRAGMENT)
-
     implementation(ANDROIDX_LIFECYCLE_VIEWMODEL)
     implementation(ANDROIDX_NAVIGATION_COMMON)
     implementation(ANDROIDX_NAVIGATION_FRAGMENT)

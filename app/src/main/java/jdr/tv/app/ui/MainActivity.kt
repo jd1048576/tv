@@ -19,12 +19,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         controller = Navigation.findNavController(this, R.id.activity_main_host_fragment)
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation)
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            if (it.itemId != controller.currentDestination?.id) {
-                NavigationUI.onNavDestinationSelected(it, controller)
-                true
-            } else false
-        }
+        NavigationUI.setupWithNavController(bottomNavigationView, controller)
     }
 
     override fun onSupportNavigateUp(): Boolean {

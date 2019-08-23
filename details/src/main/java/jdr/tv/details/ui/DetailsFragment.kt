@@ -33,8 +33,8 @@ import javax.inject.Inject
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     companion object {
-        const val slideTranslation = 144
-        const val slideDuration = 240L
+        const val SLIDE_TRANSLATION = 144
+        const val SLIDE_DURATION = 240L
     }
 
     private lateinit var binding: FragmentDetailsBinding
@@ -129,10 +129,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun onAddedChanged(added: Boolean) = with(binding.fragmentDetailsFloatingActionButton) {
-        val translation = if (added) context!!.dpToPixels(slideTranslation).toFloat() else 0.0F
+        val translation = if (added) context!!.dpToPixels(SLIDE_TRANSLATION).toFloat() else 0.0F
         if (translationY != translation) {
             ObjectAnimator.ofFloat(this, "translationY", translation).apply {
-                duration = slideDuration
+                duration = SLIDE_DURATION
                 interpolator = AccelerateDecelerateInterpolator()
                 start()
             }
