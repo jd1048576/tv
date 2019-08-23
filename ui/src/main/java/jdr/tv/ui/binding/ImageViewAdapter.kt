@@ -24,3 +24,8 @@ fun setBackdropPath(view: ImageView, requestManager: RequestManager, backdropPat
 fun setPosterPath(view: ImageView, requestManager: RequestManager, backdropPath: String?) {
     requestManager.loadImage(view, backdropPath, R.drawable.ic_poster, "w92", "w500")
 }
+
+@BindingAdapter("selected")
+fun setChecked(view: ImageView, selected: Boolean) {
+    view.isSelected = selected
+}
