@@ -65,6 +65,9 @@ commands:
       - run:
           name: Create Apk
           command: ./.circleci/scripts/create_apk
+      - store_artifacts:
+          path: artifacts
+          destination: apk
       - persist_to_workspace:
           root: ~/workspace/artifacts
           paths:

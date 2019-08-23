@@ -56,6 +56,13 @@ android {
         isEnabled = true
     }
 
+    packagingOptions {
+        exclude("/**/*.pro")
+        exclude("/*.properties")
+        exclude("/fabric/*.properties")
+        exclude("/META-INF/*.version")
+    }
+
     dynamicFeatures = mutableSetOf(":details", ":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
 }
 
