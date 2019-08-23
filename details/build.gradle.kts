@@ -48,6 +48,7 @@ dependencies {
     implementation(ANDROIDX_NAVIGATION_UI)
     implementation(ANDROIDX_RECYCLERVIEW)
     implementation(ANDROIDX_ROOM)
+    implementation(ANDROIDX_VIEWPAGER2)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)

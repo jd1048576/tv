@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MENU -->
+    <string name="share">Share</string>
+    <string name="launch_settings">Launch Settings</string>
+    <string name="remove_show">Remove Show</string>
+
+    <string name="overview">Overview</string>
+
+</resources>
