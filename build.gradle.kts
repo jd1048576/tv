@@ -15,7 +15,7 @@ buildscript {
 }
 
 plugins {
-    id("com.diffplug.gradle.spotless") version ("3.24.1")
+    id("com.diffplug.gradle.spotless") version ("3.24.2")
     id("com.github.ben-manes.versions") version ("0.22.0")
     id("io.gitlab.arturbosch.detekt") version ("1.0.0")
 }
@@ -24,8 +24,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        // FIXME AndroidX Snapshot. Remove this once Room 2.2.0-alpha03 is released
-        maven("https://ci.android.com/builds/submitted/5799541/androidx_snapshot/latest/repository")
     }
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile> {
