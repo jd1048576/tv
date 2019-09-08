@@ -36,8 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="104dp"
-            app:offsetChangedListener="@{listener}"
-            android:translationZ="@dimen/elevation">
+            android:translationZ="@dimen/elevation"
+            app:offsetChangedListener="@{listener}">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -49,8 +49,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="@dimen/toolbar_height"
-                    app:motionProgress="@{progress}"
-                    app:layoutDescription="@xml/scene_details">
+                    app:layoutDescription="@xml/scene_details"
+                    app:motionProgress="@{progress}">
 
                     <ImageView
                         android:id="@+id/fragment_details_backdrop_image_view"
@@ -144,9 +144,9 @@
             android:layout_marginBottom="16dp"
             android:translationY="72dp"
             app:elevation="@dimen/elevation"
-            app:tint="#FFFFFF"
             app:maxImageSize="32dp"
             app:srcCompat="@drawable/ic_plus"
+            app:tint="#FFFFFF"
             app:visibleUnless="@{!loading}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,6 +17,6 @@ class App : DataComponentApplication() {
         Log.addLogger(CrashlyticsLogger())
 
         AppCompatDelegate.setDefaultNightMode(PreferenceManager.getDefaultSharedPreferences(this).getString("THEME", "-1")!!.toInt())
-        dataComponent = DaggerDataComponent.builder().context(this).build()
+        dataComponent = DaggerDataComponent.factory().create(this)
     }
 }

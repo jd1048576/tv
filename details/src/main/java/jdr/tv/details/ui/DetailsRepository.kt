@@ -60,7 +60,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
     }
 
     fun selectAdded(showId: Long): Flow<Boolean> {
-        return database.addDao().selectAdded(showId).map { it == 1 }.flowOn(IO)
+        return database.addDao().selectCount(showId).map { it == 1 }.flowOn(IO)
     }
 
     fun selectDetailedShow(showId: Long): Flow<DetailedShow> {

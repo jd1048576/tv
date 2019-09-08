@@ -11,13 +11,8 @@ import jdr.tv.search.ui.SearchFragment
 @Component(modules = [SearchModule::class], dependencies = [DataComponent::class])
 interface SearchComponent : BaseComponent<SearchFragment> {
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun fragment(fragment: SearchFragment): Builder
-
-        fun dataComponent(dataComponent: DataComponent): Builder
-        fun build(): SearchComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance fragment: SearchFragment, dataComponent: DataComponent): SearchComponent
     }
 }

@@ -16,7 +16,6 @@ import jdr.tv.local.entities.Watch
 
 @Database(
     entities = [Add::class, Details::class, Episode::class, RelatedShow::class, Show::class, SearchItem::class, Season::class, Watch::class],
-    exportSchema = false,
     version = 1
 )
 @TypeConverters(InstantTypeConverter::class, ListTypeConverter::class)

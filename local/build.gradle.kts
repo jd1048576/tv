@@ -12,6 +12,15 @@ android {
         minSdkVersion(MIN_SDK_VERSION)
         targetSdkVersion(TARGET_SDK_VERSION)
         testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true"
+                )
+            }
+        }
     }
 
     compileOptions {
