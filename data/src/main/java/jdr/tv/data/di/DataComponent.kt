@@ -16,13 +16,9 @@ import javax.inject.Singleton
 @Component(modules = [DataModule::class, LocalModule::class, RemoteModule::class])
 interface DataComponent {
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun context(context: Context): Builder
-
-        fun build(): DataComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance context: Context): DataComponent
     }
 
     fun client(): OkHttpClient

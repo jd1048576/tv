@@ -4,9 +4,7 @@ import jdr.tv.data.di.dataComponent
 import jdr.tv.shows.ui.ShowsFragment
 
 fun ShowsFragment.inject() {
-    DaggerShowsComponent.builder()
-        .fragment(this)
-        .dataComponent(dataComponent())
-        .build()
+    DaggerShowsComponent.factory()
+        .create(this, dataComponent())
         .inject(this)
 }

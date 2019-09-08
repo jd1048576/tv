@@ -4,9 +4,7 @@ import jdr.tv.data.di.dataComponent
 import jdr.tv.search.ui.SearchFragment
 
 fun SearchFragment.inject() {
-    DaggerSearchComponent.builder()
-        .fragment(this)
-        .dataComponent(dataComponent())
-        .build()
+    DaggerSearchComponent.factory()
+        .create(this, dataComponent())
         .inject(this)
 }

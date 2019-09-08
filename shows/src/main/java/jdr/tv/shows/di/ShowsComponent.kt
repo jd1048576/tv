@@ -11,13 +11,8 @@ import jdr.tv.shows.ui.ShowsFragment
 @Component(modules = [ShowsModule::class], dependencies = [DataComponent::class])
 interface ShowsComponent : BaseComponent<ShowsFragment> {
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun fragment(fragment: ShowsFragment): Builder
-
-        fun dataComponent(dataComponent: DataComponent): Builder
-        fun build(): ShowsComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance fragment: ShowsFragment, dataComponent: DataComponent): ShowsComponent
     }
 }
