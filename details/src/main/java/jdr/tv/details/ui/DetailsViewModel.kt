@@ -10,7 +10,6 @@ import jdr.tv.local.entities.Show
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(private val showId: Long, private val repository: DetailsRepository) : ViewModel() {
@@ -27,10 +26,8 @@ class DetailsViewModel(private val showId: Long, private val repository: Details
     val show: Flow<Resource<Show>>
         get() = _show.asFlow()
 
-    var addedValue: Boolean = false
-
     val added: Flow<Boolean>
-        get() = _added.asFlow().onEach { addedValue = it }
+        get() = _added.asFlow()
 
     val detailedShow: Flow<DetailedShow>
         get() = _detailedShow.asFlow()
