@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/toolbar_height"
-        android:text="@string/discover" />
+        android:text="@string/watch_list" />
 
     <include layout="@layout/layout_toolbar" />
 
