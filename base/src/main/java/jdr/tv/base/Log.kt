@@ -4,17 +4,11 @@ import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.math.min
 
-abstract class Logger {
+abstract class Log {
 
-    private val ignore = listOf(
-        Logger::class.java.name,
-        Log::class.java.name
-    )
-
-    protected abstract fun log(priority: Int, tag: String, message: String)
+    abstract fun log(priority: Int, tag: String, message: String)
 
     fun log(priority: Int, t: Throwable?, message: String?) {
-        val tag = createTag()
         var m = message
         if (m.isNullOrEmpty()) {
             if (t == null) {
@@ -24,12 +18,7 @@ abstract class Logger {
         } else if (t != null) {
             m += "\n" + createStackTraceString(t)
         }
-        submitLog(priority, tag, m)
-    }
-
-    private fun createTag(): String {
-        val stackTraceElement = Throwable().stackTrace.first { it.className !in ignore }
-        return ANONYMOUS_CLASS.replace(stackTraceElement.className.substringAfterLast('.'), "")
+        submitLog(priority, m)
     }
 
     private fun createStackTraceString(t: Throwable): String {
@@ -40,9 +29,9 @@ abstract class Logger {
         return sw.toString()
     }
 
-    private fun submitLog(priority: Int, tag: String, message: String) {
+    private fun submitLog(priority: Int, message: String) {
         if (message.length < MAX_LOG_LENGTH) {
-            log(priority, tag, message)
+            log(priority, TAG, message)
         } else {
             var i = 0
             val length = message.length
@@ -52,7 +41,7 @@ abstract class Logger {
                 do {
                     val end = min(newline, i + MAX_LOG_LENGTH)
                     val part = message.substring(i, end)
-                    log(priority, tag, part)
+                    log(priority, TAG, part)
                     i = end
                 } while (i < newline)
                 i++
@@ -61,79 +50,75 @@ abstract class Logger {
     }
 
     companion object {
+        private const val VERBOSE = 2
+        private const val DEBUG = 3
+        private const val INFO = 4
+        private const val WARN = 5
+        private const val ERROR = 6
+
+        private const val TAG = "LOG"
         private const val STACK_TRACE_INITIAL_SIZE = 256
         private const val MAX_LOG_LENGTH = 4000
-        private val ANONYMOUS_CLASS = Regex("(\\$\\d+)+$")
 
-        const val VERBOSE = 2
-        const val DEBUG = 3
-        const val INFO = 4
-        const val WARN = 5
-        const val ERROR = 6
-    }
-}
+        private lateinit var delegate: Log
 
-object Log {
+        @JvmStatic
+        fun addLogger(log: Log) {
+            delegate = log
+        }
 
-    private lateinit var delegate: Logger
+        @JvmStatic
+        fun v(vararg any: Any?) {
+            log(VERBOSE, null, any.joinToString(", "))
+        }
 
-    @JvmStatic
-    fun addLogger(logger: Logger) {
-        delegate = logger
-    }
+        @JvmStatic
+        fun v(t: Throwable, message: String? = null) {
+            log(VERBOSE, t, message)
+        }
 
-    @JvmStatic
-    fun v(vararg any: Any?) {
-        log(Logger.VERBOSE, null, any.joinToString(", "))
-    }
+        @JvmStatic
+        fun d(vararg any: Any?) {
+            log(DEBUG, null, any.joinToString(", "))
+        }
 
-    @JvmStatic
-    fun v(t: Throwable, message: String? = null) {
-        log(Logger.VERBOSE, t, message)
-    }
+        @JvmStatic
+        fun d(t: Throwable, message: String? = null) {
+            log(DEBUG, t, message)
+        }
 
-    @JvmStatic
-    fun d(vararg any: Any?) {
-        log(Logger.DEBUG, null, any.joinToString(", "))
-    }
+        @JvmStatic
+        fun i(vararg any: Any?) {
+            log(INFO, null, any.joinToString(", "))
+        }
 
-    @JvmStatic
-    fun d(t: Throwable, message: String? = null) {
-        log(Logger.DEBUG, t, message)
-    }
+        @JvmStatic
+        fun i(t: Throwable, message: String? = null) {
+            log(INFO, t, message)
+        }
 
-    @JvmStatic
-    fun i(vararg any: Any?) {
-        log(Logger.INFO, null, any.joinToString(", "))
-    }
+        @JvmStatic
+        fun w(vararg any: Any?) {
+            log(WARN, null, any.joinToString(", "))
+        }
 
-    @JvmStatic
-    fun i(t: Throwable, message: String? = null) {
-        log(Logger.INFO, t, message)
-    }
+        @JvmStatic
+        fun w(t: Throwable, message: String? = null) {
+            log(WARN, t, message)
+        }
 
-    @JvmStatic
-    fun w(vararg any: Any?) {
-        log(Logger.WARN, null, any.joinToString(", "))
-    }
+        @JvmStatic
+        fun e(vararg any: Any?) {
+            log(ERROR, null, any.joinToString(", "))
+        }
 
-    @JvmStatic
-    fun w(t: Throwable, message: String? = null) {
-        log(Logger.WARN, t, message)
-    }
+        @JvmStatic
+        fun e(t: Throwable, message: String? = null) {
+            log(ERROR, t, message)
+        }
 
-    @JvmStatic
-    fun e(vararg any: Any?) {
-        log(Logger.ERROR, null, any.joinToString(", "))
-    }
-
-    @JvmStatic
-    fun e(t: Throwable, message: String? = null) {
-        log(Logger.ERROR, t, message)
-    }
-
-    @JvmStatic
-    private fun log(priority: Int, t: Throwable?, message: String?) {
-        delegate.log(priority, t, message)
+        private fun log(priority: Int, t: Throwable?, message: String?) {
+            delegate.log(priority, t, message)
+        }
     }
 }
