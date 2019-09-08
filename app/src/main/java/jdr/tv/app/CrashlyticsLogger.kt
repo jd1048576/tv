@@ -1,9 +1,9 @@
 package jdr.tv.app
 
 import com.crashlytics.android.Crashlytics
-import jdr.tv.base.Logger
+import jdr.tv.base.Log
 
-class CrashlyticsLogger : Logger() {
+class CrashlyticsLogger : Log() {
     override fun log(priority: Int, tag: String, message: String) {
         Crashlytics.log(priority, tag, message)
     }
