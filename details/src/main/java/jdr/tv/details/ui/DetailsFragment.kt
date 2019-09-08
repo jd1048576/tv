@@ -68,7 +68,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.fragment_details_menu_remove_show).isVisible = viewModel.addedValue
+        menu.findItem(R.id.fragment_details_menu_remove_show).isVisible = binding.fragmentDetailsFloatingActionButton.translationY != 0.0F
         super.onPrepareOptionsMenu(menu)
     }
 
