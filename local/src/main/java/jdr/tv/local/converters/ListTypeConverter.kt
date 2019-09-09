@@ -1,8 +1,8 @@
 package jdr.tv.local.converters
 
 import androidx.room.TypeConverter
-import jdr.tv.base.extensions.MOSHI_DEFAULT
-import jdr.tv.base.extensions.listAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import jdr.tv.local.entities.Cast
 import jdr.tv.local.entities.ContentRating
 import jdr.tv.local.entities.CreatedBy
@@ -113,13 +113,15 @@ object ListTypeConverter {
 
     private inline fun <reified T> fromJson(json: String): List<T> {
         try {
-            return MOSHI_DEFAULT.listAdapter<T>().fromJson(json)!!
+            return moshi.adapter<List<T>>(Types.newParameterizedType(List::class.java, T::class.java)).fromJson(json)!!
         } catch (e: IOException) {
             throw IllegalStateException(e)
         }
     }
 
     private inline fun <reified T> toJson(list: List<T>): String {
-        return MOSHI_DEFAULT.listAdapter<T>().toJson(list)
+        return moshi.adapter<List<T>>(Types.newParameterizedType(List::class.java, T::class.java)).toJson(list)
     }
+
+    private val moshi: Moshi = Moshi.Builder().build()
 }
