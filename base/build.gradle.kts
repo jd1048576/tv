@@ -9,6 +9,4 @@ dependencies {
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
-
-    implementation(MOSHI)
 }
