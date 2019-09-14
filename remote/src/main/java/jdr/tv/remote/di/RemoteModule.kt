@@ -4,7 +4,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import dagger.Module
 import dagger.Provides
-import jdr.tv.base.Dispatchers.IOExecutor
 import jdr.tv.base.Log
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.adapter.InstantAdapter
@@ -12,6 +11,9 @@ import jdr.tv.remote.adapter.RemoteGenreAdapter
 import jdr.tv.remote.adapter.RemoteSeasonListAdapter
 import jdr.tv.remote.entities.RemoteGenre
 import jdr.tv.remote.entities.RemoteSeason
+import jdr.tv.remote.extensions.asExecutorService
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.asExecutor
 import okhttp3.Dispatcher
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -46,7 +48,7 @@ object RemoteModule {
     @JvmStatic
     fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()
-            .dispatcher(Dispatcher(IOExecutor))
+            .dispatcher(Dispatcher(IO.asExecutorService()))
             .addInterceptor(interceptor)
             .addInterceptor(provideHttpLoggingInterceptor())
             .build()
@@ -69,6 +71,7 @@ object RemoteModule {
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .callbackExecutor(IO.asExecutor())
             .build()
             .create()
     }
