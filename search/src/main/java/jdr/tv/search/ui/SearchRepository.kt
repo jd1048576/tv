@@ -1,7 +1,6 @@
 package jdr.tv.search.ui
 
 import androidx.room.withTransaction
-import jdr.tv.base.Dispatchers.IO
 import jdr.tv.data.Request
 import jdr.tv.data.Resource
 import jdr.tv.data.Response
@@ -16,6 +15,7 @@ import jdr.tv.local.entities.Show
 import jdr.tv.local.insertOrUpdate
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteShowList
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow

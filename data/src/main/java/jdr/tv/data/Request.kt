@@ -1,6 +1,6 @@
 package jdr.tv.data
 
-import jdr.tv.base.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay

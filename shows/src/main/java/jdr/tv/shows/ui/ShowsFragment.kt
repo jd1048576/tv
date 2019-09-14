@@ -20,7 +20,6 @@ import jdr.tv.ui.extensions.displayMetrics
 import jdr.tv.ui.extensions.dpToPixels
 import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.ui.utils.SpacingItemDecoration
-import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -75,7 +74,7 @@ class ShowsFragment : Fragment(R.layout.fragment_shows) {
     }
 
     private fun observe() {
-        lifecycleScope.launch(start = CoroutineStart.UNDISPATCHED) {
+        lifecycleScope.launch {
             viewModel.addedShowList.collect {
                 adapter.submitList(it)
             }

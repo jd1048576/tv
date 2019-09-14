@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
-import jdr.tv.base.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.asExecutor
 
 abstract class BaseAdapter<T, B : ViewDataBinding>(itemCallback: DiffUtil.ItemCallback<T>) : RecyclerView.Adapter<BindingViewHolder<T, B>>() {
 
@@ -72,7 +73,7 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(itemCallback: DiffUtil.ItemCa
 
     companion object {
         private fun <T> config(itemCallback: DiffUtil.ItemCallback<T>): AsyncDifferConfig<T> {
-            return AsyncDifferConfig.Builder(itemCallback).setBackgroundThreadExecutor(Dispatchers.IOExecutor).build()
+            return AsyncDifferConfig.Builder(itemCallback).setBackgroundThreadExecutor(IO.asExecutor()).build()
         }
     }
 }

@@ -1,7 +1,6 @@
 package jdr.tv.details.ui
 
 import androidx.room.withTransaction
-import jdr.tv.base.Dispatchers.IO
 import jdr.tv.base.extensions.olderThan
 import jdr.tv.data.Request
 import jdr.tv.data.Resource
@@ -27,6 +26,7 @@ import jdr.tv.local.insertOrUpdate
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteDetailedShow
 import jdr.tv.remote.entities.RemoteSeason
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
