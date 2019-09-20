@@ -34,6 +34,7 @@ const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.1.0-beta
 const val ANDROIDX_ROOM = "androidx.room:room-ktx:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_ROOM_COMPILER = "androidx.room:room-compiler:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0-beta04"
+const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.3.0-alpha01"
 
 private const val DAGGER_VERSION = "2.24"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
