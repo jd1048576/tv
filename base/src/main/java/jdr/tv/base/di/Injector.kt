@@ -1,5 +1,5 @@
 package jdr.tv.base.di
 
-interface BaseComponent<T> {
+interface Injector<T> {
     fun inject(target: T)
 }

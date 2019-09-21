@@ -70,10 +70,12 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":data"))
     implementation(project(":local"))
+    implementation(project(":mapper"))
     implementation(project(":navigation"))
     implementation(project(":remote"))
     implementation(project(":ui"))
     implementation(project(":viewmodel"))
+    implementation(project(":work"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
@@ -90,6 +92,7 @@ dependencies {
     implementation(ANDROIDX_NAVIGATION_RUNTIME)
     implementation(ANDROIDX_NAVIGATION_UI)
     implementation(ANDROIDX_PREFERENCE)
+    implementation(ANDROIDX_WORK)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)

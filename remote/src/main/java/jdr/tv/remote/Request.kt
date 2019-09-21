@@ -1,4 +1,4 @@
-package jdr.tv.data
+package jdr.tv.remote
 
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
@@ -57,8 +57,8 @@ suspend fun <T> List<Request<T>>.execute(): Response<List<T>> = withContext(IO) 
     val failureList = ArrayList<Exception>()
     responseMap.asSequence().sortedBy { it.key }.forEach {
         when (val v = it.value) {
-            is Response.Success -> successList.add(v.value)
-            is Response.Failure -> failureList.add(v.exception)
+            is Success -> successList.add(v.value)
+            is Failure -> failureList.add(v.exception)
             else -> throw IllegalStateException("Illegal State in execute")
         }
     }

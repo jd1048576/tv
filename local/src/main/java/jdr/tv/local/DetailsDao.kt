@@ -15,4 +15,7 @@ abstract class DetailsDao : BaseDao<Details>() {
 
     @Query("SELECT detailsUpdatedAt FROM Details WHERE showId = :id")
     abstract suspend fun selectUpdatedAt(id: Long): Instant
+
+    @Query("SELECT showId FROM Details WHERE EXISTS (SELECT 1 FROM `Add` WHERE `Add`.showId = Details.showId) AND detailsUpdatedAt < :updatedAt")
+    abstract suspend fun selectShowSyncIdList(updatedAt: Long): List<Long>
 }

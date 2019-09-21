@@ -1,4 +1,4 @@
-package jdr.tv.data
+package jdr.tv.remote
 
 import kotlinx.coroutines.delay
 import java.time.Instant

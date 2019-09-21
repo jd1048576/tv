@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
 }
 
 android {
@@ -12,8 +11,6 @@ android {
         minSdkVersion(MIN_SDK_VERSION)
         targetSdkVersion(TARGET_SDK_VERSION)
         testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
-
-        buildConfigField("String", "TMDB_API_KEY", "\"${gradleProperty("TMDB_API_KEY")}\"")
     }
 
     compileOptions {
@@ -23,24 +20,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":base"))
     implementation(project(":local"))
     implementation(project(":remote"))
-    implementation(project(":work"))
 
     implementation(KOTLIN_STDLIB)
-
-    implementation(ANDROIDX_APPCOMPAT)
-    implementation(ANDROIDX_PREFERENCE)
-    implementation(ANDROIDX_ROOM)
-    implementation(ANDROIDX_WORK)
-
-    implementation(DAGGER)
-    kapt(DAGGER_COMPILER)
-
-    implementation(FIREBASE_CRASHLYTICS)
-
-    implementation(OKHTTP3)
-
-    implementation(RETROFIT)
 }
