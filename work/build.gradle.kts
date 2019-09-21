@@ -23,10 +23,17 @@ android {
 dependencies {
     implementation(project(":base"))
     implementation(project(":local"))
+    implementation(project(":mapper"))
     implementation(project(":remote"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
 
+    implementation(ANDROIDX_ROOM)
     implementation(ANDROIDX_WORK)
+
+    implementation(DAGGER)
+    kapt(DAGGER_COMPILER)
+
+    implementation(RETROFIT)
 }

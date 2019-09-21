@@ -14,6 +14,9 @@ abstract class ShowDao : BaseDao<Show>() {
     @Query("SELECT Show.* FROM Show WHERE id = :id")
     abstract fun selectFlow(id: Long): Flow<Show>
 
+    @Query("SELECT id FROM Show WHERE EXISTS (SELECT 1 FROM `Add` WHERE showId = id) AND updatedAt < :updatedAt")
+    abstract suspend fun selectShowSyncIdList(updatedAt: Long): List<Long>
+
 /*    @Query("SELECT * FROM Show WHERE added = 1 ORDER BY name ASC")
     abstract fun selectAddedShowListDataSourceFactory(): DataSource.Factory<Int, Show>
 
