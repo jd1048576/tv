@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import jdr.tv.base.extensions.toFormattedString
 import jdr.tv.details.databinding.ItemShowDetailsOverviewBinding
 import jdr.tv.local.entities.DetailedShow
 import jdr.tv.ui.adapter.BaseAdapter
@@ -14,6 +15,7 @@ class ShowDetailsAdapter : BaseAdapter<DetailedShow, ViewDataBinding>(itemCallba
         return BindingViewHolder(ItemShowDetailsOverviewBinding.inflate(inflater, parent, false)) {
             with(this as ItemShowDetailsOverviewBinding) {
                 overview = it.show.overview.takeUnless { it.isEmpty() }
+                updated = "Last Updated ${it.details.detailsUpdatedAt.toFormattedString()}"
             }
         }
     }

@@ -8,7 +8,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
 import jdr.tv.app.GlideApp
 import jdr.tv.base.Log
@@ -83,7 +82,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun setupRecyclerView() {
         adapter = SearchAdapter(GlideApp.with(this), this::scrollToTop, this::navigate)
         recyclerView.adapter = adapter
-        recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
     }
 

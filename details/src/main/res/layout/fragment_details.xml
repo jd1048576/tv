@@ -111,7 +111,11 @@
                 android:id="@+id/fragment_details_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@null" />
+                android:background="@null"
+                app:tabGravity="fill"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -131,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="48dp"
                 app:goneUnless="@{loading}" />
         </FrameLayout>
 
