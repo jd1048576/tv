@@ -6,6 +6,7 @@ import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
+import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import jdr.tv.base.Log
 import jdr.tv.local.Database
@@ -46,7 +47,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
                 .setRequiresBatteryNotLow(true)
                 .build()
 
-            return PeriodicWorkRequest.Builder(SyncWorker::class.java, Duration.ofHours(SYNC_PERIOD))
+            return PeriodicWorkRequestBuilder<SyncWorker>(Duration.ofHours(SYNC_PERIOD))
                 .addTag(SyncWorker::class.java.name)
                 .setConstraints(constraints)
                 .build()
@@ -54,7 +55,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
     }
 
     override suspend fun doWork(): Result = withContext(IO) {
-        database.showDao().selectShowSyncIdList(Instant.now().minus(Duration.ofHours(SYNC_PERIOD)).epochSecond).forEach { syncShow(it) }
+        database.detailsDao().selectShowSyncIdList(Instant.now().minus(Duration.ofHours(SYNC_PERIOD)).epochSecond).forEach { syncShow(it) }
         Result.success()
     }
 
