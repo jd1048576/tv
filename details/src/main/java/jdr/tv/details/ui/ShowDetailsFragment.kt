@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
 import jdr.tv.details.R
 import jdr.tv.ui.extensions.dpToPixels
@@ -39,7 +38,7 @@ class ShowDetailsFragment : Fragment(R.layout.fragment_base) {
     private fun setupRecyclerView() {
         adapter = ShowDetailsAdapter()
         recyclerView.adapter = adapter
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = null
         recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
     }
 
