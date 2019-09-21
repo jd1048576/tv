@@ -28,6 +28,7 @@ dependencies {
     implementation(project(":app"))
     implementation(project(":base"))
     implementation(project(":data"))
+    implementation(project(":mapper"))
     implementation(project(":navigation"))
     implementation(project(":ui"))
     implementation(project(":local"))

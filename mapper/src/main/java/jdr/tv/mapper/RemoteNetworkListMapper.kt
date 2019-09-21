@@ -1,4 +1,4 @@
-package jdr.tv.data.mapper
+package jdr.tv.mapper
 
 import jdr.tv.local.entities.Network
 import jdr.tv.remote.entities.RemoteNetwork

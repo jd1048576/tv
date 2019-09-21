@@ -70,6 +70,7 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":data"))
     implementation(project(":local"))
+    implementation(project(":mapper"))
     implementation(project(":navigation"))
     implementation(project(":remote"))
     implementation(project(":ui"))
