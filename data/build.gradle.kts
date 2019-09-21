@@ -28,13 +28,15 @@ dependencies {
     implementation(project(":remote"))
 
     implementation(KOTLIN_STDLIB)
-    implementation(KOTLIN_COROUTINES_CORE)
 
+    implementation(ANDROIDX_APPCOMPAT)
     implementation(ANDROIDX_PREFERENCE)
     implementation(ANDROIDX_ROOM)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
+
+    implementation(FIREBASE_CRASHLYTICS)
 
     implementation(OKHTTP3)
 
