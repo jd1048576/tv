@@ -28,9 +28,10 @@ import jdr.tv.remote.mergeSwitchMap
 import jdr.tv.remote.onFailure
 import jdr.tv.remote.onSuccess
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import java.time.Duration
-import java.time.Instant
 
 class SyncWorker(context: Context, params: WorkerParameters, private val database: Database, private val tmdbApi: TmdbApi) :
     CoroutineWorker(context, params) {
@@ -55,7 +56,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
     }
 
     override suspend fun doWork(): Result = withContext(IO) {
-        database.detailsDao().selectShowSyncIdList(Instant.now().minus(Duration.ofHours(SYNC_PERIOD)).epochSecond).forEach { syncShow(it) }
+        database.addDao().selectAddedShowIdList().map { async { syncShow(it) } }.awaitAll()
         Result.success()
     }
 
