@@ -16,7 +16,7 @@ object DataModule {
     @Provides
     @Named("TMDB_API_KEY")
     @JvmStatic
-    fun provideTmdbApiKey(): String {
+    fun providesTmdbApiKey(): String {
         return BuildConfig.TMDB_API_KEY
     }
 

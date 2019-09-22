@@ -29,7 +29,7 @@ object RemoteModule {
 
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
-    private fun provideHttpLoggingInterceptor() = Interceptor { chain ->
+    private fun providesHttpLoggingInterceptor() = Interceptor { chain ->
         chain.proceed(chain.request().apply { Log.v("--> $method $url -->") })
     }
 
@@ -50,7 +50,7 @@ object RemoteModule {
         return OkHttpClient.Builder()
             .dispatcher(Dispatcher(IO.asExecutorService()))
             .addInterceptor(interceptor)
-            .addInterceptor(provideHttpLoggingInterceptor())
+            .addInterceptor(providesHttpLoggingInterceptor())
             .build()
     }
 

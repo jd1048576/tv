@@ -14,19 +14,19 @@ object DetailsModule {
 
     @Provides
     @JvmStatic
-    fun provideShowId(fragment: DetailsFragment): Long {
+    fun providesShowId(fragment: DetailsFragment): Long {
         return GlobalActions.ActionDetails.fromBundle(fragment.arguments).showId
     }
 
     @Provides
     @JvmStatic
-    fun provideViewModelProviderFactory(showId: Long, repository: DetailsRepository): ViewModelProvider.Factory {
+    fun providesViewModelProviderFactory(showId: Long, repository: DetailsRepository): ViewModelProvider.Factory {
         return ViewModelProviderFactory { DetailsViewModel(showId, repository) }
     }
 
     @Provides
     @JvmStatic
-    fun provideViewModel(fragment: DetailsFragment, factory: ViewModelProvider.Factory): DetailsViewModel {
+    fun providesViewModel(fragment: DetailsFragment, factory: ViewModelProvider.Factory): DetailsViewModel {
         return ViewModelProvider(fragment, factory).get(DetailsViewModel::class.java)
     }
 }

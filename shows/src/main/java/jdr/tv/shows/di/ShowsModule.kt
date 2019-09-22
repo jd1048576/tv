@@ -14,13 +14,13 @@ object ShowsModule {
 
     @Provides
     @JvmStatic
-    fun provideViewModelProviderFactory(repository: ShowsRepository): ViewModelProvider.Factory {
+    fun providesViewModelProviderFactory(repository: ShowsRepository): ViewModelProvider.Factory {
         return ViewModelProviderFactory { ShowsViewModel(repository) }
     }
 
     @Provides
     @JvmStatic
-    fun provideViewModel(fragment: ShowsFragment, factory: ViewModelProvider.Factory): ShowsViewModel {
+    fun providesViewModel(fragment: ShowsFragment, factory: ViewModelProvider.Factory): ShowsViewModel {
         return ViewModelProvider(fragment.appCompatActivity, factory).get(ShowsViewModel::class.java)
     }
 }
