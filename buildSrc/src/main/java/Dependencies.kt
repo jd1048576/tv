@@ -5,13 +5,13 @@ const val KOTLIN_VERSION = "1.3.50"
 const val ANDROID_GRADLE = "com.android.tools.build:gradle:3.5.0"
 const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
 const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.2"
-const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.0"
+const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.1"
 
 // Dependencies
 
 const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
 
-private const val KOTLIN_COROUTINES_VERSION = "1.3.1"
+private const val KOTLIN_COROUTINES_VERSION = "1.3.2"
 const val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
 const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLIN_COROUTINES_VERSION"
 
@@ -56,6 +56,6 @@ const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VERSIO
 
 const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.2.0"
 
-private const val RETROFIT_VERSION = "2.6.1"
+private const val RETROFIT_VERSION = "2.6.2"
 const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
 const val RETROFIT_MOSHI = "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"
