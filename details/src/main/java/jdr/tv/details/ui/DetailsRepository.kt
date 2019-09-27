@@ -111,6 +111,9 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
 
         val seasonList = remoteSeasonList.map { it.toSeason() }
         val episodeList = remoteSeasonList.flatMap { it.toEpisodeList() }
+        val episodeIdListToRemove = database.episodeDao().selectIdList(show.id).toMutableList().apply {
+            removeAll(episodeList.map { it.id })
+        }
 
         database.withTransaction {
             database.showDao().insertOrUpdate(showList)
@@ -118,6 +121,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
             database.relatedShowDao().insertOrUpdate(relatedShowList)
             database.seasonDao().insertOrUpdate(seasonList)
             database.episodeDao().insertOrUpdate(episodeList)
+            database.episodeDao().deleteIdList(episodeIdListToRemove)
         }
     }
 
