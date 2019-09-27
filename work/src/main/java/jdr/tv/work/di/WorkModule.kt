@@ -21,7 +21,7 @@ object WorkModule {
     @Provides
     @IntoSet
     @JvmStatic
-    fun provideSyncWorkerFactory(database: Database, tmdbApi: TmdbApi): WorkerFactory {
+    fun providesSyncWorkerFactory(database: Database, tmdbApi: TmdbApi): WorkerFactory {
         return WorkerProviderFactory(SyncWorker::class.java.name) { context, params ->
             SyncWorker(context, params, database, tmdbApi)
         }

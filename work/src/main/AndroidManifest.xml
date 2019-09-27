@@ -1,12 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="jdr.tv.work">
-
-    <application>
-        <provider
-            android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="${applicationId}.workmanager-init"
-            tools:ignore="ExportedContentProvider"
-            tools:node="remove" />
-    </application>
-</manifest>
+<manifest package="jdr.tv.work" />

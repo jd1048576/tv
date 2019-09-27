@@ -13,13 +13,13 @@ object SearchModule {
 
     @Provides
     @JvmStatic
-    fun provideViewModelProviderFactory(repository: SearchRepository): ViewModelProvider.Factory {
+    fun providesViewModelProviderFactory(repository: SearchRepository): ViewModelProvider.Factory {
         return ViewModelProviderFactory { SearchViewModel(repository) }
     }
 
     @Provides
     @JvmStatic
-    fun provideViewModel(fragment: SearchFragment, factory: ViewModelProvider.Factory): SearchViewModel {
+    fun providesViewModel(fragment: SearchFragment, factory: ViewModelProvider.Factory): SearchViewModel {
         return ViewModelProvider(fragment, factory).get(SearchViewModel::class.java)
     }
 }

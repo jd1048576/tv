@@ -13,6 +13,9 @@ abstract class AddDao : BaseDao<Add>() {
     @Query("SELECT * FROM Show WHERE EXISTS (SELECT 1 FROM `Add` WHERE showId = id)")
     abstract fun selectAddedShowListFlow(): Flow<List<Show>>
 
+    @Query("SELECT showId FROM `Add`")
+    abstract suspend fun selectAddedShowIdList(): List<Long>
+
     @Transaction
     @Query("SELECT COUNT(*) FROM `Add` WHERE showId = :showId")
     abstract fun selectCount(showId: Long): Flow<Int>

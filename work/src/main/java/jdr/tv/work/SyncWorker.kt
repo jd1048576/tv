@@ -28,9 +28,10 @@ import jdr.tv.remote.mergeSwitchMap
 import jdr.tv.remote.onFailure
 import jdr.tv.remote.onSuccess
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import java.time.Duration
-import java.time.Instant
 
 class SyncWorker(context: Context, params: WorkerParameters, private val database: Database, private val tmdbApi: TmdbApi) :
     CoroutineWorker(context, params) {
@@ -55,7 +56,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
     }
 
     override suspend fun doWork(): Result = withContext(IO) {
-        database.detailsDao().selectShowSyncIdList(Instant.now().minus(Duration.ofHours(SYNC_PERIOD)).epochSecond).forEach { syncShow(it) }
+        database.addDao().selectAddedShowIdList().map { async { syncShow(it) } }.awaitAll()
         Result.success()
     }
 
@@ -102,6 +103,9 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
 
         val seasonList = remoteSeasonList.map { it.toSeason() }
         val episodeList = remoteSeasonList.flatMap { it.toEpisodeList() }
+        val episodeIdListToRemove = database.episodeDao().selectIdList(show.id).toMutableList().apply {
+            removeAll(episodeList.map { it.id })
+        }
 
         database.withTransaction {
             database.showDao().insertOrUpdate(showList)
@@ -109,6 +113,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
             database.relatedShowDao().insertOrUpdate(relatedShowList)
             database.seasonDao().insertOrUpdate(seasonList)
             database.episodeDao().insertOrUpdate(episodeList)
+            database.episodeDao().deleteIdList(episodeIdListToRemove)
         }
     }
 }
