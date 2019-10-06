@@ -15,7 +15,6 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import jdr.tv.app.GlideApp
 import jdr.tv.base.Log
 import jdr.tv.details.R
 import jdr.tv.details.databinding.FragmentDetailsBinding
@@ -49,7 +48,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        binding.requestManager = GlideApp.with(binding.root)
         return binding.root
     }
 

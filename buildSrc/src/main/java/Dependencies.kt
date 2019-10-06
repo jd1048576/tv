@@ -36,17 +36,14 @@ const val ANDROIDX_ROOM_COMPILER = "androidx.room:room-compiler:$ANDROIDX_ROOM_V
 const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0-beta04"
 const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.3.0-alpha01"
 
+const val COIL = "io.coil-kt:coil:0.7.0"
+
 private const val DAGGER_VERSION = "2.24"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
 const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
 const val FIREBASE_CORE = "com.google.firebase:firebase-core:17.2.0"
 const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:2.10.1"
-
-private const val GLIDE_VERSION = "4.10.0"
-const val GLIDE = "com.github.bumptech.glide:glide:$GLIDE_VERSION"
-const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:$GLIDE_VERSION"
-const val GLIDE_OKHTTP3 = "com.github.bumptech.glide:okhttp3-integration:$GLIDE_VERSION"
 
 const val MATERIAL = "com.google.android.material:material:1.1.0-beta01"
 

@@ -33,10 +33,6 @@
             tools:ignore="ExportedContentProvider"
             tools:node="remove" />
 
-        <meta-data
-            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
-            tools:node="remove" />
-
     </application>
 
 </manifest>

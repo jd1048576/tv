@@ -21,9 +21,6 @@
             name="show"
             type="jdr.tv.local.entities.Show" />
 
-        <variable
-            name="requestManager"
-            type="com.bumptech.glide.RequestManager" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -59,7 +56,6 @@
                         android:contentDescription="@string/backdrop"
                         android:scaleType="centerCrop"
                         app:backdropPath="@{show.backdropPath}"
-                        app:requestManager="@{requestManager}"
                         tools:src="@tools:sample/backgrounds/scenic" />
 
                     <com.google.android.material.card.MaterialCardView
@@ -75,7 +71,6 @@
                             android:contentDescription="@string/poster"
                             android:scaleType="centerCrop"
                             app:posterPath="@{show.posterPath}"
-                            app:requestManager="@{requestManager}"
                             tools:src="@tools:sample/backgrounds/scenic" />
                     </com.google.android.material.card.MaterialCardView>
 
