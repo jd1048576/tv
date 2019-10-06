@@ -1,0 +1,7 @@
+<SmellBaseline>
+    <Whitelist>
+        <ID>TooManyFunctions:ListTypeConverter.kt$ListTypeConverter</ID>
+        <ID>ComplexMethod:RemoteGenre.kt$RemoteGenre.Companion$@Suppress("MagicNumber") fun createFromId(id: Int?): RemoteGenre</ID>
+        <ID>TooGenericExceptionCaught:Request.kt$Request$e: Exception</ID>
+    </Whitelist>
+</SmellBaseline>

@@ -17,7 +17,7 @@ buildscript {
 plugins {
     id("com.diffplug.gradle.spotless") version ("3.24.3")
     id("com.github.ben-manes.versions") version ("0.25.0")
-    id("io.gitlab.arturbosch.detekt") version ("1.0.1")
+    id("io.gitlab.arturbosch.detekt") version ("1.1.0")
 }
 
 allprojects {
@@ -55,10 +55,13 @@ allprojects {
 tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
     description = "Runs over whole code base without the starting overhead for each module."
     parallel = true
+    autoCorrect = false
     buildUponDefaultConfig = true
+    disableDefaultRuleSets = false
+    failFast = false
+    config.setFrom(files(project.rootDir.resolve(".detekt/config.yml")))
+    baseline.set(file(project.rootDir.resolve(".detekt/baseline.xml")))
     setSource(files(projectDir))
-    config = files(project.rootDir.resolve(".detekt/config.yml"))
-    ignoreFailures = false
     include("**/*.kt")
     include("**/*.kts")
     exclude("**/build/**")

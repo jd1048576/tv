@@ -4,22 +4,21 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import dagger.Module
 import dagger.Provides
-import jdr.tv.base.Log
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.adapter.InstantAdapter
 import jdr.tv.remote.adapter.RemoteGenreAdapter
 import jdr.tv.remote.adapter.RemoteSeasonListAdapter
 import jdr.tv.remote.entities.RemoteGenre
 import jdr.tv.remote.entities.RemoteSeason
-import jdr.tv.remote.extensions.asExecutorService
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.asExecutor
-import okhttp3.Dispatcher
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
+import java.io.File
 import java.time.Instant
 import javax.inject.Named
 import javax.inject.Singleton
@@ -28,10 +27,7 @@ import javax.inject.Singleton
 object RemoteModule {
 
     private const val BASE_URL = "https://api.themoviedb.org/3/"
-
-    private fun providesHttpLoggingInterceptor() = Interceptor { chain ->
-        chain.proceed(chain.request().apply { Log.v("--> $method $url -->") })
-    }
+    private const val CACHE_SIZE: Long = 10 * 1024 * 1024
 
     @Singleton
     @Provides
@@ -45,19 +41,19 @@ object RemoteModule {
 
     @Singleton
     @Provides
+    @Named("API")
     @JvmStatic
-    fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient {
-        return OkHttpClient.Builder()
-            .dispatcher(Dispatcher(IO.asExecutorService()))
+    fun providesApiOkHttpClient(@Named("DEFAULT") client: OkHttpClient, cache: File, interceptor: Interceptor): OkHttpClient {
+        return client.newBuilder()
             .addInterceptor(interceptor)
-            .addInterceptor(providesHttpLoggingInterceptor())
+            .cache(Cache(File(cache, "api"), CACHE_SIZE))
             .build()
     }
 
     @Singleton
     @Provides
     @JvmStatic
-    fun providesTmdbApi(client: OkHttpClient): TmdbApi {
+    fun providesTmdbApi(@Named("API") client: OkHttpClient): TmdbApi {
         val moshiInstant: Moshi = Moshi.Builder()
             .add(Instant::class.java, InstantAdapter())
             .build()

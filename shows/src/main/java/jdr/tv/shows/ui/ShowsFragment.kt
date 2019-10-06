@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
-import jdr.tv.app.GlideApp
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.shows.R
 import jdr.tv.shows.databinding.FragmentShowsBinding
@@ -67,9 +65,8 @@ class ShowsFragment : Fragment(R.layout.fragment_shows) {
     }
 
     private fun setupRecyclerView() = with(binding.fragmentSearchRecyclerView) {
-        this@ShowsFragment.adapter = ShowsAdapter(GlideApp.with(this), this@ShowsFragment::navigate)
+        this@ShowsFragment.adapter = ShowsAdapter(this@ShowsFragment::navigate)
         adapter = this@ShowsFragment.adapter
-        itemAnimator = DefaultItemAnimator()
         addItemDecoration(SpacingItemDecoration.GridLayout(context!!.dpToPixels(SPACING)))
     }
 

@@ -26,14 +26,10 @@ inline fun <T, S> Response<T>.switchMap(transform: (T) -> Response<S>): Response
 }
 
 fun <T, S> Response<T>.merge(response: Response<S>): Response<Pair<T, S>> {
-    return when {
-        this is Success && response is Success -> Response.success(
-            Pair(
-                value,
-                response.value
-            )
-        )
-        else -> Response.failure(if (this is Failure) exception else (response as Failure).exception)
+    return if (this is Success && response is Success) {
+        Response.success(Pair(value, response.value))
+    } else {
+        Response.failure(if (this is Failure) exception else (response as Failure).exception)
     }
 }
 

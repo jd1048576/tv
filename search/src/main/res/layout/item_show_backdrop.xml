@@ -11,9 +11,6 @@
             name="show"
             type="jdr.tv.local.entities.Show" />
 
-        <variable
-            name="requestManager"
-            type="com.bumptech.glide.RequestManager" />
 
         <variable
             name="clickListener"
@@ -45,7 +42,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:requestManager="@{requestManager}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView

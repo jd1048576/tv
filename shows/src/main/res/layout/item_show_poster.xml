@@ -10,10 +10,6 @@
             type="jdr.tv.local.entities.Show" />
 
         <variable
-            name="requestManager"
-            type="com.bumptech.glide.RequestManager" />
-
-        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
     </data>
@@ -43,7 +39,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:posterPath="@{show.posterPath}"
-                app:requestManager="@{requestManager}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

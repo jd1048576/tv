@@ -37,7 +37,7 @@ dependencies {
     implementation(ANDROIDX_FRAGMENT)
     implementation(ANDROIDX_RECYCLERVIEW)
 
-    implementation(GLIDE)
+    implementation(COIL)
 
     implementation(MATERIAL)
 }

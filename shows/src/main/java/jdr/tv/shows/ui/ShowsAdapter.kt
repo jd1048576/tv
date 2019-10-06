@@ -3,19 +3,16 @@ package jdr.tv.shows.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.bumptech.glide.RequestManager
 import jdr.tv.local.entities.Show
 import jdr.tv.shows.databinding.ItemShowPosterBinding
 import jdr.tv.ui.adapter.BaseAdapter
 import jdr.tv.ui.adapter.BindingViewHolder
 
-class ShowsAdapter(private val requestManager: RequestManager, private val onClick: (Long) -> Unit) :
-    BaseAdapter<Show, ItemShowPosterBinding>(itemCallback) {
+class ShowsAdapter(private val onClick: (Long) -> Unit) : BaseAdapter<Show, ItemShowPosterBinding>(itemCallback) {
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<Show, ItemShowPosterBinding> {
         return BindingViewHolder(ItemShowPosterBinding.inflate(inflater, parent, false)) {
             show = it
-            requestManager = this@ShowsAdapter.requestManager
             clickListener = android.view.View.OnClickListener { _ ->
                 onClick(it.id)
             }

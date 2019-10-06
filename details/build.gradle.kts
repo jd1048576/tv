@@ -51,10 +51,10 @@ dependencies {
     implementation(ANDROIDX_ROOM)
     implementation(ANDROIDX_VIEWPAGER2)
 
+    implementation(COIL)
+
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
-
-    implementation(GLIDE)
 
     implementation(MATERIAL)
 

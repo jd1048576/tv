@@ -50,10 +50,10 @@ dependencies {
     implementation(ANDROIDX_ROOM)
     implementation(ANDROIDX_RECYCLERVIEW)
 
+    implementation(COIL)
+
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
-
-    implementation(GLIDE)
 
     implementation(MATERIAL)
 

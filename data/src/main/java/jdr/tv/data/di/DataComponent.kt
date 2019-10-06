@@ -9,7 +9,6 @@ import jdr.tv.local.di.LocalModule
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.di.RemoteModule
 import jdr.tv.work.di.WorkModule
-import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Singleton
@@ -21,7 +20,6 @@ interface DataComponent : Injector<DataComponentApplication> {
         fun create(@BindsInstance context: Context): DataComponent
     }
 
-    fun client(): OkHttpClient
     fun database(): Database
     fun tmdbApi(): TmdbApi
 }

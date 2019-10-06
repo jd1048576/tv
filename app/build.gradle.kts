@@ -100,12 +100,6 @@ dependencies {
     implementation(FIREBASE_CORE)
     implementation(FIREBASE_CRASHLYTICS)
 
-    implementation(GLIDE)
-    implementation(GLIDE_OKHTTP3) {
-        isTransitive = false
-    }
-    kapt(GLIDE_COMPILER)
-
     implementation(MATERIAL)
 
     implementation(OKHTTP3)

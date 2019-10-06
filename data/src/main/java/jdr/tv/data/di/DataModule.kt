@@ -6,11 +6,19 @@ import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import jdr.tv.data.BuildConfig
+import jdr.tv.remote.extensions.asExecutorService
+import kotlinx.coroutines.Dispatchers
+import okhttp3.Cache
+import okhttp3.Dispatcher
+import okhttp3.OkHttpClient
+import java.io.File
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 object DataModule {
+
+    private const val CACHE_SIZE: Long = 100 * 1024 * 1024
 
     @Singleton
     @Provides
@@ -18,6 +26,33 @@ object DataModule {
     @JvmStatic
     fun providesTmdbApiKey(): String {
         return BuildConfig.TMDB_API_KEY
+    }
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun providesCacheDir(context: Context): File {
+        return context.cacheDir
+    }
+
+    @Singleton
+    @Provides
+    @Named("DEFAULT")
+    @JvmStatic
+    fun providesDefaultOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .dispatcher(Dispatcher(Dispatchers.IO.asExecutorService()))
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("IMAGE")
+    @JvmStatic
+    fun providesImageOkHttpClient(@Named("DEFAULT") client: OkHttpClient, cache: File): OkHttpClient {
+        return client.newBuilder()
+            .cache(Cache(File(cache, "image"), CACHE_SIZE))
+            .build()
     }
 
     @Singleton

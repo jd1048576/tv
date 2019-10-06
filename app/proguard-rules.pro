@@ -3,15 +3,6 @@
 -keepattributes SourceFile,LineNumberTable
 
 
-###################################  GLIDE   ###################################
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-
 ###################################  OKHTTP  ###################################
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**

@@ -4,19 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.bumptech.glide.RequestManager
 import jdr.tv.local.entities.Show
 import jdr.tv.search.databinding.ItemShowBackdropBinding
 import jdr.tv.ui.adapter.BaseAdapter
 import jdr.tv.ui.adapter.BindingViewHolder
 
-class SearchAdapter(private val requestManager: RequestManager, private val onChanged: () -> Unit, private val onClick: (Long) -> Unit) :
+class SearchAdapter(private val onChanged: () -> Unit, private val onClick: (Long) -> Unit) :
     BaseAdapter<Show, ItemShowBackdropBinding>(itemCallback) {
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<Show, ItemShowBackdropBinding> {
         return BindingViewHolder(ItemShowBackdropBinding.inflate(inflater, parent, false)) {
             show = it
-            requestManager = this@SearchAdapter.requestManager
             clickListener = View.OnClickListener { _ ->
                 onClick(it.id)
             }
