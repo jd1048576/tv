@@ -2,7 +2,7 @@ const val KOTLIN_VERSION = "1.3.50"
 
 // Plugins
 
-const val ANDROID_GRADLE = "com.android.tools.build:gradle:3.5.0"
+const val ANDROID_GRADLE = "com.android.tools.build:gradle:3.5.1"
 const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
 const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.2"
 const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.1"
@@ -48,13 +48,13 @@ const val GLIDE = "com.github.bumptech.glide:glide:$GLIDE_VERSION"
 const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:$GLIDE_VERSION"
 const val GLIDE_OKHTTP3 = "com.github.bumptech.glide:okhttp3-integration:$GLIDE_VERSION"
 
-const val MATERIAL = "com.google.android.material:material:1.1.0-alpha10"
+const val MATERIAL = "com.google.android.material:material:1.1.0-beta01"
 
 private const val MOSHI_VERSION = "1.8.0"
 const val MOSHI = "com.squareup.moshi:moshi:$MOSHI_VERSION"
 const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VERSION"
 
-const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.2.0"
+const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.2.1"
 
 private const val RETROFIT_VERSION = "2.6.2"
 const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
