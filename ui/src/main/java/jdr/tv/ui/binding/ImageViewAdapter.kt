@@ -10,7 +10,6 @@ private const val IMAGE_URL = "https://image.tmdb.org/t/p/"
 
 fun load(view: ImageView, path: String?, @DrawableRes errorDrawable: Int, res: String) {
     view.load("$IMAGE_URL$res$path") {
-        crossfade(true)
         error(errorDrawable)
     }
 }

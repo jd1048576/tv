@@ -35,6 +35,8 @@ dependencies {
     implementation(ANDROIDX_ROOM)
     implementation(ANDROIDX_WORK)
 
+    implementation(COIL)
+
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
 
