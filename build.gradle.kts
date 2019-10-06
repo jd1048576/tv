@@ -55,10 +55,12 @@ allprojects {
 tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
     description = "Runs over whole code base without the starting overhead for each module."
     parallel = true
+    autoCorrect = false
     buildUponDefaultConfig = true
+    disableDefaultRuleSets = false
+    failFast = false
+    config.setFrom(files(project.rootDir.resolve(".detekt/config.yml")))
     setSource(files(projectDir))
-    config = files(project.rootDir.resolve(".detekt/config.yml"))
-    ignoreFailures = false
     include("**/*.kt")
     include("**/*.kts")
     exclude("**/build/**")

@@ -73,12 +73,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.fragment_details_menu_remove_show -> {
-                viewModel.updateAdded(false)
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
+        return if (item.itemId == R.id.fragment_details_menu_remove_show) {
+            viewModel.updateAdded(false)
+            return true
+        } else {
+            super.onOptionsItemSelected(item)
         }
     }
 
