@@ -29,7 +29,7 @@ class Request<out T>(private val request: suspend () -> RetrofitResponse<T>) {
                 } else if (attempt == MAX_NUMBER_OF_ATTEMPTS - 1) {
                     return@withContext Response.failure<T>(HttpException(response))
                 }
-            } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
+            } catch (e: Exception) {
                 if (attempt == (MAX_NUMBER_OF_ATTEMPTS - 1) || !shouldRetry(e)) {
                     return@withContext Response.failure<T>(e)
                 }

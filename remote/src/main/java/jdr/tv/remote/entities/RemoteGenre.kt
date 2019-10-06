@@ -4,7 +4,7 @@ class RemoteGenre(
     val name: String
 ) {
     companion object {
-        @Suppress("ComplexMethod", "MagicNumber")
+        @Suppress("MagicNumber")
         fun createFromId(id: Int?): RemoteGenre {
             checkNotNull(id) { "RemoteGenre Id Cannot be Null" }
             val name = when (id) {

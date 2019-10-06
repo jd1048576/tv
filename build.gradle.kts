@@ -60,6 +60,7 @@ tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
     disableDefaultRuleSets = false
     failFast = false
     config.setFrom(files(project.rootDir.resolve(".detekt/config.yml")))
+    baseline.set(file(project.rootDir.resolve(".detekt/baseline.xml")))
     setSource(files(projectDir))
     include("**/*.kt")
     include("**/*.kts")
