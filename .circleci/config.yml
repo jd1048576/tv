@@ -84,7 +84,7 @@ jobs:
       - setup
       - run:
           name: Build Bundle
-          command: ./gradlew assemble bundle -x lintVitalRelease # FIXME assembleAndroidTest
+          command: ./gradlew assemble bundle # FIXME assembleAndroidTest
       - create_apk
       - tear_down
       - save_workspace
