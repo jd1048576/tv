@@ -45,7 +45,6 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .setRequiresDeviceIdle(true)
-                .setRequiresBatteryNotLow(true)
                 .build()
 
             return PeriodicWorkRequestBuilder<SyncWorker>(Duration.ofHours(SYNC_PERIOD))
