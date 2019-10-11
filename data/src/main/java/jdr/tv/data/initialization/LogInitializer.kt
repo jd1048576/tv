@@ -1,8 +1,8 @@
 package jdr.tv.data.initialization
 
 import com.crashlytics.android.Crashlytics
-import jdr.tv.base.Log
 import javax.inject.Inject
+import jdr.tv.base.Log
 
 class LogInitializer @Inject constructor() : Initializer {
     override fun initialize() {

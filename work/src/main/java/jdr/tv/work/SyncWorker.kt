@@ -8,6 +8,7 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
+import java.time.Duration
 import jdr.tv.base.Log
 import jdr.tv.local.Database
 import jdr.tv.local.entities.RelatedShow
@@ -31,7 +32,6 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
-import java.time.Duration
 
 class SyncWorker(context: Context, params: WorkerParameters, private val database: Database, private val tmdbApi: TmdbApi) :
     CoroutineWorker(context, params) {
@@ -45,7 +45,6 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .setRequiresDeviceIdle(true)
-                .setRequiresBatteryNotLow(true)
                 .build()
 
             return PeriodicWorkRequestBuilder<SyncWorker>(Duration.ofHours(SYNC_PERIOD))

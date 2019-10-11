@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.work.Configuration
-import jdr.tv.data.initialization.AppInitializer
 import javax.inject.Inject
+import jdr.tv.data.initialization.AppInitializer
 
 abstract class DataComponentApplication : Application(), Configuration.Provider {
 

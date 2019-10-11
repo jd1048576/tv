@@ -5,15 +5,15 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
+import java.io.File
+import javax.inject.Named
+import javax.inject.Singleton
 import jdr.tv.data.BuildConfig
 import jdr.tv.remote.extensions.asExecutorService
 import kotlinx.coroutines.Dispatchers
 import okhttp3.Cache
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
-import java.io.File
-import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 object DataModule {

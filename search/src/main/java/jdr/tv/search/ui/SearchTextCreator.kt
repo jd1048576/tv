@@ -4,9 +4,9 @@ package jdr.tv.search.ui
 
 import android.text.SpannableStringBuilder
 import android.text.SpannedString
+import java.time.Year
 import jdr.tv.base.extensions.SYSTEM_ZONE_ID
 import jdr.tv.local.entities.Show
-import java.time.Year
 
 fun details(show: Show?): SpannedString = with(SpannableStringBuilder()) {
     if (show != null) {

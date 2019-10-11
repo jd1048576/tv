@@ -2,10 +2,10 @@ package jdr.tv.local
 
 import androidx.room.Dao
 import androidx.room.Query
+import java.time.Instant
 import jdr.tv.local.entities.DetailedShow
 import jdr.tv.local.entities.Details
 import kotlinx.coroutines.flow.Flow
-import java.time.Instant
 
 @Dao
 abstract class DetailsDao : BaseDao<Details>() {

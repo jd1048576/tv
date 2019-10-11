@@ -1,13 +1,13 @@
 package jdr.tv.remote
 
+import java.io.IOException
+import java.util.concurrent.ConcurrentHashMap
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.ConcurrentHashMap
 import retrofit2.Response as RetrofitResponse
 
 class Request<out T>(private val request: suspend () -> RetrofitResponse<T>) {

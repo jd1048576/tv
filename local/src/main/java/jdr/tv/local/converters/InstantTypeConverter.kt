@@ -1,7 +1,6 @@
 package jdr.tv.local.converters
 
 import androidx.room.TypeConverter
-
 import java.time.Instant
 
 object InstantTypeConverter {

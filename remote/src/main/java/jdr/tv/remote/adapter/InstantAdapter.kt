@@ -3,9 +3,9 @@ package jdr.tv.remote.adapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
-import jdr.tv.base.extensions.INSTANT_ZERO
 import java.time.Instant
 import java.time.format.DateTimeParseException
+import jdr.tv.base.extensions.INSTANT_ZERO
 
 internal class InstantAdapter : JsonAdapter<Instant>() {
 

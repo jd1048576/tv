@@ -2,8 +2,8 @@ package jdr.tv.remote.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import jdr.tv.base.extensions.INSTANT_ZERO
 import java.time.Instant
+import jdr.tv.base.extensions.INSTANT_ZERO
 
 @JsonClass(generateAdapter = true)
 class RemoteShow(

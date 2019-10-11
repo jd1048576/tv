@@ -1,9 +1,9 @@
 package jdr.tv.mapper
 
+import java.time.Instant
 import jdr.tv.local.entities.Details
 import jdr.tv.local.entities.Show
 import jdr.tv.remote.entities.RemoteDetailedShow
-import java.time.Instant
 
 fun RemoteDetailedShow.toShow(): Show {
     return Show(

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import javax.inject.Inject
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.shows.R
 import jdr.tv.shows.databinding.FragmentShowsBinding
@@ -18,10 +19,9 @@ import jdr.tv.ui.extensions.displayMetrics
 import jdr.tv.ui.extensions.dpToPixels
 import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.ui.utils.SpacingItemDecoration
+import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-import kotlin.math.roundToInt
 
 class ShowsFragment : Fragment(R.layout.fragment_shows) {
 

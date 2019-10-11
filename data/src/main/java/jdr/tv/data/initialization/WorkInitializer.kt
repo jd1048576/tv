@@ -3,8 +3,8 @@ package jdr.tv.data.initialization
 import android.content.Context
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
-import jdr.tv.work.SyncWorker
 import javax.inject.Inject
+import jdr.tv.work.SyncWorker
 
 class WorkInitializer @Inject constructor(private val context: Context) : Initializer {
     override fun initialize() {
