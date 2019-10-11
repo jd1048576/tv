@@ -1,6 +1,7 @@
 package jdr.tv.search.ui
 
 import androidx.room.withTransaction
+import javax.inject.Inject
 import jdr.tv.local.Database
 import jdr.tv.local.entities.SearchItem
 import jdr.tv.local.entities.Show
@@ -21,7 +22,6 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class SearchRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 

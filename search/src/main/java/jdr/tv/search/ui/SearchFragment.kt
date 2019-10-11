@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import javax.inject.Inject
 import jdr.tv.base.Log
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.search.R
@@ -23,7 +24,6 @@ import jdr.tv.ui.onLoading
 import jdr.tv.ui.onSuccess
 import jdr.tv.ui.utils.SpacingItemDecoration
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
 

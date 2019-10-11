@@ -4,6 +4,10 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import dagger.Module
 import dagger.Provides
+import java.io.File
+import java.time.Instant
+import javax.inject.Named
+import javax.inject.Singleton
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.adapter.InstantAdapter
 import jdr.tv.remote.adapter.RemoteGenreAdapter
@@ -18,10 +22,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
-import java.io.File
-import java.time.Instant
-import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 object RemoteModule {

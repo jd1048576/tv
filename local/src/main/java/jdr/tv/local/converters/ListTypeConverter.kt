@@ -3,6 +3,7 @@ package jdr.tv.local.converters
 import androidx.room.TypeConverter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import java.io.IOException
 import jdr.tv.local.entities.Cast
 import jdr.tv.local.entities.ContentRating
 import jdr.tv.local.entities.CreatedBy
@@ -10,7 +11,6 @@ import jdr.tv.local.entities.Crew
 import jdr.tv.local.entities.Network
 import jdr.tv.local.entities.ProductionCompany
 import jdr.tv.local.entities.Video
-import java.io.IOException
 
 object ListTypeConverter {
 
