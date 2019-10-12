@@ -22,13 +22,12 @@ import jdr.tv.ui.extensions.systemService
 import jdr.tv.ui.onFailure
 import jdr.tv.ui.onLoading
 import jdr.tv.ui.onSuccess
-import jdr.tv.ui.utils.SpacingItemDecoration
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
     companion object {
-        private const val SPACING = 16
+        private const val SPACING = 8
     }
 
     private lateinit var adapter: SearchAdapter
@@ -81,7 +80,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun setupRecyclerView() {
         adapter = SearchAdapter(this::scrollToTop, this::navigate)
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
+        recyclerView.addItemDecoration(SearchItemDecoration(context!!.dpToPixels(SPACING)))
     }
 
     private fun setupSearch() = with(searchView) {
