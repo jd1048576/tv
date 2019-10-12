@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import jdr.tv.local.entities.Show
-import jdr.tv.search.databinding.ItemShowBackdropBinding
+import jdr.tv.search.databinding.ItemSearchBinding
 import jdr.tv.ui.adapter.BaseAdapter
 import jdr.tv.ui.adapter.BindingViewHolder
 
 class SearchAdapter(private val onChanged: () -> Unit, private val onClick: (Long) -> Unit) :
-    BaseAdapter<Show, ItemShowBackdropBinding>(itemCallback) {
+    BaseAdapter<Show, ItemSearchBinding>(itemCallback) {
 
-    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<Show, ItemShowBackdropBinding> {
-        return BindingViewHolder(ItemShowBackdropBinding.inflate(inflater, parent, false)) {
+    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<Show, ItemSearchBinding> {
+        return BindingViewHolder(ItemSearchBinding.inflate(inflater, parent, false)) {
             show = it
             clickListener = View.OnClickListener { _ ->
                 onClick(it.id)

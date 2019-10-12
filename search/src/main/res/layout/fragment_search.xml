@@ -44,6 +44,6 @@
         android:layout_marginTop="@dimen/toolbar_height"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_show_backdrop" />
+        tools:listitem="@layout/item_search" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
