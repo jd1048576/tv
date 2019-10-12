@@ -11,7 +11,6 @@ import jdr.tv.remote.Request
 import jdr.tv.remote.Response
 import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteShowList
-import jdr.tv.remote.execute
 import jdr.tv.remote.onFailure
 import jdr.tv.remote.onSuccess
 import jdr.tv.ui.Resource
@@ -41,20 +40,18 @@ class SearchRepository @Inject constructor(private val database: Database, priva
         }.flowOn(IO)
     }
 
-    private suspend fun fetchSearch(query: String): Response<List<RemoteShowList>> {
-        return IntRange(1, 2).map { Request { tmdbApi.search(it, query) } }.execute()
+    private suspend fun fetchSearch(query: String): Response<RemoteShowList> {
+        return Request { tmdbApi.search(1, query) }.execute()
     }
 
-    private suspend fun insert(remoteShowList: List<RemoteShowList>) = withContext(IO) {
+    private suspend fun insert(remoteShow: RemoteShowList) = withContext(IO) {
+        val page = remoteShow.page
         val showList = ArrayList<Show>()
         val searchItemList = ArrayList<SearchItem>()
 
-        remoteShowList.forEach {
-            val page = it.page
-            it.results.forEachIndexed { index, remoteShow ->
-                showList.add(remoteShow.toShow())
-                searchItemList.add(SearchItem(page * PAGE_GAP + index, remoteShow.id, page))
-            }
+        remoteShow.results.forEachIndexed { index, remoteShow ->
+            showList.add(remoteShow.toShow())
+            searchItemList.add(SearchItem(page * PAGE_GAP + index, remoteShow.id, page))
         }
 
         database.withTransaction {
