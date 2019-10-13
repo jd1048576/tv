@@ -46,6 +46,7 @@ commands:
           root: ~/workspace
           paths:
             - ./*/build
+            - ./artifacts
   setup:
     description: Setup
     steps:
@@ -66,7 +67,7 @@ commands:
           name: Create Apk
           command: ./.circleci/scripts/create_apk
       - store_artifacts:
-          path: artifacts
+          path: ./artifacts
           destination: apk
 
 jobs:
@@ -99,10 +100,10 @@ jobs:
           name: Check App and Dependencies
           command: ./gradlew detektAll spotlessCheck dependencyUpdates
       - store_artifacts:
-          path: build/reports/detekt
+          path: ./build/reports/detekt
           destination: detekt
       - store_artifacts:
-          path: build/dependencyUpdates
+          path: ./build/dependencyUpdates
           destination: dependencyUpdates
   deploy_to_github:
     executor: go_executor
@@ -125,10 +126,12 @@ workflows:
       - check:
           requires:
             - build
+          filters:
+            branches:
+              ignore: master
       - deploy_to_github:
           requires:
             - build
-            - check
           filters:
             branches:
               only: master
