@@ -10,9 +10,11 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import javax.inject.Inject
@@ -22,10 +24,12 @@ import jdr.tv.details.databinding.FragmentDetailsBinding
 import jdr.tv.details.di.inject
 import jdr.tv.ui.collectResource
 import jdr.tv.ui.extensions.dpToPixels
+import jdr.tv.ui.extensions.resolveAttribute
 import jdr.tv.ui.extensions.setupToolbar
 import jdr.tv.ui.onFailure
 import jdr.tv.ui.onLoading
 import jdr.tv.ui.onSuccess
+import kotlin.math.max
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -34,6 +38,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     companion object {
         const val SLIDE_TRANSLATION = 144
         const val SLIDE_DURATION = 240L
+        const val GRADIENT = 4
+        const val OFFSET = 0.75F
     }
 
     private lateinit var binding: FragmentDetailsBinding
@@ -80,9 +86,14 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun setupAppBarLayout() {
+        val toolbar = view!!.findViewById<MaterialToolbar>(R.id.toolbar)
+        val colorControlNormal = context!!.getColor(context!!.resolveAttribute(jdr.tv.app.R.attr.colorControlNormal).resourceId)
         binding.listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val progress = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            val color = ColorUtils.blendARGB(-1, colorControlNormal, max(0F, GRADIENT * (progress - OFFSET)))
             binding.progress = progress
+            toolbar.navigationIcon?.setTint(color)
+            toolbar.overflowIcon?.setTint(color)
         }
     }
 
