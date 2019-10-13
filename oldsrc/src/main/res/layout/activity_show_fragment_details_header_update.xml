@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/detailsFragmentHeaderBackdropImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/backdrop"
+            app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderAddImageView"
+            app:layout_constraintDimensionRatio="w,16:9"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toTopOf="0"
+            app:layout_constraintVertical_chainStyle="2" />
+
+        <ImageView
+            android:id="@+id/detailsFragmentHeaderAddImageView"
+            android:padding="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:tint="@color/colorIconInactive"
+            android:contentDescription="@string/add"
+            android:tintMode="src_in"
+            app:layout_constraintBottom_toTopOf="@+id/barrier"
+            app:layout_constraintEnd_toStartOf="@+id/detailsFragmentHeaderExpandImageView"
+            app:layout_constraintHorizontal_chainStyle="1"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderBackdropImageView" />
+
+        <ImageView
+            android:id="@+id/detailsFragmentHeaderExpandImageView"
+            android:padding="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_chevron"
+            android:tint="@color/colorIconInactive"
+            android:contentDescription="@string/chevron"
+            android:tintMode="src_in"
+            app:layout_constraintBottom_toTopOf="@+id/barrier"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/detailsFragmentHeaderAddImageView"
+            app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderBackdropImageView" />
+
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="2"
+            app:constraint_referenced_ids="detailsFragmentHeaderConstraintLayout" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/detailsFragmentHeaderConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toBottomOf="@+id/barrier">
+
+            <View
+                android:id="@+id/dividerOverview"
+                android:background="?android:attr/colorForeground"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:alpha="0.12"
+                app:layout_constraintBottom_toTopOf="@+id/overview"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toTopOf="0"
+                app:layout_constraintVertical_chainStyle="2" />
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/overview"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderOverviewTextView"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/dividerOverview" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:id="@+id/detailsFragmentHeaderOverviewTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/dividerDetails"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/overview" />
+
+            <View
+                android:id="@+id/dividerDetails"
+                android:background="?android:attr/colorForeground"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:alpha="0.12"
+                app:layout_constraintBottom_toTopOf="@+id/details"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderOverviewTextView" />
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/details"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/rating"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/dividerDetails" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/rating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/rating"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderCircularProgress"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/details" />
+
+            <jdr.tvtracker.utils.CircularProgress
+                android:id="@+id/detailsFragmentHeaderCircularProgress"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/status"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/rating" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:id="@+id/detailsFragmentHeaderVoteCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:drawableEnd="@drawable/ic_people"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawableTint="@color/colorIconInactive"
+                app:layout_constraintBottom_toBottomOf="@+id/detailsFragmentHeaderCircularProgress"
+                app:layout_constraintStart_toEndOf="@+id/detailsFragmentHeaderCircularProgress"
+                app:layout_constraintTop_toTopOf="@+id/detailsFragmentHeaderCircularProgress" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/status"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderStatusTextView"
+                app:layout_constraintEnd_toStartOf="@+id/date"
+                app:layout_constraintHorizontal_chainStyle="1"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderCircularProgress" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:id="@+id/detailsFragmentHeaderStatusTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/runtime"
+                app:layout_constraintEnd_toEndOf="@+id/status"
+                app:layout_constraintStart_toStartOf="@+id/status"
+                app:layout_constraintTop_toBottomOf="@+id/status" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date_active"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toEndOf="@+id/status"
+                app:layout_constraintTop_toTopOf="@+id/status" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:id="@+id/detailsFragmentHeaderDateTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/date"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toTopOf="@+id/detailsFragmentHeaderStatusTextView" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/runtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/runtime"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderRuntimeTextView"
+                app:layout_constraintEnd_toStartOf="@+id/network"
+                app:layout_constraintHorizontal_chainStyle="1"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderStatusTextView" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:id="@+id/detailsFragmentHeaderRuntimeTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/genres"
+                app:layout_constraintEnd_toEndOf="@+id/runtime"
+                app:layout_constraintStart_toStartOf="@+id/runtime"
+                app:layout_constraintTop_toBottomOf="@+id/runtime" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/network"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/network"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toEndOf="@+id/runtime"
+                app:layout_constraintTop_toTopOf="@+id/runtime" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:id="@+id/detailsFragmentHeaderNetworkTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/network"
+                app:layout_constraintStart_toStartOf="@+id/network"
+                app:layout_constraintTop_toTopOf="@+id/detailsFragmentHeaderRuntimeTextView" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/genres"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderGenreChipGroup"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderRuntimeTextView" />
+
+            <android.support.design.chip.ChipGroup
+                android:id="@+id/detailsFragmentHeaderGenreChipGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:chipSpacing="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/dividerCast"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/genres" />
+
+            <View
+                android:id="@+id/dividerCast"
+                android:background="?android:attr/colorForeground"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:alpha="0.12"
+                app:layout_constraintBottom_toTopOf="@+id/cast"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderGenreChipGroup" />
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:id="@+id/cast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/cast"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderRecyclerView"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/dividerCast" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/detailsFragmentHeaderRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/dividerLinks"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/cast" />
+
+            <View
+                android:id="@+id/dividerLinks"
+                android:background="?android:attr/colorForeground"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:alpha="0.12"
+                app:layout_constraintBottom_toTopOf="@+id/linksLinearLayout"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderRecyclerView" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/linksLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="0"
+                app:layout_constraintEnd_toEndOf="0"
+                app:layout_constraintStart_toStartOf="0"
+                app:layout_constraintTop_toBottomOf="@+id/dividerLinks">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:id="@+id/detailsFragmentHeaderTMDbTextView"
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tmdb"
+                    android:drawablePadding="8dp"
+                    android:drawableStart="@drawable/ic_tmdb"
+                    android:drawableTint="@color/colorIconInactive" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:id="@+id/detailsFragmentHeaderWebsiteTextView"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/website"
+                    android:drawablePadding="8dp"
+                    android:drawableStart="@drawable/ic_website"
+                    android:drawableTint="@color/colorIconInactive" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:id="@+id/detailsFragmentHeaderFacebookTextView"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/facebook"
+                    android:drawablePadding="8dp"
+                    android:drawableStart="@drawable/ic_facebook"
+                    android:drawableTint="@color/colorIconInactive" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:id="@+id/detailsFragmentHeaderTwitterTextView"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/twitter"
+                    android:drawablePadding="8dp"
+                    android:drawableStart="@drawable/ic_twitter"
+                    android:drawableTint="@color/colorIconInactive" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:id="@+id/detailsFragmentHeaderInstagramTextView"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/instagram"
+                    android:drawablePadding="8dp"
+                    android:drawableStart="@drawable/ic_instagram"
+                    android:drawableTint="@color/colorIconInactive" />
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.card.MaterialCardView>

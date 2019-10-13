@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_star"
+        android:id="@+id/topRated"
+        android:orderInCategory="1"
+        android:title="@string/top_rated"
+        app:showAsAction="always" />
+    <item
+        android:icon="@drawable/ic_trending"
+        android:id="@+id/trending"
+        android:orderInCategory="2"
+        android:title="@string/trending"
+        app:showAsAction="always" />
+    <item
+        android:icon="@drawable/ic_search"
+        android:id="@+id/search"
+        android:orderInCategory="3"
+        android:title="@string/search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="never|always|collapseActionView" />
+    <item
+        android:id="@+id/upcoming"
+        android:orderInCategory="4"
+        android:title="@string/upcoming"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="5"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+</menu>

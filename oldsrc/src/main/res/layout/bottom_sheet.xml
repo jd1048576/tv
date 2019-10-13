@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:background="?unknown_attr_ref: 10104e2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toTopOf="0"
+        app:layout_constraintVertical_chainStyle="2">
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/bottomSheetShowNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomSheetStillImageView"
+            app:layout_constraintEnd_toStartOf="@+id/barrier"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toTopOf="0"
+            app:layout_constraintVertical_chainStyle="2"
+            style="@style/TitleTextDefault" />
+
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="0"
+            app:constraint_referenced_ids="bottomSheetShowImageView,bottomSheetLaunchImageView,bottomSheetPopupMenuImageView"
+            app:layout_constraintStart_toEndOf="@+id/bottomSheetShowNameTextView" />
+
+        <ImageView
+            android:id="@+id/bottomSheetShowImageView"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_tv"
+            android:tint="@android:color/white"
+            android:contentDescription="@string/show"
+            android:tintMode="src_in"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomSheetShowNameTextView"
+            app:layout_constraintEnd_toStartOf="@+id/bottomSheetLaunchImageView"
+            app:layout_constraintTop_toTopOf="@+id/bottomSheetShowNameTextView" />
+
+        <ImageView
+            android:id="@+id/bottomSheetLaunchImageView"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_launch"
+            android:tint="@android:color/white"
+            android:contentDescription="@string/launch"
+            android:tintMode="src_in"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomSheetShowNameTextView"
+            app:layout_constraintEnd_toStartOf="@+id/bottomSheetPopupMenuImageView"
+            app:layout_constraintTop_toTopOf="@+id/bottomSheetShowNameTextView" />
+
+        <ImageView
+            android:id="@+id/bottomSheetPopupMenuImageView"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_menu"
+            android:tint="@android:color/white"
+            android:contentDescription="@string/menu"
+            android:tintMode="src_in"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomSheetShowNameTextView"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintTop_toTopOf="@+id/bottomSheetShowNameTextView" />
+
+        <ImageView
+            android:id="@+id/bottomSheetStillImageView"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/episode_still"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintDimensionRatio="w,16:9"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toBottomOf="@+id/bottomSheetShowNameTextView" />
+
+        <TextView
+            android:id="@+id/bottomSheetEpisodeNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/bottomSheetStillImageView"
+            app:layout_constraintTop_toTopOf="@+id/bottomSheetStillImageView"
+            style="@style/SubheadingTextDefault" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:background="?android:attr/colorBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="0"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/details"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/SubheadingTextDefault" />
+
+            <TextView
+                android:id="@+id/bottomSheetEpisodeDetailsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/BodyTextDefault" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/overview"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/SubheadingTextDefault" />
+
+            <TextView
+                android:id="@+id/bottomSheetOverviewTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/BodyTextDefault" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bottomSheetFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_check"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintTop_toTopOf="@+id/nestedScrollView" />
+</android.support.constraint.ConstraintLayout>

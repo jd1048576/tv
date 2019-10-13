@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/detailsFragmentHeaderListViewProfileImageView"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/profile"
+        app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderListViewNameTextView"
+        app:layout_constraintDimensionRatio="27:40"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toTopOf="0"
+        app:layout_constraintVertical_chainStyle="2" />
+
+    <TextView
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/detailsFragmentHeaderListViewNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/detailsFragmentHeaderListViewCharacterTextView"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderListViewProfileImageView" />
+
+    <TextView
+        android:textSize="14sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/detailsFragmentHeaderListViewCharacterTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="0"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/detailsFragmentHeaderListViewNameTextView" />
+</android.support.constraint.ConstraintLayout>

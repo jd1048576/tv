@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/dialogLaunchSettingsLaunchImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_launch"
+        android:tint="@color/colorPrimary"
+        android:contentDescription="@string/launch"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dialogLaunchSettingsEditText"
+        app:layout_constraintEnd_toStartOf="@+id/dialogLaunchSettingsEditText"
+        app:layout_constraintHorizontal_chainStyle="2"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toTopOf="@+id/dialogLaunchSettingsEditText" />
+
+    <EditText
+        android:textSize="16sp"
+        android:id="@+id/dialogLaunchSettingsEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/launch_id"
+        android:inputType="text"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toEndOf="@+id/dialogLaunchSettingsLaunchImageView"
+        app:layout_constraintTop_toTopOf="0" />
+
+    <CheckBox
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:id="@+id/dialogLaunchSettingsDefaultCheckBox"
+        android:padding="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/default_string"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/dialogLaunchSettingsEditText" />
+
+    <CheckBox
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:id="@+id/dialogLaunchSettingsNetflixCheckBox"
+        android:padding="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/netflix"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/dialogLaunchSettingsDefaultCheckBox" />
+
+    <CheckBox
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:id="@+id/dialogLaunchSettingsAmazonCheckBox"
+        android:padding="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/amazon"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/dialogLaunchSettingsNetflixCheckBox" />
+
+    <CheckBox
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:id="@+id/dialogLaunchSettingsCustomCheckBox"
+        android:padding="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/custom"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="0"
+        app:layout_constraintStart_toStartOf="0"
+        app:layout_constraintTop_toBottomOf="@+id/dialogLaunchSettingsAmazonCheckBox" />
+</android.support.constraint.ConstraintLayout>

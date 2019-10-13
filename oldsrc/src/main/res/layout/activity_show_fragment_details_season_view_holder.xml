@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detailsFragmentSeasonViewHolderCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/detailsFragmentSeasonViewHolderSeasonNumberTextView"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toTopOf="0"
+            style="@style/SubheadingTextDefault" />
+
+        <ProgressBar
+            android:id="@+id/detailsFragmentSeasonViewHolderEpisodeProgressBar"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:progressDrawable="@drawable/style_horizontal_progress"
+            android:progressTint="@color/colorPrimary"
+            android:progressBackgroundTint="?android:attr/colorControlHighlight"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toStartOf="@+id/detailsFragmentSeasonViewHolderEpisodeCountTextView"
+            app:layout_constraintStart_toEndOf="@+id/detailsFragmentSeasonViewHolderSeasonNumberTextView"
+            app:layout_constraintTop_toTopOf="0"
+            style="?android:attr/progressBarStyleHorizontal" />
+
+        <TextView
+            android:gravity="end"
+            android:id="@+id/detailsFragmentSeasonViewHolderEpisodeCountTextView"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="0"
+            style="@style/SubheadingTextDefault" />
+
+        <View
+            android:id="@+id/divider"
+            android:background="?android:attr/colorForeground"
+            android:layout_width="1dp"
+            android:layout_height="56dp"
+            android:alpha="0.12"
+            android:layout_marginEnd="56dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintTop_toTopOf="0" />
+
+        <ImageView
+            android:id="@+id/detailsFragmentSeasonViewHolderCheckImageView"
+            android:padding="8dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_check"
+            android:tint="@color/icon_state_list"
+            android:contentDescription="@string/check"
+            android:tintMode="src_in"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="0" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/detailsFragmentSeasonViewHolderDaysTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="0"
+            style="@style/BodyTextDefault" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.card.MaterialCardView>

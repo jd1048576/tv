@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchFragmentShowViewHolderCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/searchFragmentShowViewHolderBackdropImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/backdrop"
+            app:layout_constraintBottom_toTopOf="@+id/searchFragmentShowViewHolderNameTextView"
+            app:layout_constraintDimensionRatio="w,16:9"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toTopOf="0"
+            app:layout_constraintVertical_chainStyle="2" />
+
+        <jdr.tvtracker.utils.CircularProgress
+            android:id="@+id/searchFragmentShowViewHolderCircularProgress"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toBottomOf="@+id/searchFragmentShowViewHolderBackdropImageView" />
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/searchFragmentShowViewHolderNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/searchFragmentShowViewHolderFirstAirDateTextView"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/searchFragmentShowViewHolderCircularProgress"
+            app:layout_constraintTop_toBottomOf="@+id/searchFragmentShowViewHolderBackdropImageView"
+            style="@style/TitleTextDefault" />
+
+        <TextView
+            android:id="@+id/searchFragmentShowViewHolderFirstAirDateTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/searchFragmentShowViewHolderCircularProgress"
+            app:layout_constraintTop_toBottomOf="@+id/searchFragmentShowViewHolderNameTextView"
+            style="@style/SubheadingTextDefault" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.card.MaterialCardView>

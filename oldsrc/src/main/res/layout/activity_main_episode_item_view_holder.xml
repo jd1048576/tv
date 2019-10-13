@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/EpisodeItemViewHolderCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/EpisodeItemViewHolderPosterImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/poster"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintDimensionRatio="w,27:40"
+            app:layout_constraintStart_toStartOf="0"
+            app:layout_constraintTop_toTopOf="0" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/EpisodeItemViewHolderDaysTextView"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/EpisodeItemViewHolderPosterImageView"
+            app:layout_constraintEnd_toEndOf="@+id/EpisodeItemViewHolderPosterImageView"
+            app:layout_constraintStart_toStartOf="@+id/EpisodeItemViewHolderPosterImageView"
+            app:layout_constraintTop_toTopOf="@+id/EpisodeItemViewHolderPosterImageView"
+            style="@style/TitleTextWhite" />
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/EpisodeItemViewHolderShowNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/EpisodeItemViewHolderEpisodeDetailsTextView"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/EpisodeItemViewHolderPosterImageView"
+            app:layout_constraintTop_toTopOf="0"
+            app:layout_constraintVertical_chainStyle="2"
+            style="@style/TitleTextDefault" />
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/EpisodeItemViewHolderEpisodeDetailsTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/EpisodeItemViewHolderEpisodeNameTextView"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/EpisodeItemViewHolderPosterImageView"
+            app:layout_constraintTop_toBottomOf="@+id/EpisodeItemViewHolderShowNameTextView"
+            style="@style/SubheadingTextDefault" />
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/EpisodeItemViewHolderEpisodeNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:maxLines="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="0"
+            app:layout_constraintEnd_toEndOf="0"
+            app:layout_constraintStart_toEndOf="@+id/EpisodeItemViewHolderPosterImageView"
+            app:layout_constraintTop_toBottomOf="@+id/EpisodeItemViewHolderEpisodeDetailsTextView"
+            style="@style/BodyTextDefault" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.card.MaterialCardView>

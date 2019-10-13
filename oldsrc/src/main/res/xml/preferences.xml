@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.preference.PreferenceCategory android:title="Show Update">
+        <android.support.v7.preference.ListPreference
+            android:entries="@array/update_interval_array"
+            android:title="Show Update Frequency"
+            android:key="update_interval"
+            android:summary="Frequency to Check for Updates"
+            android:defaultValue="24"
+            android:entryValues="@array/update_interval_values" />
+        <android.support.v7.preference.CheckBoxPreference
+            android:title="Mobile Data"
+            android:key="mobile_data"
+            android:summary="Use Mobile Data to Check for Updates "
+            android:defaultValue="false" />
+        <PreferenceScreen
+            android:title="Update Shows"
+            android:key="update_shows"
+            android:summary="Force Update Shows" />
+        <android.support.v7.preference.Preference
+            android:title="Update Log"
+            android:summary="View Update Log">
+            <intent
+                android:targetPackage="jdr.tvtracker"
+                android:targetClass="jdr.tvtracker.activities.settings.SettingsLogActivity" />
+        </android.support.v7.preference.Preference>
+    </android.support.v7.preference.PreferenceCategory>
+    <android.support.v7.preference.PreferenceCategory android:title="Launch Shows">
+        <android.support.v7.preference.CheckBoxPreference
+            android:title="Launch"
+            android:key="launch"
+            android:summary="Launch Shows to other Apps"
+            android:defaultValue="false" />
+        <jdr.tvtracker.activities.settings.SettingsBrowserPreference
+            android:title="Launch Browser"
+            android:key="browser"
+            android:summary="Browser to Launch Shows"
+            android:dependency="launch" />
+        <android.support.v7.preference.EditTextPreference
+            android:singleLine="true"
+            android:title="Base URL"
+            android:key="base_url"
+            android:summary="Base URL to Launch Shows"
+            android:dependency="launch" />
+        <android.support.v7.preference.EditTextPreference
+            android:singleLine="true"
+            android:title="Default Pattern"
+            android:key="default_pattern"
+            android:summary="Default Pattern to Append to the Base URL"
+            android:dependency="base_url" />
+    </android.support.v7.preference.PreferenceCategory>
+</android.support.v7.preference.PreferenceScreen>
