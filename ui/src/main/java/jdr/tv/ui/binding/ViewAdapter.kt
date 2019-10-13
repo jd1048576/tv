@@ -3,12 +3,12 @@ package jdr.tv.ui.binding
 import android.view.View
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("goneUnless")
-fun goneUnless(view: View, visible: Boolean) {
-    view.visibility = if (visible) View.VISIBLE else View.GONE
+@BindingAdapter("goneIf")
+fun goneIf(view: View, gone: Boolean) {
+    view.visibility = if (gone) View.GONE else View.VISIBLE
 }
 
-@BindingAdapter("visibleUnless")
-fun visibleUnless(view: View, visible: Boolean) {
+@BindingAdapter("visibleIf")
+fun visibleIf(view: View, visible: Boolean) {
     view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
