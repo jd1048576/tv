@@ -11,7 +11,7 @@ executors:
     working_directory: ~/workspace
   go_executor:
     docker:
-      - image: circleci/golang:1.12.9
+      - image: circleci/golang:1.13.1
     working_directory: ~/workspace
 
 commands:
@@ -68,10 +68,6 @@ commands:
       - store_artifacts:
           path: artifacts
           destination: apk
-      - persist_to_workspace:
-          root: ~/workspace/artifacts
-          paths:
-            - .
 
 jobs:
   build:
@@ -113,7 +109,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/workspace/artifacts
+          at: ~/workspace
       - run:
           name: Deploy to Github
           command: ./.circleci/scripts/deploy_to_github
