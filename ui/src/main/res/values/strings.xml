@@ -3,4 +3,6 @@
     <string name="backdrop">Backdrop</string>
     <string name="poster">Poster</string>
 
+    <string name="no_results">No results found</string>
+
 </resources>

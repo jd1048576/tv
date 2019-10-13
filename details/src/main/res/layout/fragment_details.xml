@@ -123,7 +123,7 @@
                 android:id="@+id/fragment_details_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:visibleUnless="@{!loading}" />
+                app:visibleIf="@{!loading}" />
 
             <ProgressBar
                 android:id="@+id/fragment_details_progress_bar"
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="48dp"
-                app:goneUnless="@{loading}" />
+                app:goneIf="@{!loading}" />
         </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -146,7 +146,7 @@
             app:maxImageSize="32dp"
             app:srcCompat="@drawable/ic_plus"
             app:tint="#FFFFFF"
-            app:visibleUnless="@{!loading}" />
+            app:visibleIf="@{!loading}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
