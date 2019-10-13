@@ -33,8 +33,13 @@ class SearchRepository @Inject constructor(private val database: Database, priva
             emit(Resource.loading(database.searchItemDao().selectSearchShowList()))
             fetchSearch(query)
                 .onSuccess {
-                    insert(it)
-                    emitAll(database.searchItemDao().selectSearchShowListFlow().asSuccess())
+                    if (it.results.isEmpty()) {
+                        deleteAll()
+                        emit(Resource.success(emptyList()))
+                    } else {
+                        insert(it)
+                        emitAll(database.searchItemDao().selectSearchShowListFlow().asSuccess())
+                    }
                 }
                 .onFailure { emit(Resource.failure(it)) }
         }.flowOn(IO)

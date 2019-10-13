@@ -2,7 +2,9 @@ package jdr.tv.search.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -13,6 +15,7 @@ import javax.inject.Inject
 import jdr.tv.base.Log
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.search.R
+import jdr.tv.search.databinding.FragmentSearchBinding
 import jdr.tv.search.di.inject
 import jdr.tv.ui.collectResource
 import jdr.tv.ui.extensions.dpToPixels
@@ -30,6 +33,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         private const val SPACING = 8
     }
 
+    private lateinit var binding: FragmentSearchBinding
+
     private lateinit var adapter: SearchAdapter
 
     private lateinit var searchView: SearchView
@@ -41,6 +46,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         inject()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,9 +111,20 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun observe() {
         lifecycleScope.launch {
             viewModel.search.collectResource {
-                onLoading { Log.i("LOADING") }
-                onSuccess { adapter.submitList(it) }
-                onFailure { Log.i("FAILURE $it") }
+                onLoading {
+                    binding.loading = true
+                    binding.empty = false
+                }
+                onSuccess {
+                    adapter.submitList(it)
+                    binding.loading = false
+                    binding.empty = it.isEmpty() && !searchView.query.isNullOrBlank()
+                }
+                onFailure {
+                    binding.loading = false
+                    binding.empty = false
+                    Log.i("FAILURE $it")
+                }
             }
         }
     }
