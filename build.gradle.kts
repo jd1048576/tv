@@ -4,6 +4,7 @@ buildscript {
         jcenter()
         maven("https://maven.fabric.io/public")
         maven("https://plugins.gradle.org/m2/")
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
 
     dependencies {
@@ -16,7 +17,7 @@ buildscript {
 
 plugins {
     id("com.diffplug.gradle.spotless") version ("3.25.0")
-    id("com.github.ben-manes.versions") version ("0.26.0")
+    id("com.github.ben-manes.versions") version ("0.27.0")
     id("io.gitlab.arturbosch.detekt") version ("1.1.1")
 }
 
@@ -24,6 +25,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile> {
