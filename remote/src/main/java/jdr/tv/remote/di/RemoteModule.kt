@@ -31,7 +31,6 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    @JvmStatic
     fun providesInterceptor(@Named("TMDB_API_KEY") tmdbApiKey: String) = Interceptor { chain ->
         chain.request().run {
             val url = url.newBuilder().addQueryParameter("api_key", tmdbApiKey).build()
@@ -42,7 +41,6 @@ object RemoteModule {
     @Singleton
     @Provides
     @Named("API")
-    @JvmStatic
     fun providesApiOkHttpClient(@Named("DEFAULT") client: OkHttpClient, cache: File, interceptor: Interceptor): OkHttpClient {
         return client.newBuilder()
             .addInterceptor(interceptor)
@@ -52,7 +50,6 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    @JvmStatic
     fun providesTmdbApi(@Named("API") client: OkHttpClient): TmdbApi {
         val moshiInstant: Moshi = Moshi.Builder()
             .add(Instant::class.java, InstantAdapter())

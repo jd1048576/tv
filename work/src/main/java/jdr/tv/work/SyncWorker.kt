@@ -38,7 +38,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
 
     companion object {
 
-        private const val SYNC_PERIOD = 12L
+        private const val SYNC_PERIOD = 8L
         private const val MAX_REQUEST_SIZE = 20
 
         fun createPeriodicWorkRequest(): PeriodicWorkRequest {

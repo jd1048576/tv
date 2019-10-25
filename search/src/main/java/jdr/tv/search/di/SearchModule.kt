@@ -12,13 +12,11 @@ import jdr.tv.viewmodel.ViewModelProviderFactory
 object SearchModule {
 
     @Provides
-    @JvmStatic
     fun providesViewModelProviderFactory(repository: SearchRepository): ViewModelProvider.Factory {
         return ViewModelProviderFactory { SearchViewModel(repository) }
     }
 
     @Provides
-    @JvmStatic
     fun providesViewModel(fragment: SearchFragment, factory: ViewModelProvider.Factory): SearchViewModel {
         return ViewModelProvider(fragment, factory).get(SearchViewModel::class.java)
     }

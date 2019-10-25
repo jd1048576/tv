@@ -13,13 +13,11 @@ import jdr.tv.viewmodel.ViewModelProviderFactory
 object ShowsModule {
 
     @Provides
-    @JvmStatic
     fun providesViewModelProviderFactory(repository: ShowsRepository): ViewModelProvider.Factory {
         return ViewModelProviderFactory { ShowsViewModel(repository) }
     }
 
     @Provides
-    @JvmStatic
     fun providesViewModel(fragment: ShowsFragment, factory: ViewModelProvider.Factory): ShowsViewModel {
         return ViewModelProvider(fragment.appCompatActivity, factory).get(ShowsViewModel::class.java)
     }
