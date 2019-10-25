@@ -14,18 +14,17 @@ object DetailsModule {
 
     @Provides
     @JvmStatic
+    // FIXME https://github.com/google/dagger/issues/1648
     fun providesShowId(fragment: DetailsFragment): Long {
         return GlobalActions.ActionDetails.fromBundle(fragment.arguments).showId
     }
 
     @Provides
-    @JvmStatic
     fun providesViewModelProviderFactory(showId: Long, repository: DetailsRepository): ViewModelProvider.Factory {
         return ViewModelProviderFactory { DetailsViewModel(showId, repository) }
     }
 
     @Provides
-    @JvmStatic
     fun providesViewModel(fragment: DetailsFragment, factory: ViewModelProvider.Factory): DetailsViewModel {
         return ViewModelProvider(fragment, factory).get(DetailsViewModel::class.java)
     }

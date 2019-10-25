@@ -14,7 +14,6 @@ object LocalModule {
 
     @Singleton
     @Provides
-    @JvmStatic
     fun providesAppDatabase(context: Context): Database {
         return Room.databaseBuilder(context, Database::class.java, "TV")
             .setQueryExecutor(IO.asExecutor())

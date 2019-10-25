@@ -23,14 +23,12 @@ object DataModule {
     @Singleton
     @Provides
     @Named("TMDB_API_KEY")
-    @JvmStatic
     fun providesTmdbApiKey(): String {
         return BuildConfig.TMDB_API_KEY
     }
 
     @Singleton
     @Provides
-    @JvmStatic
     fun providesCacheDir(context: Context): File {
         return context.cacheDir
     }
@@ -38,7 +36,6 @@ object DataModule {
     @Singleton
     @Provides
     @Named("DEFAULT")
-    @JvmStatic
     fun providesDefaultOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .dispatcher(Dispatcher(Dispatchers.IO.asExecutorService()))
@@ -48,7 +45,6 @@ object DataModule {
     @Singleton
     @Provides
     @Named("IMAGE")
-    @JvmStatic
     fun providesImageOkHttpClient(@Named("DEFAULT") client: OkHttpClient, cache: File): OkHttpClient {
         return client.newBuilder()
             .cache(Cache(File(cache, "image"), CACHE_SIZE))
@@ -57,7 +53,6 @@ object DataModule {
 
     @Singleton
     @Provides
-    @JvmStatic
     fun providesSharedPreferences(context: Context): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
     }

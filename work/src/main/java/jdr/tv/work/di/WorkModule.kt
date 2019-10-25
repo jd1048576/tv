@@ -20,7 +20,6 @@ object WorkModule {
     @Singleton
     @Provides
     @IntoSet
-    @JvmStatic
     fun providesSyncWorkerFactory(database: Database, tmdbApi: TmdbApi): WorkerFactory {
         return WorkerProviderFactory(SyncWorker::class.java.name) { context, params ->
             SyncWorker(context, params, database, tmdbApi)
@@ -29,7 +28,6 @@ object WorkModule {
 
     @Singleton
     @Provides
-    @JvmStatic
     fun providesWorkConfiguration(workerFactorySet: Set<@JvmSuppressWildcards WorkerFactory>): Configuration {
         return Configuration.Builder()
             .setExecutor(Dispatchers.IO.asExecutor())
