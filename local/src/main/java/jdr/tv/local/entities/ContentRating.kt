@@ -1,5 +1,8 @@
 package jdr.tv.local.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class ContentRating(
     val countryCode: String,
     val rating: String

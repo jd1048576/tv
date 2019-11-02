@@ -1,5 +1,8 @@
 package jdr.tv.local.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Video(
     val countryCode: String,
     val key: String,
