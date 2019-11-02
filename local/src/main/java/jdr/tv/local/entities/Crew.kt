@@ -1,5 +1,8 @@
 package jdr.tv.local.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Crew(
     val department: String,
     val id: Long,

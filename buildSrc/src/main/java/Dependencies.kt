@@ -47,7 +47,7 @@ const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:2.10.1
 
 const val MATERIAL = "com.google.android.material:material:1.2.0-alpha01"
 
-private const val MOSHI_VERSION = "1.8.0"
+private const val MOSHI_VERSION = "1.9.1"
 const val MOSHI = "com.squareup.moshi:moshi:$MOSHI_VERSION"
 const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VERSION"
 

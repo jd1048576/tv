@@ -42,4 +42,5 @@ dependencies {
     kapt(DAGGER_COMPILER)
 
     implementation(MOSHI)
+    kapt(MOSHI_CODEGEN)
 }
