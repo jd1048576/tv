@@ -14,7 +14,7 @@ interface AddDao : BaseDao<Add> {
     fun selectAddedShowListFlow(): Flow<List<Show>>
 
     @Query("SELECT showId FROM `Add`")
-    suspend fun selectAddedShowIdList(): List<Long>
+    suspend fun selectAddedShowIdList(): List<@JvmSuppressWildcards Long>
 
     @Transaction
     @Query("SELECT COUNT(*) FROM `Add` WHERE showId = :showId")

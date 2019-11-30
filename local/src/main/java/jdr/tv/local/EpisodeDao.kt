@@ -21,7 +21,7 @@ interface EpisodeDao : BaseDao<Episode> {
             "JOIN Season ON Episode.seasonId = Season.id " +
             "WHERE Season.showId = :showId"
     )
-    suspend fun selectIdList(showId: Long): List<Long>
+    suspend fun selectIdList(showId: Long): List<@JvmSuppressWildcards Long>
 
     @Query("DELETE FROM Episode WHERE id IN (:idList)")
     suspend fun deleteIdList(idList: List<Long>)
