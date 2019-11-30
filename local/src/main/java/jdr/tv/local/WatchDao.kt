@@ -5,8 +5,8 @@ import androidx.room.Query
 import jdr.tv.local.entities.Watch
 
 @Dao
-abstract class WatchDao : BaseDao<Watch>() {
+interface WatchDao : BaseDao<Watch> {
 
     @Query("DELETE FROM Watch WHERE episodeId in (:idList)")
-    abstract suspend fun deleteAll(idList: List<Long>)
+    suspend fun deleteAll(idList: List<Long>)
 }

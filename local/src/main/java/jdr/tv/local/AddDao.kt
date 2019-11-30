@@ -8,18 +8,18 @@ import jdr.tv.local.entities.Show
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-abstract class AddDao : BaseDao<Add>() {
+interface AddDao : BaseDao<Add> {
 
     @Query("SELECT * FROM Show WHERE EXISTS (SELECT 1 FROM `Add` WHERE showId = id)")
-    abstract fun selectAddedShowListFlow(): Flow<List<Show>>
+    fun selectAddedShowListFlow(): Flow<List<Show>>
 
     @Query("SELECT showId FROM `Add`")
-    abstract suspend fun selectAddedShowIdList(): List<Long>
+    suspend fun selectAddedShowIdList(): List<Long>
 
     @Transaction
     @Query("SELECT COUNT(*) FROM `Add` WHERE showId = :showId")
-    abstract fun selectCount(showId: Long): Flow<Int>
+    fun selectCount(showId: Long): Flow<Int>
 
     @Query("DELETE FROM `Add` WHERE showId = :showId")
-    abstract suspend fun delete(showId: Long)
+    suspend fun delete(showId: Long)
 }
