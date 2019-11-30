@@ -1,7 +1,10 @@
 <SmellBaseline>
     <Whitelist>
-        <ID>TooManyFunctions:ListTypeConverter.kt$ListTypeConverter</ID>
-        <ID>ComplexMethod:RemoteGenre.kt$RemoteGenre.Companion$@Suppress("MagicNumber") fun createFromId(id: Int?): RemoteGenre</ID>
+        <ID>TooManyFunctions:ListTypeConverter.kt$ListTypeConverter$ListTypeConverter</ID>
+        <ID>ComplexMethod:RemoteGenre.kt$RemoteGenre.Companion$createFromId</ID>
         <ID>TooGenericExceptionCaught:Request.kt$Request$e: Exception</ID>
+        <ID>MemberNameEqualsClassName:Log.kt$Log$abstract fun log(priority: Int, tag: String, message: String)</ID>
+        <ID>MemberNameEqualsClassName:Log.kt$Log$fun log(priority: Int, t: Throwable?, message: String?)</ID>
+        <ID>MemberNameEqualsClassName:Log.kt$Log.Companion$private fun log(priority: Int, t: Throwable?, message: String?)</ID>
     </Whitelist>
 </SmellBaseline>
