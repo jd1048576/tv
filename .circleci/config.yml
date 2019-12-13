@@ -81,7 +81,7 @@ jobs:
       - setup
       - run:
           name: Build Bundle
-          command: ./gradlew assemble bundle # FIXME assembleAndroidTest
+          command: ./gradlew bundle
       - create_apk
       - tear_down
       - save_workspace

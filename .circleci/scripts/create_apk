@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUNDLE_VERSION="0.10.2"
+BUNDLE_VERSION="0.11.0"
 BUNDLE_TOOL="https://github.com/google/bundletool/releases/download/${BUNDLE_VERSION}/bundletool-all-${BUNDLE_VERSION}.jar"
 ARTIFACTS="artifacts"
 

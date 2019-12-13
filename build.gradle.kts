@@ -26,6 +26,7 @@ allprojects {
         jcenter()
     }
     gradle.projectsEvaluated {
+        tasks.findByName("lintVitalRelease")?.enabled = false // FIXME https://issuetracker.google.com/issues/145770669
         tasks.withType<JavaCompile> {
             sourceCompatibility = "1.8"
             targetCompatibility = "1.8"
