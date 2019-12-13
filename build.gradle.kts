@@ -4,7 +4,6 @@ buildscript {
         jcenter()
         maven("https://maven.fabric.io/public")
         maven("https://plugins.gradle.org/m2/")
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
 
     dependencies {
@@ -18,16 +17,16 @@ buildscript {
 plugins {
     id("com.diffplug.gradle.spotless") version ("3.26.1")
     id("com.github.ben-manes.versions") version ("0.27.0")
-    id("io.gitlab.arturbosch.detekt") version ("1.2.0")
+    id("io.gitlab.arturbosch.detekt") version ("1.2.2")
 }
 
 allprojects {
     repositories {
         google()
         jcenter()
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
     gradle.projectsEvaluated {
+        tasks.findByName("lintVitalRelease")?.enabled = false // FIXME https://issuetracker.google.com/issues/145770669
         tasks.withType<JavaCompile> {
             sourceCompatibility = "1.8"
             targetCompatibility = "1.8"
