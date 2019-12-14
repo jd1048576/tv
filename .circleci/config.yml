@@ -65,7 +65,7 @@ commands:
     steps:
       - run:
           name: Create Apk
-          command: ./.circleci/scripts/create_apk
+          command: ./.circleci/scripts/create_apk.sh
       - store_artifacts:
           path: ./artifacts
           destination: apk
@@ -82,7 +82,7 @@ jobs:
       - run:
           name: Build Bundle
           command: ./gradlew bundle
-      - create_apk
+      - create_apk.sh
       - tear_down
       - save_workspace
   test:

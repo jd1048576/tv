@@ -13,7 +13,7 @@ android {
         targetSdkVersion(TARGET_SDK_VERSION)
         testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
 
-        buildConfigField("String", "TMDB_API_KEY", "\"${gradleProperty("TMDB_API_KEY")}\"")
+        buildConfigField("String", "TMDB_API_KEY", "\"${stringProperty("TMDB_API_KEY")}\"")
     }
 
     compileOptions {

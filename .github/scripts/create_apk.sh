@@ -2,14 +2,14 @@
 
 BUNDLE_VERSION="0.11.0"
 BUNDLE_TOOL="https://github.com/google/bundletool/releases/download/${BUNDLE_VERSION}/bundletool-all-${BUNDLE_VERSION}.jar"
-ARTIFACTS="artifacts"
+OUTPUT="${GITHUB_WORKSPACE}/apk"
 
 function create_apk() {
   variant=${1}
-  store_file=".signing/app-${variant}.jks"
-  store_password=${2}
-  key_alias=${3}
-  key_password=${4}
+  store_file=".signing/app-${2}.jks"
+  store_password=${3}
+  key_alias=${4}
+  key_password=${5}
 
   java -jar bundletool-all-${BUNDLE_VERSION}.jar build-apks \
     --bundle=app/build/outputs/bundle/${variant}/app-${variant}.aab \
@@ -20,15 +20,18 @@ function create_apk() {
     --ks-key-alias=${key_alias} \
     --key-pass=pass:${key_password}
 
-  unzip app/build/outputs/apk/${variant}/app-${variant}.apks -d app/build/outputs/apk/${variant}/
-  mv app/build/outputs/apk/${variant}/universal.apk ${ARTIFACTS}/tv-${variant}.apk
+  unzip -q app/build/outputs/apk/${variant}/app-${variant}.apks -d app/build/outputs/apk/${variant}/
+  mv app/build/outputs/apk/${variant}/universal.apk ${OUTPUT}/tv-${variant}.apk
 }
 
 function main() {
-  mkdir -p ${ARTIFACTS}
-  wget ${BUNDLE_TOOL}
-  create_apk debug android debug android
-  create_apk release ${TV_RELEASE_STORE_PASSWORD} ${TV_RELEASE_KEY_ALIAS} ${TV_RELEASE_KEY_PASSWORD}
+  mkdir -p ${OUTPUT}
+  echo "Downloading Bundle tool ${BUNDLE_VERSION}"
+  wget -q ${BUNDLE_TOOL}
+  echo "Creating Debug Apk"
+  create_apk debug debug android debug android
+  echo "Creating Release Apk"
+  create_apk release debug android debug android
 }
 
 main
