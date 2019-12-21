@@ -17,6 +17,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        resValues = true
+    }
 }
 
 dependencies {
