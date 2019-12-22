@@ -1,0 +1,56 @@
+name: Master Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Set up Java
+        uses: actions/setup-java@master
+        with:
+          java-version: 8
+
+      - name: Restore Gradle Wrapper Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
+
+      - name: Restore Gradle Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/Dependencies.kt') }}
+
+      - name: Set up Secrets
+        env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
+        run: echo ${GOOGLE_SERVICES} > app/google-services.json
+
+      - name: Build Bundle
+        env:
+          JVM_OPTS: "-Xmx3200m"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+          TERM: dumb
+          ORG_GRADLE_PROJECT_TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: ./gradlew bundle
+
+      - name: Remove Secrets
+        if: always()
+        run: rm app/google-services.json
+
+      - name: Create Apk
+        run: ./.github/scripts/create_apk.sh
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./.github/scripts/create_release.sh
