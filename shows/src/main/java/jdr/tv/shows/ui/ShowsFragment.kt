@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import javax.inject.Inject
+import jdr.tv.data.di.DataComponent
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.shows.R
 import jdr.tv.shows.databinding.FragmentShowsBinding
@@ -23,7 +24,7 @@ import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ShowsFragment : Fragment(R.layout.fragment_shows) {
+class ShowsFragment @Inject constructor(private val component: DataComponent) : Fragment(R.layout.fragment_shows) {
 
     companion object {
         private const val SPACING = 16
@@ -39,7 +40,7 @@ class ShowsFragment : Fragment(R.layout.fragment_shows) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        inject()
+        inject(component)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

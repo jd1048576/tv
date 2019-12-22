@@ -35,6 +35,7 @@ dependencies {
     implementation(KOTLIN_STDLIB)
 
     implementation(ANDROIDX_APPCOMPAT)
+    implementation(ANDROIDX_FRAGMENT)
     implementation(ANDROIDX_PREFERENCE)
     implementation(ANDROIDX_ROOM)
     implementation(ANDROIDX_WORK)

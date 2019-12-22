@@ -2,12 +2,11 @@ package jdr.tv.data.di
 
 import android.app.Application
 import android.content.Context
-import androidx.fragment.app.Fragment
 import androidx.work.Configuration
 import javax.inject.Inject
 import jdr.tv.data.initialization.AppInitializer
 
-abstract class DataComponentApplication : Application(), Configuration.Provider {
+open class DataComponentApplication : Application(), Configuration.Provider {
 
     private lateinit var dataComponent: DataComponent
 
@@ -17,11 +16,9 @@ abstract class DataComponentApplication : Application(), Configuration.Provider 
     @Inject
     lateinit var workConfiguration: Configuration
 
-    protected abstract fun createDataComponent(): DataComponent
-
     override fun onCreate() {
         super.onCreate()
-        dataComponent = createDataComponent()
+        dataComponent = DaggerDataComponent.factory().create(this)
         dataComponent.inject(this)
         initializer.initialize()
     }
@@ -36,4 +33,3 @@ abstract class DataComponentApplication : Application(), Configuration.Provider 
 }
 
 fun Context.dataComponent(): DataComponent = DataComponentApplication.dataComponent(this)
-fun Fragment.dataComponent(): DataComponent = context!!.dataComponent()
