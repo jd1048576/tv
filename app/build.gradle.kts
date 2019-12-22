@@ -28,9 +28,9 @@ android {
         }
         if (releaseSigning) create("release") {
             storeFile = rootProject.file(".signing/app-release.jks")
-            storePassword = gradleProperty("TV_RELEASE_STORE_PASSWORD")
-            keyAlias = gradleProperty("TV_RELEASE_KEY_ALIAS")
-            keyPassword = gradleProperty("TV_RELEASE_KEY_PASSWORD")
+            storePassword = stringProperty("TV_RELEASE_STORE_PASSWORD")
+            keyAlias = stringProperty("TV_RELEASE_KEY_ALIAS")
+            keyPassword = stringProperty("TV_RELEASE_KEY_PASSWORD")
         }
     }
 
@@ -53,7 +53,9 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         dataBinding = true
+        resValues = true
     }
 
     packagingOptions {

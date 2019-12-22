@@ -13,8 +13,6 @@ import jdr.tv.viewmodel.ViewModelProviderFactory
 object DetailsModule {
 
     @Provides
-    @JvmStatic
-    // FIXME https://github.com/google/dagger/issues/1648
     fun providesShowId(fragment: DetailsFragment): Long {
         return GlobalActions.ActionDetails.fromBundle(fragment.arguments).showId
     }
