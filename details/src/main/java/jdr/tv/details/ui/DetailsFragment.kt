@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import javax.inject.Inject
 import jdr.tv.base.Log
+import jdr.tv.data.di.DataComponent
 import jdr.tv.details.R
 import jdr.tv.details.databinding.FragmentDetailsBinding
 import jdr.tv.details.di.inject
@@ -33,7 +34,7 @@ import kotlin.math.max
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class DetailsFragment : Fragment(R.layout.fragment_details) {
+class DetailsFragment @Inject constructor(private val component: DataComponent) : Fragment(R.layout.fragment_details) {
 
     companion object {
         const val SLIDE_TRANSLATION = 144
@@ -49,7 +50,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        inject()
+        inject(component)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

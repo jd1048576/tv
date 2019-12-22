@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import javax.inject.Inject
 import jdr.tv.base.Log
+import jdr.tv.data.di.DataComponent
 import jdr.tv.navigation.GlobalActions
 import jdr.tv.search.R
 import jdr.tv.search.databinding.FragmentSearchBinding
@@ -27,7 +28,7 @@ import jdr.tv.ui.onLoading
 import jdr.tv.ui.onSuccess
 import kotlinx.coroutines.launch
 
-class SearchFragment : Fragment(R.layout.fragment_search) {
+class SearchFragment @Inject constructor(private val component: DataComponent) : Fragment(R.layout.fragment_search) {
 
     companion object {
         private const val SPACING = 8
@@ -45,7 +46,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        inject()
+        inject(component)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

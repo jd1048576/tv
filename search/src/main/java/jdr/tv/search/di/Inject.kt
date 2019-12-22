@@ -1,10 +1,10 @@
 package jdr.tv.search.di
 
-import jdr.tv.data.di.dataComponent
+import jdr.tv.data.di.DataComponent
 import jdr.tv.search.ui.SearchFragment
 
-fun SearchFragment.inject() {
+fun SearchFragment.inject(component: DataComponent) {
     DaggerSearchComponent.factory()
-        .create(this, dataComponent())
+        .create(this, component)
         .inject(this)
 }

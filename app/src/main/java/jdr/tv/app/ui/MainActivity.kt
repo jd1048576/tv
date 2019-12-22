@@ -8,6 +8,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import jdr.tv.app.R
+import jdr.tv.data.di.DataComponentFragmentFactory
+import jdr.tv.data.di.dataComponent
 import jdr.tv.navigation.GlobalActions
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller = Navigation.findNavController(this, R.id.activity_main_host_fragment)
+        supportFragmentManager.fragmentFactory = DataComponentFragmentFactory(dataComponent())
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation)
         NavigationUI.setupWithNavController(bottomNavigationView, controller)
     }
