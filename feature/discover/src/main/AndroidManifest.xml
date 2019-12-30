@@ -1,5 +1,5 @@
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="jdr.tv.discover">
+    package="jdr.tv.feature.discover">
 
     <dist:module
         dist:instant="false"

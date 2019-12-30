@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="jdr.tv.search.ui.SearchTextCreator" />
+        <import type="jdr.tv.feature.search.ui.SearchTextCreator" />
 
         <variable
             name="show"

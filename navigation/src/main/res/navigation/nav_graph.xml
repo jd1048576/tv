@@ -6,27 +6,27 @@
 
     <fragment
         android:id="@+id/fragment_discover"
-        android:name="jdr.tv.discover.ui.DiscoverFragment"
+        android:name="jdr.tv.feature.discover.ui.DiscoverFragment"
         android:label="@string/discover" />
 
     <fragment
         android:id="@+id/fragment_schedule"
-        android:name="jdr.tv.schedule.ui.ScheduleFragment"
+        android:name="jdr.tv.feature.schedule.ui.ScheduleFragment"
         android:label="@string/schedule" />
 
     <fragment
         android:id="@+id/fragment_shows"
-        android:name="jdr.tv.shows.ui.ShowsFragment"
+        android:name="jdr.tv.feature.shows.ui.ShowsFragment"
         android:label="@string/shows" />
 
     <fragment
         android:id="@+id/fragment_watch_list"
-        android:name="jdr.tv.watchlist.ui.WatchListFragment"
+        android:name="jdr.tv.feature.watchlist.ui.WatchListFragment"
         android:label="@string/watch_list" />
 
     <fragment
         android:id="@+id/fragment_details"
-        android:name="jdr.tv.details.ui.DetailsFragment"
+        android:name="jdr.tv.feature.details.ui.DetailsFragment"
         android:label="@string/details" />
 
     <action
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="jdr.tv.search.ui.SearchFragment"
+        android:name="jdr.tv.feature.search.ui.SearchFragment"
         android:label="@string/search" />
 
     <action
@@ -60,7 +60,7 @@
 
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="jdr.tv.settings.ui.SettingsFragment"
+        android:name="jdr.tv.feature.settings.ui.SettingsFragment"
         android:label="@string/settings" />
 
 </navigation>

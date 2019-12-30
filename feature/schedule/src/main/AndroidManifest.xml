@@ -1,5 +1,5 @@
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="jdr.tv.schedule">
+    package="jdr.tv.feature.schedule">
 
     <dist:module
         dist:instant="false"
