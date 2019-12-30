@@ -29,7 +29,7 @@ dependencies {
     implementation(project(":app"))
     implementation(project(":base"))
     implementation(project(":navigation"))
-    implementation(project(":ui"))
+    implementation(project(":common:ui"))
 
     implementation(KOTLIN_STDLIB)
 

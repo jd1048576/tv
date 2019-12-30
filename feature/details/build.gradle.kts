@@ -32,10 +32,10 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":mapper"))
     implementation(project(":navigation"))
-    implementation(project(":ui"))
+    implementation(project(":common:ui"))
     implementation(project(":local"))
     implementation(project(":remote"))
-    implementation(project(":viewmodel"))
+    implementation(project(":common:viewmodel"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)

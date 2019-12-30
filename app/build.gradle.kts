@@ -83,8 +83,8 @@ dependencies {
     implementation(project(":mapper"))
     implementation(project(":navigation"))
     implementation(project(":remote"))
-    implementation(project(":ui"))
-    implementation(project(":viewmodel"))
+    implementation(project(":common:ui"))
+    implementation(project(":common:viewmodel"))
     implementation(project(":work"))
 
     implementation(KOTLIN_STDLIB)
