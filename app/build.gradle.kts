@@ -65,7 +65,15 @@ android {
         exclude("/META-INF/*.version")
     }
 
-    dynamicFeatures = mutableSetOf(":details", ":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
+    dynamicFeatures = mutableSetOf(
+        ":feature:details",
+        ":feature:discover",
+        ":feature:schedule",
+        ":feature:search",
+        ":feature:settings",
+        ":feature:shows",
+        ":feature:watchlist"
+    )
 }
 
 dependencies {
