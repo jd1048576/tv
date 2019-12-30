@@ -3,11 +3,11 @@ package jdr.tv.feature.details.di
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
+import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.common.viewmodel.ViewModelProviderFactory
 import jdr.tv.feature.details.ui.DetailsFragment
 import jdr.tv.feature.details.ui.DetailsRepository
 import jdr.tv.feature.details.ui.DetailsViewModel
-import jdr.tv.navigation.GlobalActions
 
 @Module
 object DetailsModule {

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import javax.inject.Inject
 import jdr.tv.common.log.Log
+import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.common.ui.collectResource
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.linearLayoutManager
@@ -25,7 +26,6 @@ import jdr.tv.data.di.DataComponent
 import jdr.tv.feature.search.R
 import jdr.tv.feature.search.databinding.FragmentSearchBinding
 import jdr.tv.feature.search.di.inject
-import jdr.tv.navigation.GlobalActions
 import kotlinx.coroutines.launch
 
 class SearchFragment @Inject constructor(private val component: DataComponent) : Fragment(R.layout.fragment_search) {

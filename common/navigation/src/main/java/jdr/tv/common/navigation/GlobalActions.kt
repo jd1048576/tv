@@ -1,4 +1,4 @@
-package jdr.tv.navigation
+package jdr.tv.common.navigation
 
 import android.os.Bundle
 import androidx.navigation.ActionOnlyNavDirections

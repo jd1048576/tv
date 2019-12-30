@@ -30,11 +30,12 @@ dependencies {
     implementation(project(":app"))
     implementation(project(":common:extensions"))
     implementation(project(":common:log"))
+    implementation(project(":common:navigation"))
     implementation(project(":common:ui"))
     implementation(project(":common:viewmodel"))
     implementation(project(":data"))
     implementation(project(":mapper"))
-    implementation(project(":navigation"))
+
     implementation(project(":local"))
     implementation(project(":remote"))
 

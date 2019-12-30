@@ -8,9 +8,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import jdr.tv.app.R
+import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.data.di.DataComponentFragmentFactory
 import jdr.tv.data.di.dataComponent
-import jdr.tv.navigation.GlobalActions
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

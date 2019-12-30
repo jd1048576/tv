@@ -16,11 +16,11 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.navigation.R.string.schedule)
+        setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.common.navigation.R.string.schedule)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(jdr.tv.navigation.R.menu.menu_main, menu)
+        inflater.inflate(jdr.tv.common.navigation.R.menu.menu_main, menu)
     }
 }

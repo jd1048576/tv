@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import javax.inject.Inject
+import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.common.ui.extensions.displayMetrics
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.setupToolbar
@@ -19,7 +20,6 @@ import jdr.tv.data.di.DataComponent
 import jdr.tv.feature.shows.R
 import jdr.tv.feature.shows.databinding.FragmentShowsBinding
 import jdr.tv.feature.shows.di.inject
-import jdr.tv.navigation.GlobalActions
 import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,14 +51,14 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
-        setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.navigation.R.string.shows)
+        setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.common.navigation.R.string.shows)
         setupRecyclerView()
         observe()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(jdr.tv.navigation.R.menu.menu_main, menu)
+        inflater.inflate(jdr.tv.common.navigation.R.menu.menu_main, menu)
     }
 
     private fun calculateSpan(): Int {
