@@ -1,4 +1,4 @@
-package jdr.tv.base.di
+package jdr.tv.data.di
 
 import javax.inject.Scope
 

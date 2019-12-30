@@ -2,9 +2,9 @@ package jdr.tv.feature.search.di
 
 import dagger.BindsInstance
 import dagger.Component
-import jdr.tv.base.di.FragmentScope
-import jdr.tv.base.di.Injector
 import jdr.tv.data.di.DataComponent
+import jdr.tv.data.di.FragmentScope
+import jdr.tv.data.di.Injector
 import jdr.tv.feature.search.ui.SearchFragment
 
 @FragmentScope

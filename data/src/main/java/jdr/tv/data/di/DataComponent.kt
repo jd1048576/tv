@@ -4,7 +4,6 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
-import jdr.tv.base.di.Injector
 import jdr.tv.local.Database
 import jdr.tv.local.di.LocalModule
 import jdr.tv.remote.TmdbApi
