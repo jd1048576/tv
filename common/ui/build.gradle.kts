@@ -26,8 +26,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":base"))
-
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
 

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
-import jdr.tv.base.extensions.toFormattedString
+import jdr.tv.common.extensions.toFormattedString
 import jdr.tv.common.ui.adapter.BaseAdapter
 import jdr.tv.common.ui.adapter.BindingViewHolder
 import jdr.tv.feature.details.databinding.ItemShowDetailsOverviewBinding

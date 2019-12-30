@@ -18,7 +18,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import javax.inject.Inject
-import jdr.tv.base.Log
+import jdr.tv.common.log.Log
 import jdr.tv.common.ui.collectResource
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.resolveAttribute

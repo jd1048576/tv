@@ -9,7 +9,7 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import java.time.Duration
-import jdr.tv.base.Log
+import jdr.tv.common.log.Log
 import jdr.tv.local.Database
 import jdr.tv.local.entities.RelatedShow
 import jdr.tv.local.entities.Show

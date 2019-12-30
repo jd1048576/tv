@@ -1,4 +1,4 @@
-package jdr.tv.base.extensions
+package jdr.tv.common.extensions
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel

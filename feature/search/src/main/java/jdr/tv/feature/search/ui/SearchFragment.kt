@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import javax.inject.Inject
-import jdr.tv.base.Log
+import jdr.tv.common.log.Log
 import jdr.tv.common.ui.collectResource
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.linearLayoutManager

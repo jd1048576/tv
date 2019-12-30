@@ -1,7 +1,7 @@
 package jdr.tv.feature.search.ui
 
 import androidx.lifecycle.viewModelScope
-import jdr.tv.base.extensions.conflateIn
+import jdr.tv.common.extensions.conflateIn
 import jdr.tv.common.ui.Resource
 import jdr.tv.common.viewmodel.StateViewModel
 import jdr.tv.local.entities.Show

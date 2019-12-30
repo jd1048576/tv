@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base"))
+    implementation(project(":common:extensions"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)

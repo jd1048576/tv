@@ -1,4 +1,4 @@
-package jdr.tv.base.extensions
+package jdr.tv.common.extensions
 
 import java.time.Duration
 import java.time.Instant

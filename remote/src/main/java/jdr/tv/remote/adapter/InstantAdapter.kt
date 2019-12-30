@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 import java.time.Instant
 import java.time.format.DateTimeParseException
-import jdr.tv.base.extensions.INSTANT_ZERO
+import jdr.tv.common.extensions.INSTANT_ZERO
 
 internal class InstantAdapter : JsonAdapter<Instant>() {
 

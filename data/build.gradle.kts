@@ -27,7 +27,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":base"))
+    implementation(project(":common:log"))
     implementation(project(":local"))
     implementation(project(":remote"))
     implementation(project(":work"))

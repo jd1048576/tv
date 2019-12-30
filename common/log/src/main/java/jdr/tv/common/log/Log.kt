@@ -1,4 +1,4 @@
-package jdr.tv.base
+package jdr.tv.common.log
 
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -69,7 +69,11 @@ abstract class Log {
 
         @JvmStatic
         fun v(vararg any: Any?) {
-            log(VERBOSE, null, any.joinToString(", "))
+            log(
+                VERBOSE,
+                null,
+                any.joinToString(", ")
+            )
         }
 
         @JvmStatic
@@ -79,7 +83,11 @@ abstract class Log {
 
         @JvmStatic
         fun d(vararg any: Any?) {
-            log(DEBUG, null, any.joinToString(", "))
+            log(
+                DEBUG,
+                null,
+                any.joinToString(", ")
+            )
         }
 
         @JvmStatic
@@ -89,7 +97,11 @@ abstract class Log {
 
         @JvmStatic
         fun i(vararg any: Any?) {
-            log(INFO, null, any.joinToString(", "))
+            log(
+                INFO,
+                null,
+                any.joinToString(", ")
+            )
         }
 
         @JvmStatic
@@ -99,7 +111,11 @@ abstract class Log {
 
         @JvmStatic
         fun w(vararg any: Any?) {
-            log(WARN, null, any.joinToString(", "))
+            log(
+                WARN,
+                null,
+                any.joinToString(", ")
+            )
         }
 
         @JvmStatic
@@ -109,7 +125,11 @@ abstract class Log {
 
         @JvmStatic
         fun e(vararg any: Any?) {
-            log(ERROR, null, any.joinToString(", "))
+            log(
+                ERROR,
+                null,
+                any.joinToString(", ")
+            )
         }
 
         @JvmStatic

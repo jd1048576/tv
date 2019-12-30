@@ -27,9 +27,8 @@ android {
 
 dependencies {
     implementation(project(":app"))
-    implementation(project(":base"))
-    implementation(project(":navigation"))
     implementation(project(":common:ui"))
+    implementation(project(":navigation"))
 
     implementation(KOTLIN_STDLIB)
 

@@ -28,14 +28,15 @@ android {
 
 dependencies {
     implementation(project(":app"))
-    implementation(project(":base"))
+    implementation(project(":common:extensions"))
+    implementation(project(":common:log"))
+    implementation(project(":common:ui"))
+    implementation(project(":common:viewmodel"))
     implementation(project(":data"))
     implementation(project(":mapper"))
     implementation(project(":navigation"))
-    implementation(project(":common:ui"))
     implementation(project(":local"))
     implementation(project(":remote"))
-    implementation(project(":common:viewmodel"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)

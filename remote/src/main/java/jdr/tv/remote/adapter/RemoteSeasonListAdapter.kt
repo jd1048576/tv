@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import java.time.Instant
-import jdr.tv.base.extensions.INSTANT_ZERO
+import jdr.tv.common.extensions.INSTANT_ZERO
 import jdr.tv.remote.entities.RemoteEpisode
 import jdr.tv.remote.entities.RemoteSeason
 

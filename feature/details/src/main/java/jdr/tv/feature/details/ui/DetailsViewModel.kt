@@ -2,7 +2,7 @@ package jdr.tv.feature.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jdr.tv.base.extensions.conflateIn
+import jdr.tv.common.extensions.conflateIn
 import jdr.tv.common.ui.Resource
 import jdr.tv.local.entities.DetailedSeason
 import jdr.tv.local.entities.DetailedShow

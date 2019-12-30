@@ -3,7 +3,7 @@ package jdr.tv.feature.details.ui
 import androidx.room.withTransaction
 import java.time.Instant
 import javax.inject.Inject
-import jdr.tv.base.extensions.olderThan
+import jdr.tv.common.extensions.olderThan
 import jdr.tv.common.ui.Resource
 import jdr.tv.common.ui.asSuccess
 import jdr.tv.local.Database
