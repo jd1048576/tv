@@ -2,6 +2,8 @@ package jdr.tv.feature.search.ui
 
 import androidx.room.withTransaction
 import javax.inject.Inject
+import jdr.tv.common.ui.Resource
+import jdr.tv.common.ui.asSuccess
 import jdr.tv.local.Database
 import jdr.tv.local.entities.SearchItem
 import jdr.tv.local.entities.Show
@@ -13,8 +15,6 @@ import jdr.tv.remote.TmdbApi
 import jdr.tv.remote.entities.RemoteShowList
 import jdr.tv.remote.onFailure
 import jdr.tv.remote.onSuccess
-import jdr.tv.ui.Resource
-import jdr.tv.ui.asSuccess
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll

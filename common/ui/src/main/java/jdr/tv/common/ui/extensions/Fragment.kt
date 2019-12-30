@@ -1,4 +1,4 @@
-package jdr.tv.ui.extensions
+package jdr.tv.common.ui.extensions
 
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes

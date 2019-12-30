@@ -1,4 +1,4 @@
-package jdr.tv.ui.binding
+package jdr.tv.common.ui.binding
 
 import android.view.View
 import androidx.databinding.BindingAdapter

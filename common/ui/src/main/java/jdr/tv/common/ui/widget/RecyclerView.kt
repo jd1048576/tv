@@ -1,4 +1,4 @@
-package jdr.tv.ui.widget
+package jdr.tv.common.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet

@@ -72,7 +72,7 @@
             android:visibility="gone"
             app:goneIf="@{!empty}" />
 
-        <jdr.tv.ui.widget.RecyclerView
+        <jdr.tv.common.ui.widget.RecyclerView
             android:id="@+id/fragment_search_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

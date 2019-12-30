@@ -1,4 +1,4 @@
-package jdr.tv.ui.binding
+package jdr.tv.common.ui.binding
 
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.BindingMethod

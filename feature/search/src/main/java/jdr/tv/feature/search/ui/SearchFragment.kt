@@ -13,19 +13,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import javax.inject.Inject
 import jdr.tv.base.Log
+import jdr.tv.common.ui.collectResource
+import jdr.tv.common.ui.extensions.dpToPixels
+import jdr.tv.common.ui.extensions.linearLayoutManager
+import jdr.tv.common.ui.extensions.setupToolbar
+import jdr.tv.common.ui.extensions.systemService
+import jdr.tv.common.ui.onFailure
+import jdr.tv.common.ui.onLoading
+import jdr.tv.common.ui.onSuccess
 import jdr.tv.data.di.DataComponent
 import jdr.tv.feature.search.R
 import jdr.tv.feature.search.databinding.FragmentSearchBinding
 import jdr.tv.feature.search.di.inject
 import jdr.tv.navigation.GlobalActions
-import jdr.tv.ui.collectResource
-import jdr.tv.ui.extensions.dpToPixels
-import jdr.tv.ui.extensions.linearLayoutManager
-import jdr.tv.ui.extensions.setupToolbar
-import jdr.tv.ui.extensions.systemService
-import jdr.tv.ui.onFailure
-import jdr.tv.ui.onLoading
-import jdr.tv.ui.onSuccess
 import kotlinx.coroutines.launch
 
 class SearchFragment @Inject constructor(private val component: DataComponent) : Fragment(R.layout.fragment_search) {

@@ -1,4 +1,4 @@
-package jdr.tv.ui.extensions
+package jdr.tv.common.ui.extensions
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager

@@ -2,9 +2,9 @@ package jdr.tv.feature.search.ui
 
 import androidx.lifecycle.viewModelScope
 import jdr.tv.base.extensions.conflateIn
+import jdr.tv.common.ui.Resource
+import jdr.tv.common.viewmodel.StateViewModel
 import jdr.tv.local.entities.Show
-import jdr.tv.ui.Resource
-import jdr.tv.viewmodel.StateViewModel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow

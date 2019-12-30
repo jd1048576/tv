@@ -1,8 +1,8 @@
-package jdr.tv.ui.binding
+package jdr.tv.common.ui.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
-import jdr.tv.ui.widget.RecyclerView
+import jdr.tv.common.ui.widget.RecyclerView
 
 @BindingAdapter("span")
 fun setSpan(view: RecyclerView, span: Int) {

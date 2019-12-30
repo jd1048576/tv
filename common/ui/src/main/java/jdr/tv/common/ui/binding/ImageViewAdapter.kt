@@ -1,10 +1,10 @@
-package jdr.tv.ui.binding
+package jdr.tv.common.ui.binding
 
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import coil.api.load
-import jdr.tv.ui.R
+import jdr.tv.common.ui.R
 
 private const val IMAGE_URL = "https://image.tmdb.org/t/p/"
 

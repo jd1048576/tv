@@ -1,4 +1,4 @@
-package jdr.tv.ui.adapter
+package jdr.tv.common.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

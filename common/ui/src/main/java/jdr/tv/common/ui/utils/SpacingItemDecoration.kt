@@ -1,4 +1,4 @@
-package jdr.tv.ui.utils
+package jdr.tv.common.ui.utils
 
 import android.graphics.Rect
 import android.view.View

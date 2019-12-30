@@ -5,8 +5,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.Fragment
+import jdr.tv.common.ui.extensions.setupToolbar
 import jdr.tv.feature.schedule.R
-import jdr.tv.ui.extensions.setupToolbar
 
 class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
@@ -16,7 +16,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.navigation.R.string.schedule)
+        setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.navigation.R.string.schedule)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

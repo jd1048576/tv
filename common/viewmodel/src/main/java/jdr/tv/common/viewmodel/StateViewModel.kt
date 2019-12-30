@@ -1,4 +1,4 @@
-package jdr.tv.viewmodel
+package jdr.tv.common.viewmodel
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel

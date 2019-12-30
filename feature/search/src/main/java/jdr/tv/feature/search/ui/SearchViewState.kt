@@ -1,7 +1,7 @@
 package jdr.tv.feature.search.ui
 
 import android.os.Bundle
-import jdr.tv.viewmodel.State
+import jdr.tv.common.viewmodel.State
 
 data class SearchViewState(val query: String = "", val focus: Boolean = true) : State<SearchViewState> {
 

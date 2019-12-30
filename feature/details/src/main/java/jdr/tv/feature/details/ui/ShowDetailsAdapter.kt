@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import jdr.tv.base.extensions.toFormattedString
+import jdr.tv.common.ui.adapter.BaseAdapter
+import jdr.tv.common.ui.adapter.BindingViewHolder
 import jdr.tv.feature.details.databinding.ItemShowDetailsOverviewBinding
 import jdr.tv.local.entities.DetailedShow
-import jdr.tv.ui.adapter.BaseAdapter
-import jdr.tv.ui.adapter.BindingViewHolder
 
 class ShowDetailsAdapter : BaseAdapter<DetailedShow, ViewDataBinding>(itemCallback) {
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BindingViewHolder<DetailedShow, ViewDataBinding> {

@@ -3,10 +3,10 @@ package jdr.tv.feature.search.di
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
+import jdr.tv.common.viewmodel.ViewModelProviderFactory
 import jdr.tv.feature.search.ui.SearchFragment
 import jdr.tv.feature.search.ui.SearchRepository
 import jdr.tv.feature.search.ui.SearchViewModel
-import jdr.tv.viewmodel.ViewModelProviderFactory
 
 @Module
 object SearchModule {

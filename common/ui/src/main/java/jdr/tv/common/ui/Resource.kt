@@ -1,4 +1,4 @@
-package jdr.tv.ui
+package jdr.tv.common.ui
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect

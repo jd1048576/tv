@@ -11,15 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import javax.inject.Inject
+import jdr.tv.common.ui.extensions.displayMetrics
+import jdr.tv.common.ui.extensions.dpToPixels
+import jdr.tv.common.ui.extensions.setupToolbar
+import jdr.tv.common.ui.utils.SpacingItemDecoration
 import jdr.tv.data.di.DataComponent
 import jdr.tv.feature.shows.R
 import jdr.tv.feature.shows.databinding.FragmentShowsBinding
 import jdr.tv.feature.shows.di.inject
 import jdr.tv.navigation.GlobalActions
-import jdr.tv.ui.extensions.displayMetrics
-import jdr.tv.ui.extensions.dpToPixels
-import jdr.tv.ui.extensions.setupToolbar
-import jdr.tv.ui.utils.SpacingItemDecoration
 import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,7 +51,7 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
-        setupToolbar(jdr.tv.ui.R.id.toolbar, jdr.tv.navigation.R.string.shows)
+        setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.navigation.R.string.shows)
         setupRecyclerView()
         observe()
     }

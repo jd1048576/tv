@@ -1,4 +1,4 @@
-package jdr.tv.ui.adapter
+package jdr.tv.common.ui.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

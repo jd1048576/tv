@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import jdr.tv.common.ui.extensions.dpToPixels
+import jdr.tv.common.ui.utils.SpacingItemDecoration
 import jdr.tv.feature.details.R
-import jdr.tv.ui.extensions.dpToPixels
-import jdr.tv.ui.utils.SpacingItemDecoration
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

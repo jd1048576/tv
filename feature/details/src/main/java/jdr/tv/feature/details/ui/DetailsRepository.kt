@@ -4,6 +4,8 @@ import androidx.room.withTransaction
 import java.time.Instant
 import javax.inject.Inject
 import jdr.tv.base.extensions.olderThan
+import jdr.tv.common.ui.Resource
+import jdr.tv.common.ui.asSuccess
 import jdr.tv.local.Database
 import jdr.tv.local.entities.Add
 import jdr.tv.local.entities.DetailedSeason
@@ -26,8 +28,6 @@ import jdr.tv.remote.map
 import jdr.tv.remote.mergeSwitchMap
 import jdr.tv.remote.onFailure
 import jdr.tv.remote.onSuccess
-import jdr.tv.ui.Resource
-import jdr.tv.ui.asSuccess
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll

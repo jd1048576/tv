@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import jdr.tv.common.ui.adapter.BaseAdapter
+import jdr.tv.common.ui.adapter.BindingViewHolder
 import jdr.tv.feature.search.databinding.ItemSearchBinding
 import jdr.tv.local.entities.Show
-import jdr.tv.ui.adapter.BaseAdapter
-import jdr.tv.ui.adapter.BindingViewHolder
 
 class SearchAdapter(private val onChanged: () -> Unit, private val onClick: (Long) -> Unit) :
     BaseAdapter<Show, ItemSearchBinding>(itemCallback) {

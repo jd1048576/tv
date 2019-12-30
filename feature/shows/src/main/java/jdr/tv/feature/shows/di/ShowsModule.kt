@@ -3,11 +3,11 @@ package jdr.tv.feature.shows.di
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
+import jdr.tv.common.ui.extensions.appCompatActivity
+import jdr.tv.common.viewmodel.ViewModelProviderFactory
 import jdr.tv.feature.shows.ui.ShowsFragment
 import jdr.tv.feature.shows.ui.ShowsRepository
 import jdr.tv.feature.shows.ui.ShowsViewModel
-import jdr.tv.ui.extensions.appCompatActivity
-import jdr.tv.viewmodel.ViewModelProviderFactory
 
 @Module
 object ShowsModule {
