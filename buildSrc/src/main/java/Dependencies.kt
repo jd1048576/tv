@@ -39,7 +39,7 @@ const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.3.0-beta02"
 
 const val COIL = "io.coil-kt:coil:0.8.0"
 
-private const val DAGGER_VERSION = "2.25.3"
+private const val DAGGER_VERSION = "2.25.4"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
 const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 

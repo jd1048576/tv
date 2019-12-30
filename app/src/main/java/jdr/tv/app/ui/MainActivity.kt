@@ -18,9 +18,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportFragmentManager.fragmentFactory = DataComponentFragmentFactory(dataComponent())
         super.onCreate(savedInstanceState)
         controller = Navigation.findNavController(this, R.id.activity_main_host_fragment)
-        supportFragmentManager.fragmentFactory = DataComponentFragmentFactory(dataComponent())
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation)
         NavigationUI.setupWithNavController(bottomNavigationView, controller)
     }
