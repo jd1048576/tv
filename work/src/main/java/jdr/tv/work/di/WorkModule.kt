@@ -7,8 +7,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import javax.inject.Singleton
-import jdr.tv.local.Database
-import jdr.tv.remote.TmdbApi
+import jdr.tv.data.local.Database
+import jdr.tv.data.remote.TmdbApi
 import jdr.tv.work.SyncWorker
 import jdr.tv.work.WorkerProviderFactory
 import kotlinx.coroutines.Dispatchers

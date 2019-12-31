@@ -65,19 +65,24 @@ android {
         exclude("/META-INF/*.version")
     }
 
-    dynamicFeatures = mutableSetOf(":details", ":discover", ":schedule", ":search", ":settings", ":shows", ":watchlist")
+    dynamicFeatures = mutableSetOf(
+        ":feature:details",
+        ":feature:discover",
+        ":feature:schedule",
+        ":feature:search",
+        ":feature:settings",
+        ":feature:shows",
+        ":feature:watchlist"
+    )
 }
 
 dependencies {
-    implementation(project(":base"))
-    implementation(project(":data"))
-    implementation(project(":local"))
-    implementation(project(":mapper"))
-    implementation(project(":navigation"))
-    implementation(project(":remote"))
-    implementation(project(":ui"))
-    implementation(project(":viewmodel"))
-    implementation(project(":work"))
+    implementation(project(":common:extensions"))
+    implementation(project(":common:log"))
+    implementation(project(":common:navigation"))
+    implementation(project(":common:ui"))
+    implementation(project(":common:viewmodel"))
+    implementation(project(":data:core"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
@@ -93,8 +98,6 @@ dependencies {
     implementation(ANDROIDX_NAVIGATION_FRAGMENT)
     implementation(ANDROIDX_NAVIGATION_RUNTIME)
     implementation(ANDROIDX_NAVIGATION_UI)
-    implementation(ANDROIDX_PREFERENCE)
-    implementation(ANDROIDX_WORK)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)

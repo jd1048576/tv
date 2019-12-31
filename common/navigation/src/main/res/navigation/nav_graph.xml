@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_activity_main"
+    app:startDestination="@id/fragment_discover">
+
+    <fragment
+        android:id="@+id/fragment_discover"
+        android:name="jdr.tv.feature.discover.ui.DiscoverFragment"
+        android:label="@string/discover" />
+
+    <fragment
+        android:id="@+id/fragment_schedule"
+        android:name="jdr.tv.feature.schedule.ui.ScheduleFragment"
+        android:label="@string/schedule" />
+
+    <fragment
+        android:id="@+id/fragment_shows"
+        android:name="jdr.tv.feature.shows.ui.ShowsFragment"
+        android:label="@string/shows" />
+
+    <fragment
+        android:id="@+id/fragment_watch_list"
+        android:name="jdr.tv.feature.watchlist.ui.WatchListFragment"
+        android:label="@string/watch_list" />
+
+    <fragment
+        android:id="@+id/fragment_details"
+        android:name="jdr.tv.feature.details.ui.DetailsFragment"
+        android:label="@string/details" />
+
+    <action
+        android:id="@+id/action_details"
+        app:destination="@id/fragment_details"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    <fragment
+        android:id="@+id/fragment_search"
+        android:name="jdr.tv.feature.search.ui.SearchFragment"
+        android:label="@string/search" />
+
+    <action
+        android:id="@+id/action_search"
+        app:destination="@id/fragment_search"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    <action
+        android:id="@+id/action_settings"
+        app:destination="@id/fragment_settings"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="jdr.tv.feature.settings.ui.SettingsFragment"
+        android:label="@string/settings" />
+
+</navigation>

@@ -21,10 +21,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":base"))
-    implementation(project(":local"))
-    implementation(project(":mapper"))
-    implementation(project(":remote"))
+    implementation(project(":common:log"))
+    implementation(project(":data:local"))
+    implementation(project(":data:mapper"))
+    implementation(project(":data:remote"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
