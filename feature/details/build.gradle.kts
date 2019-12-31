@@ -33,11 +33,10 @@ dependencies {
     implementation(project(":common:navigation"))
     implementation(project(":common:ui"))
     implementation(project(":common:viewmodel"))
-    implementation(project(":data"))
-    implementation(project(":mapper"))
-
-    implementation(project(":local"))
-    implementation(project(":remote"))
+    implementation(project(":data:core"))
+    implementation(project(":data:local"))
+    implementation(project(":data:mapper"))
+    implementation(project(":data:remote"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)

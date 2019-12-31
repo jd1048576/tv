@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import jdr.tv.common.ui.adapter.BaseAdapter
 import jdr.tv.common.ui.adapter.BindingViewHolder
+import jdr.tv.data.local.entities.Show
 import jdr.tv.feature.shows.databinding.ItemShowPosterBinding
-import jdr.tv.local.entities.Show
 
 class ShowsAdapter(private val onClick: (Long) -> Unit) : BaseAdapter<Show, ItemShowPosterBinding>(itemCallback) {
 

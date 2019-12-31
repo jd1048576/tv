@@ -26,7 +26,7 @@ import jdr.tv.common.ui.extensions.setupToolbar
 import jdr.tv.common.ui.onFailure
 import jdr.tv.common.ui.onLoading
 import jdr.tv.common.ui.onSuccess
-import jdr.tv.data.di.DataComponent
+import jdr.tv.data.core.di.DataComponent
 import jdr.tv.feature.details.R
 import jdr.tv.feature.details.databinding.FragmentDetailsBinding
 import jdr.tv.feature.details.di.inject

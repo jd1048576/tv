@@ -3,7 +3,7 @@ package jdr.tv.feature.shows.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jdr.tv.common.extensions.conflateIn
-import jdr.tv.local.entities.Show
+import jdr.tv.data.local.entities.Show
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow

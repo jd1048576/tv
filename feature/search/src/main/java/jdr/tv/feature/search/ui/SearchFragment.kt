@@ -22,7 +22,7 @@ import jdr.tv.common.ui.extensions.systemService
 import jdr.tv.common.ui.onFailure
 import jdr.tv.common.ui.onLoading
 import jdr.tv.common.ui.onSuccess
-import jdr.tv.data.di.DataComponent
+import jdr.tv.data.core.di.DataComponent
 import jdr.tv.feature.search.R
 import jdr.tv.feature.search.databinding.FragmentSearchBinding
 import jdr.tv.feature.search.di.inject

@@ -16,7 +16,7 @@ import jdr.tv.common.ui.extensions.displayMetrics
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.setupToolbar
 import jdr.tv.common.ui.utils.SpacingItemDecoration
-import jdr.tv.data.di.DataComponent
+import jdr.tv.data.core.di.DataComponent
 import jdr.tv.feature.shows.R
 import jdr.tv.feature.shows.databinding.FragmentShowsBinding
 import jdr.tv.feature.shows.di.inject

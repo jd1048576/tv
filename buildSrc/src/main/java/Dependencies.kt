@@ -33,6 +33,7 @@ const val ANDROIDX_NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$ANDRO
 const val ANDROIDX_PREFERENCE = "androidx.preference:preference:1.1.0"
 const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.0-alpha01"
 const val ANDROIDX_ROOM = "androidx.room:room-ktx:$ANDROIDX_ROOM_VERSION"
+const val ANDROIDX_ROOM_COMMON = "androidx.room:room-common:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_ROOM_COMPILER = "androidx.room:room-compiler:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0"
 const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.3.0-beta02"

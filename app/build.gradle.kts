@@ -78,10 +78,11 @@ android {
 
 dependencies {
     implementation(project(":common:extensions"))
+    implementation(project(":common:log"))
     implementation(project(":common:navigation"))
     implementation(project(":common:ui"))
     implementation(project(":common:viewmodel"))
-    implementation(project(":data"))
+    implementation(project(":data:core"))
 
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)

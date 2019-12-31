@@ -7,7 +7,7 @@
 
         <variable
             name="show"
-            type="jdr.tv.local.entities.Show" />
+            type="jdr.tv.data.local.entities.Show" />
 
         <variable
             name="clickListener"
