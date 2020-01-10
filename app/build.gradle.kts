@@ -4,7 +4,7 @@ plugins {
     id("kotlin-kapt")
 }
 
-val releaseSigning = rootProject.file(".signing/app-release.jks").exists()
+val releaseSigning = file(".signing/app-release.jks").exists()
 
 android {
     compileSdkVersion(COMPILE_SDK_VERSION)
@@ -21,13 +21,13 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            storeFile = rootProject.file(".signing/app-debug.jks")
+            storeFile = file(".signing/app-debug.jks")
             storePassword = "android"
             keyAlias = "debug"
             keyPassword = "android"
         }
         if (releaseSigning) create("release") {
-            storeFile = rootProject.file(".signing/app-release.jks")
+            storeFile = file(".signing/app-release.jks")
             storePassword = stringProperty("TV_RELEASE_STORE_PASSWORD")
             keyAlias = stringProperty("TV_RELEASE_KEY_ALIAS")
             keyPassword = stringProperty("TV_RELEASE_KEY_PASSWORD")

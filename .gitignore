@@ -6,5 +6,5 @@
 **/build
 **/captures
 .externalNativeBuild
-.signing/app-release.jks
+app/.signing/app-release.jks
 app/google-services.json
