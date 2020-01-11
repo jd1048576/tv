@@ -3,7 +3,7 @@ package jdr.tv.feature.details.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import jdr.tv.common.ui.extensions.dpToPixels
@@ -18,14 +18,13 @@ class ShowDetailsFragment : Fragment(R.layout.fragment_base) {
         const val SPACING = 16
     }
 
-    private lateinit var viewModel: DetailsViewModel
+    private val viewModel: DetailsViewModel by viewModels(::requireParentFragment)
 
     private lateinit var recyclerView: RecyclerView
 
     private lateinit var adapter: ShowDetailsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(parentFragment!!, ViewModelProvider.NewInstanceFactory()).get(DetailsViewModel::class.java)
         bindResources()
         setupRecyclerView()
         observe()
