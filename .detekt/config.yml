@@ -1,5 +1,5 @@
 build:
-  maxIssues: 1
+  maxIssues: 0
 complexity:
   TooManyFunctions:
     thresholdInFiles: 15
@@ -10,4 +10,8 @@ complexity:
 style:
   MaxLineLength:
     maxLineLength: 150
-
+formatting:
+  active: true
+  android: false
+  MaximumLineLength:
+    active: false

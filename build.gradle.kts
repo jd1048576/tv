@@ -15,9 +15,12 @@ buildscript {
 }
 
 plugins {
-    id("com.diffplug.gradle.spotless") version ("3.26.1")
-    id("com.github.ben-manes.versions") version ("0.27.0")
-    id("io.gitlab.arturbosch.detekt") version ("1.3.1")
+    id(DEPENDENCY_UPDATES) version (DEPENDENCY_UPDATES_VERSION)
+    id(DETEKT) version (DETEKT_VERSION)
+}
+
+dependencies {
+    detektPlugins(DETEKT_FORMATTING)
 }
 
 allprojects {
@@ -26,7 +29,6 @@ allprojects {
         jcenter()
     }
     gradle.projectsEvaluated {
-        tasks.findByName("lintVitalRelease")?.enabled = false // FIXME https://issuetracker.google.com/issues/145770669
         tasks.withType<JavaCompile> {
             sourceCompatibility = "1.8"
             targetCompatibility = "1.8"
@@ -40,34 +42,42 @@ allprojects {
             }
         }
     }
-    apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
-    spotless {
-        kotlin {
-            target("**/*.kt")
-            ktlint()
-        }
-        kotlinGradle {
-            target("**/*.gradle.kts")
-            ktlint()
-        }
-    }
 }
 
-tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
-    description = "Runs over whole code base without the starting overhead for each module."
+val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
+    description = "Runs detekt over whole code base."
     parallel = true
-    autoCorrect = false
     buildUponDefaultConfig = true
-    disableDefaultRuleSets = false
-    failFast = false
-    config.setFrom(files(project.rootDir.resolve(".detekt/config.yml")))
-    baseline.set(file(project.rootDir.resolve(".detekt/baseline.xml")))
+    autoCorrect = false
     setSource(files(projectDir))
     include("**/*.kt")
     include("**/*.kts")
+    exclude("**/resources/**")
     exclude("**/build/**")
+    config.setFrom(files("$rootDir/.detekt/config.yml"))
+    baseline.set(file("$rootDir/.detekt/baseline.xml"))
     reports {
         xml.enabled = false
-        html.enabled = true
+        html.enabled = false
+        txt.enabled = false
+    }
+}
+
+val detektFormat by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
+    description = "Reformats whole code base."
+    parallel = true
+    disableDefaultRuleSets = true
+    buildUponDefaultConfig = true
+    autoCorrect = true
+    setSource(files(projectDir))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+    config.setFrom(files("$rootDir/.detekt/format.yml"))
+    reports {
+        xml.enabled = false
+        html.enabled = false
+        txt.enabled = false
     }
 }

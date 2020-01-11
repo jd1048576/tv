@@ -7,6 +7,13 @@ const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VER
 const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.3"
 const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.2"
 
+const val DEPENDENCY_UPDATES_VERSION = "0.27.0"
+const val DEPENDENCY_UPDATES = "com.github.ben-manes.versions"
+
+const val DETEKT_VERSION = "1.3.1"
+const val DETEKT = "io.gitlab.arturbosch.detekt"
+const val DETEKT_FORMATTING = "$DETEKT:detekt-formatting:$DETEKT_VERSION"
+
 // Dependencies
 
 const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
