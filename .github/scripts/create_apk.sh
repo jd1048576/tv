@@ -6,7 +6,7 @@ OUTPUT="${GITHUB_WORKSPACE}/apk"
 
 function create_apk() {
   variant=${1}
-  store_file=".signing/app-${2}.jks"
+  store_file="app/.signing/app-${2}.jks"
   store_password=${3}
   key_alias=${4}
   key_password=${5}
