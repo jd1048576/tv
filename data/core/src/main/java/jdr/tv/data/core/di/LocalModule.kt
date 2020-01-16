@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 import jdr.tv.data.local.Database
-import jdr.tv.data.local.TransactionRunner
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.asExecutor
 
@@ -26,13 +25,4 @@ object LocalModule {
     @Singleton
     @Provides
     fun providesDatabase(database: RoomDatabase): Database = database
-
-    @Singleton
-    @Provides
-    fun providesTransactionRunner(database: RoomDatabase): TransactionRunner = object :
-        TransactionRunner {
-        override suspend fun <R> withTransaction(block: suspend () -> R): R {
-            return database.withTransaction(block)
-        }
-    }
 }
