@@ -5,7 +5,8 @@ import jdr.tv.common.extensions.conflateIn
 import jdr.tv.common.ui.Resource
 import jdr.tv.common.viewmodel.StateViewModel
 import jdr.tv.data.local.entities.Show
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.debounce
@@ -18,8 +19,8 @@ class SearchViewModel(private val repository: SearchRepository) : StateViewModel
         private const val DEBOUNCE = 275L
     }
 
-    private val invalidate = ConflatedBroadcastChannel<Unit>()
-    private val _search: ConflatedBroadcastChannel<Resource<List<Show>>> = invalidate.asFlow()
+    private val invalidate = BroadcastChannel<Unit>(Channel.CONFLATED)
+    private val _search: BroadcastChannel<Resource<List<Show>>> = invalidate.asFlow()
         .debounce(DEBOUNCE)
         .flatMapLatest { repository.search(state.query) }
         .conflateIn(viewModelScope)
