@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jdr.tv.common.extensions.conflateIn
 import jdr.tv.data.local.entities.Show
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 
 class ShowsViewModel(repository: ShowsRepository) : ViewModel() {
 
-    private val _addedShowList: ConflatedBroadcastChannel<List<Show>> = repository.selectAddedShowList()
+    private val _addedShowList: BroadcastChannel<List<Show>> = repository.selectAddedShowList()
         .conflateIn(viewModelScope)
 
     val addedShowList: Flow<List<Show>>

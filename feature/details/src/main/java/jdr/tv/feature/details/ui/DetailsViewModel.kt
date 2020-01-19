@@ -7,20 +7,20 @@ import jdr.tv.common.ui.Resource
 import jdr.tv.data.local.entities.DetailedSeason
 import jdr.tv.data.local.entities.DetailedShow
 import jdr.tv.data.local.entities.Show
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(private val showId: Long, private val repository: DetailsRepository) : ViewModel() {
 
-    private val _show: ConflatedBroadcastChannel<Resource<Show>> = repository.selectShow(showId)
+    private val _show: BroadcastChannel<Resource<Show>> = repository.selectShow(showId)
         .conflateIn(viewModelScope)
-    private val _added: ConflatedBroadcastChannel<Boolean> = repository.selectAdded(showId)
+    private val _added: BroadcastChannel<Boolean> = repository.selectAdded(showId)
         .conflateIn(viewModelScope, false)
-    private val _detailedShow: ConflatedBroadcastChannel<DetailedShow> = repository.selectDetailedShow(showId)
+    private val _detailedShow: BroadcastChannel<DetailedShow> = repository.selectDetailedShow(showId)
         .conflateIn(viewModelScope)
-    private val _detailedSeasonList: ConflatedBroadcastChannel<List<DetailedSeason>> = repository.selectDetailedSeasonList(showId)
+    private val _detailedSeasonList: BroadcastChannel<List<DetailedSeason>> = repository.selectDetailedSeasonList(showId)
         .conflateIn(viewModelScope)
 
     val show: Flow<Resource<Show>>

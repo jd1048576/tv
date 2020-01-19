@@ -10,7 +10,7 @@ const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.2"
 const val DEPENDENCY_UPDATES_VERSION = "0.27.0"
 const val DEPENDENCY_UPDATES = "com.github.ben-manes.versions"
 
-const val DETEKT_VERSION = "1.3.1"
+const val DETEKT_VERSION = "1.4.0"
 const val DETEKT = "io.gitlab.arturbosch.detekt"
 const val DETEKT_FORMATTING = "$DETEKT:detekt-formatting:$DETEKT_VERSION"
 
@@ -51,7 +51,7 @@ private const val DAGGER_VERSION = "2.25.4"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
 const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
-const val FIREBASE_CORE = "com.google.firebase:firebase-core:17.2.1"
+const val FIREBASE_CORE = "com.google.firebase:firebase-core:17.2.2"
 const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:2.10.1"
 
 const val MATERIAL = "com.google.android.material:material:1.2.0-alpha03"
