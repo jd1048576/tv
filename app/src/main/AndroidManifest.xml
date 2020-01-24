@@ -33,6 +33,12 @@
             tools:ignore="ExportedContentProvider"
             tools:node="remove" />
 
+        <provider
+            android:name="coil.util.CoilContentProvider"
+            android:authorities="${applicationId}.coil"
+            tools:ignore="ExportedContentProvider"
+            tools:node="remove" />
+
     </application>
 
 </manifest>
