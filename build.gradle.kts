@@ -1,11 +1,5 @@
 buildscript {
-    repositories {
-        google()
-        jcenter()
-        maven("https://maven.fabric.io/public")
-        maven("https://plugins.gradle.org/m2/")
-    }
-
+    repositories.register()
     dependencies {
         classpath(ANDROID_GRADLE)
         classpath(KOTLIN_GRADLE)
@@ -24,10 +18,7 @@ dependencies {
 }
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+    repositories.register()
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile> {
             sourceCompatibility = "1.8"
