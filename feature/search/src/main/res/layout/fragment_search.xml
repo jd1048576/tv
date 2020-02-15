@@ -23,7 +23,7 @@
             app:cardElevation="0dp">
 
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/fragment_search_search_view"
+                android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -35,7 +35,7 @@
                 app:searchIcon="@null" />
 
             <ProgressBar
-                android:id="@+id/fragment_search_progress_bar"
+                android:id="@+id/loading_progress_bar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical|end"
@@ -47,7 +47,7 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
-        android:id="@+id/fragment_search_empty_text_view"
+        android:id="@+id/no_results_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,7 +58,7 @@
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_search_recycler_view"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/toolbar_height"

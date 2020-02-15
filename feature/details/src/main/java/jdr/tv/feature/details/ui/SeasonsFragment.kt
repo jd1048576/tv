@@ -15,8 +15,10 @@ class SeasonsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModels(::requireParentFragment)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentBaseBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return FragmentBaseBinding.inflate(inflater, container, false).run {
+            binding = this
+            root
+        }
     }
 
     override fun onDestroyView() {

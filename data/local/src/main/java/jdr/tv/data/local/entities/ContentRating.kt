@@ -77,9 +77,7 @@ data class ContentRating(
         }
 
         private fun toMinAge(contentRating: String, ratingList: List<Rating>): Double {
-            return ratingList
-                .first { it.name == contentRating || it.aliasList.contains(contentRating) }
-                .let { it.minAge }
+            return ratingList.first { it.name == contentRating || it.aliasList.contains(contentRating) }.minAge
         }
     }
 }

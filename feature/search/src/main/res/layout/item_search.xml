@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/item_search_poster_image_view"
+            android:id="@+id/poster_image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/poster"
@@ -33,13 +33,13 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/item_search_name_text_view"
+        android:id="@+id/name_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintBottom_toTopOf="@id/item_search_details_text_view"
+        app:layout_constraintBottom_toTopOf="@id/details_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_search_holder"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
         tools:text="Name" />
 
     <TextView
-        android:id="@+id/item_search_details_text_view"
+        android:id="@+id/details_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_search_holder"
-        app:layout_constraintTop_toBottomOf="@id/item_search_name_text_view"
+        app:layout_constraintTop_toBottomOf="@id/name_text_view"
         tools:text="2000 - Genre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

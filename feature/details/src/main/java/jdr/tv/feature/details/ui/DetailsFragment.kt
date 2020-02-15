@@ -17,7 +17,6 @@ import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.tabs.TabLayoutMediator
 import jdr.tv.common.log.Log
 import jdr.tv.common.ui.collectResource
@@ -58,27 +57,18 @@ class DetailsFragment @Inject constructor(private val component: DataComponent) 
         inject(component)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        return binding!!.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        setupToolbar(R.id.toolbar, displayHomeAsUp = true)
-        setupAppBarLayout()
-        setupViewPager()
-        setupFloatingActionButton()
-        observe()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_details, menu)
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_details, menu)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.fragment_details_menu_remove_show).isVisible = binding!!.fragmentDetailsFloatingActionButton.translationY != 0.0F
+        menu.findItem(R.id.fragment_details_menu_remove_show)?.isVisible = binding?.floatingActionButton?.translationY != 0.0F
         super.onPrepareOptionsMenu(menu)
     }
 
@@ -91,28 +81,40 @@ class DetailsFragment @Inject constructor(private val component: DataComponent) 
         }
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return FragmentDetailsBinding.inflate(inflater, container, false).run {
+            binding = this
+            root
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupToolbar(R.id.toolbar, displayHomeAsUp = true)
+        setupAppBarLayout()
+        setupViewPager()
+        setupFloatingActionButton()
+        observe()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
 
-    private fun setupAppBarLayout() {
-        val appBarLayout = view!!.findViewById<AppBarLayout>(R.id.fragment_details_app_bar_layout)
-        val toolbar = view!!.findViewById<MaterialToolbar>(R.id.toolbar)
-        val colorControlNormal = context!!.getColor(context!!.resolveAttribute(jdr.tv.app.R.attr.colorControlNormal).resourceId)
-
+    private fun setupAppBarLayout() = binding?.apply {
+        val colorControlNormal = requireContext().getColor(requireContext().resolveAttribute(jdr.tv.app.R.attr.colorControlNormal).resourceId)
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { v, verticalOffset ->
             val progress = -verticalOffset / v.totalScrollRange.toFloat()
             val color = ColorUtils.blendARGB(-1, colorControlNormal, max(0F, GRADIENT * (progress - OFFSET)))
-            binding?.fragmentDetailsMotionLayout?.progress = progress
+            binding?.motionLayout?.progress = progress
             toolbar.navigationIcon?.setTint(color)
             toolbar.overflowIcon?.setTint(color)
         })
     }
 
-    private fun setupViewPager() = binding?.fragmentDetailsViewPager?.apply {
-        adapter = DetailsViewPagerAdapter(this@DetailsFragment)
-        TabLayoutMediator(binding!!.fragmentDetailsTabLayout, this, false) { tab, position ->
+    private fun setupViewPager() = binding?.apply {
+        viewPager.adapter = DetailsViewPagerAdapter(this@DetailsFragment)
+        TabLayoutMediator(tabLayout, viewPager, false) { tab, position ->
             tab.text = when (position) {
                 0 -> "Details"
                 1 -> "Seasons"
@@ -121,10 +123,8 @@ class DetailsFragment @Inject constructor(private val component: DataComponent) 
         }.attach()
     }
 
-    private fun setupFloatingActionButton() = with(binding!!.fragmentDetailsFloatingActionButton) {
-        setOnClickListener {
-            viewModel.updateAdded(true)
-        }
+    private fun setupFloatingActionButton() = binding?.floatingActionButton?.setOnClickListener {
+        viewModel.updateAdded(true)
     }
 
     private fun observe() {
@@ -147,18 +147,18 @@ class DetailsFragment @Inject constructor(private val component: DataComponent) 
     }
 
     private fun render(loading: Boolean, show: Show?) = binding?.apply {
-        fragmentDetailsProgressBar.visibility = if (loading) VISIBLE else GONE
-        fragmentDetailsViewPager.visibility = if (loading) INVISIBLE else VISIBLE
-        fragmentDetailsFloatingActionButton.visibility = if (loading) GONE else VISIBLE
+        progressBar.visibility = if (loading) VISIBLE else GONE
+        viewPager.visibility = if (loading) INVISIBLE else VISIBLE
+        floatingActionButton.visibility = if (loading) GONE else VISIBLE
         show?.apply {
-            fragmentDetailsBackdropImageView.loadBackdrop(backdropPath)
-            fragmentDetailsPosterImageView.loadPoster(posterPath)
-            fragmentDetailsNameTextView.text = name
+            backdropImageView.loadBackdrop(backdropPath)
+            posterImageView.loadPoster(posterPath)
+            nameTextView.text = name
         }
     }
 
-    private fun onAddedChanged(added: Boolean) = binding?.fragmentDetailsFloatingActionButton?.apply {
-        val translation = if (added) context!!.dpToPixels(SLIDE_TRANSLATION).toFloat() else 0.0F
+    private fun onAddedChanged(added: Boolean) = binding?.floatingActionButton?.apply {
+        val translation = if (added) requireContext().dpToPixels(SLIDE_TRANSLATION).toFloat() else 0.0F
         if (translationY != translation) {
             ObjectAnimator.ofFloat(this, "translationY", translation).apply {
                 duration = SLIDE_DURATION

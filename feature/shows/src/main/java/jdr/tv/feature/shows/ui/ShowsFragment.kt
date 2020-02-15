@@ -47,10 +47,22 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
         inject(component)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(jdr.tv.common.navigation.R.menu.menu_main, menu)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentShowsBinding.inflate(inflater, container, false)
-        binding!!.fragmentSearchRecyclerView.span = calculateSpan()
-        return binding!!.root
+        return FragmentShowsBinding.inflate(inflater, container, false).run {
+            binding = this
+            recyclerView.span = calculateSpan()
+            root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,11 +72,6 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
         observe()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(jdr.tv.common.navigation.R.menu.menu_main, menu)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
@@ -72,10 +79,10 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
     }
 
     private fun calculateSpan(): Int {
-        return (context!!.displayMetrics().widthPixels.toFloat() / context!!.dpToPixels(SPAN)).roundToInt()
+        return (requireContext().displayMetrics().widthPixels.toFloat() / requireContext().dpToPixels(SPAN)).roundToInt()
     }
 
-    private fun setupRecyclerView() = binding?.fragmentSearchRecyclerView?.apply {
+    private fun setupRecyclerView() = binding?.recyclerView?.apply {
         recycler = Recycler.adopt(this) {
             stableId(Show::id)
             row<Show, View> {
@@ -83,15 +90,15 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
                     val binding = ItemShowPosterBinding.inflate(LayoutInflater.from(context))
                     view = binding.root
                     bind { show ->
-                        binding.itemShowPosterPosterImageView.loadPoster(show.posterPath)
-                        binding.itemShowPosterPosterImageView.setOnClickListener {
+                        binding.posterImageView.loadPoster(show.posterPath)
+                        binding.posterImageView.setOnClickListener {
                             navigate(show.id)
                         }
                     }
                 }
             }
         }
-        addItemDecoration(SpacingItemDecoration.GridLayout(context!!.dpToPixels(SPACING)))
+        addItemDecoration(SpacingItemDecoration.GridLayout(requireContext().dpToPixels(SPACING)))
     }
 
     private fun observe() {

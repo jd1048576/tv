@@ -81,8 +81,3 @@
     <init>(...);
     <fields>;
 }
-
-
-###################################   BUGS   ###################################
-# TODO BUG see https://issuetracker.google.com/issues/135574730
--keep class * extends androidx.databinding.DataBinderMapper
