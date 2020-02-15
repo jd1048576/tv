@@ -1,23 +1,26 @@
 package jdr.tv.feature.details.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
-import jdr.tv.feature.details.R
+import jdr.tv.feature.details.databinding.FragmentBaseBinding
 
-class SeasonsFragment : Fragment(R.layout.fragment_base) {
+class SeasonsFragment : Fragment() {
+
+    private var binding: FragmentBaseBinding? = null
 
     private val viewModel: DetailsViewModel by viewModels(::requireParentFragment)
 
-    private lateinit var recyclerView: RecyclerView
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bindResources()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentBaseBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
-    private fun bindResources() = with(view!!) {
-        recyclerView = findViewById(R.id.recycler_view)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

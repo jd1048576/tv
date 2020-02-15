@@ -10,30 +10,34 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import javax.inject.Inject
+import com.squareup.cycler.Recycler
+import com.squareup.cycler.toDataSource
 import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.common.ui.extensions.displayMetrics
 import jdr.tv.common.ui.extensions.dpToPixels
+import jdr.tv.common.ui.extensions.loadPoster
 import jdr.tv.common.ui.extensions.setupToolbar
+import jdr.tv.common.ui.extensions.span
 import jdr.tv.common.ui.utils.SpacingItemDecoration
 import jdr.tv.data.core.di.DataComponent
-import jdr.tv.feature.shows.R
+import jdr.tv.data.local.entities.Show
 import jdr.tv.feature.shows.databinding.FragmentShowsBinding
+import jdr.tv.feature.shows.databinding.ItemShowPosterBinding
 import jdr.tv.feature.shows.di.inject
-import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.math.roundToInt
 
-class ShowsFragment @Inject constructor(private val component: DataComponent) : Fragment(R.layout.fragment_shows) {
+class ShowsFragment @Inject constructor(private val component: DataComponent) : Fragment() {
 
     companion object {
         private const val SPACING = 16
         private const val SPAN = 200
     }
 
-    private lateinit var binding: FragmentShowsBinding
-
-    private lateinit var adapter: ShowsAdapter
+    private var binding: FragmentShowsBinding? = null
+    private var recycler: Recycler<Show>? = null
 
     @Inject
     lateinit var viewModel: ShowsViewModel
@@ -45,8 +49,8 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShowsBinding.inflate(inflater, container, false)
-        binding.span = calculateSpan()
-        return binding.root
+        binding!!.fragmentSearchRecyclerView.span = calculateSpan()
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,20 +65,39 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
         inflater.inflate(jdr.tv.common.navigation.R.menu.menu_main, menu)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+        recycler = null
+    }
+
     private fun calculateSpan(): Int {
         return (context!!.displayMetrics().widthPixels.toFloat() / context!!.dpToPixels(SPAN)).roundToInt()
     }
 
-    private fun setupRecyclerView() = with(binding.fragmentSearchRecyclerView) {
-        this@ShowsFragment.adapter = ShowsAdapter(this@ShowsFragment::navigate)
-        adapter = this@ShowsFragment.adapter
+    private fun setupRecyclerView() = binding?.fragmentSearchRecyclerView?.apply {
+        recycler = Recycler.adopt(this) {
+            stableId(Show::id)
+            row<Show, View> {
+                create { context ->
+                    val binding = ItemShowPosterBinding.inflate(LayoutInflater.from(context))
+                    view = binding.root
+                    bind { show ->
+                        binding.itemShowPosterPosterImageView.loadPoster(show.posterPath)
+                        binding.itemShowPosterPosterImageView.setOnClickListener {
+                            navigate(show.id)
+                        }
+                    }
+                }
+            }
+        }
         addItemDecoration(SpacingItemDecoration.GridLayout(context!!.dpToPixels(SPACING)))
     }
 
     private fun observe() {
         lifecycleScope.launch {
             viewModel.addedShowList.collect {
-                adapter.submitList(it)
+                recycler?.data = it.toDataSource()
             }
         }
     }

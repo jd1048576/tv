@@ -4,6 +4,8 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":common:extensions"))
+
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
 

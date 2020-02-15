@@ -2,7 +2,7 @@ const val KOTLIN_VERSION = "1.3.61"
 
 // Plugins
 
-const val ANDROID_GRADLE = "com.android.tools.build:gradle:4.0.0-alpha06"
+const val ANDROID_GRADLE = "com.android.tools.build:gradle:4.0.0-alpha09"
 const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
 const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.3"
 const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.2"
@@ -46,6 +46,8 @@ const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0"
 const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.3.1"
 
 const val COIL = "io.coil-kt:coil:0.9.5"
+
+const val CYCLER = "com.squareup.cycler:cycler:0.1.2"
 
 private const val DAGGER_VERSION = "2.26"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"

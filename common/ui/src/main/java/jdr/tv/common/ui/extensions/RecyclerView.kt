@@ -1,10 +1,19 @@
 package jdr.tv.common.ui.extensions
 
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-val RecyclerView.linearLayoutManager: LinearLayoutManager get() = layoutManager as LinearLayoutManager
+inline val RecyclerView.linearLayoutManager: LinearLayoutManager get() = layoutManager as LinearLayoutManager
+
+inline val RecyclerView.gridLayoutManager: GridLayoutManager get() = layoutManager as GridLayoutManager
+
+var RecyclerView.span: Int
+    get() = gridLayoutManager.spanCount
+    set(value) {
+        gridLayoutManager.spanCount = value
+    }
 
 fun RecyclerView.save(bundle: Bundle) {
     var position = RecyclerView.NO_POSITION

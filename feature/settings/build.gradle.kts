@@ -18,7 +18,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
+    buildFeatures.apply { // FIXME remove .apply
         buildConfig = true
         resValues = true
     }
