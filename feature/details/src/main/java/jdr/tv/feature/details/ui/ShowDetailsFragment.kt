@@ -1,50 +1,72 @@
 package jdr.tv.feature.details.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
+import com.squareup.cycler.Recycler
+import com.squareup.cycler.toDataSource
+import jdr.tv.common.extensions.toFormattedString
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.utils.SpacingItemDecoration
+import jdr.tv.data.local.entities.DetailedShow
 import jdr.tv.feature.details.R
+import jdr.tv.feature.details.databinding.FragmentBaseBinding
+import jdr.tv.feature.details.databinding.ItemShowDetailsOverviewBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ShowDetailsFragment : Fragment(R.layout.fragment_base) {
+class ShowDetailsFragment : Fragment() {
 
     companion object {
         const val SPACING = 16
     }
 
+    private var binding: FragmentBaseBinding? = null
+    private var recycler: Recycler<DetailedShow>? = null
+
     private val viewModel: DetailsViewModel by viewModels(::requireParentFragment)
 
-    private lateinit var recyclerView: RecyclerView
-
-    private lateinit var adapter: ShowDetailsAdapter
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentBaseBinding.inflate(inflater, container, false)
+        return binding!!.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bindResources()
         setupRecyclerView()
         observe()
     }
 
-    private fun bindResources() = with(view!!) {
-        recyclerView = findViewById(R.id.recycler_view)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+        recycler = null
     }
 
-    private fun setupRecyclerView() {
-        adapter = ShowDetailsAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.itemAnimator = null
-        recyclerView.addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
+    private fun setupRecyclerView() = binding?.recyclerView?.apply {
+        recycler = Recycler.adopt(this) {
+            row<DetailedShow, View> {
+                create { context ->
+                    val binding = ItemShowDetailsOverviewBinding.inflate(LayoutInflater.from(context))
+                    view = binding.root
+                    bind { detailedShow ->
+                        binding.itemShowDetailsOverviewTextView.text =
+                            if (detailedShow.show.overview.isEmpty()) context.getString(R.string.overview_unavailable) else detailedShow.show.overview
+                        binding.itemShowDetailsOverviewLastUpdatedTextView.text = detailedShow.details.detailsUpdatedAt.toFormattedString()
+                    }
+                }
+            }
+        }
+        addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
     }
 
     private fun observe() {
         lifecycleScope.launch {
             viewModel.detailedShow.collect {
-                adapter.submitList(listOf(it))
+                recycler?.data = listOf(it).toDataSource()
             }
         }
     }

@@ -19,15 +19,15 @@ jobs:
           java-version: 8
 
       - name: Restore Gradle Wrapper Cache
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v1.1.2
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
 
       - name: Restore Gradle Cache
-        uses: actions/cache@v1.1.0
+        uses: actions/cache@v1.1.2
         with:
-          path: ~/.gradle/caches
+          path: ~/.gradle/caches/modules-2
           key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/Dependencies.kt') }}
 
       - name: Set up Secrets

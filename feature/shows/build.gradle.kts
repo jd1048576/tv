@@ -18,10 +18,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
+    buildFeatures.apply { // FIXME remove .apply
         buildConfig = true
-        dataBinding = true
         resValues = true
+        viewBinding = true
     }
 }
 
@@ -50,6 +50,8 @@ dependencies {
     implementation(ANDROIDX_RECYCLERVIEW)
 
     implementation(COIL)
+
+    implementation(CYCLER)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)

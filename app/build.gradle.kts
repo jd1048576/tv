@@ -53,8 +53,8 @@ android {
 
     buildFeatures {
         buildConfig = true
-        dataBinding = true
         resValues = true
+        viewBinding = true
     }
 
     packagingOptions {
@@ -97,6 +97,8 @@ dependencies {
     implementation(ANDROIDX_NAVIGATION_FRAGMENT)
     implementation(ANDROIDX_NAVIGATION_RUNTIME)
     implementation(ANDROIDX_NAVIGATION_UI)
+
+    implementation(CYCLER)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
