@@ -8,7 +8,6 @@ val releaseSigning = file(".signing/app-release.jks").exists()
 
 android {
     compileSdkVersion(COMPILE_SDK_VERSION)
-    buildToolsVersion(BUILD_TOOLS_VERSION)
 
     defaultConfig {
         applicationId = "jdr.tv"
