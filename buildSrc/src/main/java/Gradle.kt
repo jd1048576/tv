@@ -57,4 +57,10 @@ fun RepositoryHandler.register() {
             includeGroup("io.fabric.tools")
         }
     }
+
+    maven("https://s3.amazonaws.com/fabric-artifacts/public") {
+        content {
+            includeGroup("io.fabric.tools")
+        }
+    }
 }
