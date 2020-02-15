@@ -21,6 +21,7 @@ android {
     buildFeatures.apply { // FIXME remove .apply
         buildConfig = true
         resValues = true
+        viewBinding = true
     }
 }
 

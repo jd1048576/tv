@@ -52,8 +52,15 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return FragmentSearchBinding.inflate(inflater, container, false).run {
+            binding = this
+            root
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.restore(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,11 +70,6 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
         observe()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel.restore(savedInstanceState)
-    }
-
     override fun onResume() {
         super.onResume()
         toggleSoftInput(viewModel.focus)
@@ -75,7 +77,7 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
 
     override fun onPause() {
         super.onPause()
-        viewModel.focus = binding!!.fragmentSearchSearchView.hasFocus()
+        viewModel.focus = binding?.searchView?.hasFocus() ?: false
         toggleSoftInput(false)
     }
 
@@ -90,7 +92,7 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
         recycler = null
     }
 
-    private fun setupRecyclerView() = binding?.fragmentSearchRecyclerView?.apply {
+    private fun setupRecyclerView() = binding?.recyclerView?.apply {
         recycler = Recycler.adopt(this) {
             stableId(Show::id)
             row<Show, View> {
@@ -98,9 +100,9 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
                     val binding = ItemSearchBinding.inflate(LayoutInflater.from(context))
                     view = binding.root
                     bind { show ->
-                        binding.itemSearchPosterImageView.loadPoster(show.posterPath)
-                        binding.itemSearchNameTextView.text = show.name
-                        binding.itemSearchDetailsTextView.text = details(show)
+                        binding.posterImageView.loadPoster(show.posterPath)
+                        binding.nameTextView.text = show.name
+                        binding.detailsTextView.text = details(show)
                         binding.root.setOnClickListener {
                             navigate(show.id)
                         }
@@ -108,10 +110,10 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
                 }
             }
         }
-        addItemDecoration(SearchItemDecoration(context!!.dpToPixels(SPACING)))
+        addItemDecoration(SearchItemDecoration(requireContext().dpToPixels(SPACING)))
     }
 
-    private fun setupSearch() = binding?.fragmentSearchSearchView?.apply {
+    private fun setupSearch() = binding?.searchView?.apply {
         setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.onQueryTextSubmit(query)
@@ -134,7 +136,7 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
                 }
                 onSuccess {
                     recycler?.data = it.toDataSource()
-                    render(false, it.isEmpty() && !binding!!.fragmentSearchSearchView.query.isNullOrBlank())
+                    render(false, it.isEmpty() && !binding?.searchView?.query.isNullOrBlank())
                 }
                 onFailure {
                     render(loading = false, empty = false)
@@ -145,17 +147,17 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
     }
 
     private fun render(loading: Boolean, empty: Boolean) = binding?.apply {
-        fragmentSearchSearchView.closeIconVisible(!loading)
-        fragmentSearchProgressBar.visibility = if (loading) VISIBLE else GONE
-        fragmentSearchEmptyTextView.visibility = if (empty) VISIBLE else GONE
+        searchView.closeIconVisible(!loading)
+        loadingProgressBar.visibility = if (loading) VISIBLE else GONE
+        noResultsTextView.visibility = if (empty) VISIBLE else GONE
     }
 
     private fun navigate(showId: Long) {
         findNavController().navigate(GlobalActions.actionDetails(showId))
     }
 
-    private fun toggleSoftInput(focus: Boolean) = binding?.fragmentSearchSearchView?.apply {
-        val inputMethodManager = context!!.systemService<InputMethodManager>()
+    private fun toggleSoftInput(focus: Boolean) = binding?.searchView?.apply {
+        val inputMethodManager = requireContext().systemService<InputMethodManager>()
         if (focus) {
             requestFocus()
             inputMethodManager.showSoftInput(findFocus(), 0)

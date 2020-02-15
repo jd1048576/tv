@@ -12,82 +12,82 @@
             <KeyAttribute
                 android:elevation="0dp"
                 app:framePosition="25"
-                app:motionTarget="@id/fragment_details_poster_image_view_holder" />
+                app:motionTarget="@id/poster_image_view_holder" />
             <KeyAttribute
                 android:translationY="-100dp"
                 app:framePosition="25"
-                app:motionTarget="@id/fragment_details_poster_image_view_holder" />
+                app:motionTarget="@id/poster_image_view_holder" />
             <KeyAttribute
                 android:translationY="50dp"
                 app:framePosition="75"
-                app:motionTarget="@id/fragment_details_poster_image_view_holder" />
+                app:motionTarget="@id/poster_image_view_holder" />
             <KeyAttribute
                 android:alpha="1"
                 app:framePosition="75"
-                app:motionTarget="@id/fragment_details_name_text_view_background" />
+                app:motionTarget="@id/name_text_view_background" />
         </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
 
         <Constraint
-            android:id="@id/fragment_details_backdrop_image_view"
+            android:id="@id/backdrop_image_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/fragment_details_name_text_view"
+            app:layout_constraintBottom_toTopOf="@id/name_text_view"
             app:layout_constraintDimensionRatio="H,16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
-            android:id="@id/fragment_details_poster_image_view_holder"
+            android:id="@id/poster_image_view_holder"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:elevation="@dimen/elevation"
             android:translationY="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_details_name_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/name_text_view"
             app:layout_constraintDimensionRatio="2:3"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Constraint
-            android:id="@id/fragment_details_name_text_view_background"
+            android:id="@id/name_text_view_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:alpha="1"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_details_name_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/name_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/fragment_details_name_text_view" />
+            app:layout_constraintTop_toTopOf="@id/name_text_view" />
 
         <Constraint
-            android:id="@id/fragment_details_name_text_view"
+            android:id="@id/name_text_view"
             android:layout_width="0dp"
             android:layout_height="@dimen/toolbar_height"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fragment_details_poster_image_view_holder" />
+            app:layout_constraintStart_toEndOf="@id/poster_image_view_holder" />
 
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
 
         <Constraint
-            android:id="@id/fragment_details_backdrop_image_view"
+            android:id="@id/backdrop_image_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/fragment_details_name_text_view"
+            app:layout_constraintBottom_toTopOf="@id/name_text_view"
             app:layout_constraintDimensionRatio="H,16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
-            android:id="@id/fragment_details_poster_image_view_holder"
+            android:id="@id/poster_image_view_holder"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginStart="16dp"
@@ -96,20 +96,20 @@
             android:translationY="100dp"
             app:layout_constraintDimensionRatio="2:3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_name_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/name_text_view" />
 
         <Constraint
-            android:id="@id/fragment_details_name_text_view_background"
+            android:id="@id/name_text_view_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:alpha="0"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_details_name_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/name_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/fragment_details_name_text_view" />
+            app:layout_constraintTop_toTopOf="@id/name_text_view" />
 
         <Constraint
-            android:id="@id/fragment_details_name_text_view"
+            android:id="@id/name_text_view"
             android:layout_width="0dp"
             android:layout_height="@dimen/toolbar_height"
             android:layout_marginStart="60dp"

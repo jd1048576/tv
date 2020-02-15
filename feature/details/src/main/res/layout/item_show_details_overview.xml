@@ -12,7 +12,7 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
 
     <TextView
-        android:id="@+id/item_show_details_overview_text_view"
+        android:id="@+id/overview_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -21,7 +21,7 @@
         tools:text="Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary." />
 
     <TextView
-        android:id="@+id/item_show_details_overview_last_updated_text_view"
+        android:id="@+id/last_updated_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

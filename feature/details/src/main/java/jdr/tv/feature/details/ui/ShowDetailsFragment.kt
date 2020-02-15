@@ -31,8 +31,10 @@ class ShowDetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModels(::requireParentFragment)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentBaseBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return FragmentBaseBinding.inflate(inflater, container, false).run {
+            binding = this
+            root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,14 +55,14 @@ class ShowDetailsFragment : Fragment() {
                     val binding = ItemShowDetailsOverviewBinding.inflate(LayoutInflater.from(context))
                     view = binding.root
                     bind { detailedShow ->
-                        binding.itemShowDetailsOverviewTextView.text =
+                        binding.overviewTextView.text =
                             if (detailedShow.show.overview.isEmpty()) context.getString(R.string.overview_unavailable) else detailedShow.show.overview
-                        binding.itemShowDetailsOverviewLastUpdatedTextView.text = detailedShow.details.detailsUpdatedAt.toFormattedString()
+                        binding.lastUpdatedTextView.text = detailedShow.details.detailsUpdatedAt.toFormattedString()
                     }
                 }
             }
         }
-        addItemDecoration(SpacingItemDecoration.LinearLayout(context!!.dpToPixels(SPACING)))
+        addItemDecoration(SpacingItemDecoration.LinearLayout(requireContext().dpToPixels(SPACING)))
     }
 
     private fun observe() {
