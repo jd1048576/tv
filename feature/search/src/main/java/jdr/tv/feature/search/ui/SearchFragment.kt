@@ -140,7 +140,7 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
                 }
                 onFailure {
                     render(loading = false, empty = false)
-                    Log.i("FAILURE $it")
+                    Log.e(it, "Search Fragment Load Failure")
                 }
             }
         }

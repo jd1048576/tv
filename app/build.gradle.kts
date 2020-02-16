@@ -4,6 +4,11 @@ plugins {
     id("kotlin-kapt")
 }
 
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
+}
+
 val releaseSigning = file(".signing/app-release.jks").exists()
 
 android {
@@ -60,7 +65,6 @@ android {
     packagingOptions {
         exclude("/**/*.pro")
         exclude("/*.properties")
-        exclude("/fabric/*.properties")
         exclude("/META-INF/*.version")
     }
 
@@ -103,15 +107,10 @@ dependencies {
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
 
-    implementation(FIREBASE_CORE)
+    implementation(FIREBASE_ANALYTICS)
     implementation(FIREBASE_CRASHLYTICS)
 
     implementation(MATERIAL)
 
     implementation(OKHTTP3)
-}
-
-if (file("google-services.json").exists()) {
-    apply(plugin = "com.google.gms.google-services")
-    apply(plugin = "io.fabric")
 }

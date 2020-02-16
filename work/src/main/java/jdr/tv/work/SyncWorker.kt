@@ -66,7 +66,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
             .onSuccess {
                 insert(it.first, it.second)
             }
-            .onFailure { Log.e(it) }
+            .onFailure { Log.e(it, "Sync Worker Failure") }
     }
 
     private suspend fun fetchDetailedShow(showId: Long): Response<RemoteDetailedShow> {

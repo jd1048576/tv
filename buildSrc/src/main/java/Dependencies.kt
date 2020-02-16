@@ -5,7 +5,7 @@ const val KOTLIN_VERSION = "1.3.61"
 const val ANDROID_GRADLE = "com.android.tools.build:gradle:4.0.0-alpha09"
 const val KOTLIN_GRADLE = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
 const val GOOGLE_SERVICES_GRADLE = "com.google.gms:google-services:4.3.3"
-const val FABRIC_GRADLE = "io.fabric.tools:gradle:1.31.2"
+const val FIREBASE_CRASHLYTICS_GRADLE = "com.google.firebase:firebase-crashlytics-gradle:2.0.0-beta02"
 
 const val DEPENDENCY_UPDATES_VERSION = "0.27.0"
 const val DEPENDENCY_UPDATES = "com.github.ben-manes.versions"
@@ -53,8 +53,8 @@ private const val DAGGER_VERSION = "2.26"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
 const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
-const val FIREBASE_CORE = "com.google.firebase:firebase-core:17.2.2"
-const val FIREBASE_CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:2.10.1"
+const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics:17.2.2"
+const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics:17.0.0-beta01"
 
 const val MATERIAL = "com.google.android.material:material:1.2.0-alpha04"
 
