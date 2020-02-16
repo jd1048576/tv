@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
 import jdr.tv.common.navigation.GlobalActions
+import jdr.tv.common.ui.extensions.bind
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.loadPoster
 import jdr.tv.common.ui.extensions.setupToolbar
@@ -76,16 +77,12 @@ class WatchListFragment @Inject constructor(private val component: DataComponent
         recycler = Recycler.adopt(this) {
             stableId(EpisodeItem::id)
             row<EpisodeItem, View> {
-                create { context ->
-                    val binding = ItemEpisodeBinding.inflate(LayoutInflater.from(context))
-                    view = binding.root
-                    bind { episode ->
-                        binding.posterImageView.loadPoster(episode.posterPath)
-                        binding.showNameTextView.text = episode.showName
-                        binding.detailsTextView.text = context.getString(R.string.episode_details_format, episode.seasonNumber, episode.episodeNumber)
-                        binding.root.setOnClickListener {
-                            navigate(episode.showId)
-                        }
+                bind(ItemEpisodeBinding::inflate) { episode ->
+                    posterImageView.loadPoster(episode.posterPath)
+                    showNameTextView.text = episode.showName
+                    detailsTextView.text = context.getString(R.string.episode_details_format, episode.seasonNumber, episode.episodeNumber)
+                    root.setOnClickListener {
+                        navigate(episode.showId)
                     }
                 }
             }
