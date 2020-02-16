@@ -7,7 +7,6 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
-import java.time.Duration
 import jdr.tv.common.log.Log
 import jdr.tv.data.local.Database
 import jdr.tv.data.local.entities.RelatedShow
@@ -31,6 +30,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
+import java.time.Duration
 
 class SyncWorker(context: Context, params: WorkerParameters, private val database: Database, private val tmdbApi: TmdbApi) :
     CoroutineWorker(context, params) {
@@ -54,7 +54,9 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
     }
 
     override suspend fun doWork(): Result = withContext(IO) {
+        applicationContext.sendNotification(1, "Show Sync Started")
         database.addDao().selectAddedShowIdList().map { async { syncShow(it) } }.awaitAll()
+        applicationContext.sendNotification(2, "Show Sync Completed")
         Result.success()
     }
 
@@ -64,7 +66,7 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
             .onSuccess {
                 insert(it.first, it.second)
             }
-            .onFailure { Log.e(it) }
+            .onFailure { Log.e(it, "Sync Worker Failure") }
     }
 
     private suspend fun fetchDetailedShow(showId: Long): Response<RemoteDetailedShow> {

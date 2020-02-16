@@ -4,10 +4,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import dagger.Module
 import dagger.Provides
-import java.io.File
-import java.time.Instant
-import javax.inject.Named
-import javax.inject.Singleton
 import jdr.tv.data.core.BuildConfig
 import jdr.tv.data.remote.TmdbApi
 import jdr.tv.data.remote.adapter.InstantAdapter
@@ -23,6 +19,10 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
+import java.io.File
+import java.time.Instant
+import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 object RemoteModule {
@@ -64,13 +64,8 @@ object RemoteModule {
             .build()
 
         val moshi: Moshi = moshiInstant.newBuilder()
-            .add(
-                RemoteGenre::class.java,
-                RemoteGenreAdapter()
-            )
-            .add(Types.newParameterizedType(List::class.java, RemoteSeason::class.java),
-                RemoteSeasonListAdapter(moshiInstant)
-            )
+            .add(RemoteGenre::class.java, RemoteGenreAdapter())
+            .add(Types.newParameterizedType(List::class.java, RemoteSeason::class.java), RemoteSeasonListAdapter(moshiInstant))
             .build()
 
         return Retrofit.Builder()

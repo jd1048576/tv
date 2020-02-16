@@ -11,12 +11,10 @@ fun RepositoryHandler.register() {
         content {
             includeGroupByRegex("androidx.*")
             includeGroupByRegex("com.android.*")
-            includeGroup("com.crashlytics.sdk.android")
             includeGroup("com.google.android.gms")
             includeGroup("com.google.android.material")
             includeGroup("com.google.firebase")
             includeGroup("com.google.gms")
-            includeGroup("io.fabric.sdk.android")
         }
     }
 
@@ -49,18 +47,6 @@ fun RepositoryHandler.register() {
             includeGroup("org.sonatype.oss")
             includeGroup("org.xerial")
             includeGroup("org.yaml")
-        }
-    }
-
-    maven("https://maven.fabric.io/public") {
-        content {
-            includeGroup("io.fabric.tools")
-        }
-    }
-
-    maven("https://s3.amazonaws.com/fabric-artifacts/public") {
-        content {
-            includeGroup("io.fabric.tools")
         }
     }
 }

@@ -4,7 +4,7 @@ buildscript {
         classpath(ANDROID_GRADLE)
         classpath(KOTLIN_GRADLE)
         classpath(GOOGLE_SERVICES_GRADLE)
-        classpath(FABRIC_GRADLE)
+        classpath(FIREBASE_CRASHLYTICS_GRADLE)
     }
 }
 

@@ -136,7 +136,7 @@ class DetailsFragment @Inject constructor(private val component: DataComponent) 
                 onSuccess {
                     render(false, it)
                 }
-                onFailure { Log.e("FAILURE $it") }
+                onFailure { Log.e(it, "Details Fragment Load Failure") }
             }
         }
         lifecycleScope.launch {

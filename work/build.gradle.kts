@@ -28,6 +28,7 @@ dependencies {
     implementation(KOTLIN_STDLIB)
     implementation(KOTLIN_COROUTINES_CORE)
 
+    implementation(ANDROIDX_CORE)
     implementation(ANDROIDX_ROOM)
     implementation(ANDROIDX_WORK)
 

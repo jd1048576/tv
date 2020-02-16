@@ -68,7 +68,7 @@ class ShowDetailsFragment : Fragment() {
     private fun observe() {
         lifecycleScope.launch {
             viewModel.detailedShow.collect {
-                recycler?.data = listOf(it).toDataSource()
+                recycler?.update { data = listOf(it).toDataSource() }
             }
         }
     }
