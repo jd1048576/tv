@@ -1,7 +1,5 @@
 package jdr.tv.feature.details.ui
 
-import java.time.Instant
-import javax.inject.Inject
 import jdr.tv.common.extensions.olderThan
 import jdr.tv.common.ui.Resource
 import jdr.tv.common.ui.asSuccess
@@ -30,10 +28,13 @@ import jdr.tv.data.remote.onSuccess
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.time.Instant
+import javax.inject.Inject
 
 class DetailsRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
@@ -63,7 +64,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
     }
 
     fun selectDetailedShow(showId: Long): Flow<DetailedShow> {
-        return database.detailsDao().selectDetailedShowFlow(showId).flowOn(IO)
+        return database.detailsDao().selectDetailedShowFlow(showId).filterNotNull().flowOn(IO)
     }
 
     fun selectDetailedSeasonList(showId: Long): Flow<List<DetailedSeason>> {
