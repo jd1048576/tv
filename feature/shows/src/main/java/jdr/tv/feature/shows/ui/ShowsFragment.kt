@@ -104,7 +104,7 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
     private fun observe() {
         lifecycleScope.launch {
             viewModel.addedShowList.collect {
-                recycler?.data = it.toDataSource()
+                recycler?.update { data = it.toDataSource() }
             }
         }
     }

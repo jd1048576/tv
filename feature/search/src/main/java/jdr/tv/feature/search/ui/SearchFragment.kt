@@ -135,8 +135,8 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
                     render(loading = true, empty = false)
                 }
                 onSuccess {
-                    recycler?.data = it.toDataSource()
                     render(false, it.isEmpty() && !binding?.searchView?.query.isNullOrBlank())
+                    recycler?.update { data = it.toDataSource() }
                 }
                 onFailure {
                     render(loading = false, empty = false)
