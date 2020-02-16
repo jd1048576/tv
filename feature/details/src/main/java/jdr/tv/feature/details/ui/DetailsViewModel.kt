@@ -11,8 +11,9 @@ import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailsViewModel(private val showId: Long, private val repository: DetailsRepository) : ViewModel() {
+class DetailsViewModel @Inject constructor(private val showId: Long, private val repository: DetailsRepository) : ViewModel() {
 
     private val _show: BroadcastChannel<Resource<Show>> = repository.selectShow(showId)
         .conflateIn(viewModelScope)

@@ -6,8 +6,8 @@ import dagger.Provides
 import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.common.viewmodel.ViewModelProviderFactory
 import jdr.tv.feature.details.ui.DetailsFragment
-import jdr.tv.feature.details.ui.DetailsRepository
 import jdr.tv.feature.details.ui.DetailsViewModel
+import javax.inject.Provider
 
 @Module
 object DetailsModule {
@@ -18,12 +18,7 @@ object DetailsModule {
     }
 
     @Provides
-    fun providesViewModelProviderFactory(showId: Long, repository: DetailsRepository): ViewModelProvider.Factory {
-        return ViewModelProviderFactory { DetailsViewModel(showId, repository) }
-    }
-
-    @Provides
-    fun providesViewModel(fragment: DetailsFragment, factory: ViewModelProvider.Factory): DetailsViewModel {
-        return ViewModelProvider(fragment, factory).get(DetailsViewModel::class.java)
+    fun providesViewModelProviderFactory(provider: Provider<DetailsViewModel>): ViewModelProvider.Factory {
+        return ViewModelProviderFactory(provider::get)
     }
 }

@@ -12,8 +12,9 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
+class SearchViewModel @Inject constructor(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
 
     companion object {
         private const val DEBOUNCE = 275L

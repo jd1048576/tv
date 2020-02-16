@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.squareup.cycler.Recycler
@@ -45,7 +47,8 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
     private var recycler: Recycler<Show>? = null
 
     @Inject
-    lateinit var viewModel: SearchViewModel
+    lateinit var viewModelProviderFactory: ViewModelProvider.Factory
+    private val viewModel: SearchViewModel by viewModels { viewModelProviderFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

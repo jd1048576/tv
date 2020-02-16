@@ -8,6 +8,8 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.squareup.cycler.Recycler
@@ -34,14 +36,15 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
 
     companion object {
         private const val SPACING = 16
-        private const val SPAN = 200
+        private const val SPAN = 160
     }
 
     private var binding: FragmentShowsBinding? = null
     private var recycler: Recycler<Show>? = null
 
     @Inject
-    lateinit var viewModel: ShowsViewModel
+    lateinit var viewModelProviderFactory: ViewModelProvider.Factory
+    private val viewModel: ShowsViewModel by activityViewModels { viewModelProviderFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -67,7 +70,6 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
         setupToolbar(jdr.tv.common.ui.R.id.toolbar, jdr.tv.common.navigation.R.string.shows)
         setupRecyclerView()
         observe()
@@ -80,7 +82,7 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
     }
 
     private fun calculateSpan(): Int {
-        return (requireContext().displayMetrics().widthPixels.toFloat() / requireContext().dpToPixels(SPAN)).roundToInt()
+        return requireContext().run { displayMetrics().widthPixels.toFloat() / dpToPixels(SPAN) }.roundToInt()
     }
 
     private fun setupRecyclerView() = binding?.recyclerView?.apply {
