@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
 import jdr.tv.common.navigation.GlobalActions
+import jdr.tv.common.ui.extensions.bind
 import jdr.tv.common.ui.extensions.displayMetrics
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.loadPoster
@@ -86,14 +87,10 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
         recycler = Recycler.adopt(this) {
             stableId(Show::id)
             row<Show, View> {
-                create { context ->
-                    val binding = ItemShowPosterBinding.inflate(LayoutInflater.from(context))
-                    view = binding.root
-                    bind { show ->
-                        binding.posterImageView.loadPoster(show.posterPath)
-                        binding.posterImageView.setOnClickListener {
-                            navigate(show.id)
-                        }
+                bind(ItemShowPosterBinding::inflate) { show ->
+                    posterImageView.loadPoster(show.posterPath)
+                    posterImageView.setOnClickListener {
+                        navigate(show.id)
                     }
                 }
             }

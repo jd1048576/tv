@@ -20,6 +20,7 @@ android {
 
     buildFeatures {
         resValues = true
+        viewBinding = true
     }
 }
 
@@ -35,6 +36,8 @@ dependencies {
     implementation(ANDROIDX_RECYCLERVIEW)
 
     implementation(COIL)
+
+    implementation(CYCLER)
 
     implementation(MATERIAL)
 }

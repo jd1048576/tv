@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
+import jdr.tv.common.ui.extensions.bind
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.utils.SpacingItemDecoration
 import jdr.tv.data.local.entities.DetailedSeason
@@ -51,21 +52,17 @@ class SeasonsFragment : Fragment() {
         recycler = Recycler.adopt(this) {
             stableId { s -> s.season.id }
             row<DetailedSeason, View> {
-                create { context ->
-                    val binding = ItemSeasonBinding.inflate(LayoutInflater.from(context))
-                    view = binding.root
-                    bind { season ->
-                        val watchCount = season.watchCount
-                        val episodeCount = season.episodeList.size
-                        binding.seasonNumberTextView.text = context.getString(R.string.season_format, season.season.seasonNumber)
-                        binding.watchedTextView.text = context.getString(R.string.season_count_format, watchCount, episodeCount)
-                        binding.checkImageView.isSelected = watchCount == episodeCount
-                        binding.checkImageView.setOnClickListener {
-                            viewModel.updateSeasonWatched(season)
-                        }
-                        binding.seasonProgressBar.progress = watchCount
-                        binding.seasonProgressBar.max = episodeCount
+                bind(ItemSeasonBinding::inflate) { season ->
+                    val watchCount = season.watchCount
+                    val episodeCount = season.episodeList.size
+                    seasonNumberTextView.text = context.getString(R.string.season_format, season.season.seasonNumber)
+                    watchedTextView.text = context.getString(R.string.season_count_format, watchCount, episodeCount)
+                    checkImageView.isSelected = watchCount == episodeCount
+                    checkImageView.setOnClickListener {
+                        viewModel.updateSeasonWatched(season)
                     }
+                    seasonProgressBar.progress = watchCount
+                    seasonProgressBar.max = episodeCount
                 }
             }
         }

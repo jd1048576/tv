@@ -17,6 +17,7 @@ import com.squareup.cycler.toDataSource
 import jdr.tv.common.log.Log
 import jdr.tv.common.navigation.GlobalActions
 import jdr.tv.common.ui.collectResource
+import jdr.tv.common.ui.extensions.bind
 import jdr.tv.common.ui.extensions.closeIconVisible
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.loadPoster
@@ -96,16 +97,12 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
         recycler = Recycler.adopt(this) {
             stableId(Show::id)
             row<Show, View> {
-                create { context ->
-                    val binding = ItemSearchBinding.inflate(LayoutInflater.from(context))
-                    view = binding.root
-                    bind { show ->
-                        binding.posterImageView.loadPoster(show.posterPath)
-                        binding.nameTextView.text = show.name
-                        binding.detailsTextView.text = details(show)
-                        binding.root.setOnClickListener {
-                            navigate(show.id)
-                        }
+                bind(ItemSearchBinding::inflate) { show ->
+                    posterImageView.loadPoster(show.posterPath)
+                    nameTextView.text = show.name
+                    detailsTextView.text = details(show)
+                    root.setOnClickListener {
+                        navigate(show.id)
                     }
                 }
             }
