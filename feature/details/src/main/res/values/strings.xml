@@ -9,4 +9,7 @@
     <string name="overview">Overview</string>
     <string name="overview_unavailable">No overview available for this show</string>
 
+    <string name="season_format">Season %d</string>
+    <string name="season_count_format">%d/%d</string>
+
 </resources>
