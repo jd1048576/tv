@@ -7,8 +7,9 @@ import jdr.tv.data.local.entities.Show
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import javax.inject.Inject
 
-class ShowsViewModel(repository: ShowsRepository) : ViewModel() {
+class ShowsViewModel @Inject constructor(repository: ShowsRepository) : ViewModel() {
 
     private val _addedShowList: BroadcastChannel<List<Show>> = repository.selectAddedShowList()
         .conflateIn(viewModelScope)

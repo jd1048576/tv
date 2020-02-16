@@ -15,6 +15,8 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -50,7 +52,8 @@ class DetailsFragment @Inject constructor(private val component: DataComponent) 
     private var binding: FragmentDetailsBinding? = null
 
     @Inject
-    lateinit var viewModel: DetailsViewModel
+    lateinit var viewModelProviderFactory: ViewModelProvider.Factory
+    private val viewModel: DetailsViewModel by viewModels { viewModelProviderFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

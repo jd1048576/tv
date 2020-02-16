@@ -7,8 +7,9 @@ import jdr.tv.data.local.entities.EpisodeItem
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import javax.inject.Inject
 
-class WatchListViewModel(repository: WatchListRepository) : ViewModel() {
+class WatchListViewModel @Inject constructor(repository: WatchListRepository) : ViewModel() {
 
     private val _watchList: BroadcastChannel<List<EpisodeItem>> = repository.selectWatchList().conflateIn(viewModelScope)
     val watchList: Flow<List<EpisodeItem>> = _watchList.asFlow()

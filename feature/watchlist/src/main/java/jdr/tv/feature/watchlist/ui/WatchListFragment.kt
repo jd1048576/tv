@@ -8,6 +8,8 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.squareup.cycler.Recycler
@@ -37,7 +39,8 @@ class WatchListFragment @Inject constructor(private val component: DataComponent
     private var recycler: Recycler<EpisodeItem>? = null
 
     @Inject
-    lateinit var viewModel: WatchListViewModel
+    lateinit var viewModelProviderFactory: ViewModelProvider.Factory
+    private val viewModel: WatchListViewModel by activityViewModels { viewModelProviderFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
