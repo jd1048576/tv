@@ -8,7 +8,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,7 +40,7 @@ class WatchListFragment @Inject constructor(private val component: DataComponent
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProvider.Factory
-    private val viewModel: WatchListViewModel by activityViewModels { viewModelProviderFactory }
+    private val viewModel: WatchListViewModel by viewModels { viewModelProviderFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
