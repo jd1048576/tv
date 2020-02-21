@@ -1,9 +1,6 @@
-name: Branch Build
+name: Build
 
-on:
-  push:
-    branches-ignore:
-      - master
+on: push
 
 jobs:
   build:
@@ -30,6 +27,11 @@ jobs:
           path: ~/.gradle/caches/modules-2
           key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/Dependencies.kt') }}
 
+      - name: Set up Secrets
+        env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
+        run: echo ${GOOGLE_SERVICES} > app/google-services.json
+
       - name: Build Bundle
         env:
           JVM_OPTS: "-Xmx3200m"
@@ -38,8 +40,22 @@ jobs:
           ORG_GRADLE_PROJECT_TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: ./gradlew bundle
 
+      - name: Remove Secrets
+        if: always()
+        run: rm app/google-services.json
+
+      - name: Create Apk
+        run: ./.github/scripts/create_apk.sh
+
+      - name: Create Release
+        if: github.ref == 'refs/heads/master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./.github/scripts/create_release.sh
+
   detekt:
     needs: build
+    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
 
@@ -73,6 +89,7 @@ jobs:
 
   dependencies:
     needs: build
+    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
 
