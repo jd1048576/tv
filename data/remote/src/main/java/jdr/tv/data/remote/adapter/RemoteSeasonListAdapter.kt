@@ -34,7 +34,7 @@ class RemoteSeasonListAdapter(private val moshi: Moshi) : JsonAdapter<List<Remot
             val name = reader.nextName()
             when {
                 name == "id" -> showId = reader.nextLong()
-                name == "seasons" -> seasonListAdapter.fromJson(reader)!!.associateByTo(seasonMap, TransientSeason::seasonNumber)
+                name == "seasons" -> seasonListAdapter.fromJson(reader)?.associateByTo(seasonMap, TransientSeason::seasonNumber)
                 name.matches(seasonRegex) -> {
                     episodeListAdapter.fromJson(reader)?.takeIf { it.seasonNumber != 0 }?.also { episodeList.add(it) }
                 }

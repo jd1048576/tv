@@ -54,9 +54,12 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
     }
 
     override suspend fun doWork(): Result = withContext(IO) {
-        applicationContext.sendNotification(1, "Show Sync Started")
-        database.addDao().selectAddedShowIdList().map { async { syncShow(it) } }.awaitAll()
-        applicationContext.sendNotification(2, "Show Sync Completed")
+        applicationContext.sendNotification(1, "Sync Started")
+        val start = System.currentTimeMillis()
+        val addedList: List<Long> = database.addDao().selectAddedShowIdList()
+        addedList.map { async { syncShow(it) } }.awaitAll()
+        val end = System.currentTimeMillis()
+        applicationContext.sendNotification(1, "Sync Completed, ${addedList.size} Shows Synced in ${end - start} ms")
         Result.success()
     }
 
