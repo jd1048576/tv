@@ -2,8 +2,6 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.kotlin.dsl.maven
 
-val ci = System.getenv("CI") == "true" || System.getenv("GITHUB_ACTIONS") == "true"
-
 fun Project.stringProperty(propertyName: String) = property(propertyName) as String
 
 fun RepositoryHandler.register() {
@@ -11,8 +9,7 @@ fun RepositoryHandler.register() {
         content {
             includeGroupByRegex("androidx.*")
             includeGroupByRegex("com.android.*")
-            includeGroup("com.google.android.gms")
-            includeGroup("com.google.android.material")
+            includeGroupByRegex("com.google.android.*")
             includeGroup("com.google.firebase")
             includeGroup("com.google.gms")
         }
