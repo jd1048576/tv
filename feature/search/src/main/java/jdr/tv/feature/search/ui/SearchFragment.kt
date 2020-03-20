@@ -62,12 +62,8 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel.restore(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.restore(savedInstanceState)
         setupToolbar(R.id.toolbar, displayHomeAsUp = true)
         setupRecyclerView()
         setupSearch()
