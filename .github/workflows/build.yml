@@ -13,7 +13,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@master
         with:
-          java-version: 8
+          java-version: 11
 
       - name: Restore Gradle Wrapper Cache
         uses: actions/cache@v1.1.2
