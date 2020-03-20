@@ -15,12 +15,14 @@ import jdr.tv.data.remote.entities.RemoteShowList
 import jdr.tv.data.remote.onFailure
 import jdr.tv.data.remote.onSuccess
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class SearchRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
     companion object {
@@ -28,7 +30,7 @@ class SearchRepository @Inject constructor(private val database: Database, priva
     }
 
     fun search(query: String): Flow<Resource<List<Show>>> {
-        return flow<Resource<List<Show>>> {
+        return flow {
             emit(Resource.loading(database.searchItemDao().selectSearchShowList()))
             fetchSearch(query)
                 .onSuccess {

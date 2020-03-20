@@ -26,6 +26,7 @@ import jdr.tv.data.remote.mergeSwitchMap
 import jdr.tv.data.remote.onFailure
 import jdr.tv.data.remote.onSuccess
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.filterNotNull
@@ -36,6 +37,7 @@ import kotlinx.coroutines.withContext
 import java.time.Instant
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class DetailsRepository @Inject constructor(private val database: Database, private val tmdbApi: TmdbApi) {
 
     companion object {
@@ -43,7 +45,7 @@ class DetailsRepository @Inject constructor(private val database: Database, priv
     }
 
     fun selectShow(showId: Long): Flow<Resource<Show>> {
-        return flow<Resource<Show>> {
+        return flow {
             if (shouldUpdate(showId)) {
                 emit(Resource.loading(database.showDao().select(showId)))
                 fetchDetailedShow(showId)

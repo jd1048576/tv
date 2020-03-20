@@ -5,6 +5,8 @@ import jdr.tv.common.extensions.conflateIn
 import jdr.tv.common.ui.Resource
 import jdr.tv.common.viewmodel.StateViewModel
 import jdr.tv.data.local.entities.Show
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +16,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : StateViewModel<SearchViewState>(SearchViewState()) {
 
     companion object {
