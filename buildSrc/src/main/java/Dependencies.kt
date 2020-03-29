@@ -1,4 +1,4 @@
-const val KOTLIN_VERSION = "1.3.70"
+const val KOTLIN_VERSION = "1.3.71"
 
 // Plugins
 
@@ -10,7 +10,7 @@ const val FIREBASE_CRASHLYTICS_GRADLE = "com.google.firebase:firebase-crashlytic
 const val DEPENDENCY_UPDATES_VERSION = "0.28.0"
 const val DEPENDENCY_UPDATES = "com.github.ben-manes.versions"
 
-const val DETEKT_VERSION = "1.6.0"
+const val DETEKT_VERSION = "1.7.2"
 const val DETEKT = "io.gitlab.arturbosch.detekt"
 const val DETEKT_FORMATTING = "$DETEKT:detekt-formatting:$DETEKT_VERSION"
 
@@ -18,7 +18,7 @@ const val DETEKT_FORMATTING = "$DETEKT:detekt-formatting:$DETEKT_VERSION"
 
 const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
 
-private const val KOTLIN_COROUTINES_VERSION = "1.3.4"
+private const val KOTLIN_COROUTINES_VERSION = "1.3.5"
 const val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
 const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLIN_COROUTINES_VERSION"
 
@@ -62,8 +62,8 @@ private const val MOSHI_VERSION = "1.9.2"
 const val MOSHI = "com.squareup.moshi:moshi:$MOSHI_VERSION"
 const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VERSION"
 
-const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.4.1"
+const val OKHTTP3 = "com.squareup.okhttp3:okhttp:4.5.0-RC1"
 
-private const val RETROFIT_VERSION = "2.7.2"
+private const val RETROFIT_VERSION = "2.8.1"
 const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
 const val RETROFIT_MOSHI = "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"

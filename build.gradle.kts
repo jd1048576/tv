@@ -49,7 +49,7 @@ val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
     reports {
         xml.enabled = false
         html.enabled = false
-        txt.enabled = false
+        txt.enabled = true
     }
 }
 
