@@ -43,7 +43,6 @@ class SyncWorker(context: Context, params: WorkerParameters, private val databas
         fun createPeriodicWorkRequest(): PeriodicWorkRequest {
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
-                .setRequiresDeviceIdle(true)
                 .build()
 
             return PeriodicWorkRequestBuilder<SyncWorker>(Duration.ofHours(SYNC_PERIOD))
