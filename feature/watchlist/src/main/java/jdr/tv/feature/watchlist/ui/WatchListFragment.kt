@@ -19,11 +19,12 @@ import jdr.tv.common.ui.extensions.bind
 import jdr.tv.common.ui.extensions.dpToPixels
 import jdr.tv.common.ui.extensions.loadPoster
 import jdr.tv.common.ui.extensions.setupToolbar
+import jdr.tv.common.ui.utils.TopBottomItemDecoration
 import jdr.tv.data.core.di.DataComponent
 import jdr.tv.data.local.entities.EpisodeItem
 import jdr.tv.feature.watchlist.R
 import jdr.tv.feature.watchlist.databinding.FragmentWatchListBinding
-import jdr.tv.feature.watchlist.databinding.ItemEpisodeBinding
+import jdr.tv.feature.watchlist.databinding.ItemWatchListEpisodeBinding
 import jdr.tv.feature.watchlist.di.inject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -80,7 +81,7 @@ class WatchListFragment @Inject constructor(private val component: DataComponent
         recycler = Recycler.adopt(this) {
             stableId(EpisodeItem::id)
             row<EpisodeItem, View> {
-                bind(ItemEpisodeBinding::inflate) { episode ->
+                bind(ItemWatchListEpisodeBinding::inflate) { episode ->
                     posterImageView.loadPoster(episode.posterPath)
                     showNameTextView.text = episode.showName
                     detailsTextView.text = context.getString(R.string.episode_details_format, episode.seasonNumber, episode.episodeNumber)
@@ -90,7 +91,7 @@ class WatchListFragment @Inject constructor(private val component: DataComponent
                 }
             }
         }
-        addItemDecoration(EpisodeItemDecoration(requireContext().dpToPixels(SPACING)))
+        addItemDecoration(TopBottomItemDecoration(requireContext().dpToPixels(SPACING)))
     }
 
     private fun observe() {

@@ -1,11 +1,11 @@
-package jdr.tv.feature.watchlist.ui
+package jdr.tv.common.ui.utils
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class EpisodeItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
+class TopBottomItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         if (parent.layoutManager is LinearLayoutManager) {

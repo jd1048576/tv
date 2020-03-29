@@ -28,6 +28,7 @@ import jdr.tv.common.ui.extensions.systemService
 import jdr.tv.common.ui.onFailure
 import jdr.tv.common.ui.onLoading
 import jdr.tv.common.ui.onSuccess
+import jdr.tv.common.ui.utils.TopBottomItemDecoration
 import jdr.tv.data.core.di.DataComponent
 import jdr.tv.data.local.entities.Show
 import jdr.tv.feature.search.R
@@ -106,7 +107,7 @@ class SearchFragment @Inject constructor(private val component: DataComponent) :
                 }
             }
         }
-        addItemDecoration(SearchItemDecoration(requireContext().dpToPixels(SPACING)))
+        addItemDecoration(TopBottomItemDecoration(requireContext().dpToPixels(SPACING)))
     }
 
     private fun setupSearch() = binding?.searchView?.apply {
