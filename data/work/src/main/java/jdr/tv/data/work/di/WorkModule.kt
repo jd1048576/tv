@@ -9,6 +9,7 @@ import dagger.multibindings.IntoSet
 import javax.inject.Singleton
 import jdr.tv.data.local.Database
 import jdr.tv.data.remote.TmdbApi
+import jdr.tv.data.work.RemoveWorker
 import jdr.tv.data.work.SyncWorker
 import jdr.tv.data.work.WorkerProviderFactory
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,15 @@ import kotlinx.coroutines.asExecutor
 
 @Module
 object WorkModule {
+
+    @Singleton
+    @Provides
+    @IntoSet
+    fun providesRemoveWorkerFactory(database: Database): WorkerFactory {
+        return WorkerProviderFactory(RemoveWorker::class.java.name) { context, params ->
+            RemoveWorker(context, params, database)
+        }
+    }
 
     @Singleton
     @Provides
