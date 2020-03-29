@@ -6,7 +6,7 @@ import dagger.Component
 import javax.inject.Singleton
 import jdr.tv.data.local.Database
 import jdr.tv.data.remote.TmdbApi
-import jdr.tv.work.di.WorkModule
+import jdr.tv.data.work.di.WorkModule
 
 @Singleton
 @Component(modules = [DataModule::class, InitializationModule::class, LocalModule::class, RemoteModule::class, WorkModule::class])

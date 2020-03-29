@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import jdr.tv.data.local.entities.Show
 import kotlinx.coroutines.flow.Flow
+import java.time.Instant
 
 @Dao
 interface ShowDao : BaseDao<Show> {
@@ -14,14 +15,8 @@ interface ShowDao : BaseDao<Show> {
     @Query("SELECT Show.* FROM Show WHERE id = :id")
     fun selectFlow(id: Long): Flow<Show>
 
-/*    @Query("SELECT * FROM Show WHERE added = 1 ORDER BY name ASC")
-    fun selectAddedShowListDataSourceFactory(): DataSource.Factory<Int, Show>
-
-    @Query("UPDATE Show SET added = :added WHERE id = :id")
-    fun updateAdded(id: Long, added: Boolean)*/
-
-    /* @Query("DELETE FROM Show WHERE added = 0 AND lastUpdate < (strftime('%s','now') - (3 * 86400))")
-     suspend fun invalidate()*/
+    @Query("DELETE FROM Show WHERE NOT EXISTS (SELECT 1 FROM `Add` WHERE showId = Show.id) AND Show.updatedAt < :olderThan")
+     suspend fun deleteAll(olderThan: Instant)
 
     @Query("DELETE FROM Show")
     suspend fun deleteAll()

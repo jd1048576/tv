@@ -11,17 +11,6 @@ android {
         minSdkVersion(MIN_SDK_VERSION)
         targetSdkVersion(TARGET_SDK_VERSION)
         testInstrumentationRunner = TEST_INSTRUMENTATION_RUNNER
-
-        buildConfigField("String", "TMDB_API_KEY", "\"${stringProperty("TMDB_API_KEY")}\"")
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true"
-                )
-            }
-        }
     }
 
     compileOptions {
@@ -30,37 +19,25 @@ android {
     }
 
     buildFeatures {
-        buildConfig = true
+        resValues = true
     }
 }
 
 dependencies {
     implementation(project(":common:log"))
     implementation(project(":data:local"))
+    implementation(project(":data:mapper"))
     implementation(project(":data:remote"))
-    implementation(project(":data:work"))
 
     implementation(KOTLIN_STDLIB)
+    implementation(KOTLIN_COROUTINES_CORE)
 
-    implementation(ANDROIDX_APPCOMPAT)
-    implementation(ANDROIDX_FRAGMENT)
-    implementation(ANDROIDX_PREFERENCE)
+    implementation(ANDROIDX_CORE)
     implementation(ANDROIDX_ROOM)
-    implementation(ANDROIDX_ROOM)
-    kapt(ANDROIDX_ROOM_COMPILER)
     implementation(ANDROIDX_WORK)
-
-    implementation(COIL)
 
     implementation(DAGGER)
     kapt(DAGGER_COMPILER)
 
-    implementation(FIREBASE_CRASHLYTICS)
-
-    implementation(MOSHI)
-
-    implementation(OKHTTP3)
-
     implementation(RETROFIT)
-    implementation(RETROFIT_MOSHI)
 }
