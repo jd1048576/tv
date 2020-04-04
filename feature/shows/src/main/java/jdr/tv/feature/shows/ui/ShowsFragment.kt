@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy
 import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
 import jdr.tv.common.navigation.GlobalActions
@@ -97,6 +98,7 @@ class ShowsFragment @Inject constructor(private val component: DataComponent) : 
                 }
             }
         }
+        adapter?.stateRestorationPolicy = StateRestorationPolicy.PREVENT_WHEN_EMPTY
         addItemDecoration(SpacingItemDecoration.GridLayout(requireContext().dpToPixels(SPACING)))
     }
 
