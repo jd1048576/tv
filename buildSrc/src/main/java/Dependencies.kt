@@ -10,7 +10,7 @@ const val FIREBASE_CRASHLYTICS_GRADLE = "com.google.firebase:firebase-crashlytic
 const val DEPENDENCY_UPDATES_VERSION = "0.28.0"
 const val DEPENDENCY_UPDATES = "com.github.ben-manes.versions"
 
-const val DETEKT_VERSION = "1.7.2"
+const val DETEKT_VERSION = "1.7.4"
 const val DETEKT = "io.gitlab.arturbosch.detekt"
 const val DETEKT_FORMATTING = "$DETEKT:detekt-formatting:$DETEKT_VERSION"
 
@@ -22,11 +22,11 @@ private const val KOTLIN_COROUTINES_VERSION = "1.3.5"
 const val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
 const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLIN_COROUTINES_VERSION"
 
-const val ANDROIDX_ACTIVITY = "androidx.activity:activity:1.2.0-alpha02"
-const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.2.0-alpha03"
+const val ANDROIDX_ACTIVITY = "androidx.activity:activity:1.2.0-alpha03"
+const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.2.0-beta01"
 const val ANDROIDX_CONSTRAINTLAYOUT = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
-const val ANDROIDX_CORE = "androidx.core:core-ktx:1.3.0-alpha02"
-const val ANDROIDX_FRAGMENT = "androidx.fragment:fragment-ktx:1.3.0-alpha02"
+const val ANDROIDX_CORE = "androidx.core:core-ktx:1.3.0-beta01"
+const val ANDROIDX_FRAGMENT = "androidx.fragment:fragment-ktx:1.3.0-alpha03"
 private const val ANDROIDX_LIFECYCLE_VERSION = "2.3.0-alpha01"
 const val ANDROIDX_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:$ANDROIDX_LIFECYCLE_VERSION"
 const val ANDROIDX_LIFECYCLE_VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:$ANDROIDX_LIFECYCLE_VERSION"
@@ -37,24 +37,24 @@ const val ANDROIDX_NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragmen
 const val ANDROIDX_NAVIGATION_RUNTIME = "androidx.navigation:navigation-runtime-ktx:$ANDROIDX_NAVIGATION_VERSION"
 const val ANDROIDX_NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$ANDROIDX_NAVIGATION_VERSION"
 const val ANDROIDX_PREFERENCE = "androidx.preference:preference:1.1.0"
-const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.0-alpha01"
+const val ANDROIDX_RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.0-alpha02"
 private const val ANDROIDX_ROOM_VERSION = "2.2.5"
 const val ANDROIDX_ROOM = "androidx.room:room-ktx:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_ROOM_COMMON = "androidx.room:room-common:$ANDROIDX_ROOM_VERSION"
 const val ANDROIDX_ROOM_COMPILER = "androidx.room:room-compiler:$ANDROIDX_ROOM_VERSION"
-const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0"
-const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.4.0-alpha01"
+const val ANDROIDX_VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+const val ANDROIDX_WORK = "androidx.work:work-runtime-ktx:2.4.0-alpha02"
 
 const val COIL = "io.coil-kt:coil:0.9.5"
 
-const val CYCLER = "com.squareup.cycler:cycler:0.1.2"
+const val CYCLER = "com.squareup.cycler:cycler:0.1.3"
 
 private const val DAGGER_VERSION = "2.27"
 const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
 const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
-const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics:17.2.3"
-const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics:17.0.0-beta02"
+const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics:17.3.0"
+const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics:17.0.0-beta03"
 
 const val MATERIAL = "com.google.android.material:material:1.2.0-alpha05"
 

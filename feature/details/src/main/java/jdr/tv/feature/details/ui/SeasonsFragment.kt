@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy
 import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
 import jdr.tv.common.ui.extensions.bind
@@ -66,6 +67,7 @@ class SeasonsFragment : Fragment() {
                 }
             }
         }
+        adapter?.stateRestorationPolicy = StateRestorationPolicy.PREVENT_WHEN_EMPTY
         addItemDecoration(SpacingItemDecoration.LinearLayout(requireContext().dpToPixels(SPACING)))
     }
 
