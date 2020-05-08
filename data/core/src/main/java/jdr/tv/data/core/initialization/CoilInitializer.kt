@@ -9,11 +9,11 @@ import okhttp3.OkHttpClient
 
 class CoilInitializer @Inject constructor(private val context: Context, @Named("IMAGE") private val client: OkHttpClient) : Initializer {
     override fun initialize() {
-        Coil.setDefaultImageLoader {
-            ImageLoader(context) {
-                okHttpClient(client)
-                crossfade(true)
-            }
-        }
+        Coil.setImageLoader(
+            ImageLoader.Builder(context)
+                .okHttpClient(client)
+                .crossfade(true)
+                .build()
+        )
     }
 }

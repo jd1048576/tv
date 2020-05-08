@@ -12,6 +12,7 @@ fun RepositoryHandler.register() {
             includeGroupByRegex("com.google.android.*")
             includeGroup("com.google.firebase")
             includeGroup("com.google.gms")
+            includeGroup("com.google.test.platform")
         }
     }
 
