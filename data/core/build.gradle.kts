@@ -16,7 +16,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = mapOf(
+                arguments = mutableMapOf(
                     "room.schemaLocation" to "$projectDir/schemas",
                     "room.incremental" to "true"
                 )
