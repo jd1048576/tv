@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUNDLE_VERSION="0.12.0"
+BUNDLE_VERSION="0.14.0"
 BUNDLE_TOOL="https://github.com/google/bundletool/releases/download/${BUNDLE_VERSION}/bundletool-all-${BUNDLE_VERSION}.jar"
 OUTPUT="${GITHUB_WORKSPACE}/apk"
 
