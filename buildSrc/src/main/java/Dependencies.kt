@@ -1,4 +1,4 @@
-const val KOTLIN_VERSION = "1.3.72"
+const val KOTLIN_VERSION = "1.4.21"
 
 // Plugins
 
@@ -18,7 +18,7 @@ const val DETEKT_FORMATTING = "$DETEKT:detekt-formatting:$DETEKT_VERSION"
 
 const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
 
-private const val KOTLIN_COROUTINES_VERSION = "1.3.6"
+private const val KOTLIN_COROUTINES_VERSION = "1.4.2"
 const val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
 const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KOTLIN_COROUTINES_VERSION"
 
